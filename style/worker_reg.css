@@ -1,0 +1,151 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #00CD5E;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: [one-eighty] auto [one-eighty] 200px [one-eighty] auto [one-eighty] 200px [one-eighty] auto;
+}
+
+.center {
+    grid-column: one-eighty 2 / one-eighty 5;
+}
+
+div.home-bottom a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+/* Page content */
+.content {
+    padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 60px;
+}
+
+.main {
+    /* The image used */
+    background-image: url("../img/bg.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+
+a{
+    color: #fff;
+   }
+  a:hover{
+   text-decoration: none;
+  }
+  .container2{
+   padding-top: 30px;
+   width:450px;
+   height: 570px;
+   background-color: rgba(77, 42, 0, 0.9);
+   margin: 60px auto 0 auto;
+   text-align: center;
+   padding-bottom: 20px;
+  
+  }
+
+  .container2 h2 {
+    color: #fff;
+  }
+
+
+  select {
+
+    width: 345px;
+    height:35px;
+    font-size: 18px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    padding-left: 40px;
+  }
+
+/* style="width: 345px; height: 35px;" */
+
+  input[type="text"],input[type="password"]{
+   
+   width: 300px;
+   height:30px;
+   font-size: 18px;
+   margin-bottom: 25px;
+   border-radius: 10px;
+   padding-left: 40px;
+   
+  }
+  .dws-input input:hover{
+   box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
+  }
+
+  .dws-select select:hover{
+    box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
+   }
+
+  .dws-submit {
+   padding: 13px 30px;
+   margin: 5px 0 20px 0;
+   font-size: 15px;
+   color: #fff;
+   background-color: #57B96D;
+   border: none;
+   border-radius: 20px;
+   cursor: pointer;
+  }
+  .dws-submit:hover{
+   transition: all 0.5s;
+   background: #fff;
+   color: #2c536c;
+  }
+  
+  .dws-input::before{
+   font-family: "FontAwesome";
+   position: absolute;
+   font-size: 30px;
+   padding: 10px 0 0 7px;
+   color: #2c536c;
+  }
+  
