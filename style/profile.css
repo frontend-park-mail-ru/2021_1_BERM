@@ -20,6 +20,19 @@ body, html {
     font-size: 17px;
 }
 
+.btn-z {
+    background: #D8FFDD;
+    float: right;
+    display: block;
+    color: #8F7E4F;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    margin-top: 13px;
+    border: none;
+    border-radius: 5px;
+}
+
 .container {
     display: grid;
     grid-template-columns: [one-eighty] auto [one-eighty] 200px [one-eighty] auto [one-eighty] 200px [one-eighty] auto;
