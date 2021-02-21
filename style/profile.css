@@ -1,0 +1,158 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #00CD5E;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.btn-z {
+    background: #D8FFDD;
+    float: right;
+    display: block;
+    color: #8F7E4F;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    margin-top: 13px;
+    border: none;
+    border-radius: 5px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: [one-eighty] auto [one-eighty] 200px [one-eighty] auto [one-eighty] 200px [one-eighty] auto;
+}
+
+.center {
+    grid-column: one-eighty 2 / one-eighty 5;
+}
+
+div.home-bottom a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.main {
+    /* The image used */
+    background-image: url("../img/bg.jpg");
+
+    /* Full height */
+    height: 80%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Page content */
+.content {
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 60px;
+}
+
+.profile_content {
+    padding-left: 150px;
+}
+
+.profile_photo {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 10px;
+}
+
+.textcols {
+    padding-top: 10px;
+    padding-left: 150px;
+	white-space: nowrap;
+}
+.textcols-item {
+	white-space: normal;	
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;
+}
+.textcols .textcols-item:first-child {
+	margin-right: 4%;
+}
+
+ul {
+    padding: 0; /* Убираем поля */
+    margin-left: 20px; /* Отступ слева */
+}
+
+.good_reviews {
+    color: #00CD5E;
+}
+
+.bad_reviews {
+    color: crimson;
+}
+
+div {
+    font: 100% sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.name {
+    margin-left: 2%;
+    margin-top: 50px;
+    font: 150% sans-serif;
+}
+
+.settings {
+    margin-top: 60px;
+}
+
+.spec {
+    font: bold 100% sans-serif;
+}
+
+.icon {
+    max-width: 20px;
+    max-height: 20px; 
+    margin-right: 1%;
+}
+
+.about {
+    margin-left: 10%;
+    font: 150% sans-serif;
+}
+
+.about-text {
+    margin-left: 10%;
+    margin-right: 45%;
+}

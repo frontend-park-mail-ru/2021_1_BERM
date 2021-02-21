@@ -1,0 +1,123 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+/* Добавляем цвет фона в верхнюю навигацию */
+.topnav {
+    z-index: 100;
+    background-color: #C3C49E;
+    overflow: hidden;
+}
+
+/* Стиль ссылок внутри панели навигации */
+.topnav a {
+    float: right;
+    display: block;
+    color: #8F7E4F;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.btn-z {
+    background: #D8FFDD;
+    float: right;
+    display: block;
+    color: #8F7E4F;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    margin-top: 13px;
+    border: none;
+    border-radius: 5px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: [one-eighty] auto [one-eighty] 200px [one-eighty] auto [one-eighty] 200px [one-eighty] auto;
+    height: 100%;
+}
+
+.center {
+    grid-column: one-eighty 2 / one-eighty 5;
+    height: 100%;
+}
+
+div.home-bottom a {
+    float: left;
+    display: block;
+    color: #8F7E4F;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.main {
+    /* Используем изображение */
+    background-image: url("../img/bg.jpg");
+
+    height: 100%;
+
+    /* Центрируем и красиво масштабируем изображение */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Контент страницы */
+.content {
+    padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Добавляем верхний отступ к содержимому страницы, чтобы предотвратить внезапное быстрое перемещение
+(поскольку панель навигации получает новое положение вверху страницы (position: fixed и top: 0) */
+.sticky + .content {
+    padding-top: 60px;
+}
+
+/* Главная кнопка */
+.container .btn {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #8F7E4F;
+    color: #DEDBD8;
+    font-size: 2vw;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.container .btn:hover {
+    background-color: black;
+}
+
+.main-text {
+    position:relative;
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    top: 30%;
+    width: 50%;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 3vw;
+    color: #8F7E4F;
+    background: #D8FFDD;
+}
