@@ -3,17 +3,18 @@ body, html {
     margin: 0;
 }
 
-/* Add a black background color to the top navigation */
+/* Добавляем цвет фона в верхнюю навигацию */
 .topnav {
-    background-color: #00CD5E;
+    z-index: 100;
+    background-color: #C3C49E;
     overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
+/* Стиль ссылок внутри панели навигации */
 .topnav a {
     float: right;
     display: block;
-    color: #f2f2f2;
+    color: #8F7E4F;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -32,7 +33,7 @@ body, html {
 div.home-bottom a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: #8F7E4F;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -40,19 +41,18 @@ div.home-bottom a {
 }
 
 .main {
-    /* The image used */
+    /* Используем изображение */
     background-image: url("../img/bg.jpg");
 
-    /* Full height */
-    height: 80%;
+    height: 100%;
 
-    /* Center and scale the image nicely */
+    /* Центрируем и красиво масштабируем изображение */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* Page content */
+/* Контент страницы */
 .content {
     padding: 16px;
 }
@@ -64,7 +64,28 @@ div.home-bottom a {
     width: 100%;
 }
 
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+/* Добавляем верхний отступ к содержимому страницы, чтобы предотвратить внезапное быстрое перемещение
+(поскольку панель навигации получает новое положение вверху страницы (position: fixed и top: 0) */
 .sticky + .content {
     padding-top: 60px;
+}
+
+/* Главная кнопка */
+.container .btn {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #8F7E4F;
+    color: #DEDBD8;
+    font-size: 2vw;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.container .btn:hover {
+    background-color: black;
 }
