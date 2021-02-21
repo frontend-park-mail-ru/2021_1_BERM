@@ -1,0 +1,76 @@
+.profile_content {
+    padding-left: 150px;
+}
+
+.profile_photo {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 10px;
+}
+
+.textcols {
+    padding-top: 10px;
+    padding-left: 150px;
+	white-space: nowrap;
+}
+.textcols-item {
+	white-space: normal;	
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;
+}
+
+.textcols .textcols-item:first-child {
+	margin-right: 4%;
+}
+
+ul {
+    padding: 0; /* Убираем поля */
+    margin-left: 20px; /* Отступ слева */
+}
+
+.good_reviews {
+    color: #00CD5E;
+}
+
+.bad_reviews {
+    color: crimson;
+}
+
+div {
+    font: 100% sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.name {
+    margin-left: 2%;
+    margin-top: 50px;
+    font: 150% sans-serif;
+}
+
+.settings {
+    margin-top: 60px;
+}
+
+.spec {
+    font: bold 100% sans-serif;
+}
+
+.icon {
+    max-width: 20px;
+    max-height: 20px; 
+    margin-right: 1%;
+}
+
+.about {
+    margin-left: 10%;
+    font: 150% sans-serif;
+}
+
+.about-text {
+    margin-left: 10%;
+    margin-right: 45%;
+}

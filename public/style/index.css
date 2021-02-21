@@ -1,0 +1,53 @@
+.main {
+    /* Используем изображение */
+    background-image: url("../img/bg.jpg");
+
+    height: 100%;
+
+    /* Центрируем и красиво масштабируем изображение */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Контент страницы */
+.content {
+    padding: 16px;
+}
+
+/* Главная кнопка */
+.container .btn {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #8F7E4F;
+    color: #DEDBD8;
+    font-size: 2vw;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.container .btn:hover {
+    background-color: black;
+}
+
+.main-text {
+    position:relative;
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    top: 30%;
+    width: 50%;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 3vw;
+    color: #8F7E4F;
+    background: #D8FFDD;
+}
