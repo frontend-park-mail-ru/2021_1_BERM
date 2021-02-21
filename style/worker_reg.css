@@ -71,6 +71,12 @@ div.home-bottom a {
 }
 
 
+* {
+    box-sizing: border-box;
+  }
+
+
+
 
 
 a{
@@ -80,9 +86,11 @@ a{
    text-decoration: none;
   }
   .container2{
+
    padding-top: 30px;
    width:450px;
    height: 570px;
+
    background-color: rgba(77, 42, 0, 0.9);
    margin: 60px auto 0 auto;
    text-align: center;
@@ -93,6 +101,7 @@ a{
   .container2 h2 {
     color: #fff;
   }
+
 
 
   select {
@@ -115,6 +124,7 @@ a{
    margin-bottom: 25px;
    border-radius: 10px;
    padding-left: 40px;
+
    
   }
   .dws-input input:hover{
@@ -124,6 +134,7 @@ a{
   .dws-select select:hover{
     box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
    }
+
 
   .dws-submit {
    padding: 13px 30px;
@@ -148,4 +159,5 @@ a{
    padding: 10px 0 0 7px;
    color: #2c536c;
   }
+
   
