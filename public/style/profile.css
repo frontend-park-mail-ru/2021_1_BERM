@@ -1,5 +1,6 @@
 .profile_content {
-    padding-left: 150px;
+    margin-left: 200px;
+    margin-right: 100px;
 }
 
 .profile_photo {
@@ -9,10 +10,9 @@
 }
 
 .textcols {
-    padding-top: 10px;
-    padding-left: 150px;
 	white-space: nowrap;
 }
+
 .textcols-item {
 	white-space: normal;	
 	display: inline-block;
@@ -46,7 +46,7 @@ a {
 }
 
 .name {
-    margin-left: 2%;
+    margin-left: 40px;
     margin-top: 50px;
     font: 150% sans-serif;
 }
@@ -66,11 +66,11 @@ a {
 }
 
 .about {
-    margin-left: 10%;
+    margin-left: 40px;
     font: 150% sans-serif;
 }
 
 .about-text {
-    margin-left: 10%;
+    margin-left: 40px;
     margin-right: 45%;
 }
