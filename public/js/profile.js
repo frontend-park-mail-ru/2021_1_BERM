@@ -1,19 +1,27 @@
-// When the user scrolls the page, execute myFunction
-window.onscroll = function () {
-    myFunction()
-};
+const application = document.getElementById('app');
 
-// Get the navbar
-var navbar = document.getElementById("myTopnav");
-
-// Get the offset position of the navbar
-var sticky = navbar.offsetTop;
-
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
-    if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
-    } else {
-        navbar.classList.remove("sticky");
-    }
+let profile_info = {
+    profileImgUrl: "img/profile.jpg",
+    settingImgUrl: "img/settings.png",
+    rateImgUrl: "img/rate.png",
+    reviewsImgUrl: "img/reviews.png",
+    orderImgUrl: "img/order.png",
+    name: "Олег Реуцкий",
+    nickName: "astlok",
+    specialize: "Мобильная разработка",
+    reviews: {
+        all: 25,
+        good: 20,
+        bad: 5,
+    },
+    rating: 5,
+    totalOrders: 30,
+    about: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut non eaque veniam quisquam temporibus nihil id tempora rerum, cumque, aliquid voluptatem nemo cum hic reiciendis obcaecati laudantium fuga quia aperiam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat impedit cumque voluptate pariatur ipsam expedita temporibus! Dolore inventore veritatis iusto quisquam, laboriosam soluta provident aliquid illum, numquam similique ea voluptate. Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae fugit accusamus aliquam enim molestias voluptatem ipsa quam voluptatum quibusdam cupiditate, ex eius. Accusamus voluptate veritatis laudantium similique cumque, numquam dolor. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat eos unde dolores ab explicabo eveniet dolorum voluptates quam nesciunt pariatur? Sit iste consectetur, harum ex commodi repellat porro velit ut."
 }
+
+function profilePage() {
+    application.innerHTML = '';
+    application.innerHTML = template(profile_info);
+}
+
+profilePage();
