@@ -29,7 +29,8 @@ let profileInfo = {
 
 function profilePage() {
     application.innerHTML = '';
-    application.innerHTML = template(profileInfo);
+    application.innerHTML += navbar() + profile(profileInfo);
 }
 
 profilePage();
+
