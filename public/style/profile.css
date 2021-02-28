@@ -63,6 +63,7 @@ a {
     max-width: 20px;
     max-height: 20px; 
     margin-right: 1%;
+    float: left;
 }
 
 .about {
@@ -73,4 +74,8 @@ a {
 .about-text {
     margin-left: 40px;
     margin-right: 45%;
+}
+
+.margin-inc > * {
+    margin-left: 5px;
 }
