@@ -1,6 +1,6 @@
 const application = document.getElementById('app');
 
-let profile_info = {
+let profileInfo = {
     profileImgUrl: "img/profile.jpg",
     settingImgUrl: "img/settings.png",
     rateImgUrl: "img/rate.png",
@@ -29,7 +29,8 @@ let profile_info = {
 
 function profilePage() {
     application.innerHTML = '';
-    application.innerHTML = template(profile_info);
+    application.innerHTML += navbar() + profile(profileInfo);
 }
 
 profilePage();
+
