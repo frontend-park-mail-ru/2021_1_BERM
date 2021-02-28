@@ -1,6 +1,10 @@
-const app = document.getElementsByTagName('body')[0]
+function renderIndex() {
+    const root = document.getElementById('root')
 
-app.innerHTML = template({
-    title_name: "FL",
-    isProfile: true
-})
+    document.title = 'Фриланс'
+
+    root.innerHTML = ''
+    root.innerHTML += navbar() + index()
+}
+
+renderIndex();
