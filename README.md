@@ -15,8 +15,8 @@
 - [Антон Елагин](https://github.com/AntonElagin)
 
 ## Выполненная работа
-- Установка npm
-- Установка зависимостей: npm install pug
-- Генерация JS с помощью pug
+- Установка: `npm install`
+- Установка зависимостей: `npm install pug`
+- Генерация JS с помощью pug: `npm run generate`
 
 

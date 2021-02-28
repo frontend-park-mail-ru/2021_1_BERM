@@ -1,12 +1,12 @@
 mixin navbarContent()
-    a(href="#") Регистрация
-    a(href="#") Вход
-    button(class="btn-z") Разместить заказ
-    div(class="home-bottom")
-        a(class="active" href="#") Фриланс
+    a(href="#workerReg") Регистрация
+    a(href="#login") Вход
+    button(class="navbar__button_order") Разместить заказ
+    div(class="navbar__button_title")
+        a(class="active" href="#") FL
 
 
-div(class="topnav" id="myTopnav")
-    div(class="container")
-        div(class="center")
+div(class="navbar" id="myTopnav")
+    div(class="main__container")
+        div(class="main__container_center")
             +navbarContent

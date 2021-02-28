@@ -1,13 +1,9 @@
-div#root {
+#root {
     width: 100vw;
     height: 100vh;
-}
 
-.main {
     /* Используем изображение */
     background-image: url("../img/bg.jpg");
-
-    height: 100%;
 
     /* Центрируем и красиво масштабируем изображение */
     background-position: center;
@@ -16,12 +12,12 @@ div#root {
 }
 
 /* Контент страницы */
-.content {
+.login__content {
     padding: 16px;
 }
 
 /* Главная кнопка */
-.container .btn {
+.main__container .menu__button {
     position: relative;
     top: 50%;
     left: 50%;
@@ -36,11 +32,11 @@ div#root {
     border-radius: 10px;
 }
 
-.container .btn:hover {
+.main__container .menu__button:hover {
     background-color: black;
 }
 
-.main-text {
+.main_text {
     position:relative;
     text-align: center;
 

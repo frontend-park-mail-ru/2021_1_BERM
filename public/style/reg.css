@@ -1,29 +1,12 @@
-body {
-    /* The image used */
-    background-image: url("../img/bg.jpg");
-
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-a {
+.registration a {
     color: #fff;
 }
 
-a:hover {
+.registration a:hover {
     text-decoration: none;
 }
 
-.container2 {
+.registration {
 
     padding-top: 30px;
     width: 450px;
@@ -36,7 +19,7 @@ a:hover {
 
 }
 
-.container2 h2 {
+.registration h2 {
     color: #fff;
 }
 
@@ -49,17 +32,16 @@ select {
     padding-left: 40px;
 }
 
-/* style="width: 345px; height: 35px;" */
-input[type="text"], input[type="password"] {
+.registration__input {
     width: 300px;
     height: 30px;
     font-size: 18px;
     margin-bottom: 25px;
     border-radius: 10px;
-    padding-left: 40px;
+    padding-left: 45px;
 }
 
-.dws-input input:hover {
+.registration__input input:hover {
     box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
 }
 
@@ -84,7 +66,7 @@ input[type="text"], input[type="password"] {
     color: #2c536c;
 }
 
-.dws-input::before {
+.registration__input::before {
     font-family: "FontAwesome";
     position: absolute;
     font-size: 30px;

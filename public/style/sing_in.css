@@ -1,13 +1,17 @@
-.login-window {
+.login__window {
+    background: white;
+}
+
+.login__window {
     display: flex;
     flex-direction: column;
     width: 250px;
-    margin: 100px auto 0;
+    margin: 200px auto 0;
     padding: 50px;
     border-radius: 10px;
 }
 
-.label {
+.login__window_label {
     margin: 10px;
     text-align: center;
     font-family: Arial;
@@ -16,17 +20,17 @@
     color: #4f4f4f;
 }
 
-.login {
+.login__window_login {
     margin: 5px 10px;
     padding: 5px;
 }
 
-.password {
+.login__window_password {
     margin: 5px 10px;
     padding: 5px;
 }
 
-.enter {
+.login__window_enter {
     background-color: green;
     height: 30px;
     border: none;
@@ -42,7 +46,7 @@
     border-radius: 5px;
 }
 
-.forgot-pass {
+.login__window_forgot-pass {
     margin: 5px 10px;
     border: none;
     cursor: pointer;

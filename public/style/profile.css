@@ -9,18 +9,18 @@
     border-radius: 10px;
 }
 
-.textcols {
+.profile__column_text {
 	white-space: nowrap;
 }
 
-.textcols-item {
+.profile__item_name {
 	white-space: normal;	
 	display: inline-block;
 	width: 25%;
 	vertical-align: top;
 }
 
-.textcols .textcols-item:first-child {
+.profile__column_text .profile__item_name:first-child {
 	margin-right: 4%;
 }
 
@@ -66,12 +66,12 @@ a {
     float: left;
 }
 
-.about {
+.profile__about {
     margin-left: 40px;
     font: 150% sans-serif;
 }
 
-.about-text {
+.profile__definition_text {
     margin-left: 40px;
     margin-right: 45%;
 }

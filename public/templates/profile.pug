@@ -1,22 +1,22 @@
-div(class='textcols')
-    div(class='name textcols-item')
+div(class='profile__column_text')
+    div(class='name profile__item_name')
         p #{name}  [#{nickName}]
-    div(class='textcols-item')
-    div(class='settings textcols-item')
+    div(class='profile__item_name')
+    div(class='settings profile__item_name')
         p
             img(class='icon', src=settingImgUrl)
             a(href='#') Настройки
-div(class='textcols')
-    div(class='textcols-item')
+div(class='profile__column_text')
+    div(class='profile__item_name')
         figure
             img(class='profile_photo' src=profileImgUrl)
             figcaption
                 a(href='#') Изменить фото
-    div(class='textcols-item')
+    div(class='profile__item_name')
         p(class='spec') Специализации:
         ul
             li #{specialize}
-    div(class='textcols-item')
+    div(class='profile__item_name')
         p(class='margin-inc')
             img(class='icon' src=reviewsImgUrl)
             span Отзывы
@@ -31,8 +31,8 @@ div(class='textcols')
             img(class='icon' src=orderImgUrl)
             span Всего заказов
             a(href='#') #{totalOrders}
-p(class='about') О себе
-div(class='about-text')
+p(class='profile__about') О себе
+div(class='profile__definition_text')
     p
         | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut non eaque veniam quisquam temporibus
         | nihil id tempora rerum, cumque, aliquid voluptatem nemo cum hic reiciendis obcaecati laudantium fuga
