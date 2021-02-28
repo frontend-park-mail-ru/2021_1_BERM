@@ -20,5 +20,8 @@
     "url": "https://github.com/frontend-park-mail-ru/2021_1_BERM/issues"
   },
   "homepage": "https://github.com/frontend-park-mail-ru/2021_1_BERM#readme",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "core-js": "^3.9.0"
+  }
 }
