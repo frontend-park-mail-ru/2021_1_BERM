@@ -1,5 +1,5 @@
-const application = document.getElementById('worker_reg');
-const clk = document.getElementById('clk')
+const application = document.getElementById('client_reg');
+const clk = document.getElementById('clk_cl')
 
 // function RegPage() {
 //     application.innerHTML = '';
@@ -8,7 +8,7 @@ const clk = document.getElementById('clk')
 
 clk.onclick = function() {
     application.innerHTML = '';
-    application.innerHTML = wrk_reg();
+    application.innerHTML = cl_reg();
 }
 
 // profilePage();
