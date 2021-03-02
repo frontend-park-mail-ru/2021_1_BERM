@@ -1,9 +1,11 @@
 #root {
+    position: relative;
+
     width: 100vw;
     height: 100vh;
 
     /* Используем изображение */
-    background-image: url("../img/bg.jpg");
+    background-image: url("https://static-cse.canva.com/blob/194831/Green-Financial-Services-Corporate-Zoom-Background.png");
 
     /* Центрируем и красиво масштабируем изображение */
     background-position: center;
@@ -17,8 +19,8 @@
 }
 
 /* Главная кнопка */
-.main__container .menu__button {
-    position: relative;
+.main__container .menu__button_client {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -32,23 +34,37 @@
     border-radius: 10px;
 }
 
-.main__container .menu__button:hover {
+.main__container .menu__button_work {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 1;
+    color: black;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+.main__container .menu__button_client:hover {
     background-color: black;
 }
 
 .main_text {
-    position:relative;
+    position: absolute;
     text-align: center;
 
     margin-left: auto;
     margin-right: auto;
-    top: 30%;
-    width: 50%;
+    top: 25%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 
     border: none;
     border-radius: 5px;
 
     font-size: 3vw;
     color: #8F7E4F;
-    background: #D8FFDD;
 }

@@ -7,15 +7,18 @@
 }
 
 .registration {
-
+    position: absolute;
     padding-top: 30px;
     width: 450px;
-    height: 570px;
+    height: 560px;
 
     background-color: rgba(77, 42, 0, 0.9);
-    margin: 60px auto 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    padding-bottom: 20px;
+    border-radius: 10px;
+    /*padding-bottom: 20px;*/
 
 }
 
@@ -24,7 +27,7 @@
 }
 
 select {
-    width: 300px;
+    width: 350px;
     height: 35px;
     font-size: 18px;
     margin-bottom: 25px;
@@ -51,7 +54,7 @@ select {
 
 .dws-submit {
     padding: 13px 30px;
-    margin: 5px 0 20px 0;
+    margin: 5px 0 0 0;
     font-size: 15px;
     color: #fff;
     background-color: #57B96D;
@@ -67,7 +70,7 @@ select {
 }
 
 .registration__input::before {
-    font-family: "FontAwesome";
+    font-family: sans-serif;
     position: absolute;
     font-size: 30px;
     padding: 10px 0 0 7px;

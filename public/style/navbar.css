@@ -6,7 +6,7 @@ body, html {
 /* Добавляем цвет фона в верхнюю навигацию */
 .navbar {
     z-index: 100;
-    background-color: #C3C49E;
+    background-color: #00cd5e;
     overflow: hidden;
 }
 
@@ -14,7 +14,7 @@ body, html {
 .navbar a {
     float: right;
     display: block;
-    color: #8F7E4F;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -22,33 +22,33 @@ body, html {
 }
 
 .navbar__button_order {
-    background: #D8FFDD;
+    background: #00cd5e;
     float: right;
     display: block;
-    color: #8F7E4F;
+    color: black;
     text-align: center;
     text-decoration: none;
     font-size: 17px;
     margin-top: 13px;
     border: none;
+    padding-right: 16px;
+    padding-left: 16px;
     border-radius: 5px;
 }
 
 .main__container {
     display: grid;
     grid-template-columns: [one-eighty] auto [one-eighty] 200px [one-eighty] auto [one-eighty] 200px [one-eighty] auto;
-    height: 100%;
 }
 
 .main__container_center {
     grid-column: one-eighty 2 / one-eighty 5;
-    height: 100%;
 }
 
 div.navbar__button_title a {
     float: left;
     display: block;
-    color: #8F7E4F;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;

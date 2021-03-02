@@ -57,9 +57,9 @@ export default {
                 "harum ex commodi repellat porro velit ut."
         } // Временная структура
 
-        document.title = 'FL.ru';
+        document.title = 'Профиль';
 
-        root.innerHTML = 'Профиль';
+        root.innerHTML = '';
         root.innerHTML += navbar() + profile(profileInfo);
     }
 };
