@@ -1,12 +1,10 @@
-.registration a {
-    color: #fff;
-}
-
-.registration a:hover {
-    text-decoration: none;
-}
-
 .registration {
+
+    --bg_reg: #FFFFFF;
+    --main-text-color: #3888C6;
+    --reg-button: #EDEEF0;
+    --reg-button-font-color: black;
+
     padding-top: 30px;
     margin-top: 5%;
     margin-left: auto;
@@ -14,16 +12,15 @@
     position: center;
     width: 450px;
     height: 560px;
-    background-color: #FFFFFF;
+    background-color: var(--bg_reg);
 
     text-align: center;
     border-radius: 10px;
-    /*padding-bottom: 20px;*/
 
 }
 
 .registration h2 {
-    color: #3888C6;
+    color: var(--main-text-color);
 }
 
 select {
@@ -46,8 +43,8 @@ select {
     padding: 13px 30px;
     margin: 5px 0 0 0;
     font-size: 15px;
-    color: black;
-    background-color: #EDEEF0;
+    color: var(--reg-button-font-color);
+    background-color: var(--reg-button);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -55,12 +52,12 @@ select {
 
 .dws-submit:hover {
     transition: all 0.5s;
-    background: #3888C6;
+    background: var(--main-text-color);
 }
 
 .registration__input::before {
     position: absolute;
     font: 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
     padding: 10px 0 0 0;
-    color: #3888C6;
+    color: var(--main-text-color);
 }

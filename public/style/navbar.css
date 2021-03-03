@@ -6,8 +6,12 @@ body, html {
 
 /* Добавляем цвет фона в верхнюю навигацию */
 .navbar {
+    --navbar-bg: #FFFFFF;
+    --navbar-order-bg: #EDEEF0;
+    --navbar-color-front: #3888C6;
+
     z-index: 100;
-    background-color: #FFFFFF;
+    background-color: var(--navbar-bg);
     overflow: hidden;
 }
 
@@ -15,18 +19,17 @@ body, html {
 .navbar a {
     float: right;
     display: block;
-    color: #3888C6;
+    color: var(--navbar-color-front);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    /*font-size: 17px;*/
 }
 
 .navbar__button_order {
-    background: #EDEEF0;
+    background: var(--navbar-order-bg);
     float: right;
     display: block;
-    color: #3888C6;
+    color: var(--navbar-color-front);
     text-align: center;
     text-decoration: none;
     font-size: 17px;
@@ -49,11 +52,10 @@ body, html {
 div.navbar__button_title a {
     float: left;
     display: block;
-    color: #0088cc;
+    color: var(--navbar-color-front);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    /*font-size: 17px;*/
 }
 
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */

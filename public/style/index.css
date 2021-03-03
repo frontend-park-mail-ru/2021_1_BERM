@@ -1,4 +1,10 @@
 #root {
+
+    --button_bg: #FFFFFF;
+    --button_font: #3888C6;
+    --button_focus-color: #edeef0;
+    --index-bg: #d7d7d7;
+
     position: relative;
 
     width: 100vw;
@@ -11,7 +17,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #EDEEF0;
+    background-color: var(--index-bg);
 }
 
 /* Контент страницы */
@@ -26,8 +32,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: #FFFFFF;
-    color: #3888C6;
+    background-color: var(--button_bg);
+    color: var(--button_font);
     font-size: 2vw;
     padding: 12px 24px;
     border: none;
@@ -42,13 +48,13 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     opacity: 1;
-    color: #3888C6;
+    color: var(--button_font);
     font-size: 1vw;
     cursor: pointer;
 }
 
 .main__container .menu__button_client:hover {
-    background-color: #EDEEF0;
+    background-color: var(--button_focus-color);
 }
 
 .main_text {

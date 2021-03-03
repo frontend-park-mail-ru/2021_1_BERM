@@ -1,11 +1,9 @@
 import Controller from './controller.js'
 
-function getRouteHash() {
-    return location.hash ? location.hash.slice(1) : '';
-}
-
 function handleHash() {
-    const hash = getRouteHash();
+    const hash = (() => {
+        return location.hash ? location.hash.slice(1) : '';
+    })();
 
     Controller[hash + 'Route']();
 }

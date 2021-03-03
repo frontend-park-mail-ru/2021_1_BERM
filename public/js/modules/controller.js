@@ -4,33 +4,29 @@ export default {
     async Route() {
         document.title = 'FL.ru';
 
-        root.innerHTML = '';
-        root.innerHTML += navbar() + index();
+        root.innerHTML = navbar() + index();
     },
 
     async loginRoute() {
         document.title = 'Авторизация';
 
-        root.innerHTML = '';
-        root.innerHTML = navbar() + sign_in();
+        root.innerHTML = navbar() + signIn();
     },
 
     async clientRegRoute() {
         document.title = 'Регистрация';
 
-        root.innerHTML = '';
-        root.innerHTML += navbar() + client_reg();
+        root.innerHTML = navbar() + clientReg();
     },
 
     async workerRegRoute() {
         document.title = 'Регистрация';
 
-        root.innerHTML = '';
-        root.innerHTML += navbar() + worker_reg();
+        root.innerHTML = navbar() + workerReg();
     },
 
     async profileRoute() {
-        let profileInfo = {
+        const profileInfo = {
             profileImgUrl: "img/profile.jpg",
             settingImgUrl: "img/settings.png",
             rateImgUrl: "img/rate.png",
@@ -59,7 +55,6 @@ export default {
 
         document.title = 'Профиль';
 
-        root.innerHTML = '';
-        root.innerHTML += navbar() + profile(profileInfo);
+        root.innerHTML = navbar() + profile(profileInfo);
     }
 };

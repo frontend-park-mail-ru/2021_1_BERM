@@ -1,14 +1,8 @@
 import Router from './modules/router.js'
 
-(async () => {
-    try {
-        var i;
-        if (true) {
+async function run() {
+    Router.init();
+}
 
-        }
-        Router.init();
-    } catch (err) {
-        console.error(err);
-        // Ошибка
-    }
-})();
+run()
+    .catch(err => alert('err'));
