@@ -1,5 +1,5 @@
 .login__window {
-    background: #00cd5e;
+    background: #FFFFFF;
 }
 
 .login__window {
@@ -21,7 +21,7 @@
     font-family: sans-serif;
     font-weight: bold;
     font-size: 20px;
-    color: #4f4f4f;
+    color: #3888C6;
 }
 
 .login__window_login {
@@ -35,7 +35,7 @@
 }
 
 .login__window_enter {
-    background-color: #27ff00;
+    background-color: #EDEEF0;
     height: 30px;
     border: none;
     color: black;
@@ -49,6 +49,9 @@
     cursor: pointer;
     border-radius: 5px;
 }
+.login__window_enter:hover {
+    background-color: #3888C6;
+}
 
 .login__window_forgot-pass {
     background: none;
@@ -56,4 +59,5 @@
     border: none;
     cursor: pointer;
     width: 150px;
+    color: #3888C6
 }

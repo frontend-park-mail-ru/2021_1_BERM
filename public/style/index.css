@@ -5,12 +5,13 @@
     height: 100vh;
 
     /* Используем изображение */
-    background-image: url("https://static-cse.canva.com/blob/194831/Green-Financial-Services-Corporate-Zoom-Background.png");
+    /*background-image: url("https://static-cse.canva.com/blob/194831/Green-Financial-Services-Corporate-Zoom-Background.png");*/
 
     /* Центрируем и красиво масштабируем изображение */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #EDEEF0;
 }
 
 /* Контент страницы */
@@ -25,8 +26,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: #8F7E4F;
-    color: #DEDBD8;
+    background-color: #FFFFFF;
+    color: #3888C6;
     font-size: 2vw;
     padding: 12px 24px;
     border: none;
@@ -41,13 +42,13 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     opacity: 1;
-    color: black;
+    color: #3888C6;
     font-size: 1vw;
     cursor: pointer;
 }
 
 .main__container .menu__button_client:hover {
-    background-color: black;
+    background-color: #EDEEF0;
 }
 
 .main_text {
@@ -66,5 +67,5 @@
     border-radius: 5px;
 
     font-size: 3vw;
-    color: #8F7E4F;
+    color: #5d5959;
 }

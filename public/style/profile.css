@@ -1,6 +1,10 @@
-.profile_content {
-    margin-left: 200px;
-    margin-right: 100px;
+.profile-content {
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 4%;
+    padding-bottom: 5%;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .profile_photo {
@@ -16,7 +20,8 @@
 .profile__item_name {
 	white-space: normal;	
 	display: inline-block;
-	width: 25%;
+	width: 33%;
+    padding-left: 5%;
 	vertical-align: top;
 }
 
@@ -37,18 +42,20 @@ ul {
     color: crimson;
 }
 
-div {
-    font: 100% sans-serif;
-}
+/*div {*/
+/*    font: 100% sans-serif;*/
+/*}*/
 
 a {
+    color: #3888C6;
     text-decoration: none;
 }
 
 .name {
-    margin-left: 40px;
+    margin-left: 1%;
     margin-top: 50px;
-    font: 150% sans-serif;
+    font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+    color: #3888C6;
 }
 
 .settings {
@@ -56,7 +63,8 @@ a {
 }
 
 .spec {
-    font: bold 100% sans-serif;
+    color: #3888C6;
+    font: bold 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
 }
 
 .icon {
@@ -67,12 +75,13 @@ a {
 }
 
 .profile__about {
-    margin-left: 40px;
-    font: 150% sans-serif;
+    margin-left:7%;
+    color: #3888C6;
+    font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
 }
 
 .profile__definition_text {
-    margin-left: 40px;
+    margin-left: 7%;
     margin-right: 45%;
 }
 

@@ -11,8 +11,7 @@
     padding-top: 30px;
     width: 450px;
     height: 560px;
-
-    background-color: rgba(77, 42, 0, 0.9);
+    background-color: #FFFFFF;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -23,56 +22,44 @@
 }
 
 .registration h2 {
-    color: #fff;
+    color: #3888C6;
 }
 
 select {
-    width: 350px;
+    width: 311px;
     height: 35px;
-    font-size: 18px;
     margin-bottom: 25px;
-    border-radius: 10px;
-    padding-left: 40px;
+    padding-left: 4px;
+    margin-left: 32px;
 }
 
 .registration__input {
     width: 300px;
     height: 30px;
-    font-size: 18px;
     margin-bottom: 25px;
-    border-radius: 10px;
-    padding-left: 45px;
-}
-
-.registration__input input:hover {
-    box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
-}
-
-.dws-select select:hover {
-    box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
+    margin-left: 32px;
+    padding-left: 5px;
 }
 
 .dws-submit {
     padding: 13px 30px;
     margin: 5px 0 0 0;
     font-size: 15px;
-    color: #fff;
-    background-color: #57B96D;
+    color: black;
+    background-color: #EDEEF0;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 .dws-submit:hover {
     transition: all 0.5s;
-    background: #fff;
-    color: #2c536c;
+    background: #3888C6;
 }
 
 .registration__input::before {
-    font-family: sans-serif;
     position: absolute;
-    font-size: 30px;
-    padding: 10px 0 0 7px;
-    color: #2c536c;
+    font: 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+    padding: 10px 0 0 0;
+    color: #3888C6;
 }
