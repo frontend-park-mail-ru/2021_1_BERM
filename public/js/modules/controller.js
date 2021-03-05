@@ -1,31 +1,31 @@
 const root = document.getElementById('root');
 
 export default {
-    async Route() {
+    Route() {
         document.title = 'FL.ru';
 
-        root.innerHTML = navbar() + index();
+        root.innerHTML = navbarTemplate() + indexTemplate();
     },
 
-    async loginRoute() {
+    loginRoute() {
         document.title = 'Авторизация';
 
-        root.innerHTML = navbar() + signIn();
+        root.innerHTML = navbarTemplate() + signinTemplate();
     },
 
-    async clientRegRoute() {
+    clientRegRoute() {
         document.title = 'Регистрация';
 
-        root.innerHTML = navbar() + clientReg();
+        root.innerHTML = navbarTemplate() + clientregTemplate();
     },
 
-    async workerRegRoute() {
+    workerRegRoute() {
         document.title = 'Регистрация';
 
-        root.innerHTML = navbar() + workerReg();
+        root.innerHTML = navbarTemplate() + workerregTemplate();
     },
 
-    async profileRoute() {
+    profileRoute() {
         const profileInfo = {
             profileImgUrl: "img/profile.jpg",
             settingImgUrl: "img/settings.png",
@@ -55,6 +55,6 @@ export default {
 
         document.title = 'Профиль';
 
-        root.innerHTML = navbar() + profile(profileInfo);
+        root.innerHTML = navbarTemplate() + profileTemplate(profileInfo);
     }
 };

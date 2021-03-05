@@ -8,7 +8,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "nmp install\n npm install pug-cli -g\npug --client --no-debug -n index  public/templates/index.pug\npug --client --no-debug -n signIn  public/templates/signIn.pug\npug --client --no-debug -n clientReg  public/templates/clientReg.pug\npug --client --no-debug -n workerReg  public/templates/workerReg.pug\npug --client --no-debug -n profile  public/templates/profile.pug\npug --client --no-debug -n navbar  public/templates/navbar.pug\n"
+    "generate": "pug --client --no-debug --name-after-file public/templates\n"
   },
   "repository": {
     "type": "git",

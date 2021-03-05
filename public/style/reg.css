@@ -1,7 +1,7 @@
 .registration {
 
     --bg_reg: #FFFFFF;
-    --main-text-color: #3888C6;
+    --main-text-color-reg: #3888C6;
     --reg-button: #EDEEF0;
     --reg-button-font-color: black;
 
@@ -20,7 +20,7 @@
 }
 
 .registration h2 {
-    color: var(--main-text-color);
+    color: var(--main-text-color-reg);
 }
 
 select {
@@ -52,12 +52,12 @@ select {
 
 .dws-submit:hover {
     transition: all 0.5s;
-    background: var(--main-text-color);
+    background: var(--main-text-color-reg);
 }
 
 .registration__input::before {
     position: absolute;
     font: 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
     padding: 10px 0 0 0;
-    color: var(--main-text-color);
+    color: var(--main-text-color-reg);
 }

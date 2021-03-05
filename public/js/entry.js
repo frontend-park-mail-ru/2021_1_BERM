@@ -1,6 +1,6 @@
 import Router from './modules/router.js'
 
-async function run() {
+function run() {
     Router.init();
 }
 

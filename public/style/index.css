@@ -1,10 +1,6 @@
 #root {
 
-    --button_bg: #FFFFFF;
-    --button_font: #3888C6;
-    --button_focus-color: #edeef0;
-    --index-bg: #d7d7d7;
-
+    --bg-root: #cecece;
     position: relative;
 
     width: 100vw;
@@ -17,12 +13,22 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: var(--index-bg);
+    background-color: var(--bg-root);
+}
+
+.main__container {
+    --button_bg: #FFFFFF;
+    --button_font: #3888C6;
+    --button_focus-color: #edeef0;
+    --index-bg: #bf5e5e;
+    --main_text-color: #5d5959;
+
+    --login_padding: 16px;
 }
 
 /* Контент страницы */
 .login__content {
-    padding: 16px;
+    padding: var(--login_padding)
 }
 
 /* Главная кнопка */
@@ -73,5 +79,5 @@
     border-radius: 5px;
 
     font-size: 3vw;
-    color: #5d5959;
+    color: var(--main_text-color);
 }
