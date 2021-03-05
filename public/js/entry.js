@@ -5,4 +5,4 @@ async function run() {
 }
 
 run()
-    .catch(err => alert('err'));
+    .catch(() => alert('err'));

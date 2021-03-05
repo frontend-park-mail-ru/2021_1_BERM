@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "eslint": "^7.20.0",
+    "eslint": "^7.21.0",
     "pug": "^3.0.0"
   },
   "name": "2021_1_berm",
