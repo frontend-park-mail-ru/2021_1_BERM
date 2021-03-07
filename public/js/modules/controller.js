@@ -4,7 +4,11 @@ export default {
     Route() {
         document.title = 'FL.ru';
 
-        root.innerHTML = navbarTemplate() + indexTemplate();
+        const profNavbar = {
+            authorized: true,
+            profIcon: "img/profIcon.png"
+        }
+        root.innerHTML = navbarTemplate(profNavbar) + indexTemplate();
     },
 
     loginRoute() {
