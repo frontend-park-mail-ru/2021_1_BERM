@@ -1,6 +1,16 @@
-.profile_content {
-    margin-left: 200px;
-    margin-right: 100px;
+.profile-content {
+
+    --bg_prof: white;
+    --good_review: #00CD5E;
+    --bad_review: crimson;
+    --text-color: #3888C6;
+
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 4%;
+    padding-bottom: 5%;
+    background-color: var(--bg_prof);
+    border-radius: 10px;
 }
 
 .profile_photo {
@@ -9,19 +19,20 @@
     border-radius: 10px;
 }
 
-.textcols {
+.profile__column_text {
 	white-space: nowrap;
 }
 
-.textcols-item {
+.profile__item_name {
 	white-space: normal;	
 	display: inline-block;
-	width: 25%;
+	width: 33%;
+    padding-left: 5%;
 	vertical-align: top;
 }
 
-.textcols .textcols-item:first-child {
-	margin-right: 4%;
+.profile__column_text .profile__item_name:first-child {
+	margin-right: 0;
 }
 
 ul {
@@ -30,25 +41,24 @@ ul {
 }
 
 .good_reviews {
-    color: #00CD5E;
+    color: var(--good_review);
 }
 
 .bad_reviews {
-    color: crimson;
-}
-
-div {
-    font: 100% sans-serif;
+    color: var(--bad_review);
 }
 
 a {
+    color: var(--text-color);
     text-decoration: none;
+    padding-left: 5px;
 }
 
 .name {
-    margin-left: 40px;
+    margin-left: 1%;
     margin-top: 50px;
-    font: 150% sans-serif;
+    font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+    color: var(--text-color);
 }
 
 .settings {
@@ -56,21 +66,28 @@ a {
 }
 
 .spec {
-    font: bold 100% sans-serif;
+    color: var(--text-color);
+    font: bold 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
 }
 
 .icon {
     max-width: 20px;
     max-height: 20px; 
     margin-right: 1%;
+    float: left;
 }
 
-.about {
-    margin-left: 40px;
-    font: 150% sans-serif;
+.profile__about {
+    margin-left:7%;
+    color: var(--text-color);
+    font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
 }
 
-.about-text {
-    margin-left: 40px;
+.profile__definition_text {
+    margin-left: 7%;
     margin-right: 45%;
+}
+
+.margin-inс {
+    margin-left: 5px;
 }

@@ -14,4 +14,6 @@
 ## Менторы
 - [Антон Елагин](https://github.com/AntonElagin)
 
-
+## Выполненная работа
+- Установка зависимостей: `npm install`
+- Генерация JS с помощью pug: `npm run generate`

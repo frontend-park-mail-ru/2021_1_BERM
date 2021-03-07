@@ -1,29 +1,45 @@
-.main {
-    /* Используем изображение */
-    background-image: url("../img/bg.jpg");
+#root {
 
-    height: 100%;
+    --bg-root: #EDEEF0;
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    /* Используем изображение */
+    /*background-image: url("https://static-cse.canva.com/blob/194831/Green-Financial-Services-Corporate-Zoom-Background.png");*/
 
     /* Центрируем и красиво масштабируем изображение */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: var(--bg-root);
+}
+
+.main__container {
+    --button_bg: #FFFFFF;
+    --button_font: #3888C6;
+    --button_focus-color: #edeef0;
+    --index-bg: #bf5e5e;
+    --main_text-color: #5d5959;
+
+    --login_padding: 16px;
 }
 
 /* Контент страницы */
-.content {
-    padding: 16px;
+.login__content {
+    padding: var(--login_padding)
 }
 
 /* Главная кнопка */
-.container .btn {
-    position: relative;
+.main__container .menu__button_client {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: #8F7E4F;
-    color: #DEDBD8;
+    background-color: var(--button_bg);
+    color: var(--button_font);
     font-size: 2vw;
     padding: 12px 24px;
     border: none;
@@ -31,23 +47,37 @@
     border-radius: 10px;
 }
 
-.container .btn:hover {
-    background-color: black;
+.main__container .menu__button_work {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 1;
+    color: var(--button_font);
+    font-size: 1vw;
+    cursor: pointer;
 }
 
-.main-text {
-    position:relative;
+.main__container .menu__button_client:hover {
+    background-color: var(--button_focus-color);
+}
+
+.main_text {
+    position: absolute;
     text-align: center;
 
     margin-left: auto;
     margin-right: auto;
-    top: 30%;
-    width: 50%;
+    top: 25%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 
     border: none;
     border-radius: 5px;
 
     font-size: 3vw;
-    color: #8F7E4F;
-    background: #D8FFDD;
+    color: var(--main_text-color);
 }

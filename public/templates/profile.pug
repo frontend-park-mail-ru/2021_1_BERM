@@ -1,0 +1,37 @@
+form(class='profile-content')
+    div(class='profile__column_text')
+        div(class='name profile__item_name')
+            p #{name}  [#{nickName}]
+        div(class='profile__item_name')
+        div(class='settings profile__item_name')
+            p
+                img(class='icon', src=settingImgUrl)
+                a(href='#') Настройки
+    div(class='profile__column_text')
+        div(class='profile__item_name')
+            figure
+                img(class='profile_photo' src=profileImgUrl)
+                figcaption
+                    a(href='#') Изменить фото
+        div(class='profile__item_name')
+            p(class='spec') Специализации:
+            ul
+                li #{specialize}
+        div(class='profile__item_name')
+            p(class='margin-inc')
+                img(class='icon' src=reviewsImgUrl)
+                span Отзывы
+                a(href='#') #{reviews.all}
+                a(href='#' class='good_reviews') #{reviews.good}
+                a(href='#' class='bad_reviews') #{reviews.bad}
+            p(class='margin-inc')
+                img(class='icon' src=rateImgUrl)
+                span Рейтинг
+                a(href='#') #{rating}
+            p(class='margin-inc')
+                img(class='icon' src=orderImgUrl)
+                span Всего заказов
+                a(href='#') #{totalOrders}
+    p(class='profile__about') О себе
+    div(class='profile__definition_text')
+        p #{about}

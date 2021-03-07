@@ -1,0 +1,12 @@
+mixin navbarContent()
+    a(href="#workerReg") Регистрация
+    a(href="#login") Вход
+    button(class="navbar__button_order") Разместить заказ
+    div(class="navbar__button_title")
+        a(class="active" href="#") FL
+
+
+div(class="navbar" id="myTopnav")
+    div(class="main__container")
+        div(class="main__container_center")
+            +navbarContent

@@ -1,58 +1,61 @@
 body, html {
     height: 100%;
+    font: 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
     margin: 0;
 }
 
 /* Добавляем цвет фона в верхнюю навигацию */
-.topnav {
+.navbar {
+    --navbar-bg: #FFFFFF;
+    --navbar-order-bg: #EDEEF0;
+    --navbar-color-front: #3888C6;
+
     z-index: 100;
-    background-color: #C3C49E;
+    background-color: var(--navbar-bg);
     overflow: hidden;
 }
 
 /* Стиль ссылок внутри панели навигации */
-.topnav a {
+.navbar a {
     float: right;
     display: block;
-    color: #8F7E4F;
+    color: var(--navbar-color-front);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
 }
 
-.btn-z {
-    background: #D8FFDD;
+.navbar__button_order {
+    background: var(--navbar-order-bg);
     float: right;
     display: block;
-    color: #8F7E4F;
+    color: var(--navbar-color-front);
     text-align: center;
     text-decoration: none;
     font-size: 17px;
     margin-top: 13px;
     border: none;
+    padding-right: 16px;
+    padding-left: 16px;
     border-radius: 5px;
 }
 
-.container {
+.main__container {
     display: grid;
     grid-template-columns: [one-eighty] auto [one-eighty] 200px [one-eighty] auto [one-eighty] 200px [one-eighty] auto;
-    height: 100%;
 }
 
-.center {
+.main__container_center {
     grid-column: one-eighty 2 / one-eighty 5;
-    height: 100%;
 }
 
-div.home-bottom a {
+div.navbar__button_title a {
     float: left;
     display: block;
-    color: #8F7E4F;
+    color: var(--navbar-color-front);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
 }
 
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
@@ -64,6 +67,6 @@ div.home-bottom a {
 
 /* Добавляем верхний отступ к содержимому страницы, чтобы предотвратить внезапное быстрое перемещение
 (поскольку панель навигации получает новое положение вверху страницы (position: fixed и top: 0) */
-.sticky + .content {
+.sticky + .login__content {
     padding-top: 60px;
 }

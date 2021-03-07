@@ -1,0 +1,27 @@
+{
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "pug": "^3.0.0"
+  },
+  "name": "2021_1_berm",
+  "description": "Команда: BERM",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "generate": "pug --client --no-debug --name-after-file public/templates\n"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontend-park-mail-ru/2021_1_BERM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frontend-park-mail-ru/2021_1_BERM/issues"
+  },
+  "homepage": "https://github.com/frontend-park-mail-ru/2021_1_BERM#readme",
+  "keywords": [],
+  "dependencies": {
+    "core-js": "^3.9.0"
+  }
+}

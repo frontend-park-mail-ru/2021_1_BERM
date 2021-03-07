@@ -1,93 +1,63 @@
-.main {
-    /* The image used */
-    background-image: url("../img/bg.jpg");
+.registration {
 
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-a {
-    color: #fff;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-.container2 {
+    --bg_reg: #FFFFFF;
+    --main-text-color-reg: #3888C6;
+    --reg-button: #EDEEF0;
+    --reg-button-font-color: black;
 
     padding-top: 30px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    position: center;
     width: 450px;
-    height: 570px;
+    height: 560px;
+    background-color: var(--bg_reg);
 
-    background-color: rgba(77, 42, 0, 0.9);
-    margin: 60px auto 0 auto;
     text-align: center;
-    padding-bottom: 20px;
+    border-radius: 10px;
 
 }
 
-.container2 h2 {
-    color: #fff;
+.registration h2 {
+    color: var(--main-text-color-reg);
 }
 
 select {
-    width: 300px;
+    width: 311px;
     height: 35px;
-    font-size: 18px;
     margin-bottom: 25px;
-    border-radius: 10px;
-    padding-left: 40px;
+    padding-left: 4px;
+    margin-left: 32px;
 }
 
-/* style="width: 345px; height: 35px;" */
-input[type="text"], input[type="password"] {
+.registration__input {
     width: 300px;
     height: 30px;
-    font-size: 18px;
     margin-bottom: 25px;
-    border-radius: 10px;
-    padding-left: 40px;
-}
-
-.dws-input input:hover {
-    box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
-}
-
-.dws-select select:hover {
-    box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
+    margin-left: 32px;
+    padding-left: 5px;
 }
 
 .dws-submit {
     padding: 13px 30px;
-    margin: 5px 0 20px 0;
+    margin: 5px 0 0 0;
     font-size: 15px;
-    color: #fff;
-    background-color: #57B96D;
+    color: var(--reg-button-font-color);
+    background-color: var(--reg-button);
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 .dws-submit:hover {
     transition: all 0.5s;
-    background: #fff;
-    color: #2c536c;
+    background: var(--main-text-color-reg);
 }
 
-.dws-input::before {
-    font-family: "FontAwesome";
+.registration__input::before {
     position: absolute;
-    font-size: 30px;
-    padding: 10px 0 0 7px;
-    color: #2c536c;
+    font: 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+    padding: 10px 0 0 0;
+    color: var(--main-text-color-reg);
 }
