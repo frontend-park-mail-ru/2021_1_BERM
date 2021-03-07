@@ -1,7 +1,7 @@
 div(class='login__content')
-    div(class='login__window')
+    form(class='login__window')
         div(class='login__window_label') Вход
         input(class='login__window_login' placeholder='Логин' type='text')
         input(class='login__window_password' placeholder='Пароль' type='password')
-        button(class='login__window_enter') Войти
+        input(type="submit" class="login__window_enter" name="submit" value="Войти")
         button(class='login__window_forgot-pass') Забыли свой пароль?

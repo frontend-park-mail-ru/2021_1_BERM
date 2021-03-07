@@ -1,5 +1,5 @@
 .login__window {
-    --bg-login: #FFFFFF;
+    --bg-login: #ffffff;
     --label-login-color: #3888C6;
     --font-color_login: black;
 
@@ -39,7 +39,7 @@
 }
 
 .login__window_enter {
-    background-color: var(--bg-login);
+    background-color: var(--bg-root);
     height: 30px;
     border: none;
     color: var(--font-color_login);
