@@ -7,11 +7,12 @@ function addHandle() {
             event.preventDefault();
             const hash = body[i].getAttribute('href');
             console.log(location.pathname + hash)
-            window.history.pushState(
-                null,
-                document.title,
-                hash
-            );
+            // window.history.pushState(
+            //     null,
+            //     document.title,
+            //     hash
+            // );
+            location.hash = hash;
 
             Controller[hash.slice(1) + 'Route']();
             addHandle();
@@ -21,13 +22,13 @@ function addHandle() {
 
 export default {
     init() {
-        window.history.pushState(
-            null,
-            document.title,
-            '/'
-        );
+        // window.history.pushState(
+        //     null,
+        //     document.title,
+        //     '/'
+        // );
 
-        Controller.Route();
+        Controller[location.hash.slice(2) + 'Route']();
         addHandle();
     }
 }
