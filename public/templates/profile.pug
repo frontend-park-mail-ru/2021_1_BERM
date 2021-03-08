@@ -1,18 +1,20 @@
-form(class='profile-content')
+div(class='profile-content')
     div(class='profile__column_text')
         div(class='name profile__item_name')
             p #{name}  [#{nickName}]
         div(class='profile__item_name')
-        div(class='settings profile__item_name')
+        div(class='settings_profile_button profile__item_name')
             p
                 img(class='icon', src=settingImgUrl)
-                a(href='#') Настройки
+                a(href='#settings') Настройки
     div(class='profile__column_text')
         div(class='profile__item_name')
             figure
                 img(class='profile_photo' src=profileImgUrl)
                 figcaption
-                    a(href='#') Изменить фото
+                    form(id="upload-container")
+                        input(id="file-input" accept="image/jpeg" type="file" name="file")
+                        label(for="file-input") Изменить фото
         div(class='profile__item_name')
             p(class='spec') Специализации:
             ul

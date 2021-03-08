@@ -70,3 +70,7 @@ div.navbar__button_title a {
 .sticky + .login__content {
     padding-top: 60px;
 }
+
+.navbar_icon {
+    margin-left: 10px;
+}

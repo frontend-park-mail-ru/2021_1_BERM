@@ -1,0 +1,29 @@
+div(class="settings")
+    form(action="")
+        h2(class="settings_title") Настройки
+        div(class='settings_column')
+            div(class='settings__item')
+                p(class='settings_column') Логин
+                p(class='settings_column') Фамилия
+                p(class='settings_column') Имя
+                p(class='settings_column') E-mail
+                p(class='settings_column') Телефон
+                p(class='settings_column') Текущий пароль
+                p(class='settings_column') Новый пароль
+            div(class='settings__item')
+                div(class='settings_input')
+                    input(type="text" class="settings_input" name="Логин" value=nickName)
+                div(class='settings_input')
+                    input(type="text" class="settings_input" name="Фамилия" value=surname)
+                div(class='settings_input')
+                    input(type="text" class="settings_input" name="Имя" value=name)
+                div(class='settings_input')
+                    input(type="text" class="settings_input" name="Email" value=email)
+                div(class='settings_input')
+                    input(type="text" class="settings_input" name="Телефон" value=phone)
+                div(class='settings_input')
+                    input(type="password" class="settings_input" name="Текущий пароль" placeholder="********")
+                div(class='settings_input')
+                    input(type="password" class="settings_input" name="Новый пароль" placeholder="********")
+            div(class="save_settings")
+                input(type="submit" class="settings_submit" name="submit" value="Сохранить")
