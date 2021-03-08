@@ -1,13 +1,13 @@
 mixin navbarContent()
     if authorized
-        a(class="navbar_icon", href="#profile")
+        a(class="navbar_icon", href="/profile")
             img(class="icon", src=profIcon)
     else
-        a(href="#workerReg") Регистрация
-        a(href="#login") Вход
+        a(href="/workerReg") Регистрация
+        a(href="/login") Вход
     button(class="navbar__button_order") Разместить заказ
     div(class="navbar__button_title")
-        a(class="active" href="#") FL
+        a(class="active" href="/") FL
 
 
 div(class="navbar" id="myTopnav")

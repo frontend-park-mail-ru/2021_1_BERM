@@ -4,5 +4,4 @@ function run() {
     Router.init();
 }
 
-run()
-    .catch(() => alert('err'));
+run();

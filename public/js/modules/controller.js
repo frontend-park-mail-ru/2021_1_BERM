@@ -6,7 +6,7 @@ export default {
 
         const profNavbar = {
             authorized: true,
-            profIcon: "img/profIcon.png"
+            profIcon: "2021_1_BERM/public/img/profIcon.png"
         }
         root.innerHTML = navbarTemplate(profNavbar) + indexTemplate();
     },
@@ -31,11 +31,11 @@ export default {
 
     profileRoute() {
         const profileInfo = {
-            profileImgUrl: "img/profile.jpg",
-            settingImgUrl: "img/settings.png",
-            rateImgUrl: "img/rate.png",
-            reviewsImgUrl: "img/reviews.png",
-            orderImgUrl: "img/order.png",
+            profileImgUrl: "2021_1_BERM/public/img/profile.jpg",
+            settingImgUrl: "2021_1_BERM/public/img/settings.png",
+            rateImgUrl: "2021_1_BERM/public/img/rate.png",
+            reviewsImgUrl: "2021_1_BERM/public/img/reviews.png",
+            orderImgUrl: "2021_1_BERM/public/img/order.png",
             name: "Олег Реуцкий",
             nickName: "astlok",
             specialize: "Мобильная разработка",
@@ -75,7 +75,7 @@ export default {
 
         const profNavbar = {
             authorized: true,
-            profIcon: "img/profIcon.png"
+            profIcon: "2021_1_BERM/public/img/profIcon.png"
         }
 
         root.innerHTML = navbarTemplate(profNavbar) + settingsTemplate(profileSettings)

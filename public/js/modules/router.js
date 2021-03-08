@@ -1,16 +1,33 @@
 import Controller from './controller.js'
 
-function handleHash() {
-    const hash = (() => {
-        return location.hash ? location.hash.slice(1) : '';
-    })();
+function addHandle() {
+    const body = Array.from(document.getElementsByTagName('a'));
+    for(let i = 0; i < body.length; ++i) {
+        body[i].addEventListener('click', (event) => {
+            event.preventDefault();
+            const hash = body[i].getAttribute('href');
+            console.log(location.pathname + hash)
+            window.history.pushState(
+                null,
+                document.title,
+                hash
+            );
 
-    Controller[hash + 'Route']();
+            Controller[hash.slice(1) + 'Route']();
+            addHandle();
+        })
+    }
 }
 
 export default {
     init() {
-        addEventListener('hashchange', handleHash);
-        handleHash();
+        window.history.pushState(
+            null,
+            document.title,
+            '/'
+        );
+
+        Controller.Route();
+        addHandle();
     }
 }
