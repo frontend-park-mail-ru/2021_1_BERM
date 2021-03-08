@@ -60,5 +60,24 @@ export default {
         document.title = 'Профиль';
 
         root.innerHTML = navbarTemplate() + profileTemplate(profileInfo);
+    },
+
+    settingsRoute() {
+        document.title = 'Настройки';
+
+        const profileSettings = {
+            name: "Олег",
+            surname: "Реуцкий",
+            nickName: "astlok",
+            email: "astlok@ya.ru",
+            phone: "2283221488",
+        }
+
+        const profNavbar = {
+            authorized: true,
+            profIcon: "img/profIcon.png"
+        }
+
+        root.innerHTML = navbarTemplate(profNavbar) + settingsTemplate(profileSettings)
     }
 };
