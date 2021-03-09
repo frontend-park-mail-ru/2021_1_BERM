@@ -11,7 +11,7 @@
     margin-right: auto;
     position: center;
     width: 450px;
-    height: 560px;
+    height: 650px;
     background-color: var(--bg_reg);
 
     text-align: center;
@@ -29,6 +29,7 @@ select {
     margin-bottom: 25px;
     padding-left: 4px;
     margin-left: 32px;
+    margin-top: 5px;
 }
 
 .registration__input {
@@ -37,6 +38,7 @@ select {
     /* margin-top: 40px; */
     margin-bottom: 25px;
     margin-left: 32px;
+    margin-top: 5px;
     padding-left: 5px;
     
 }
@@ -72,6 +74,7 @@ select {
     
 }
 
-.label__reg {
-    padding-bottom: 100px;
+.label-reg {
+    font-size: 14px;
+    color: var(--main-text-color-reg);
 }

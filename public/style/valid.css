@@ -40,3 +40,7 @@
 .form-control_valid {
 	border:solid 1.5px green; 
 }
+
+.label-reg {
+	margin-top: 0%;
+}
