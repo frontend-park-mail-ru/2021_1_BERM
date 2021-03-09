@@ -3,7 +3,11 @@ mixin navbarContent()
         a(class="navbar_icon", href="/profile")
             img(class="icon", src=profIcon)
     else
-        a(href="/workerReg") Регистрация
+        a(href="/profile" onclick="myFunction()" class="dropbtn") Регистрация
+        
+        div(id="myDropdown" class="dropdown-content")
+            <a href="/clientReg">Клиент</a>
+            <a href="/workerReg">Исполнитель </a>
         a(href="/login") Вход
     button(class="navbar__button_order") Разместить заказ
     div(class="navbar__button_title")

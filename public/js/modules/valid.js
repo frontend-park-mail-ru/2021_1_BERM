@@ -18,7 +18,7 @@ export default {
 		patternName	= /^[а-яёА-ЯЁ\s]+$/,
 		patternMail	= /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z])+$/,
 		patternSpam	= /[^\<\>\[\]%\&'`]+$/,
-		patternLog = /^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$/, 
+		patternLog = /^[a-zA-Z0-9]{0,19}$/, 
 		patternPhone = /^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/,  
 		patternPassword = /([a-z]+[A-Z]+[0-9]+|[a-z]+[0-9]+[A-Z]+|[A-Z]+[a-z]+[0-9]+|[A-Z]+[0-9]+[a-z]+|[0-9]+[a-z]+[A-Z]+|[0-9]+[A-Z]+[a-z]+)/,
 		errorMess	= [

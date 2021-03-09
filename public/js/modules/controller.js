@@ -1,4 +1,5 @@
 import Valid from './valid.js'
+import Menu from './menu.js'
 const root = document.getElementById('root');
 
 export default {
@@ -10,6 +11,7 @@ export default {
             profIcon: "img/profIcon.png"
         }
         root.innerHTML = navbarTemplate(profNavbar) + indexTemplate();
+        // Menu.runMenu()
     },
 
     loginRoute() {
@@ -22,6 +24,7 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
+        Valid.runValid();
     },
 
     workerRegRoute() {
@@ -62,6 +65,7 @@ export default {
         document.title = 'Профиль';
 
         root.innerHTML = navbarTemplate() + profileTemplate(profileInfo);
+        Menu.runMenu()
     },
 
     settingsRoute() {
