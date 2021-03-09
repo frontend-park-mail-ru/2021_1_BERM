@@ -1,3 +1,4 @@
+import Valid from './valid.js'
 const root = document.getElementById('root');
 
 export default {
@@ -27,6 +28,7 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
+        Valid.runValid();
     },
 
     profileRoute() {
