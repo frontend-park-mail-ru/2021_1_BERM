@@ -2,7 +2,8 @@ export default {
     sendRequest(method, url, body = null) {
         return fetch(url, {
             method: method,
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            credentials: 'include'
         })
             .then(res => {
                 if (res.ok) {

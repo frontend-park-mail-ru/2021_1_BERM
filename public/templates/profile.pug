@@ -5,7 +5,7 @@ div(class='profile-content')
         div(class='profile__item_name')
         div(class='settings_profile_button profile__item_name')
             p
-                img(class='icon', src=settingImgUrl)
+                img(class='icon', src='img/settings.png')
                 a(href='/settings') Настройки
     div(class='profile__column_text')
         div(class='profile__item_name')
@@ -21,17 +21,17 @@ div(class='profile-content')
                 li #{specialize}
         div(class='profile__item_name')
             p(class='margin-inc')
-                img(class='icon' src=reviewsImgUrl)
+                img(class='icon' src='img/reviews.png')
                 span Отзывы
                 a(href='#') #{reviews.all}
                 a(href='#' class='good_reviews') #{reviews.good}
                 a(href='#' class='bad_reviews') #{reviews.bad}
             p(class='margin-inc')
-                img(class='icon' src=rateImgUrl)
+                img(class='icon' src='img/rate.png')
                 span Рейтинг
                 a(href='#') #{rating}
             p(class='margin-inc')
-                img(class='icon' src=orderImgUrl)
+                img(class='icon' src='img/order.png')
                 span Всего заказов
                 a(href='#') #{totalOrders}
     p(class='profile__about') О себе

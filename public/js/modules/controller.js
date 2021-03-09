@@ -1,20 +1,52 @@
+import ajax from "./ajax.js";
+
 const root = document.getElementById('root');
+let saveData = {
+    authorized: true,
+    img: 'img/profile.jpg',
+};
 
 export default {
     Route() {
         document.title = 'FL.ru';
 
-        const profNavbar = {
-            authorized: true,
-            profIcon: "img/profIcon.png"
+        if (saveData.authorized) {
+            // Todo Запрос изображения. Сохраняем его в saveData
         }
-        root.innerHTML = navbarTemplate(profNavbar) + indexTemplate();
+
+        // eslint-disable-next-line no-undef
+        root.innerHTML = navbarTemplate({
+            authorized : saveData.authorized,
+            profIcon : saveData.img, // Todo ?
+        }) + indexTemplate();
     },
 
     loginRoute() {
         document.title = 'Авторизация';
 
         root.innerHTML = navbarTemplate() + signinTemplate();
+
+        const form = document.getElementById('login__window');
+        form.onsubmit = async (event) => {
+            event.preventDefault();
+
+            // Todo Тут добавить функцию валидации
+
+            // Todo Поставить нормальный URL и проверить работу
+            ajax.sendRequest('POST', '/login', new FormData(event.target))
+            // Todo возвращается стуктуру или ее сохранить или изменить API
+                .then(response => {
+                    if (response.status === undefined) {
+
+                        saveData.authorized = true;
+                        saveData.name = response.nick_name; // Todo ??
+                        this.Route();
+                        this.addHandleLinks();
+                    }
+                })
+
+            // Todo Неверный Логин или Пароль или ошибка на сервере
+        }
     },
 
     clientRegRoute() {
@@ -32,10 +64,6 @@ export default {
     profileRoute() {
         const profileInfo = {
             profileImgUrl: "img/profile.jpg",
-            settingImgUrl: "img/settings.png",
-            rateImgUrl: "img/rate.png",
-            reviewsImgUrl: "img/reviews.png",
-            orderImgUrl: "img/order.png",
             name: "Олег Реуцкий",
             nickName: "astlok",
             specialize: "Мобильная разработка",
@@ -79,5 +107,20 @@ export default {
         }
 
         root.innerHTML = navbarTemplate(profNavbar) + settingsTemplate(profileSettings)
+    },
+
+    addHandleLinks() {
+    const body = Array.from(document.getElementsByTagName('a'));
+    for(let i = 0; i < body.length; ++i) {
+        body[i].addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const hash = body[i].getAttribute('href');
+            location.hash = hash;
+
+            this[hash.slice(1) + 'Route']();
+            this.addHandleLinks();
+        })
     }
+}
 };
