@@ -12,7 +12,7 @@ export default {
     Route() {
         document.title = 'FL.ru';
 
-        if (!isAuthorization()) {
+        if (!this.isAuthorization()) {
             return;
         }
 
@@ -111,7 +111,7 @@ export default {
     async profileRoute() {
         document.title = 'Профиль';
 
-        if (!isAuthorization()) {
+        if (!this.isAuthorization()) {
             return;
         }
 
@@ -134,7 +134,7 @@ export default {
     settingsRoute() {
         document.title = 'Настройки';
 
-        if (!isAuthorization()) {
+        if (!this.isAuthorization()) {
             return;
         }
 
