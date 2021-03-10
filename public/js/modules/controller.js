@@ -128,6 +128,10 @@ export default {
 
     },
 
+    async exitRoute() {
+        console.log(document.cookie)
+    },
+
     settingsRoute() {
         document.title = 'Настройки';
 
