@@ -13,22 +13,15 @@ export default {
                     return res.json();
                 }
 
-                console.log(res.status);
-
-                for (let val of res.headers.values()) {
-                    console.log(val)
+                if (res.status === 409) {
+                    return {ok: false}
                 }
 
-                return res.json()
-                    .then(err => {
-                        const error = new Error('Что-то пошло не так :(');
-                        error.data = err;
-                        throw error;
-                    })
+                console.log("_______", res);
+
             })
             .catch(res => {
-                console.log(res.status);
-                console.log('Не удалось подключиться к серверу');
+                console.log(res);
             })
     },
 };
