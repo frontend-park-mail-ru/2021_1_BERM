@@ -105,26 +105,26 @@ export default {
         }
     },
 
-    profileRoute() {
+    async profileRoute() {
         document.title = 'Профиль';
 
-        if (!this.isAuthorization()) {
-            return;
-        }
+        await this.isAuthorization()
+            .then(() => {
 
-        let profileInfo = {};
+                let profileInfo = {};
 
-        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
-            .then(res => {
-                profileInfo.name = res.first_name + ' ' + res.second_name;
-                profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
-                profileInfo.nickName = res.user_name;
-            })
+                ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
+                    .then(res => {
+                        profileInfo.name = res.first_name + ' ' + res.second_name;
+                        profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
+                        profileInfo.nickName = res.user_name;
 
-        root.innerHTML = navbarTemplate({
-            authorized: true,
-            profIcon: saveData.img
-        }) + profileTemplate(profileInfo);
+                        root.innerHTML = navbarTemplate({
+                            authorized: true,
+                            profIcon: saveData.img
+                        }) + profileTemplate(profileInfo);
+                    })
+            });
 
     },
 
