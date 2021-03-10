@@ -122,3 +122,8 @@ a {
     position: absolute;
     z-index: -10;
 }
+
+.profile__item_name_exit {
+    float: right;
+    padding: 0 30px;
+}

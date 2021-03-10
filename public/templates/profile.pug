@@ -15,25 +15,27 @@ div(class='profile-content')
                     form(id="upload-container")
                         input(id="file-input" accept="image/jpeg" type="file" name="file")
                         label(for="file-input") Изменить фото
-        div(class='profile__item_name')
-            p(class='spec') Специализации:
-            ul
-                li #{specialize}
-        div(class='profile__item_name')
-            p(class='margin-inc')
-                img(class='icon' src='img/reviews.png')
-                span Отзывы
-                a(href='#') 25
-                a(href='#' class='good_reviews') 20
-                a(href='#' class='bad_reviews') 5
-            p(class='margin-inc')
-                img(class='icon' src='img/rate.png')
-                span Рейтинг
-                a(href='#') 7
-            p(class='margin-inc')
-                img(class='icon' src='img/order.png')
-                span Всего заказов
-                a(href='#') 2
+        if isExecutor
+            div(class='profile__item_name')
+                p(class='spec') Специализации:
+                ul
+                    li #{specialize}
+            div(class='profile__item_name')
+                p(class='margin-inc')
+                    img(class='icon' src='img/reviews.png')
+                    span Отзывы
+                    a(href='#') 25
+                    a(href='#' class='good_reviews') 20
+                    a(href='#' class='bad_reviews') 5
+                p(class='margin-inc')
+                    img(class='icon' src='img/rate.png')
+                    span Рейтинг
+                    a(href='#') 7
+                p(class='margin-inc')
+                    img(class='icon' src='img/order.png')
+                    span Всего заказов
+                    a(href='#')
+        div(class='profile__item_name_exit')
             p(class='margin-inc')
                 a(href='/exit') Выход
     p(class='profile__about') О себе

@@ -118,6 +118,7 @@ export default {
                         profileInfo.name = res.first_name + ' ' + res.second_name;
                         profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
                         profileInfo.nickName = res.user_name;
+                        profileInfo.isExecutor = res.executor;
 
                         root.innerHTML = navbarTemplate({
                             authorized: true,
@@ -129,6 +130,7 @@ export default {
     },
 
     async exitRoute() {
+        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/logout`)
         await this.loginRoute();
     },
 
