@@ -30,22 +30,26 @@ export default {
         form.onsubmit = async (event) => {
             event.preventDefault();
 
-            // Todo Тут добавить функцию валидации
+            // Todo: Валидация
 
+            // Todo Тут добавить функцию валидации
+            let requestData= { };
+            const formData = new FormData(event.target);
+
+            for(let [name, value] of formData) {
+                requestData[name] = value;
+            }
             // Todo Поставить нормальный URL и проверить работу
-            ajax.sendRequest('POST', '/login', new FormData(event.target))
+            ajax.sendRequest('POST', 'http://95.163.212.121:8080/signin', JSON.parse(JSON.stringify(requestData)))
             // Todo возвращается стуктуру или ее сохранить или изменить API
                 .then(response => {
                     if (response.status === undefined) {
-
                         saveData.authorized = true;
-                        saveData.name = response.nick_name; // Todo ??
                         this.Route();
                         this.addHandleLinks();
                     }
+                    // Todo Неверный Логин или Пароль или ошибка на сервере
                 })
-
-            // Todo Неверный Логин или Пароль или ошибка на сервере
         }
     },
 
@@ -53,12 +57,74 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
+
+        const form = document.getElementById('client_registration');
+        form.onsubmit = async (event) => {
+            event.preventDefault();
+
+            // Todo: Валидация
+
+            // Todo Тут добавить функцию валидации!!
+
+            let requestData= { };
+            const formData = new FormData(event.target);
+
+            for(let [name, value] of formData) {
+                requestData[name] = value;
+            }
+            requestData.Executor = false;
+
+            console.log(JSON.parse(JSON.stringify(requestData)))
+            let res = ajax.sendRequest('POST', 'http://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
+                // Todo возвращается структуру или ее сохранить или изменить API
+                .then(response => {
+                    if (res!= null && response.status === undefined) {
+                        this.loginRoute();
+                        this.addHandleLinks();
+                    } else {
+                        console.log(res);
+                        // Todo Неверный Логин или Пароль или ошибка на сервере
+                    }
+                })
+        }
+
+
     },
 
     workerRegRoute() {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
+
+        const form = document.getElementById('worker_registration');
+        form.onsubmit = async (event) => {
+            event.preventDefault();
+
+            // Todo: Валидация
+
+            // Todo Тут добавить функцию валидации!!
+
+            let requestData= { };
+            const formData = new FormData(event.target);
+
+            for(let [name, value] of formData) {
+                requestData[name] = value;
+            }
+            requestData.Executor = true;
+
+            console.log(JSON.parse(JSON.stringify(requestData)))
+            let res = ajax.sendRequest('POST', 'http://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
+                // Todo возвращается структуру или ее сохранить или изменить API
+                .then(response => {
+                    if (res!= null && response.status === undefined) {
+                        this.loginRoute();
+                        this.addHandleLinks();
+                    } else {
+                        console.log(res);
+                        // Todo Неверный Логин или Пароль или ошибка на сервере
+                    }
+                })
+        }
     },
 
     profileRoute() {
@@ -84,6 +150,7 @@ export default {
                 "Repellat eos unde dolores ab explicabo eveniet dolorum voluptates quam nesciunt pariatur? Sit iste consectetur, " +
                 "harum ex commodi repellat porro velit ut."
         } // Временная структура
+        // Todo: Тут запрос профиля
 
         document.title = 'Профиль';
 
@@ -107,6 +174,9 @@ export default {
         }
 
         root.innerHTML = navbarTemplate(profNavbar) + settingsTemplate(profileSettings)
+
+        // Todo: Валидация
+        // Todo: POST запрос настроек
     },
 
     addHandleLinks() {
