@@ -177,7 +177,7 @@ export default {
     isAuthorization() {
         ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
             .then(res => {
-                if (res.ok) {
+                if (res.ok === undefined || res.ok) {
                     return true;
                 } else {
                     this.loginRoute()
