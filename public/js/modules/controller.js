@@ -122,12 +122,13 @@ export default {
                 profileInfo.name = res.first_name + ' ' + res.second_name;
                 profileInfo.profileImgUrl = saveData.img; // Todo Убрать
                 profileInfo.nickName = res.user_name;
-            });
-
-        root.innerHTML = navbarTemplate({
-            authorized: true,
-            profIcon: saveData.img
-        }) + profileTemplate(profileInfo);
+            })
+            .then(() => {
+                root.innerHTML = navbarTemplate({
+                    authorized: true,
+                    profIcon: saveData.img
+                }) + profileTemplate(profileInfo);
+            })
     },
 
     settingsRoute() {
