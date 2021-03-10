@@ -3,17 +3,16 @@ export default {
 	'use strict';
 
 	let root = document.getElementById('root')
-	// console.log(root.innerHTML)
 
-	var form = document.getElementById('feedback');
+	let form = document.getElementById('feedback');
 	let mailprov = document.getElementById('email')
-	//console.log(form)
 
-	//console.log('----------------------------------')
+
+
 	if (!form) return;
-	//console.log('----------------------------------')
 
-	var	elements	= form.querySelectorAll('.form-control'),
+
+	let	elements	= form.querySelectorAll('.form-control'),
 		btn			= document.getElementById('send_mess'),
 		patternName	= /^[а-яёА-ЯЁ\s]+$/,
 		patternMail	= /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z])+$/,
@@ -42,7 +41,7 @@ export default {
 
 	btn.addEventListener('click', validForm);
 	form.addEventListener('focus', function() {
-		var el = document.activeElement;
+		let el = document.activeElement;
 		if (el !== btn) {
 			cleanError(el);
 			cleanValid(el);
@@ -51,10 +50,10 @@ export default {
 
 	function validForm(e) {
 		e.preventDefault();
-		var formVal = getFormData(form),
+		let formVal = getFormData(form),
 			error;
 
-		for (var property in formVal) {
+		for (let property in formVal) {
 			error = getError(formVal, property);
 			if (error.length != 0) {
 				iserror = true;
@@ -75,9 +74,7 @@ export default {
 	}
 
 	function getError(formVal, property) {
-		// console.log(formVal)
-		// console.log(property)
-		var error = '',
+		let error = '',
 			validate = {
 			'username': function() {
 				if (formVal.username.length == 0 || patternLog.test(formVal.username) == false) {
@@ -144,13 +141,13 @@ export default {
 
 	[].forEach.call(elements, function(element) {
 		element.addEventListener('blur', function(e) {
-			var formElement = e.target,
+			let formElement = e.target,
 				property = formElement.getAttribute('name'),
 				dataField = {};
 
 			dataField[property] = formElement.value;
 
-			var error = getError(dataField, property);
+			let error = getError(dataField, property);
 			if (error.length != 0) {
 				showError(property, error);
 			} else if (error.length == 0) {
@@ -177,7 +174,7 @@ export default {
 	}
 
 	function showValid(property) {
-		var formElement = form.querySelector('[name=' + property + ']'),
+		let formElement = form.querySelector('[name=' + property + ']'),
 			validBox	= formElement.parentElement.nextElementSibling;
 			console.log("VALID BOX = ",  validBox)
 
@@ -187,25 +184,14 @@ export default {
 	}
 
 	function cleanError(el) {
-		// console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-		// console.log(el)
-		// console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-		//el.innerHTML = ""
-		var errorBox = el.parentElement.nextElementSibling;
-		// console.log("ЖОПень С МОТОРЧИКОМ")
-		// console.log(errorBox)
+		let errorBox = el.parentElement.nextElementSibling;
 		errorBox.innerHTML = ""
-		// console.log("ЖОПень С МОТОРЧИКОМ")
 		el.classList.remove('form-control_error');
 		errorBox.removeAttribute('style');
 	}
 
 	function cleanValid(el) {
-		console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
-		console.log(el)
-		console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
-		//el.innerHTML = ""
-		var validBox = el.parentElement.nextElementSibling;
+		let validBox = el.parentElement.nextElementSibling;
 		console.log("ASDSDAASSADADSS")
 		console.log(validBox)
 		validBox.innerHTML = ""
@@ -215,7 +201,7 @@ export default {
 	}
 
 	function getFormData(form) {
-		var controls = {};
+		let controls = {};
 		if (!form.elements) return '';
 		for (var i = 0, ln = form.elements.length; i < ln; i++) {
 			var element = form.elements[i];
@@ -226,22 +212,4 @@ export default {
 		return controls;
 	}
 
-	function sendFormData(formVal) {
-		var xhr 	= new XMLHttpRequest(),
-			body 	= 'username=' + encodeURIComponent(formVal.username) +
-					  '&usermail=' + encodeURIComponent(formVal.usermail) +
-					  '&subject=' + encodeURIComponent(formVal.subject) +
-					  '&textmess=' + encodeURIComponent(formVal.textmess);
-
-		xhr.open('POST', '/sendmail.php', true);
-		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-		xhr.setRequestHeader('Cache-Control', 'no-cache');
-
-		xhr.onreadystatechange = function() {
-			// callback
-		}
-
-		xhr.send(body);
-	}
 }}; 
