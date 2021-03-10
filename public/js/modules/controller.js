@@ -9,14 +9,14 @@ let saveData = {
 };
 
 export default {
-    async Route() {
+    Route() {
         document.title = 'FL.ru';
 
-        if (!await isAuthorization()) {
+        if (!isAuthorization()) {
             return;
         }
 
-        ajax.sendRequest('GET', `https://95.163.212.121:8080/profile/avatar/${saveData.id}`)
+        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
             .then((res) => {
                 saveData.img = res.img;  // ToDo: Получаем Изображение
             })
@@ -34,7 +34,7 @@ export default {
         root.innerHTML = navbarTemplate() + signinTemplate();
 
         const form = document.getElementById('login__window');
-        form.onsubmit = async (event) => {
+        form.onsubmit = (event) => {
             event.preventDefault();
 
             // Todo: Валидация
@@ -42,7 +42,7 @@ export default {
 
             let requestData = newFormData(event.target);
 
-            await ajax.sendRequest('POST', 'https://95.163.212.121:8080/signin', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signin', JSON.parse(JSON.stringify(requestData)))
                 .then(response => {
                     if (response.status === undefined) {
                         saveData.id = response.id;  // Todo Поле ID
@@ -63,12 +63,12 @@ export default {
         Valid.runValid();
 
         const form = document.getElementsByTagName('form')[0];
-        form.onsubmit = async (event) => {
+        form.onsubmit = (event) => {
             event.preventDefault();
 
             let requestData = newFormData(event.target)
 
-            await ajax.sendRequest('POST', 'https://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(response => {
                     if (response.status === undefined) {
                         this.Route();
@@ -89,14 +89,14 @@ export default {
         Valid.runValid();
 
         const form = document.getElementsByTagName('form')[0];
-        form.onsubmit = async (event) => {
+        form.onsubmit = (event) => {
             event.preventDefault();
 
             let requestData = newFormData(event.target);
             requestData.executor = true;
             requestData.specializes = [requestData.specializes,]; // Todo Работает ли это?
 
-            ajax.sendRequest('POST', 'https://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(res => {
                     if (res.status === undefined) {
                         this.Route();
@@ -108,17 +108,17 @@ export default {
         }
     },
 
-    async profileRoute() {
+    profileRoute() {
         document.title = 'Профиль';
 
-        if (!await isAuthorization()) {
+        if (!isAuthorization()) {
             return;
         }
 
         let profileInfo = {};
 
-        // ajax.sendRequest('POST', `https://95.163.212.121:8080/profile/${saveData.id}`)
-        //     .then()
+        ajax.sendRequest('POST', `https://findfreelancer.ru:8080/profile/${saveData.id}`)
+            .then(res => console.log(res));
 
         root.innerHTML = navbarTemplate({
             authorized: true,
@@ -126,17 +126,17 @@ export default {
         }) + profileTemplate(profileInfo);
     },
 
-    async settingsRoute() {
+    settingsRoute() {
         document.title = 'Настройки';
 
-        if (!await isAuthorization()) {
+        if (!isAuthorization()) {
             return;
         }
 
         let profileSettings = {};
 
-        // ajax.sendRequest('POST', `https://95.163.212.121:8080/settings/${saveData.id}`)
-        //     .then()
+        ajax.sendRequest('POST', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
+            .then(res => console.log(res))
 
         root.innerHTML = navbarTemplate({
             authorized: true,
@@ -182,7 +182,7 @@ function newFormData(form) {
 }
 
 function isAuthorization() {
-    ajax.sendRequest('GET', 'https://95.163.212.121:8080/profile')
+    ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
         .then(response => {
             if (response.ok) {
                 return true;
