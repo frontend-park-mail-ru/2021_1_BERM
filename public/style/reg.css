@@ -24,12 +24,44 @@
 }
 
 select {
-    width: 311px;
+    width: 310px;
     height: 35px;
     margin-bottom: 25px;
     padding-left: 4px;
     margin-left: 32px;
     margin-top: 5px;
+}
+
+/* .profile_post textarea{ margin: 0; } 
+.profile_post{ padding: 10px; }  */
+
+/* textarea {
+    width: 300px;
+    height: 120px;
+	display: block;
+    margin-bottom: -5px; 
+    padding-left: 4px;
+    resize: none;
+    margin-left: 32px;
+    margin-top: 5px;
+    box-sizing:border-box;
+    
+} */
+
+.textar {
+    height: 200px !important;
+}
+
+textarea{
+    padding-left: 4px;
+    margin-left: 32px;
+    margin-top: 5px;
+    resize: none;
+    height: 100%;
+    width: 310px;
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 .registration__input {
@@ -78,3 +110,16 @@ select {
     font-size: 14px;
     color: var(--main-text-color-reg);
 }
+
+input[type="date"]{
+    padding: 12px;
+    align-items: center; 
+    box-sizing: border-box;
+    width: 310px !important;
+    height:100%;
+    font-size: 18px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+   /* padding-left: 10px; */
+   
+  }

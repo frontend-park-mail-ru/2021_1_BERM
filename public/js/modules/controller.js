@@ -85,5 +85,13 @@ export default {
         }
 
         root.innerHTML = navbarTemplate(profNavbar) + settingsTemplate(profileSettings)
+    },
+
+    orderPageRoute() {
+        document.title = 'Создание заказа';
+        console.log(orderpageTemplate());
+
+        root.innerHTML = navbarTemplate() + orderpageTemplate();
+        Valid.runValid();
     }
 };

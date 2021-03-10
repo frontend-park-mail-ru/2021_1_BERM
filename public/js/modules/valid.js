@@ -21,6 +21,7 @@ export default {
 		patternLog = /^[a-zA-Z0-9]{0,19}$/, 
 		patternPhone = /^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/,  
 		patternPassword = /([a-z]+[A-Z]+[0-9]+|[a-z]+[0-9]+[A-Z]+|[A-Z]+[a-z]+[0-9]+|[A-Z]+[0-9]+[a-z]+|[0-9]+[a-z]+[A-Z]+|[0-9]+[A-Z]+[a-z]+)/,
+		patternPrice = /^[0-9]+$/,
 		errorMess	= [
 			'Незаполненное поле ввода', // 0
 			'Введите имя на кириллице', // 1
@@ -34,7 +35,8 @@ export default {
 			'Ваше сообщение похоже на спам, уберите специальные символы.', // 9
 			'Выберите специальность из списка', // 10
 			'Неверный формат телефонного номера', // 11
-			'Плохой пароль'  // 12
+			'Плохой пароль',  // 12
+			'Введите цену в рублях',  // 13
 		],
 		iserror		= false;
 
@@ -89,20 +91,20 @@ export default {
 					error = errorMess[3];
 				}
 			},
-			// 'subject': function() {
-			// 	if (formVal.subject.length == 0) {
-			// 		error = errorMess[4];
-			// 	} else if (patternSpam.test(formVal.subject) == false) {
-			// 		error = errorMess[6];
-			// 	}
-			// },
-			// 'textmess': function() {
-			// 	if (formVal.textmess.length == 0) {
-			// 		error = errorMess[5];
-			// 	} else if (patternSpam.test(formVal.textmess) == false) {
-			// 		error = errorMess[6];
-			// 	}
-			// },
+			'subject': function() {
+				if (formVal.subject.length == 0) {
+					error = errorMess[4];
+				} else if (patternSpam.test(formVal.subject) == false) {
+					error = errorMess[6];
+				}
+			},
+			'textmess': function() {
+				if (formVal.textmess.length == 0) {
+					error = errorMess[5];
+				} else if (patternSpam.test(formVal.textmess) == false) {
+					error = errorMess[6];
+				}
+			},
 			'firstName': function() {
 				if (formVal.firstName.length == 0 || patternName.test(formVal.firstName) == false) {
 					error = errorMess[1];
@@ -126,6 +128,11 @@ export default {
 			'password': function() {
 				if (formVal.password.length == 0 || patternPassword.test(formVal.password) == false) {
 					error = errorMess[12];
+				}
+			},
+			'price': function() {
+				if (formVal.price.length == 0 || patternPrice.test(formVal.price) == false) {
+					error = errorMess[13];
 				}
 			},
 		};
@@ -156,9 +163,12 @@ export default {
 	});
 
 	function showError(property, error) {
+		console.log("KOKOKO")
 		console.log(error)
-		var formElement = form.querySelector('[name=' + property + ']'),
-			errorBox	= formElement.parentElement.nextElementSibling;
+		
+		
+		let formElement = form.querySelector('[name=' + property + ']')
+		let errorBox	= formElement.parentElement.nextElementSibling;
 		console.log(errorBox)
 
 		formElement.classList.add('form-control_error');
