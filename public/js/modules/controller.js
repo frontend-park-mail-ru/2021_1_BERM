@@ -13,11 +13,6 @@ export default {
         document.title = 'FL.ru';
         await this.isAuthorization()
             .then(() => {
-                // ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
-                //     .then((res) => {
-                //         saveData.img = res.img;  // ToDo: Получаем Изображение
-                //     })
-
                 root.innerHTML = navbarTemplate({
                     authorized: true,
                     profIcon: saveData.img
@@ -126,6 +121,14 @@ export default {
                             profIcon: saveData.img
                         }) + profileTemplate(profileInfo);
                     })
+
+                const inputImg = document.getElementById('file-input');
+                inputImg.onload = (ev) => {
+                    document.getElementById('profile_img').setAttribute('src', ev.target.value);
+                    debugger
+                    const res = newFormData(document.getElementById('upload-container'));
+                    console.log(res)
+                }
             });
 
     },
