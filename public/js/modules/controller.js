@@ -9,14 +9,14 @@ let saveData = {
 };
 
 export default {
-    Route() {
+    async Route() {
         document.title = 'FL.ru';
 
-        if (!isAuthorization()) {
+        if (!await isAuthorization()) {
             return;
         }
 
-        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
+        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
             .then((res) => {
                 saveData.img = res.img;  // ToDo: Получаем Изображение
             })
@@ -28,7 +28,7 @@ export default {
 
     },
 
-    loginRoute() {
+    async loginRoute() {
         document.title = 'Авторизация';
 
         root.innerHTML = navbarTemplate() + signinTemplate();
@@ -55,7 +55,7 @@ export default {
         }
     },
 
-    clientRegRoute() {
+    async clientRegRoute() {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
@@ -81,7 +81,7 @@ export default {
 
     },
 
-    workerRegRoute() {
+    async workerRegRoute() {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
@@ -108,39 +108,38 @@ export default {
         }
     },
 
-    profileRoute() {
+    async profileRoute() {
         document.title = 'Профиль';
 
-        if (!isAuthorization()) {
+        if (!await isAuthorization()) {
             return;
         }
 
         let profileInfo = {};
 
-        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
+        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
             .then(res => {
                 profileInfo.name = res.first_name + ' ' + res.second_name;
                 profileInfo.profileImgUrl = saveData.img; // Todo Убрать
                 profileInfo.nickName = res.user_name;
             })
-            .then(() => {
-                root.innerHTML = navbarTemplate({
-                    authorized: true,
-                    profIcon: saveData.img
-                }) + profileTemplate(profileInfo);
-            })
+
+        root.innerHTML = navbarTemplate({
+            authorized: true,
+            profIcon: saveData.img
+        }) + profileTemplate(profileInfo);
     },
 
-    settingsRoute() {
+    async settingsRoute() {
         document.title = 'Настройки';
 
-        if (!isAuthorization()) {
+        if (!await isAuthorization()) {
             return;
         }
 
         let profileSettings = {};
 
-        ajax.sendRequest('POST', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
+        await ajax.sendRequest('POST', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
             .then(res => console.log(res))
 
         root.innerHTML = navbarTemplate({
@@ -186,7 +185,7 @@ function newFormData(form) {
     return requestData;
 }
 
-function isAuthorization() {
+async function isAuthorization() {
 //     ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
 //         .then(() => {
 //             // if (res.) {
