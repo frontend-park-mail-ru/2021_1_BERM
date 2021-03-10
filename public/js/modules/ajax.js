@@ -1,6 +1,7 @@
 export default {
      sendRequest(method, url, body = undefined) {
-        return fetch(url, {
+         console.log(5)
+         return fetch(url, {
             method: method,
             body: JSON.stringify(body),
             credentials: 'include',
@@ -9,7 +10,9 @@ export default {
             },
         })
             .then( res => {
+                console.log(6)
                 if (res.ok) {
+                    console.log(7)
                     return res.json();
                 }
 

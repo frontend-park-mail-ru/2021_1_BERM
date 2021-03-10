@@ -13,9 +13,10 @@ export default {
         document.title = 'FL.ru';
 
         if (!this.isAuthorization()) {
+            console.log(2)
             return;
         }
-
+        console.log(1)
         // ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
         //     .then((res) => {
         //         saveData.img = res.img;  // ToDo: Получаем Изображение
@@ -175,8 +176,10 @@ export default {
     },
 
     isAuthorization() {
+        console.log(3)
         ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
             .then(res => {
+                console.log(4)
                 if (res.isOk === undefined || res.isOk) {
                     return true;
                 } else {
