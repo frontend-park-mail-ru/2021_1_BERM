@@ -1,3 +1,5 @@
+import Valid from './valid.js'
+import Menu from './menu.js'
 import ajax from "./ajax.js";
 
 const root = document.getElementById('root');
@@ -19,6 +21,7 @@ export default {
             authorized : saveData.authorized,
             profIcon : saveData.img
         }) + indexTemplate();
+        // Menu.runMenu()
     },
 
     loginRoute() {
@@ -68,7 +71,7 @@ export default {
         form.onsubmit = async (event) => {
             event.preventDefault();
 
-            // Todo: Валидация
+            Valid.runValid();
             // Todo Тут добавить функцию валидации!!
 
             let requestData= { };
@@ -92,7 +95,6 @@ export default {
                 })
         }
 
-
     },
 
     workerRegRoute() {
@@ -104,7 +106,7 @@ export default {
         form.onsubmit = async (event) => {
             event.preventDefault();
 
-            // Todo: Валидация
+            Valid.runValid();
             // Todo Тут добавить функцию валидации!!
 
             let requestData= { };
@@ -144,6 +146,7 @@ export default {
             authorized : saveData.authorized,
             profIcon : saveData.img
         }) + profileTemplate(profileInfo);
+        Menu.runMenu()
     },
 
     settingsRoute() {
@@ -155,13 +158,20 @@ export default {
             nickName: "astlok",
             email: "astlok@ya.ru",
         }
-
-
         root.innerHTML = navbarTemplate({
             authorized : saveData.authorized,
             profIcon : saveData.img
-        }) + settingsTemplate(profileSettings)
+        }) + settingsTemplate(profileSettings);
+ 
+    },
 
+    orderPageRoute() {
+        document.title = 'Создание заказа';
+        console.log(orderpageTemplate());
+
+        root.innerHTML = navbarTemplate() + orderpageTemplate();
+        Valid.runValid();
+        
         // Todo: Валидация
         // Todo: POST запрос настроек
     },

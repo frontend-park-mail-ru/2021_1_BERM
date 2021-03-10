@@ -1,24 +1,40 @@
 div(class='registration')
-    form(action="" id='worker_registration')
+    form(action="" id="feedback" class="feedback")
         h2 Регистрация
-        div(class='registration__input')
-            input(type="text" class="registration__input" name="user_name" placeholder="Введите логин")
-        div(class='registration__input')
-            input(type="text" class="registration__input" name="second_name" placeholder="Введите фамилию")
-        div(class='registration__input')
-            input(type="text" class="registration__input" name="first_name" placeholder="Введите имя")
-        div(class='registration__input')
-            select(name="list")
-                option(value="") Выберите специальность
-                option(value="FrontEnd") Фронтенд разработчик
-                option(value="BackEnd") Бекенд разработчик
-                option(value="Engineer") Инженер
-                option(value="Architect") Архитектор
-                option(value="Linguist") Лингвист
-        div(class='registration__input')
-            input(type="text" class="registration__input" name="email" placeholder="Введите почту")
-        div(class='registration__input')
-            input(type="text" class="registration__input" placeholder="Введите телефон")
-        div(class='registration__input')
-            input(type="text" class="registration__input" name="password" placeholder="Введите пароль")
-        input(type="submit" class="dws-submit" name="submit" value="Зарегистрироваться")
+        label(for="Привет" class="label-reg" ) Введите логин
+        div(class='registration__input form-control')
+            input(type="text" class="registration__input form-control" name="user_name" placeholder="Пример: 1994Ivanov")
+        div(class=" error" name="bizarro")
+        label(for="Привет" class="label-reg" ) Введите фамилию
+        div(class='registration__input form-control')
+            input(type="text" class="registration__input form-control" name="second_name" placeholder="Пример: Иванов")
+        div(class=" error" name="bizarro")
+        label(for="Привет" class="label-reg" ) Введите имя
+        div(class='registration__input form-control')
+            input(type="text" class="registration__input form-control" name="first_name" placeholder="Пример: Иван" )
+        div(class=" error" name="bizarro")
+        label(for="Привет" class="label-reg" ) Выберите специальность из списка
+        div(class='registration__input form-control')
+            select(name="list1" class="form-control")
+                option(value="0") Выберите специальность
+                option(value="1") Фронтенд разработчик
+                option(value="2") Бекенд разработчик
+                option(value="3") Инженер
+                option(value="4") Архитектор
+                option(value="5") Лингвист 
+        div(class=" error" name="bizarro")
+        label(for="Привет" class="label-reg" ) Введите email
+        div(class='registration__input form-control')
+            input(type="text" id="usermail" class="registration__input form-control" name="email" placeholder="Пример: Ivanov@mail.ru")
+        div(class=" error" name="bizarro")
+        label(for="Привет" class="label-reg" ) Введите телефон
+        div(class='registration__input ')
+            input(type="text" class="registration__input form-control" placeholder="Пример: 88005553535 или +78005553535")
+        div(class=" error" name="bizarro")
+        label(for="Привет" class="label-reg" ) Введите пароль
+        div(class='registration__input ')
+            input(type="text" class="registration__input form-control" name="password" placeholder="Пример: IvanIvanov1994")
+        div(class=" error" name="bizarro")
+        input(id="send_mess" type="submit" class="dws-submit" name="submit" value="Зарегистрироваться")
+        //- button(id="send_mess" type="submit" class="dws-submit")
+
