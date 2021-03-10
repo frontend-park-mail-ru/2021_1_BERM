@@ -4,9 +4,9 @@ export default {
             method: method,
             body: JSON.stringify(body),
             credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            // headers: {
+            //     'Content-Type': 'application/json',
+            // },
             // mode: 'no-cors'
         })
             .then(res => {
