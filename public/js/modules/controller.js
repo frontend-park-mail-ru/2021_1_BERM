@@ -129,7 +129,7 @@ export default {
     },
 
     async exitRoute() {
-        console.log(document.cookie)
+        await this.loginRoute();
     },
 
     settingsRoute() {
