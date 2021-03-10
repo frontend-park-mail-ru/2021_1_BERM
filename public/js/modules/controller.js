@@ -180,7 +180,7 @@ export default {
     async isAuthorization() {
         return ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
             .then(res => {
-                if (res === undefined || res.isOk) {
+                if (res.id !== undefined) {
                     return Promise.resolve();
                 } else {
                     this.loginRoute()
