@@ -2,6 +2,7 @@ mixin navbarContent()
     if authorized
         a(class="navbar_icon", href="/profile")
             img(class="icon", src=profIcon)
+        button(class="navbar__button_order") Разместить заказ
     else
         a(href="/profile" onclick="myFunction()" class="dropbtn") Регистрация
         
