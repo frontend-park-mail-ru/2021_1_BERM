@@ -186,14 +186,14 @@ function newFormData(form) {
     return requestData;
 }
 
-function isAuthorization() {
+let isAuthorization = () => {
     ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
         .then(res => {
             if (res.ok) {
                 return true;
             } else {
-                this.loginRoute();
-                this.addHandleLinks();
+                this.loginRoute()
+                this.addHandleLinks()
                 return false;
             }
         })
