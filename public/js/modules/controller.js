@@ -124,7 +124,9 @@ export default {
 
                 const inputImg = document.getElementById('file-input');
                 inputImg.oninput = (ev) => {
-                    console.log(ev.target.files[0].name);
+                    let fReader = new FileReader();
+                    fReader.readAsDataURL(ev.target.files[0]);
+                    console.log(fReader.result);
                 }
             });
 
