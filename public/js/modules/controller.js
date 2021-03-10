@@ -1,5 +1,4 @@
 import Valid from './valid.js'
-import Menu from './menu.js'
 import ajax from "./ajax.js";
 
 const root = document.getElementById('root');
@@ -160,7 +159,7 @@ export default {
             authorized : saveData.authorized,
             profIcon : saveData.img
         }) + profileTemplate(profileInfo);
-        Menu.runMenu()
+        
     },
 
     settingsRoute() {
