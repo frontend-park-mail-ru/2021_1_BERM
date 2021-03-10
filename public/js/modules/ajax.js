@@ -13,7 +13,7 @@ export default {
                     return res.json();
                 }
 
-                if (res.status === 409) {
+                if (res.status === 401) {
                     return {isOk: false}
                 }
 
