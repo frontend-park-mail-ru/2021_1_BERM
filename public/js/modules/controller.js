@@ -4,7 +4,7 @@ import ajax from "./ajax.js";
 
 const root = document.getElementById('root');
 let saveData = {
-    authorized: true,
+    authorized: false,
     id: 0,
     img: 'img/profile.jpg',
 };
@@ -66,12 +66,11 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
+        Valid.runValid();
 
-        const form = document.getElementById('client_registration');
+        const form = document.getElementsByTagName('form')[0];
         form.onsubmit = async (event) => {
             event.preventDefault();
-
-            Valid.runValid();
             // Todo Тут добавить функцию валидации!!
 
             let requestData= { };
@@ -101,12 +100,12 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
+        Valid.runValid();
 
-        const form = document.getElementById('worker_registration');
+        const form = document.getElementsByTagName('form')[0];
         form.onsubmit = async (event) => {
             event.preventDefault();
 
-            Valid.runValid();
             // Todo Тут добавить функцию валидации!!
 
             let requestData= { };
@@ -167,7 +166,6 @@ export default {
 
     orderPageRoute() {
         document.title = 'Создание заказа';
-        console.log(orderpageTemplate());
 
         root.innerHTML = navbarTemplate() + orderpageTemplate();
         Valid.runValid();
