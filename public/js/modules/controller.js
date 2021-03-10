@@ -135,22 +135,36 @@ export default {
         await this.loginRoute();
     },
 
-    settingsRoute() {
+    async settingsRoute() {
         document.title = 'Настройки';
 
-        if (!this.isAuthorization()) {
-            return;
-        }
+        await this.isAuthorization()
+            .then(async res => {
+                const profileSettings = {
+                    nickName: res.user_name,
+                    surname: res.second_name,
+                    name: res.first_name,
+                    email: res.email,
+                };
 
-        let profileSettings = {};
+                root.innerHTML = navbarTemplate({
+                    authorized: true,
+                    profIcon: saveData.img
+                }) + settingsTemplate(profileSettings);
 
-        ajax.sendRequest('POST', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
-            .then(res => console.log(res))
+                const form = document.getElementsByTagName('form')[0];
+                form.onsubmit = (event) => {
+                    event.preventDefault();
 
-        root.innerHTML = navbarTemplate({
-            authorized: true,
-            profIcon: saveData.img
-        }) + settingsTemplate(profileSettings);
+                    let requestData = newFormData(event.target);
+
+                    ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/profile/change', JSON.parse(JSON.stringify(requestData)))
+                        .then(async () => {
+                                await this.settingsRoute();
+                                await this.addHandleLinks();
+                        });
+                }
+            });
     },
 
     orderPageRoute() {
@@ -182,7 +196,7 @@ export default {
         return ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
             .then(res => {
                 if (res.id !== undefined) {
-                    return Promise.resolve();
+                    return Promise.resolve(res);
                 } else {
                     this.loginRoute()
                     this.addHandleLinks()
