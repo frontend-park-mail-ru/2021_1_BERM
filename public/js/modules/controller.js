@@ -185,6 +185,7 @@ export default {
                 } else {
                     this.loginRoute()
                     this.addHandleLinks()
+                    return Promise.reject();
                 }
             })
     }
