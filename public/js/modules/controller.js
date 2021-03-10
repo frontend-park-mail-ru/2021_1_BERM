@@ -174,14 +174,14 @@ export default {
         }
     },
 
-    isAuthorization() {
-        ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
-            .then(res => {
+    async isAuthorization() {
+        await ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
+            .then(async res => {
                 if (res.isOk === undefined || res.isOk) {
                     return true;
                 } else {
-                    this.loginRoute()
-                    this.addHandleLinks()
+                    await this.loginRoute()
+                    await this.addHandleLinks()
                     return false;
                 }
             })
