@@ -1,5 +1,4 @@
 import Valid from './valid.js'
-import Menu from './menu.js'
 import ajax from "./ajax.js";
 
 const root = document.getElementById('root');
@@ -10,25 +9,23 @@ let saveData = {
 };
 
 export default {
-    Route() {
+    async Route() {
         document.title = 'FL.ru';
 
-        if (saveData.authorized) {
-            ajax.sendRequest('GET', `http://95.163.212.121:8080/profile/avatar/${saveData.id}`)
-                .then( (res) => {
-                    saveData.img = res.img;
-                })
+        if (!await isAuthorization()) {
+            return;
         }
 
-        ajax.sendRequest('GET', 'http://95.163.212.121:8080/profile')
-            .then(response => {
-                    saveData.authorized = response.ok;
-            });
+        ajax.sendRequest('GET', `https://95.163.212.121:8080/profile/avatar/${saveData.id}`)
+            .then((res) => {
+                saveData.img = res.img;  // ToDo: Получаем Изображение
+            })
 
         root.innerHTML = navbarTemplate({
-            authorized : saveData.authorized,
-            profIcon : saveData.img
+            authorized: true,
+            profIcon: saveData.img
         }) + indexTemplate();
+
     },
 
     loginRoute() {
@@ -43,28 +40,17 @@ export default {
             // Todo: Валидация
             // Todo Тут добавить функцию валидации
 
-            let requestData= { };
-            const formData = new FormData(event.target);
+            let requestData = newFormData(event.target);
 
-            for(let [name, value] of formData) {
-                requestData[name] = value;
-            }
-            ajax.sendRequest('POST', 'http://95.163.212.121:8080/signin', JSON.parse(JSON.stringify(requestData)))
-            // Todo возвращается стуктуру или ее сохранить или изменить API
+            await ajax.sendRequest('POST', 'https://95.163.212.121:8080/signin', JSON.parse(JSON.stringify(requestData)))
                 .then(response => {
-                    if (response!= null && response.status === undefined) {
-                        saveData.authorized = true;
-                        saveData.id = response.id;
-                        // email: "pekanbo3333y7@gmail.com"
-                        // executor: false
-                        // first_name: "dasd"
-                        // id: 25
-                        // second_name: "dasasd"
-                        // user_name: "asdssad"
+                    if (response.status === undefined) {
+                        saveData.id = response.id;  // Todo Поле ID
                         this.Route();
                         this.addHandleLinks();
+                    } else {
+                        // Todo Неверный Логин или Пароль
                     }
-                    // Todo Неверный Логин или Пароль или ошибка на сервере
                 })
         }
     },
@@ -73,28 +59,19 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
+
         Valid.runValid();
 
         const form = document.getElementsByTagName('form')[0];
         form.onsubmit = async (event) => {
             event.preventDefault();
-            // Todo Тут добавить функцию валидации!!
 
-            let requestData= { };
-            const formData = new FormData(event.target);
+            let requestData = newFormData(event.target)
 
-            for(let [name, value] of formData) {
-                requestData[name] = value;
-            }
-            requestData.Executor = false;
-
-            ajax.sendRequest('POST', 'http://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
-                // Todo возвращается структуру или ее сохранить или изменить API
+            await ajax.sendRequest('POST', 'https://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(response => {
-                    if (response!= null && response.status === undefined) {
-                        saveData.authorized = true;
-                        this.loginRoute();
-                        alert("Вы успешно зарегались. Войдите."); // Todo убрать
+                    if (response.status === undefined) {
+                        this.Route();
                         this.addHandleLinks();
                     } else {
                         // Todo Неверный Логин или Пароль или ошибка на сервере
@@ -108,31 +85,21 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
+
         Valid.runValid();
 
         const form = document.getElementsByTagName('form')[0];
         form.onsubmit = async (event) => {
             event.preventDefault();
 
-            // Todo Тут добавить функцию валидации!!
-
-            let requestData= { };
-            const formData = new FormData(event.target);
-
-            for(let [name, value] of formData) {
-                if (name === 'specializes') {
-                    requestData[name] = new Array(1);
-                    requestData[name][0] = value;
-                }
-                requestData[name] = value;
-            }
+            let requestData = newFormData(event.target);
             requestData.executor = true;
+            requestData.specializes = [requestData.specializes,]; // Todo Работает ли это?
 
-            ajax.sendRequest('POST', 'http://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
-                .then(response => {
-                    if (response != null && response.status === undefined) {
-                        saveData.authorized = true;
-                        this.loginRoute();
+            ajax.sendRequest('POST', 'https://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
+                .then(res => {
+                    if (res.status === undefined) {
+                        this.Route();
                         this.addHandleLinks();
                     } else {
                         // Todo Неверный Логин или Пароль или ошибка на сервере
@@ -141,66 +108,88 @@ export default {
         }
     },
 
-    profileRoute() {
-        // Todo Получить изображение
-        const profileInfo = {
-            profileImgUrl: "img/profile.jpg",
-        }
-
-        // if (!saveData.authorized) {
-        //
-        // }
-        ajax.sendRequest('POST', `http://95.163.212.121:8080/profile/${saveData.id}`)
-            .then(res => console.log(res))
-
-
+    async profileRoute() {
         document.title = 'Профиль';
 
+        if (!await isAuthorization()) {
+            return;
+        }
+
+        let profileInfo = {};
+
+        // ajax.sendRequest('POST', `https://95.163.212.121:8080/profile/${saveData.id}`)
+        //     .then()
+
         root.innerHTML = navbarTemplate({
-            authorized : saveData.authorized,
-            profIcon : saveData.img
+            authorized: true,
+            profIcon: saveData.img
         }) + profileTemplate(profileInfo);
-        Menu.runMenu()
     },
 
-    settingsRoute() {
+    async settingsRoute() {
         document.title = 'Настройки';
 
-        const profileSettings = {
-            name: "Олег",
-            surname: "Реуцкий",
-            nickName: "astlok",
-            email: "astlok@ya.ru",
+        if (!await isAuthorization()) {
+            return;
         }
+
+        let profileSettings = {};
+
+        // ajax.sendRequest('POST', `https://95.163.212.121:8080/settings/${saveData.id}`)
+        //     .then()
+
         root.innerHTML = navbarTemplate({
-            authorized : saveData.authorized,
-            profIcon : saveData.img
+            authorized: true,
+            profIcon: saveData.img
         }) + settingsTemplate(profileSettings);
- 
     },
 
     orderPageRoute() {
         document.title = 'Создание заказа';
 
         root.innerHTML = navbarTemplate() + orderpageTemplate();
+
         Valid.runValid();
-        
-        // Todo: Валидация
+
         // Todo: POST запрос настроек
     },
 
     addHandleLinks() {
-    const body = Array.from(document.getElementsByTagName('a'));
-    for(let i = 0; i < body.length; ++i) {
-        body[i].addEventListener('click', (event) => {
-            event.preventDefault();
+        const body = Array.from(document.getElementsByTagName('a'));
+        for (let i = 0; i < body.length; ++i) {
+            body[i].addEventListener('click', (event) => {
+                event.preventDefault();
 
-            const hash = body[i].getAttribute('href');
-            location.hash = hash;
+                const hash = body[i].getAttribute('href');
+                location.hash = hash;
 
-            this[hash.slice(1) + 'Route']();
-            this.addHandleLinks();
-        })
+                this[hash.slice(1) + 'Route']();
+                this.addHandleLinks();
+            })
+        }
     }
-}
 };
+
+function newFormData(form) {
+    let requestData = {};
+    const formData = new FormData(form);
+
+    for (let [name, value] of formData) {
+        requestData[name] = value;
+    }
+
+    return requestData;
+}
+
+function isAuthorization() {
+    ajax.sendRequest('GET', 'https://95.163.212.121:8080/profile')
+        .then(response => {
+            if (response.ok) {
+                return true;
+            } else {
+                this.loginRoute();
+                this.addHandleLinks();
+                return false;
+            }
+        });
+}
