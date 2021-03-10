@@ -1,6 +1,6 @@
 export default {
-    async sendRequest(method, url, body = undefined) {
-        return await fetch(url, {
+    sendRequest(method, url, body = undefined) {
+        return fetch(url, {
             method: method,
             body: JSON.stringify(body),
             credentials: 'include',
