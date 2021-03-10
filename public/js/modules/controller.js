@@ -109,11 +109,11 @@ export default {
         document.title = 'Профиль';
 
         await this.isAuthorization()
-            .then(() => {
+            .then(async () => {
 
                 let profileInfo = {};
 
-                ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
+                await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
                     .then(res => {
                         profileInfo.name = res.first_name + ' ' + res.second_name;
                         profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
