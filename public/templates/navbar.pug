@@ -2,10 +2,10 @@ mixin navbarContent()
     if authorized
         a(class="navbar_icon", href="/profile")
             img(class="icon", src=profIcon)
+        button(class="navbar__button_order") Разместить заказ
     else
         a(href="/workerReg") Регистрация
         a(href="/login") Вход
-    button(class="navbar__button_order") Разместить заказ
     div(class="navbar__button_title")
         a(class="active" href="/") FL
 

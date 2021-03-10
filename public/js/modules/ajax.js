@@ -1,12 +1,21 @@
 export default {
-    sendRequest(method, url, body = null) {
-        return fetch(url, {
+    async sendRequest(method, url, body) {
+        return await fetch(url, {
             method: method,
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // mode: 'no-cors'
         })
             .then(res => {
                 if (res.ok) {
                     return res.json();
+                }
+
+                for (let val of res.headers.values()) {
+                    console.log(val)
                 }
 
                 return res.json()
@@ -15,6 +24,9 @@ export default {
                         error.data = err;
                         throw error;
                     })
+            })
+            .catch(() => {
+                console.log('Не удалось подключиться к серверу');
             })
     }
 }
