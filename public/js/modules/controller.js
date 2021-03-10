@@ -118,7 +118,9 @@ export default {
         let profileInfo = {};
 
         ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
-            .then(res => console.log(res));
+            .then(res => {
+                console.log(res)
+            });
 
         root.innerHTML = navbarTemplate({
             authorized: true,
