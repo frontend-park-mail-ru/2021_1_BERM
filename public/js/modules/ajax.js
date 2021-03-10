@@ -14,10 +14,16 @@ export default {
                 }
 
                 if (res.status === 401) {
-                    return {isOk: false}
+                    console.log(res.error);
+                    return Promise.resolve({isOk: false})
                 }
 
-                console.log("_______", res);
+                if (res.status === 400) {
+                    console.log(res.error);
+                    return Promise.resolve({isOk: false})
+                }
+
+                console.log("_______", res, res.json());
 
             })
             .catch(res => {

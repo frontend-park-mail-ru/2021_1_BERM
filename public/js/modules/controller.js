@@ -67,13 +67,13 @@ export default {
             let requestData = newFormData(event.target)
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
-                .then(async () => {
-                    // if (response.status === undefined) {
+                .then(async response => {
+                    if (response.isOk === undefined) {
                         await this.Route();
                         await this.addHandleLinks();
-                    // } else {
-                    //     // Todo Неверный Логин или Пароль или ошибка на сервере
-                    // }
+                    } else {
+                        // Todo Неверный Логин или Пароль или ошибка на сервере
+                    }
                 })
         }
 
@@ -95,8 +95,8 @@ export default {
             requestData.specializes = [requestData.specializes,]; // Todo Работает ли это?
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
-                .then(async res => {
-                    if (res.status === undefined) {
+                .then(async response => {
+                    if (response.isOk === undefined) {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
