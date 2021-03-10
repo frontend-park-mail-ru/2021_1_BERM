@@ -33,16 +33,7 @@ export default {
             ],
             iserror = false;
 
-        btn.addEventListener('click', validForm);
-        form.addEventListener('focus', function () {
-            let el = document.activeElement;
-            if (el !== btn) {
-                cleanError(el);
-                cleanValid(el);
-            }
-        }, true);
-
-        function validForm(e) {
+        btn.addEventListener('click', (e) => {
             let formVal = getFormData(form),
                 error;
 
@@ -61,79 +52,84 @@ export default {
                 // sendFormData(formVal);
             }
             return false;
-        }
+        });
+        form.addEventListener('focus',  () => {
+            let el = document.activeElement;
+            if (el !== btn) {
+                cleanError(el);
+                cleanValid(el);
+            }
+        }, true);
 
-        function getError(formVal, property) {
+         let getError = (formVal, property) => {
             let error = '',
                 validate = {
-                    'user_name': function () {
+                    'user_name':  () => {
                         if (formVal.user_name.length === 0 || patternLog.test(formVal.user_name) === false) {
                             error = errorMess[7];
                         }
                     },
-                    'email': function () {
+                    'email': () => {
                         if (formVal.email.length === 0) {
                             error = errorMess[2];
                         } else if (patternMail.test(formVal.email) === false) {
                             error = errorMess[3];
                         }
                     },
-                    'subject': function () {
+                    'subject': () => {
                         if (formVal.subject.length === 0) {
                             error = errorMess[4];
                         } else if (patternSpam.test(formVal.subject) === false) {
                             error = errorMess[6];
                         }
                     },
-                    'textmess': function () {
+                    'textmess': () => {
                         if (formVal.textmess.length === 0) {
                             error = errorMess[5];
                         } else if (patternSpam.test(formVal.textmess) === false) {
                             error = errorMess[6];
                         }
                     },
-                    'first_name': function () {
+                    'first_name': () => {
                         if (formVal.first_name.length === 0 || patternName.test(formVal.first_name) === false) {
                             error = errorMess[1];
                         }
                     },
-                    'second_name': function () {
+                    'second_name': () => {
                         if (formVal.second_name.length === 0 || patternName.test(formVal.second_name) === false) {
                             error = errorMess[8];
                         }
                     },
-                    'specializes': function () {
+                    'specializes': () => {
                         if (formVal.specializes === 'err') {
                             error = errorMess[10];
                         }
                     },
-                    'phone': function () {
+                    'phone': () => {
                         if (formVal.phone.length === 0 || patternPhone.test(formVal.phone) === false) {
                             error = errorMess[11];
                         }
                     },
-                    'password': function () {
+                    'password': () => {
                         if (formVal.password.length === 0 || patternPassword.test(formVal.password) === false) {
                             error = errorMess[12];
                         }
                     },
-                    'price': function () {
+                    'price': () => {
                         if (formVal.price.length === 0 || patternPrice.test(formVal.price) === false) {
                             error = errorMess[13];
                         }
                     },
-                    'submit': function () {
+                    'submit': () => {
                         error = ''
                     }
                 };
-            console.log(property)
             validate[property]();
-            console.log(error);
             return error;
         }
 
-        [].forEach.call(elements, function (element) {
-            element.addEventListener('blur', function (e) {
+        [].forEach.call(elements,  (element) => {
+            element.addEventListener('blur',  (e) => {
                 let formElement = e.target,
                     property = formElement.getAttribute('name'),
                     dataField = {};
@@ -150,7 +146,7 @@ export default {
             });
         });
 
-        function showError(property, error) {
+        let showError = (property, error) => {
             let formElement = form.querySelector('[name=' + property + ']')
             let errorBox = formElement.parentElement.nextElementSibling;
 
@@ -159,7 +155,7 @@ export default {
             errorBox.style.display = 'block';
         }
 
-        function showValid(property) {
+        let showValid = (property) => {
             if (property !== 'submit') {
                 let formElement = form.querySelector('[name=' + property + ']'),
                     validBox = formElement.parentElement.nextElementSibling;
@@ -170,25 +166,25 @@ export default {
             }
         }
 
-        function cleanError(el) {
+        let cleanError = (el) => {
             let errorBox = el.parentElement.nextElementSibling;
             errorBox.innerHTML = ""
             el.classList.remove('form-control_error');
             errorBox.removeAttribute('style');
         }
 
-        function cleanValid(el) {
+        let cleanValid = (el) => {
             let validBox = el.parentElement.nextElementSibling;
             validBox.innerHTML = ""
             el.classList.remove('form-control_valid');
             validBox.removeAttribute('style');
         }
 
-        function getFormData(form) {
+        let getFormData = (form) => {
             let controls = {};
             if (!form.elements) return '';
-            for (var i = 0, ln = form.elements.length; i < ln; i++) {
-                var element = form.elements[i];
+            for (let i = 0, ln = form.elements.length; i < ln; i++) {
+                let element = form.elements[i];
                 if (element.tagName.toLowerCase() !== 'button') {
                     controls[element.name] = element.value;
                 }

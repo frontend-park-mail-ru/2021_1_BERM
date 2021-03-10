@@ -1,6 +1,6 @@
 import Router from './modules/router.js'
 
-function run() {
+const run = () => {
     Router.init();
 }
 
