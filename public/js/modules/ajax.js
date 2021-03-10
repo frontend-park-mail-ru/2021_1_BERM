@@ -14,7 +14,7 @@ export default {
                     return res.json();
                 }
 
-                console.log(status);
+                console.log(res.status);
 
                 for (let val of res.headers.values()) {
                     console.log(val)
@@ -27,8 +27,8 @@ export default {
                         throw error;
                     })
             })
-            .catch(() => {
-                console.log(status);
+            .catch(res => {
+                console.log(res.status);
                 console.log('Не удалось подключиться к серверу');
             })
     }

@@ -135,7 +135,7 @@ export default {
 
         let profileSettings = {};
 
-        ajax.sendRequest('POST', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
+        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
             .then(res => console.log(res))
 
         root.innerHTML = navbarTemplate({
