@@ -9,10 +9,9 @@ let saveData = {
 };
 
 export default {
-    Route() {
+    async Route() {
         document.title = 'FL.ru';
-
-        if (!this.isAuthorization()) {
+        if (!await this.isAuthorization()) {
             console.log(2)
             return;
         }
