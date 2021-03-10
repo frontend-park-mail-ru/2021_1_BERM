@@ -182,14 +182,16 @@ function newFormData(form) {
 }
 
 function isAuthorization() {
-    ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
-        .then(() => {
-            // if (res.) {
-            //     return true;
-            // } else {
-                this.loginRoute();
-                this.addHandleLinks();
-                return false;
-            // }
-        })
+//     ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
+//         .then(() => {
+//             // if (res.) {
+//             //     return true;
+//             // } else {
+//                 this.loginRoute();
+//                 this.addHandleLinks();
+//                 return false;
+//             // }
+//         })
+// }
+    return true;
 }
