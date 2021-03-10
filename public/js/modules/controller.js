@@ -119,7 +119,9 @@ export default {
 
         ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
             .then(res => {
-                console.log(res)
+                profileInfo.name = res.first_name + ' ' + res.second_name;
+                profileInfo.profileImgUrl = saveData.img; // Todo Убрать
+                profileInfo.nickName = res.user_name;
             });
 
         root.innerHTML = navbarTemplate({
