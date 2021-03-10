@@ -124,8 +124,7 @@ export default {
 
                 const inputImg = document.getElementById('file-input');
                 inputImg.oninput = (ev) => {
-                    document.getElementById('profile_img').setAttribute('src', ev.target.value);
-                    debugger
+                    console.log(ev.target.value);
                 }
             });
 
