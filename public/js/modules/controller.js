@@ -40,11 +40,11 @@ export default {
             let requestData = newFormData(event.target);
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signin', JSON.parse(JSON.stringify(requestData)))
-                .then(response => {
+                .then(async response => {
                     if (response.status === undefined) {
                         saveData.id = response.id;  // Todo Поле ID
-                        this.Route();
-                        this.addHandleLinks();
+                        await this.Route();
+                        await this.addHandleLinks();
                     } else {
                         // Todo Неверный Логин или Пароль
                     }
@@ -66,10 +66,10 @@ export default {
             let requestData = newFormData(event.target)
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
-                .then(response => {
+                .then(async response => {
                     if (response.status === undefined) {
-                        this.Route();
-                        this.addHandleLinks();
+                        await this.Route();
+                        await this.addHandleLinks();
                     } else {
                         // Todo Неверный Логин или Пароль или ошибка на сервере
                     }
@@ -94,10 +94,10 @@ export default {
             requestData.specializes = [requestData.specializes,]; // Todo Работает ли это?
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
-                .then(res => {
+                .then(async res => {
                     if (res.status === undefined) {
-                        this.Route();
-                        this.addHandleLinks();
+                        await this.Route();
+                        await this.addHandleLinks();
                     } else {
                         // Todo Неверный Логин или Пароль или ошибка на сервере
                     }
