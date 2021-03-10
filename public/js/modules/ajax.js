@@ -14,7 +14,7 @@ export default {
                 }
 
                 if (res.status === 409) {
-                    return {ok: false}
+                    return {isOk: false}
                 }
 
                 console.log("_______", res);
