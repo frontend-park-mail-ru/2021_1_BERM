@@ -17,11 +17,15 @@ export default {
             // Todo Запрос изображения. Сохраняем его в saveData
         }
 
+        // ajax.sendRequest('GET', 'http://95.163.212.121:8080/profile')
+        //     .then(response => {
+        //             saveData.authorized = response.ok;
+        //     });
+
         root.innerHTML = navbarTemplate({
             authorized : saveData.authorized,
             profIcon : saveData.img
         }) + indexTemplate();
-        // Menu.runMenu()
     },
 
     loginRoute() {
