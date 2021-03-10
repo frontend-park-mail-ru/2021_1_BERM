@@ -10,8 +10,8 @@ async function handleHash() {
 }
 
 export default {
-    init() {
-        addEventListener('hashchange', handleHash);
-        handleHash()
+    async init() {
+        await addEventListener('hashchange', handleHash);
+        await handleHash()
     }
 }

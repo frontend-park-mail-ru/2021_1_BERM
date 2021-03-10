@@ -9,14 +9,14 @@ let saveData = {
 };
 
 export default {
-    async Route() {
+    Route() {
         document.title = 'FL.ru';
 
-        if (!await isAuthorization()) {
+        if (!isAuthorization()) {
             return;
         }
 
-        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
+        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
             .then((res) => {
                 saveData.img = res.img;  // ToDo: Получаем Изображение
             })
@@ -28,7 +28,7 @@ export default {
 
     },
 
-    async loginRoute() {
+    loginRoute() {
         document.title = 'Авторизация';
 
         root.innerHTML = navbarTemplate() + signinTemplate();
@@ -55,7 +55,7 @@ export default {
         }
     },
 
-    async clientRegRoute() {
+    clientRegRoute() {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
@@ -81,7 +81,7 @@ export default {
 
     },
 
-    async workerRegRoute() {
+    workerRegRoute() {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
@@ -108,38 +108,39 @@ export default {
         }
     },
 
-    async profileRoute() {
+    profileRoute() {
         document.title = 'Профиль';
 
-        if (!await isAuthorization()) {
+        if (!isAuthorization()) {
             return;
         }
 
         let profileInfo = {};
 
-        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
+        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
             .then(res => {
                 profileInfo.name = res.first_name + ' ' + res.second_name;
                 profileInfo.profileImgUrl = saveData.img; // Todo Убрать
                 profileInfo.nickName = res.user_name;
             })
-
-        root.innerHTML = navbarTemplate({
-            authorized: true,
-            profIcon: saveData.img
-        }) + profileTemplate(profileInfo);
+            .then(() => {
+                root.innerHTML = navbarTemplate({
+                    authorized: true,
+                    profIcon: saveData.img
+                }) + profileTemplate(profileInfo);
+            })
     },
 
-    async settingsRoute() {
+    settingsRoute() {
         document.title = 'Настройки';
 
-        if (!await isAuthorization()) {
+        if (!isAuthorization()) {
             return;
         }
 
         let profileSettings = {};
 
-        await ajax.sendRequest('POST', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
+        ajax.sendRequest('POST', `https://findfreelancer.ru:8080/settings/${saveData.id}`)
             .then(res => console.log(res))
 
         root.innerHTML = navbarTemplate({
@@ -185,7 +186,7 @@ function newFormData(form) {
     return requestData;
 }
 
-async function isAuthorization() {
+function isAuthorization() {
 //     ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
 //         .then(() => {
 //             // if (res.) {
