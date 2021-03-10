@@ -123,11 +123,9 @@ export default {
                     })
 
                 const inputImg = document.getElementById('file-input');
-                inputImg.onload = (ev) => {
+                inputImg.oninput = (ev) => {
                     document.getElementById('profile_img').setAttribute('src', ev.target.value);
                     debugger
-                    const res = newFormData(document.getElementById('upload-container'));
-                    console.log(res)
                 }
             });
 
