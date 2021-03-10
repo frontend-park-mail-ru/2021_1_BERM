@@ -1,5 +1,5 @@
 export default {
-    async sendRequest(method, url, body) {
+    async sendRequest(method, url, body = null) {
         return await fetch(url, {
             method: method,
             body: JSON.stringify(body),

@@ -133,11 +133,13 @@ export default {
         const profileInfo = {
             profileImgUrl: "img/profile.jpg",
         }
-        //
+
         // if (!saveData.authorized) {
         //
         // }
-        // ajax.sendRequest('POST', `http://95.163.212.121:8080/profile/${saveData.id}`)
+        ajax.sendRequest('POST', `http://95.163.212.121:8080/profile/${saveData.id}`)
+            .then(res => console.log(res))
+
 
         document.title = 'Профиль';
 
