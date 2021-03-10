@@ -108,7 +108,7 @@ export default {
         }
     },
 
-    profileRoute() {
+    async profileRoute() {
         document.title = 'Профиль';
 
         if (!isAuthorization()) {
@@ -117,18 +117,18 @@ export default {
 
         let profileInfo = {};
 
-        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
+        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
             .then(res => {
                 profileInfo.name = res.first_name + ' ' + res.second_name;
                 profileInfo.profileImgUrl = saveData.img; // Todo Убрать
                 profileInfo.nickName = res.user_name;
             })
-            .then(() => {
-                root.innerHTML = navbarTemplate({
-                    authorized: true,
-                    profIcon: saveData.img
-                }) + profileTemplate(profileInfo);
-            })
+
+        root.innerHTML = navbarTemplate({
+            authorized: true,
+            profIcon: saveData.img
+        }) + profileTemplate(profileInfo);
+
     },
 
     settingsRoute() {
