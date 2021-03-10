@@ -8,9 +8,9 @@ export default {
                 'Content-Type': 'application/json',
             },
         })
-            .then(res => {
+            .then(async res => {
                 if (res.ok) {
-                    return res.json();
+                    return await res.json();
                 }
 
                 if (res.status === 409) {
