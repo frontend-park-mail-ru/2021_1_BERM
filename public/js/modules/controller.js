@@ -11,21 +11,18 @@ let saveData = {
 export default {
     async Route() {
         document.title = 'FL.ru';
-        if (!await this.isAuthorization()) {
-            console.log(2)
-            return;
-        }
-        console.log(1)
-        // ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
-        //     .then((res) => {
-        //         saveData.img = res.img;  // ToDo: Получаем Изображение
-        //     })
+        await this.isAuthorization()
+            .then(() => {
+                // ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
+                //     .then((res) => {
+                //         saveData.img = res.img;  // ToDo: Получаем Изображение
+                //     })
 
-        root.innerHTML = navbarTemplate({
-            authorized: true,
-            profIcon: saveData.img
-        }) + indexTemplate();
-
+                root.innerHTML = navbarTemplate({
+                    authorized: true,
+                    profIcon: saveData.img
+                }) + indexTemplate();
+            })
     },
 
     loginRoute() {
@@ -174,17 +171,14 @@ export default {
         }
     },
 
-    isAuthorization() {
-        console.log(3)
-        ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
+    async isAuthorization() {
+        return ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
             .then(res => {
-                console.log(4)
                 if (res.isOk === undefined || res.isOk) {
-                    return true;
+                    return Promise.resolve();
                 } else {
                     this.loginRoute()
                     this.addHandleLinks()
-                    return false;
                 }
             })
     }

@@ -1,12 +1,12 @@
 import Controller from './controller.js'
 
-function handleHash() {
+async function handleHash() {
     const hash = (() => {
         return location.hash ? location.hash.slice(2) : '';
     })();
 
-    Controller[hash + 'Route']();
-    Controller.addHandleLinks();
+    await Controller[hash + 'Route']();
+    await Controller.addHandleLinks();
 }
 
 export default {
