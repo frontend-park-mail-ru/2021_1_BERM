@@ -31,6 +31,7 @@ export default {
                 console.log('Не удалось подключиться к серверу');
             })
     },
+};
 //
 //     async sendRequestNotBody(method, url) {
 //         return await fetch(url, {
