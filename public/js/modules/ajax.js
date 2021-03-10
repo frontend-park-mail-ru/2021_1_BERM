@@ -1,6 +1,6 @@
 export default {
-    async sendRequest(method, url, body = undefined) {
-        return await fetch(url, {
+     sendRequest(method, url, body = undefined) {
+        return fetch(url, {
             method: method,
             body: JSON.stringify(body),
             credentials: 'include',
@@ -8,9 +8,9 @@ export default {
                 'Content-Type': 'application/json',
             },
         })
-            .then(async res => {
+            .then( res => {
                 if (res.ok) {
-                    return await res.json();
+                    return res.json();
                 }
 
                 if (res.status === 409) {

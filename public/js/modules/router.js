@@ -1,17 +1,17 @@
 import Controller from './controller.js'
 
-async function handleHash() {
+function handleHash() {
     const hash = (() => {
         return location.hash ? location.hash.slice(2) : '';
     })();
 
-    await Controller[hash + 'Route']();
-    await Controller.addHandleLinks();
+    Controller[hash + 'Route']();
+    Controller.addHandleLinks();
 }
 
 export default {
     async init() {
-        await addEventListener('hashchange', handleHash);
-        await handleHash()
+        addEventListener('hashchange', handleHash);
+        handleHash()
     }
 }

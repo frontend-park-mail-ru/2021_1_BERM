@@ -108,7 +108,7 @@ export default {
         }
     },
 
-    async profileRoute() {
+    profileRoute() {
         document.title = 'Профиль';
 
         if (!this.isAuthorization()) {
@@ -117,7 +117,7 @@ export default {
 
         let profileInfo = {};
 
-        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
+        ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
             .then(res => {
                 profileInfo.name = res.first_name + ' ' + res.second_name;
                 profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
@@ -174,14 +174,14 @@ export default {
         }
     },
 
-    async isAuthorization() {
-        await ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
-            .then(async res => {
+    isAuthorization() {
+        ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
+            .then(res => {
                 if (res.isOk === undefined || res.isOk) {
                     return true;
                 } else {
-                    await this.loginRoute()
-                    await this.addHandleLinks()
+                    this.loginRoute()
+                    this.addHandleLinks()
                     return false;
                 }
             })
