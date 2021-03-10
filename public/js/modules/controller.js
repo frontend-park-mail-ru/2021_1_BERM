@@ -3,8 +3,8 @@ import Menu from './menu.js'
 import ajax from "./ajax.js";
 
 const root = document.getElementById('root');
+
 let saveData = {
-    authorized: false,
     id: 0,
     img: 'img/profile.jpg',
 };
@@ -14,13 +14,16 @@ export default {
         document.title = 'FL.ru';
 
         if (saveData.authorized) {
-            // Todo Запрос изображения. Сохраняем его в saveData
+            ajax.sendRequest('GET', `http://95.163.212.121:8080/profile/avatar/${saveData.id}`)
+                .then( (res) => {
+                    saveData.img = res.img;
+                })
         }
 
-        // ajax.sendRequest('GET', 'http://95.163.212.121:8080/profile')
-        //     .then(response => {
-        //             saveData.authorized = response.ok;
-        //     });
+        ajax.sendRequest('GET', 'http://95.163.212.121:8080/profile')
+            .then(response => {
+                    saveData.authorized = response.ok;
+            });
 
         root.innerHTML = navbarTemplate({
             authorized : saveData.authorized,
@@ -89,6 +92,7 @@ export default {
                 // Todo возвращается структуру или ее сохранить или изменить API
                 .then(response => {
                     if (response!= null && response.status === undefined) {
+                        saveData.authorized = true;
                         this.loginRoute();
                         alert("Вы успешно зарегались. Войдите."); // Todo убрать
                         this.addHandleLinks();
@@ -116,6 +120,10 @@ export default {
             const formData = new FormData(event.target);
 
             for(let [name, value] of formData) {
+                if (name === 'specializes') {
+                    requestData[name] = new Array(1);
+                    requestData[name][0] = value;
+                }
                 requestData[name] = value;
             }
             requestData.executor = true;
@@ -123,6 +131,7 @@ export default {
             ajax.sendRequest('POST', 'http://95.163.212.121:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(response => {
                     if (response != null && response.status === undefined) {
+                        saveData.authorized = true;
                         this.loginRoute();
                         this.addHandleLinks();
                     } else {
