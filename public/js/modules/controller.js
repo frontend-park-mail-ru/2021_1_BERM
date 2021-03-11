@@ -126,13 +126,15 @@ export default {
                         this.addHandleLinks();
                     })
 
-                // const inputImg = document.getElementById('file-input');
-                // inputImg.onchange = (ev) => {
-                //     let file = ev.target.files[0];
-                //         console.log(file);
-                //     let img = document.getElementById("profile_img");
-                //     img.src = ev.target.result;
-                // }
+                const inputImg = document.getElementById('file-input');
+                inputImg.onchange = async (ev) => {
+                    let file = ev.target.files[0];
+                    let freader = new FileReader();
+                    freader.onload = () => {
+                        document.getElementById('profile_img').src = freader.result;
+                    }
+                    await freader.readAsDataURL(file);
+                }
             });
 
     },
