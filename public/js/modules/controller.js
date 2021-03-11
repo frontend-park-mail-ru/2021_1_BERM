@@ -118,7 +118,7 @@ export default {
                         profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
                         profileInfo.nickName = res.user_name;
                         profileInfo.isExecutor = res.executor;
-                        profileInfo.specialize = res.specializes[0];
+                        profileInfo.specialize = res.specializes;
 
                         root.innerHTML = navbarTemplate({
                             authorized: true,
