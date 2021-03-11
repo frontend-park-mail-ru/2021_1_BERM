@@ -17,6 +17,7 @@ export default {
                     authorized: true,
                     profIcon: saveData.img
                 }) + indexTemplate();
+                this.addHandleLinks();
             })
     },
 
@@ -24,6 +25,7 @@ export default {
         document.title = 'Авторизация';
 
         root.innerHTML = navbarTemplate() + signinTemplate();
+        this.addHandleLinks();
 
         const form = document.getElementById('login__window');
         form.onsubmit = (event) => {
@@ -51,6 +53,7 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
+        this.addHandleLinks();
 
         Valid.runValid();
 
@@ -77,6 +80,7 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
+        this.addHandleLinks();
 
         Valid.runValid();
 
@@ -119,6 +123,7 @@ export default {
                             authorized: true,
                             profIcon: saveData.img
                         }) + profileTemplate(profileInfo);
+                        this.addHandleLinks();
                     })
 
                 // const inputImg = document.getElementById('file-input');
@@ -135,6 +140,7 @@ export default {
     async exitRoute() {
         await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/logout`)
         await this.loginRoute();
+        await this.addHandleLinks();
     },
 
     async settingsRoute() {
@@ -153,6 +159,7 @@ export default {
                     authorized: true,
                     profIcon: saveData.img
                 }) + settingsTemplate(profileSettings);
+                this.addHandleLinks();
 
                 const form = document.getElementsByTagName('form')[0];
                 form.onsubmit = (event) => {
@@ -178,6 +185,7 @@ export default {
                     authorized: true,
                     profIcon: saveData.img
                 }) + await orderpageTemplate();
+                this.addHandleLinks();
             });
 
         await Valid.runValid();
@@ -221,6 +229,5 @@ function newFormData(form) {
     for (let [name, value] of formData) {
         requestData[name] = value;
     }
-
     return requestData;
 }
