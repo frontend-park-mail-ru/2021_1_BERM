@@ -118,6 +118,7 @@ export default {
                         profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
                         profileInfo.nickName = res.user_name;
                         profileInfo.isExecutor = res.executor;
+                        profileInfo.specialize = res.specializes[0];
 
                         root.innerHTML = navbarTemplate({
                             authorized: true,
@@ -132,8 +133,6 @@ export default {
                     let freader = new FileReader();
                     freader.onload = () => {
                         document.getElementById('profile_img').src = freader.result;
-                        const blob = new Blob(freader.result);
-                        console.log(blob)
                     }
                     await freader.readAsDataURL(file);
 
