@@ -67,7 +67,7 @@ export default {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
-                        // Todo Неверный Логин или Пароль или ошибка на сервере
+                        alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
                     }
                 })
         }
@@ -95,7 +95,7 @@ export default {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
-                        // Todo Неверный Логин или Пароль или ошибка на сервере
+                        alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
                     }
                 })
         }
