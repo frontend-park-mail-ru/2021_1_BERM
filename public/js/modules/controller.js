@@ -124,9 +124,15 @@ export default {
 
                 const inputImg = document.getElementById('file-input');
                 inputImg.oninput = (ev) => {
-                    let fReader = new FileReader();
-                    fReader.readAsDataURL(ev.target.files[0]);
-                    console.log(fReader.result);
+                    let file = ev.target.files[0];
+                    let reader = new FileReader();
+
+                    let img = document.getElementById("profile_img");
+                    img.title = file.name;
+
+                    reader.onload = function(event) {
+                        img.src = event.target.result;
+                    };
                 }
             });
 
