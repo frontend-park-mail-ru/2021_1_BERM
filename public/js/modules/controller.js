@@ -41,9 +41,8 @@ export default {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
-                        // Todo Неверный Логин или Пароль
+                        alert('Неверные логин или пароль');
                     }
-
                 })
         }
     },
