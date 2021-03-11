@@ -36,7 +36,7 @@ export default {
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signin', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
-                    if (response.status === undefined) {
+                    if (response !== undefined && response.isOk === undefined) {
                         saveData.id = response.id;  // Todo Поле ID
                         await this.Route();
                         await this.addHandleLinks();
@@ -63,7 +63,7 @@ export default {
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
-                    if (response.isOk === undefined) {
+                    if (response !== undefined &&response.isOk === undefined) {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
@@ -91,7 +91,7 @@ export default {
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
-                    if (response.isOk === undefined) {
+                    if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
@@ -204,7 +204,7 @@ export default {
     async isAuthorization() {
         return ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
             .then(res => {
-                if (res.id !== undefined) {
+                if (res !== undefined && res.id !== undefined) {
                     return Promise.resolve(res);
                 } else {
                     this.loginRoute()

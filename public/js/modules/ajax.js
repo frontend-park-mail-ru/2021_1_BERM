@@ -23,6 +23,11 @@ export default {
                     return Promise.resolve({isOk: false})
                 }
 
+                if (res.status === 409) {
+                    console.log(res.error())
+                    return Promise.resolve({isOk: false})
+                }
+
                 console.log("_______", res, res.json());
 
             })
