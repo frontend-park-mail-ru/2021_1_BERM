@@ -123,7 +123,7 @@ export default {
                     })
 
                 const inputImg = document.getElementById('file-input');
-                inputImg.oninput = (ev) => {
+                inputImg.onchange = (ev) => {
                     let file = ev.target.files[0];
                     let reader = new FileReader();
 
