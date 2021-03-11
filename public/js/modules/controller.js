@@ -122,18 +122,13 @@ export default {
                         }) + profileTemplate(profileInfo);
                     })
 
-                const inputImg = document.getElementById('file-input');
-                inputImg.onchange = (ev) => {
-                    let file = ev.target.files[0];
-                    let reader = new FileReader();
-
-                    let img = document.getElementById("profile_img");
-                    img.title = file.name;
-
-                    reader.onload = function(event) {
-                        img.src = event.target.result;
-                    };
-                }
+                // const inputImg = document.getElementById('file-input');
+                // inputImg.onchange = (ev) => {
+                //     let file = ev.target.files[0];
+                //         console.log(file);
+                //     let img = document.getElementById("profile_img");
+                //     img.src = ev.target.result;
+                // }
             });
 
     },
@@ -175,14 +170,20 @@ export default {
             });
     },
 
-    orderPageRoute() {
+    async orderPageRoute() {
         document.title = 'Создание заказа';
 
-        root.innerHTML = navbarTemplate() + orderpageTemplate();
+        await this.isAuthorization()
+            .then(async res => {
+                root.innerHTML = navbarTemplate({
+                    authorized: true,
+                    profIcon: saveData.img
+                }) + orderpageTemplate();
+            });
 
         Valid.runValid();
 
-        // Todo: POST запрос настроек
+        // Todo: POST запрос
     },
 
     addHandleLinks() {
