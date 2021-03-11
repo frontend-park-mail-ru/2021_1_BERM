@@ -132,8 +132,14 @@ export default {
                     let freader = new FileReader();
                     freader.onload = () => {
                         document.getElementById('profile_img').src = freader.result;
+                        const blob = new Blob(freader.result);
+                        console.log(blob)
                     }
                     await freader.readAsDataURL(file);
+
+                    ev.target.toBlob(function(blob) {
+                        console.log(URL.createObjectURL(blob));
+                    }, 'image/jpeg');
                 }
             });
 
