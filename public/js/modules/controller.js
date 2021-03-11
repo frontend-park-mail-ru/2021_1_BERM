@@ -174,14 +174,14 @@ export default {
         document.title = 'Создание заказа';
 
         await this.isAuthorization()
-            .then(async res => {
-                root.innerHTML = navbarTemplate({
+            .then(async () => {
+                root.innerHTML = await navbarTemplate({
                     authorized: true,
                     profIcon: saveData.img
-                }) + orderpageTemplate();
+                }) + await orderpageTemplate();
             });
 
-        Valid.runValid();
+        await Valid.runValid();
 
         // Todo: POST запрос
     },
