@@ -134,11 +134,18 @@ export default {
                     freader.onload = () => {
                         document.getElementById('profile_img').src = freader.result;
                     }
+
                     await freader.readAsDataURL(file);
 
-                    ev.target.toBlob(function(blob) {
-                        console.log(URL.createObjectURL(blob));
-                    }, 'image/jpeg');
+                    let blob = await new Promise(resolve => inputImg.toBlob(resolve, 'image/png'));
+                    await ajax.sendRequest('POST', '/profile/avatar', {
+                        img_url: blob
+                    })
+                        .then(res => {
+                            console.log(res);
+                        })
+
+
                 }
             });
 
