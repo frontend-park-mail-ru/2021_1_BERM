@@ -5,7 +5,7 @@ const root = document.getElementById('root');
 
 let saveData = {
     id: 0,
-    img: 'img/profile.jpg',
+    img: 'img/profIcon.png',
 };
 
 export default {
