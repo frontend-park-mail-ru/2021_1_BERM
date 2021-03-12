@@ -65,3 +65,9 @@
     width: 150px;
     color: var(--label-login-color)
 }
+
+.login__error {
+    color: red;
+    text-align: center;
+    font-size: small;
+}

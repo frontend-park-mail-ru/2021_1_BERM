@@ -14,8 +14,8 @@
 }
 
 .profile_photo {
-    max-width: 150px;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
     border-radius: 10px;
 }
 
@@ -84,8 +84,8 @@ a {
 }
 
 .profile__definition_text {
-    margin-left: 7%;
-    margin-right: 45%;
+    margin-left: 70px;
+    margin-right: 70px;
 }
 
 .margin-inс {
@@ -99,6 +99,7 @@ a {
     flex-direction: column;
     width: 153px;
     height: 32px;
+    margin-right: 10px;
 }
 
 #upload-container label {
@@ -126,4 +127,8 @@ a {
 .profile__item_name_exit {
     float: right;
     padding: 0 168px;
+}
+
+.profile__name {
+    width: max-content;
 }

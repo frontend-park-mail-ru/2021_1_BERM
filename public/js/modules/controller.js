@@ -29,7 +29,7 @@ export default {
                         await this.Route();
                         location.hash = '#';
                     } else {
-                        alert('Неверные логин или пароль');
+                        InvalidLoginPassText();
                     }
                 })
         }
@@ -145,7 +145,7 @@ export default {
                         .then(async () => {
                             await this.settingsRoute();
                             location.hash = '#/settings';
-                            // Todo Вывести сообщение о успешной смене настроек
+                            successChangeSettings();
                         });
                 }
             });
@@ -204,4 +204,14 @@ const setProfileImgHandler = () => {
         };
         await fReader.readAsDataURL(file);
     }
+}
+
+const InvalidLoginPassText = () => {
+    const ErrorText = document.querySelector('.login__error');
+    ErrorText.innerHTML = `<div class="login__error">Неверный логин или пароль</div>`;
+}
+
+const successChangeSettings = () => {
+    const successText = document.querySelector('.setting__success_text');
+    successText.innerHTML = `<div class="setting__success_text">Успешно сохранено</div>`;
 }
