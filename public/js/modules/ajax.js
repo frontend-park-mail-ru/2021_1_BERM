@@ -1,13 +1,15 @@
 const origin = 'http://localhost:8080';
 
+const defaultHeaders = {
+    'Content-Type': 'application/json',
+}
+
 export default {
      sendRequest(method,
                  url,
                  body = undefined,
-                 headers = {
-                                            'Content-Type': 'application/json',
-                                             })
-     {
+                 headers = defaultHeaders
+     ) {
          return fetch(origin + url, {
             method: method,
             body: JSON.stringify(body),

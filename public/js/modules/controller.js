@@ -27,6 +27,7 @@ export default {
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
+                        location.hash = '#';
                     } else {
                         alert('Неверные логин или пароль');
                     }
@@ -52,8 +53,9 @@ export default {
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
+                        location.hash = '#';
                     } else {
-                        alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
+                        alert("Пользователь с такой почтой уже зарегистрирован!");
                     }
                 })
         }
@@ -80,8 +82,9 @@ export default {
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
+                        location.hash = '#';
                     } else {
-                        alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
+                        alert("Пользователь с такой почтой уже зарегистрирован!");
                     }
                 })
         }
@@ -110,23 +113,7 @@ export default {
                         }
                     })
 
-                // Todo Отдельная Функция
-                const inputImg = document.getElementById('file-input');
-                inputImg.onchange = async (ev) => {
-                    let file = ev.target.files[0];
-                    const fReader = new FileReader();
-                    fReader.onload = async () => {
-                        let img = document.getElementById('profile_img')
-                        img.src = fReader.result;
-
-                        await ajax.sendRequest('POST',
-                            '/profile/avatar',
-                            JSON.parse(JSON.stringify({
-                                img: img.src
-                            })))
-                    };
-                    await fReader.readAsDataURL(file);
-                }
+                setProfileImgHandler();
             });
     },
 
@@ -157,6 +144,7 @@ export default {
                     ajax.sendRequest('POST', '/profile/change', JSON.parse(JSON.stringify(requestData)))
                         .then(async () => {
                             await this.settingsRoute();
+                            location.hash = '#/settings';
                             // Todo Вывести сообщение о успешной смене настроек
                         });
                 }
@@ -197,4 +185,23 @@ const isAuthorization = async () => {
                 return Promise.reject();
             }
         })
+}
+
+const setProfileImgHandler = () => {
+    const inputImg = document.getElementById('file-input');
+    inputImg.onchange = async (ev) => {
+        let file = ev.target.files[0];
+        const fReader = new FileReader();
+        fReader.onload = async () => {
+            let img = document.getElementById('profile_img')
+            img.src = fReader.result;
+
+            await ajax.sendRequest(
+                'POST',
+                '/profile/avatar',
+                JSON.parse(JSON.stringify({img: img.src}))
+            )
+        };
+        await fReader.readAsDataURL(file);
+    }
 }
