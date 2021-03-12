@@ -54,6 +54,7 @@ export default {
             }
             return false;
         });
+
         form.addEventListener('focus',  () => {
             let el = document.activeElement;
             if (el !== btn) {

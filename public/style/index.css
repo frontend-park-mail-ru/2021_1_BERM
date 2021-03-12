@@ -1,6 +1,15 @@
+body {
+    --bg-body: #EDEEF0;
+
+    /* Центрируем и красиво масштабируем изображение */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--bg-body);
+}
+
 #root {
 
-    --bg-root: #EDEEF0;
     position: relative;
 
     width: 100vw;
@@ -8,12 +17,6 @@
 
     /* Используем изображение */
     /*background-image: url("https://static-cse.canva.com/blob/194831/Green-Financial-Services-Corporate-Zoom-Background.png");*/
-
-    /* Центрируем и красиво масштабируем изображение */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: var(--bg-root);
 }
 
 .main__container {
