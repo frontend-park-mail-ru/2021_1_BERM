@@ -1,8 +1,14 @@
+const origin = 'http://localhost:8080';
+
 export default {
-     sendRequest(method, url, body = undefined, headers = {
-         'Content-Type': 'application/json',
-     }) {
-         return fetch(url, {
+     sendRequest(method,
+                 url,
+                 body = undefined,
+                 headers = {
+                                            'Content-Type': 'application/json',
+                                             })
+     {
+         return fetch(origin + url, {
             method: method,
             body: JSON.stringify(body),
             credentials: 'include',
@@ -24,9 +30,6 @@ export default {
                 if (res.status === 409) {
                     return Promise.resolve({isOk: false})
                 }
-
-                console.log("_______", res, res.json().then(res=>console.log(res)));
-
             })
             .catch(res => {
                 console.log(res);

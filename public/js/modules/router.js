@@ -6,12 +6,11 @@ async function handleHash() {
     })();
 
     await Controller[hash + 'Route']();
-    await Controller.addHandleLinks();
 }
 
 export default {
     async init() {
         addEventListener('hashchange', handleHash);
-        handleHash()
+        await handleHash()
     }
 }

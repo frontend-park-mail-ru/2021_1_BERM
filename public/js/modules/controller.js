@@ -1,47 +1,32 @@
 import Valid from './valid.js'
 import ajax from "./ajax.js";
-
-const root = document.getElementById('root');
-
-let saveData = {
-    id: 0,
-    img: 'img/profIcon.png',
-};
+import view from "./view.js";
 
 export default {
     async Route() {
         document.title = 'FL.ru';
-        await this.isAuthorization()
+        await isAuthorization()
             .then(() => {
-                root.innerHTML = navbarTemplate({
-                    authorized: true,
-                    profIcon: saveData.img
-                }) + indexTemplate();
-                this.addHandleLinks();
+                view.viewMainPage();
             })
     },
 
     loginRoute() {
         document.title = 'Авторизация';
 
-        root.innerHTML = navbarTemplate() + signinTemplate();
-        this.addHandleLinks();
+        view.viewSignIn();
 
+        // Todo Отдельная Функция
         const form = document.getElementById('login__window');
         form.onsubmit = (event) => {
             event.preventDefault();
 
-            // Todo: Валидация
-            // Todo Тут добавить функцию валидации
-
             let requestData = newFormData(event.target);
 
-            ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signin', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', '/signin', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
-                        saveData.id = response.id;  // Todo Поле ID
                         await this.Route();
-                        await this.addHandleLinks();
                     } else {
                         alert('Неверные логин или пароль');
                     }
@@ -52,22 +37,21 @@ export default {
     clientRegRoute() {
         document.title = 'Регистрация';
 
-        root.innerHTML = navbarTemplate() + clientregTemplate();
-        this.addHandleLinks();
+        view.viewClientReg();
 
         Valid.runValid();
 
+        // Todo Отдельная Функция
         const form = document.getElementsByTagName('form')[0];
         form.onsubmit = (event) => {
             event.preventDefault();
 
             let requestData = newFormData(event.target)
 
-            ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', '/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
-                        await this.addHandleLinks();
                     } else {
                         alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
                     }
@@ -79,24 +63,23 @@ export default {
     workerRegRoute() {
         document.title = 'Регистрация';
 
-        root.innerHTML = navbarTemplate() + workerregTemplate();
-        this.addHandleLinks();
+        view.viewWorkerReg();
 
         Valid.runValid();
 
+        // Todo Отдельная Функция
         const form = document.getElementsByTagName('form')[0];
         form.onsubmit = (event) => {
             event.preventDefault();
 
             let requestData = newFormData(event.target);
             requestData.executor = true;
-            requestData.specializes = [requestData.specializes,]; // Todo Работает ли это?
+            requestData.specializes = [requestData.specializes,];
 
-            ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', '/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
-                        await this.addHandleLinks();
                     } else {
                         alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
                     }
@@ -107,32 +90,27 @@ export default {
     async profileRoute() {
         document.title = 'Профиль';
 
-        await this.isAuthorization()
+        await isAuthorization()
             .then(async () => {
-
-                let profileInfo = {};
-
-                await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
+                await ajax.sendRequest('GET', `/profile`)
                     .then(res => {
-                        profileInfo.name = res.first_name + ' ' + res.second_name;
-                        profileInfo.nickName = res.user_name;
-                        profileInfo.isExecutor = res.executor;
-                        profileInfo.specialize = res.specializes;
+                        view.viewProfile({
+                            name: res.first_name + ' ' + res.second_name,
+                            nickName: res.user_name,
+                            isExecutor: res.executor,
+                            specialize: res.specializes,
+                        })
 
-                        root.innerHTML = navbarTemplate({
-                            authorized: true,
-                            profIcon: saveData.img
-                        }) + profileTemplate(profileInfo);
-                        this.addHandleLinks();
-
+                        // Todo Отдельная Функция
                         let img = document.getElementById('profile_img');
-                        if (res.img_url === null ||res.img_url === undefined ) {
-                            img.src = saveData.img;
+                        if (res.img_url === null || res.img_url === undefined) {
+                            img.src = 'img/profile.jpg';
                         } else {
-                            img.src = res.img_url
+                            img.src = res.img_url;
                         }
                     })
 
+                // Todo Отдельная Функция
                 const inputImg = document.getElementById('file-input');
                 inputImg.onchange = async (ev) => {
                     let file = ev.target.files[0];
@@ -141,11 +119,11 @@ export default {
                         let img = document.getElementById('profile_img')
                         img.src = fReader.result;
 
-                            await ajax.sendRequest('POST',
-                                'https://findfreelancer.ru:8080/profile/avatar',
-                                JSON.parse(JSON.stringify({
-                                    img: img.src
-                                })))
+                        await ajax.sendRequest('POST',
+                            '/profile/avatar',
+                            JSON.parse(JSON.stringify({
+                                img: img.src
+                            })))
                     };
                     await fReader.readAsDataURL(file);
                 }
@@ -153,96 +131,53 @@ export default {
     },
 
     async exitRoute() {
-        await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/logout`)
+        await ajax.sendRequest('GET', `/logout`)
         await this.loginRoute();
-        await this.addHandleLinks();
-    }
-    ,
+    },
 
     async settingsRoute() {
         document.title = 'Настройки';
 
-        await this.isAuthorization()
+        await isAuthorization()
             .then(async res => {
-                const profileSettings = {
+                view.viewSetting({
                     nickName: res.user_name,
                     surname: res.second_name,
                     name: res.first_name,
                     email: res.email,
-                };
+                });
 
-                root.innerHTML = navbarTemplate({
-                    authorized: true,
-                    profIcon: saveData.img
-                }) + settingsTemplate(profileSettings);
-                this.addHandleLinks();
-
+                // Todo Отдельная функция?
                 const form = document.getElementsByTagName('form')[0];
                 form.onsubmit = (event) => {
                     event.preventDefault();
 
                     let requestData = newFormData(event.target);
 
-                    ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/profile/change', JSON.parse(JSON.stringify(requestData)))
+                    ajax.sendRequest('POST', '/profile/change', JSON.parse(JSON.stringify(requestData)))
                         .then(async () => {
                             await this.settingsRoute();
-                            await this.addHandleLinks();
+                            // Todo Вывести сообщение о успешной смене настроек
                         });
                 }
             });
-    }
-    ,
+    },
 
     async orderPageRoute() {
         document.title = 'Создание заказа';
 
-        await this.isAuthorization()
+        await isAuthorization()
             .then(async () => {
-                root.innerHTML = await navbarTemplate({
-                    authorized: true,
-                    profIcon: saveData.img
-                }) + await orderpageTemplate();
-                this.addHandleLinks();
+                view.viewOrderPage()
             });
 
         await Valid.runValid();
 
         // Todo: POST запрос
-    }
-    ,
+    },
+};
 
-    addHandleLinks() {
-        const body = Array.from(document.getElementsByTagName('a'));
-        for (let i = 0; i < body.length; ++i) {
-            body[i].addEventListener('click', (event) => {
-                event.preventDefault();
-
-                const hash = body[i].getAttribute('href');
-                location.hash = hash;
-
-                this[hash.slice(1) + 'Route']();
-                this.addHandleLinks();
-            })
-        }
-    }
-    ,
-
-    async isAuthorization() {
-        return ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
-            .then(res => {
-                if (res !== undefined && res.id !== undefined) {
-                    return Promise.resolve(res);
-                } else {
-                    this.loginRoute()
-                    this.addHandleLinks()
-                    return Promise.reject();
-                }
-            })
-    }
-}
-;
-
-function newFormData(form) {
+const newFormData = (form) => {
     let requestData = {};
     const formData = new FormData(form);
 
@@ -250,4 +185,16 @@ function newFormData(form) {
         requestData[name] = value;
     }
     return requestData;
+}
+
+const isAuthorization = async () => {
+    return ajax.sendRequest('GET', '/profile')
+        .then(res => {
+            if (res !== undefined && res.id !== undefined) {
+                return Promise.resolve(res);
+            } else {
+                this.loginRoute()
+                return Promise.reject();
+            }
+        })
 }
