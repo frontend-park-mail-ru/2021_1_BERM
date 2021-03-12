@@ -65,7 +65,7 @@ export default {
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
-                    if (response !== undefined &&response.isOk === undefined) {
+                    if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
@@ -115,7 +115,6 @@ export default {
                 await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile`)
                     .then(res => {
                         profileInfo.name = res.first_name + ' ' + res.second_name;
-                        profileInfo.profileImgUrl = res.img_url ? res.img_url : saveData.img;
                         profileInfo.nickName = res.user_name;
                         profileInfo.isExecutor = res.executor;
                         profileInfo.specialize = res.specializes;
@@ -125,37 +124,40 @@ export default {
                             profIcon: saveData.img
                         }) + profileTemplate(profileInfo);
                         this.addHandleLinks();
+
+                        let img = document.getElementById('profile_img');
+                        if (res.img_url === null ||res.img_url === undefined ) {
+                            img.src = saveData.img;
+                        } else {
+                            img.src = res.img_url
+                        }
                     })
 
                 const inputImg = document.getElementById('file-input');
                 inputImg.onchange = async (ev) => {
                     let file = ev.target.files[0];
-                    let freader = new FileReader();
-                    freader.onload = () => {
-                        document.getElementById('profile_img').src = freader.result;
-                    }
+                    const fReader = new FileReader();
+                    fReader.onload = async () => {
+                        let img = document.getElementById('profile_img')
+                        img.src = fReader.result;
 
-                    await freader.readAsDataURL(file);
-
-                    let blob = await new Promise(resolve => inputImg.toBlob(resolve, 'image/png'));
-                    await ajax.sendRequest('POST', '/profile/avatar', {
-                        img_url: blob
-                    })
-                        .then(res => {
-                            console.log(res);
-                        })
-
-
+                            await ajax.sendRequest('POST',
+                                'https://findfreelancer.ru:8080/profile/avatar',
+                                JSON.parse(JSON.stringify({
+                                    img: img.src
+                                })))
+                    };
+                    await fReader.readAsDataURL(file);
                 }
             });
-
     },
 
     async exitRoute() {
         await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/logout`)
         await this.loginRoute();
         await this.addHandleLinks();
-    },
+    }
+    ,
 
     async settingsRoute() {
         document.title = 'Настройки';
@@ -183,12 +185,13 @@ export default {
 
                     ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/profile/change', JSON.parse(JSON.stringify(requestData)))
                         .then(async () => {
-                                await this.settingsRoute();
-                                await this.addHandleLinks();
+                            await this.settingsRoute();
+                            await this.addHandleLinks();
                         });
                 }
             });
-    },
+    }
+    ,
 
     async orderPageRoute() {
         document.title = 'Создание заказа';
@@ -205,7 +208,8 @@ export default {
         await Valid.runValid();
 
         // Todo: POST запрос
-    },
+    }
+    ,
 
     addHandleLinks() {
         const body = Array.from(document.getElementsByTagName('a'));
@@ -220,7 +224,8 @@ export default {
                 this.addHandleLinks();
             })
         }
-    },
+    }
+    ,
 
     async isAuthorization() {
         return ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
@@ -234,7 +239,8 @@ export default {
                 }
             })
     }
-};
+}
+;
 
 function newFormData(form) {
     let requestData = {};

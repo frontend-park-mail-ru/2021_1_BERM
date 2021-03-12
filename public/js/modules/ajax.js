@@ -1,12 +1,12 @@
 export default {
-     sendRequest(method, url, body = undefined) {
+     sendRequest(method, url, body = undefined, headers = {
+         'Content-Type': 'application/json',
+     }) {
          return fetch(url, {
             method: method,
             body: JSON.stringify(body),
             credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
         })
             .then( res => {
                 if (res.ok) {
@@ -25,7 +25,7 @@ export default {
                     return Promise.resolve({isOk: false})
                 }
 
-                console.log("_______", res, res.json());
+                console.log("_______", res, res.json().then(res=>console.log(res)));
 
             })
             .catch(res => {
