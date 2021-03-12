@@ -49,6 +49,7 @@ export default {
 
             if (iserror) {
                 e.preventDefault();
+            } else {
                 // sendFormData(formVal);
             }
             return false;
