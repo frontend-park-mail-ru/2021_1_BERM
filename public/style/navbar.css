@@ -56,7 +56,7 @@ div.navbar__button_title a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-} */ */
+}
 
  
 .sticky {
@@ -84,41 +84,36 @@ div.navbar__button_title a {
     border: none;
     cursor: pointer;
   }
-  
-  /* Кнопка выпадающего меню при наведении и фокусировке */
-  /* .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  } */
-  
-  /* Контейнер <div> - необходим для размещения выпадающего содержимого */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Выпадающее содержимое (скрыто по умолчанию) */
-  .dropdown-content {
+
+.navbar a:hover {
+    background-color: #EDEEF0;
+}
+
+.navbar__registration {
+    float: right;
+}
+
+.navbar__registration_content {
+    margin-top: 47px;
     display: none;
-    float:right;
-    /* position: absolute; */
-    background-color: #f1f1f1;
-    /* min-width: 160px; */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Ссылки внутри выпадающего списка */
-  .dropdown-content a {
-    color: #3888C6;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1001;
+}
+
+.navbar__registration_content a {
+    float: none;
+    color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  
-  /* Изменение цвета выпадающих ссылок при наведении курсора */
-  .dropdown-content a:hover {background-color: #ddd}
-  
-  /* Показать выпадающее меню (используйте JS, чтобы добавить этот класс .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
-  .show {display:block;} 
+    text-align: left;
+}
 
-  .clearfix { clear: both; }
+.navbar__registration:hover .navbar__registration_content {
+    display: block;
+}
+
+
