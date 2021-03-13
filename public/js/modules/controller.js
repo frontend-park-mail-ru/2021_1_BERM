@@ -5,7 +5,7 @@ import view from "./view.js";
 export default {
     async Route() {
         document.title = 'FL.ru';
-        await isAuthorization()
+        await this.isAuthorization()
             .then(() => {
                 view.viewMainPage();
             })
@@ -93,7 +93,7 @@ export default {
     async profileRoute() {
         document.title = 'Профиль';
 
-        await isAuthorization()
+        await this.isAuthorization()
             .then(async () => {
                 await ajax.sendRequest('GET', `/profile`)
                     .then(res => {
@@ -125,7 +125,7 @@ export default {
     async settingsRoute() {
         document.title = 'Настройки';
 
-        await isAuthorization()
+        await this.isAuthorization()
             .then(async res => {
                 view.viewSetting({
                     nickName: res.user_name,
@@ -154,7 +154,7 @@ export default {
     async orderPageRoute() {
         document.title = 'Создание заказа';
 
-        await isAuthorization()
+        await this.isAuthorization()
             .then(async () => {
                 view.viewOrderPage()
             });
@@ -162,6 +162,18 @@ export default {
         await Valid.runValid();
 
         // Todo: POST запрос
+    },
+
+    async isAuthorization() {
+        return ajax.sendRequest('GET', '/profile')
+            .then(res => {
+                if (res !== undefined && res.id !== undefined) {
+                    return Promise.resolve(res);
+                } else {
+                    this.loginRoute();
+                    return Promise.reject();
+                }
+            })
     },
 };
 
@@ -173,18 +185,6 @@ const newFormData = (form) => {
         requestData[name] = value;
     }
     return requestData;
-}
-
-const isAuthorization = async () => {
-    return ajax.sendRequest('GET', '/profile')
-        .then(res => {
-            if (res !== undefined && res.id !== undefined) {
-                return Promise.resolve(res);
-            } else {
-                this.loginRoute()
-                return Promise.reject();
-            }
-        })
 }
 
 const setProfileImgHandler = () => {
