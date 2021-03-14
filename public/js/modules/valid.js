@@ -55,10 +55,7 @@ export default {
             if (invalid === true) {
                 iserror = true;
             }
-            // console.log(count);
-            console.log(error);
 
-            console.log(iserror);
 
             if (iserror) {
                 e.preventDefault();
@@ -101,10 +98,10 @@ export default {
                             error = errorMess[6];
                         }
                     },
-                    'textmess': () => {
-                        if (formVal.textmess.length === 0) {
+                    'description': () => {
+                        if (formVal.description.length === 0) {
                             error = errorMess[5];
-                        } else if (patternSpam.test(formVal.textmess) === false) {
+                        } else if (patternSpam.test(formVal.description) === false) {
                             error = errorMess[6];
                         }
                     },
