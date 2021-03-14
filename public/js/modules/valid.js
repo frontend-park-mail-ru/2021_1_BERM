@@ -29,8 +29,10 @@ export default {
                 'Выберите специальность из списка', // 10
                 'Неверный формат телефонного номера', // 11
                 'Плохой пароль',  // 12
-                'Введите цену в рублях',  // 13
+                'Пароли не совпадают',  // 13
+                'Введите цену в рублях',  // 14
             ],
+            password = '',
             iserror = false;
 
         btn.addEventListener('click', (e) => {
@@ -113,13 +115,22 @@ export default {
                         }
                     },
                     'password': () => {
+                        password = formVal.password;
                         if (formVal.password.length === 0 || patternPassword.test(formVal.password) === false) {
                             error = errorMess[12];
                         }
                     },
+                    'password_repeat': () => {
+                        if (formVal.password_repeat.length === 0 || patternPassword.test(formVal.password_repeat) === false) {
+                            error = errorMess[12];
+                        }
+                        if (password !== formVal.password_repeat) {
+                            error = errorMess[13];
+                        }
+                    },
                     'price': () => {
                         if (formVal.price.length === 0 || patternPrice.test(formVal.price) === false) {
-                            error = errorMess[13];
+                            error = errorMess[14];
                         }
                     },
                     'submit': () => {

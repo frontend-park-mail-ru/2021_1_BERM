@@ -6,12 +6,12 @@
     --reg-button-font-color: black;
 
     padding-top: 30px;
+    padding-bottom: 30px;
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     position: center;
     width: 450px;
-    height: 620px;
     background-color: var(--bg_reg);
 
     text-align: center;
