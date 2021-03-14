@@ -6,6 +6,15 @@ body, html {
 
 /* Добавляем цвет фона в верхнюю навигацию */
 .navbar {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+
+    margin-bottom: -10px;
     --navbar-bg: #FFFFFF;
     --navbar-order-bg: #EDEEF0;
     --navbar-color-front: #3888C6;

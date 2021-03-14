@@ -13,7 +13,8 @@ body {
     position: relative;
 
     width: 100vw;
-    height: 100vh;
+    /*ПЕРЕКРЫВАЕТ ДВИГАЮЩИЕСЯ МЕНЮ ПРИ ДВИЖЕНИИ*/
+    /*height: 100vh;*/
 
     /* Используем изображение */
     /*background-image: url("https://static-cse.canva.com/blob/194831/Green-Financial-Services-Corporate-Zoom-Background.png");*/
