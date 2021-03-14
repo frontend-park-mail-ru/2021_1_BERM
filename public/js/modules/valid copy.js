@@ -38,36 +38,24 @@ export default {
             let formVal = getFormData(form),
                 error;
 
-
-            let invalid = false;
-            iserror = false;
             for (let property in formVal) {
                 error = getError(formVal, property);
                 if (error.length !== 0) {
-                    // iserror = true;
+                    iserror = true;
                     showError(property, error);
-                    invalid = true;
                 } else if (error.length === 0) {
                     showValid(property)
-
                 }
             }
-            if (invalid === true) {
-                iserror = true;
-            }
-            // console.log(count);
-            console.log(error);
-
-            console.log(iserror);
 
             if (iserror) {
                 e.preventDefault();
             } else {
-                sendFormData(formVal);
+                // sendFormData(formVal);
             }
 
             return false;
-        }, );
+        }, {once: true});
 
         console.log("sadasda")
 
