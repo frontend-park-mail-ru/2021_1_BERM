@@ -24,11 +24,28 @@
 }
 
 .profile__item_name {
-	white-space: normal;	
+	white-space: normal;
 	display: inline-block;
-	width: 33%;
-    padding-left: 5%;
+	width: 250px;
+    padding-left: 50px;
 	vertical-align: top;
+}
+
+.profile__item_info {
+    white-space: normal;
+    display: inline-block;
+    width: 200px;
+    float: right;
+    padding-left: 16px;
+    vertical-align: top;
+}
+
+.profile__item_spec {
+    white-space: normal;
+    display: inline-block;
+    width: 200px;
+    padding-left: 16px;
+    vertical-align: top;
 }
 
 .profile__column_text .profile__item_name:first-child {
@@ -55,7 +72,7 @@ a {
 }
 
 .name {
-    margin-left: 1%;
+    padding-left: 50px;
     margin-top: 50px;
     font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
     color: var(--text-color);
@@ -63,6 +80,9 @@ a {
 
 .settings_profile_button {
     margin-top: 60px;
+    width: 200px;
+    display: inline-block;
+    float: right;
 }
 
 .spec {
@@ -78,7 +98,7 @@ a {
 }
 
 .profile__about {
-    margin-left:7%;
+    padding-left: 50px;
     color: var(--text-color);
     font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
 }
@@ -124,9 +144,8 @@ a {
     z-index: -10;
 }
 
-.profile__item_name_exit {
-    float: right;
-    padding: 0 168px;
+.profile__item_exit {
+    padding-top: 46px;
 }
 
 .profile__name {

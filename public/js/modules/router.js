@@ -11,6 +11,6 @@ async function handleHash() {
 export default {
     async init() {
         addEventListener('hashchange', handleHash);
-        await handleHash()
+        await handleHash();
     }
 }

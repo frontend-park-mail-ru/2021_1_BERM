@@ -2,6 +2,10 @@ import Valid from './valid.js'
 import ajax from "./ajax.js";
 import view from "./view.js";
 
+let data = {
+    id: -1,
+}
+
 export default {
     async Route() {
         document.title = 'FL.ru';
@@ -23,9 +27,10 @@ export default {
 
             let requestData = newFormData(event.target);
 
-            ajax.sendRequest('POST', '/signin', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', '/login', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
+                        data.id = response.id; // сохраняем ID
                         await this.Route();
                         location.hash = '#';
                     } else {
@@ -47,11 +52,12 @@ export default {
         form.onsubmit = (event) => {
             event.preventDefault();
 
-            let requestData = newFormData(event.target)
+            let requestData = newFormData(event.target);
 
-            ajax.sendRequest('POST', '/signup', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', '/profile', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
+                        data.id = response.id; // сохраняем ID
                         await this.Route();
                         location.hash = '#';
                     } else {
@@ -78,9 +84,10 @@ export default {
             requestData.executor = true;
             requestData.specializes = [requestData.specializes,];
 
-            ajax.sendRequest('POST', '/signup', JSON.parse(JSON.stringify(requestData)))
+            ajax.sendRequest('POST', '/profile', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
                     if (response !== undefined && response.isOk === undefined) {
+                        data.id = response.id; // сохраняем ID
                         await this.Route();
                         location.hash = '#';
                     } else {
@@ -95,13 +102,14 @@ export default {
 
         await this.isAuthorization()
             .then(async () => {
-                await ajax.sendRequest('GET', `/profile`)
+                await ajax.sendRequest('GET', `/profile/${data.id}`)
                     .then(res => {
                         view.viewProfile({
                             name: res.first_name + ' ' + res.second_name,
                             nickName: res.user_name,
                             isExecutor: res.executor,
                             specialize: res.specializes,
+                            about: res.about,
                         })
 
                         // Todo Отдельная Функция
@@ -118,7 +126,8 @@ export default {
     },
 
     async exitRoute() {
-        await ajax.sendRequest('GET', `/logout`)
+        await ajax.sendRequest('DELETE', `/logout`);
+        data.id = -1;
         await this.loginRoute();
     },
 
@@ -142,7 +151,7 @@ export default {
 
                     let requestData = newFormData(event.target);
 
-                    ajax.sendRequest('POST', '/profile/change', JSON.parse(JSON.stringify(requestData)))
+                    ajax.sendRequest('PATCH', `/profile/${data.id}`, JSON.parse(JSON.stringify(requestData)))
                         .then(async () => {
                             await this.settingsRoute();
                             location.hash = '#/settings';
@@ -166,9 +175,10 @@ export default {
     },
 
     async isAuthorization() {
-        return ajax.sendRequest('GET', '/profile')
+        return ajax.sendRequest('GET', `/profile/${data.id}`)
             .then(res => {
                 if (res !== undefined && res.id !== undefined) {
+                    data.id = res.id; // сохраняем ID
                     return Promise.resolve(res);
                 } else {
                     this.loginRoute();
