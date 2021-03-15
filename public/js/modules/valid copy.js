@@ -29,10 +29,8 @@ export default {
                 'Выберите специальность из списка', // 10
                 'Неверный формат телефонного номера', // 11
                 'Плохой пароль',  // 12
-                'Пароли не совпадают',  // 13
-                'Введите цену в рублях',  // 14
+                'Введите цену в рублях',  // 13
             ],
-            password = '',
             iserror = false;
             let flag = false;
 
@@ -40,33 +38,24 @@ export default {
             let formVal = getFormData(form),
                 error;
 
-
-            let invalid = false;
-            iserror = false;
             for (let property in formVal) {
                 error = getError(formVal, property);
                 if (error.length !== 0) {
-                    // iserror = true;
+                    iserror = true;
                     showError(property, error);
-                    invalid = true;
                 } else if (error.length === 0) {
                     showValid(property)
-
                 }
             }
-            if (invalid === true) {
-                iserror = true;
-            }
-
 
             if (iserror) {
                 e.preventDefault();
             } else {
-                sendFormData(formVal);
+                // sendFormData(formVal);
             }
 
             return false;
-        }, );
+        }, {once: true});
 
         console.log("sadasda")
 
@@ -100,10 +89,10 @@ export default {
                             error = errorMess[6];
                         }
                     },
-                    'description': () => {
-                        if (formVal.description.length === 0) {
+                    'textmess': () => {
+                        if (formVal.textmess.length === 0) {
                             error = errorMess[5];
-                        } else if (patternSpam.test(formVal.description) === false) {
+                        } else if (patternSpam.test(formVal.textmess) === false) {
                             error = errorMess[6];
                         }
                     },
@@ -128,22 +117,13 @@ export default {
                         }
                     },
                     'password': () => {
-                        password = formVal.password;
                         if (formVal.password.length === 0 || patternPassword.test(formVal.password) === false) {
                             error = errorMess[12];
                         }
                     },
-                    'password_repeat': () => {
-                        if (formVal.password_repeat.length === 0 || patternPassword.test(formVal.password_repeat) === false) {
-                            error = errorMess[12];
-                        }
-                        if (password !== formVal.password_repeat) {
-                            error = errorMess[13];
-                        }
-                    },
                     'price': () => {
                         if (formVal.price.length === 0 || patternPrice.test(formVal.price) === false) {
-                            error = errorMess[14];
+                            error = errorMess[13];
                         }
                     },
                     'submit': () => {

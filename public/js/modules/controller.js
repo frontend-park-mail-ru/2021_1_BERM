@@ -136,6 +136,7 @@ export default {
 
                 // Todo Отдельная функция?
                 const form = document.getElementsByTagName('form')[0];
+                Valid.runValid();
                 form.onsubmit = (event) => {
                     event.preventDefault();
 
