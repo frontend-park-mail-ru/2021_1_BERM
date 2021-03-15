@@ -6,13 +6,13 @@ body, html {
 
 /* Добавляем цвет фона в верхнюю навигацию */
 .navbar {
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
-    position: sticky;
-    top: 0;
-    width: 100%;
+    /*position: -webkit-sticky;*/
+    /*position: -moz-sticky;*/
+    /*position: -ms-sticky;*/
+    /*position: -o-sticky;*/
+    /*position: sticky;*/
+    /*top: 0;*/
+    /*width: 100%;*/
 
     margin-bottom: -10px;
     --navbar-bg: #FFFFFF;
@@ -67,12 +67,12 @@ div.navbar__button_title a {
     text-decoration: none;
 }
 
- 
+
 .sticky {
     position: fixed;
     top: 0;
     width: 100%;
-} 
+}
 
 
 .sticky + .login__content {
@@ -119,6 +119,7 @@ div.navbar__button_title a {
     text-decoration: none;
     display: block;
     text-align: left;
+    /*top: -100px;*/
 }
 
 .navbar__registration:hover .navbar__registration_content {
