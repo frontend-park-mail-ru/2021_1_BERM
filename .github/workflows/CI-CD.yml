@@ -19,7 +19,7 @@ jobs:
           sudo apt install npm
           npm install && npm run generate
 
-      - name: linters
+#      - name: linters
 #        run: cd public && eslint . --ext .js,.jsx,.ts,.tsx
 
       - name: deploy
