@@ -1,0 +1,31 @@
+name: CI
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: npm install
+        run: |
+          sudo apt install nodejs
+          sudo apt install npm
+          npm install && npm run generate
+
+      - name: linters
+#        run: cd public && eslint . --ext .js,.jsx,.ts,.tsx
+
+      - name: deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.163.212.121
+          username: ubuntu
+          key: ${{ secrets.KEY }}
+          script: ./deploy_front.sh
