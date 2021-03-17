@@ -61,14 +61,13 @@ export default {
 
             if (iserror) {
                 e.preventDefault();
-            } else {
-                sendFormData(formVal);
             }
+            // } else {
+            //     sendFormData(formVal);
+            // }
 
             return false;
         }, );
-
-        console.log("sadasda")
 
         form.addEventListener('focus',  () => {
             let el = document.activeElement;
