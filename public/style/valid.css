@@ -8,16 +8,13 @@
 }
 
 .error-settings {
-	top: -45px;
 	font-size: 12px;
-
 	color: red;
 	width: 300px;
 	padding-left: 15%;
-	padding-bottom: 5px;
-
-	margin-top: -15px;
-	margin-bottom: 15px;
+	/*padding-bottom: 5px;*/
+	padding-top: 9px;
+	height: 25px;
 }
 
 .error {
