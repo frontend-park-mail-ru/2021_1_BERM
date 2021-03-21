@@ -13,15 +13,11 @@ export default {
         document.title = 'FL.ru';
         await this.isAuthorization()
             .then(() => {
-                // ajax.sendRequest('GET', `https://findfreelancer.ru:8080/profile/avatar/${saveData.id}`)
-                //     .then((res) => {
-                //         saveData.img = res.img;  // ToDo: Получаем Изображение
-                //     })
-
                 root.innerHTML = navbarTemplate({
                     authorized: true,
                     profIcon: saveData.img
                 }) + indexTemplate();
+                this.addHandleLinks();
             })
     },
 
@@ -29,6 +25,7 @@ export default {
         document.title = 'Авторизация';
 
         root.innerHTML = navbarTemplate() + signinTemplate();
+        this.addHandleLinks();
 
         const form = document.getElementById('login__window');
         form.onsubmit = (event) => {
@@ -41,14 +38,13 @@ export default {
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signin', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
-                    if (response.status === undefined) {
+                    if (response !== undefined && response.isOk === undefined) {
                         saveData.id = response.id;  // Todo Поле ID
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
-                        // Todo Неверный Логин или Пароль
+                        alert('Неверные логин или пароль');
                     }
-
                 })
         }
     },
@@ -57,6 +53,7 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + clientregTemplate();
+        this.addHandleLinks();
 
         Valid.runValid();
 
@@ -68,11 +65,11 @@ export default {
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
                 .then(async response => {
-                    if (response.status === undefined) {
+                    if (response !== undefined &&response.isOk === undefined) {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
-                        // Todo Неверный Логин или Пароль или ошибка на сервере
+                        alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
                     }
                 })
         }
@@ -83,6 +80,7 @@ export default {
         document.title = 'Регистрация';
 
         root.innerHTML = navbarTemplate() + workerregTemplate();
+        this.addHandleLinks();
 
         Valid.runValid();
 
@@ -95,12 +93,12 @@ export default {
             requestData.specializes = [requestData.specializes,]; // Todo Работает ли это?
 
             ajax.sendRequest('POST', 'https://findfreelancer.ru:8080/signup', JSON.parse(JSON.stringify(requestData)))
-                .then(async res => {
-                    if (res.status === undefined) {
+                .then(async response => {
+                    if (response !== undefined && response.isOk === undefined) {
                         await this.Route();
                         await this.addHandleLinks();
                     } else {
-                        // Todo Неверный Логин или Пароль или ошибка на сервере
+                        alert("Пользователь с такой почтой уже зарегистрирован!");  // Todo КОСТЫЛЬ ВЫВОДИТЬ КРАСИВО
                     }
                 })
         }
@@ -125,7 +123,18 @@ export default {
                             authorized: true,
                             profIcon: saveData.img
                         }) + profileTemplate(profileInfo);
+                        this.addHandleLinks();
                     })
+
+                const inputImg = document.getElementById('file-input');
+                inputImg.onchange = async (ev) => {
+                    let file = ev.target.files[0];
+                    let freader = new FileReader();
+                    freader.onload = () => {
+                        document.getElementById('profile_img').src = freader.result;
+                    }
+                    await freader.readAsDataURL(file);
+                }
             });
 
     },
@@ -133,6 +142,7 @@ export default {
     async exitRoute() {
         await ajax.sendRequest('GET', `https://findfreelancer.ru:8080/logout`)
         await this.loginRoute();
+        await this.addHandleLinks();
     },
 
     async settingsRoute() {
@@ -151,6 +161,7 @@ export default {
                     authorized: true,
                     profIcon: saveData.img
                 }) + settingsTemplate(profileSettings);
+                this.addHandleLinks();
 
                 const form = document.getElementsByTagName('form')[0];
                 form.onsubmit = (event) => {
@@ -167,14 +178,21 @@ export default {
             });
     },
 
-    orderPageRoute() {
+    async orderPageRoute() {
         document.title = 'Создание заказа';
 
-        root.innerHTML = navbarTemplate() + orderpageTemplate();
+        await this.isAuthorization()
+            .then(async () => {
+                root.innerHTML = await navbarTemplate({
+                    authorized: true,
+                    profIcon: saveData.img
+                }) + await orderpageTemplate();
+                this.addHandleLinks();
+            });
 
-        Valid.runValid();
+        await Valid.runValid();
 
-        // Todo: POST запрос настроек
+        // Todo: POST запрос
     },
 
     addHandleLinks() {
@@ -195,7 +213,7 @@ export default {
     async isAuthorization() {
         return ajax.sendRequest('GET', 'https://findfreelancer.ru:8080/profile')
             .then(res => {
-                if (res.id !== undefined) {
+                if (res !== undefined && res.id !== undefined) {
                     return Promise.resolve(res);
                 } else {
                     this.loginRoute()
@@ -213,6 +231,5 @@ function newFormData(form) {
     for (let [name, value] of formData) {
         requestData[name] = value;
     }
-
     return requestData;
 }
