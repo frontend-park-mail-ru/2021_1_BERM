@@ -1,16 +1,20 @@
-import {Controller} from './controller';
-import {LoginView} from '../views/loginView';
+import {Controller} from './controller.js';
+import {LoginView} from '../views/loginView.js';
 
-import eventBus from "../eventBus";
-import router from "../modules/router";
-import api from '../modules/api'
+import eventBus from "../modules/eventBus.js";
+import router from "../modules/router.js";
+import api from '../modules/api.js'
 
 export class LoginController extends Controller {
+    constructor() {
+        super();
+    }
+
     run() {
         this.view = new LoginView();
-        this.view.render;
+        this.view.render();
 
-        this.listeners = new Array([
+        this.listeners = new Set([
                 ['login', this._onLogin],
                 ['login-submit', this._submitLogin],
             ]);
@@ -20,7 +24,7 @@ export class LoginController extends Controller {
 
     _onLogin(res) {
         if (res.status === 200) {
-            router.go('/index')
+            router.go('index')
         } else {
             eventBus.emit('no-login');
         }

@@ -1,4 +1,4 @@
-import eventBus from "../eventBus";
+import eventBus from "./eventBus.js";
 
 const origin = 'http://localhost:8080';
 

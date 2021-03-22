@@ -13,7 +13,7 @@ class Router {
         history.pushState(
             {page: path},
             'FindFreelancer',
-            path
+            '/' + path
         )
 
         this.start();
@@ -26,11 +26,11 @@ class Router {
             // ToDo(Алексей Егоров): Здесь идет загрузка страницы по path при перезагрузке.
             //  Нужно обрабатывать текущий pathname. (Пока костыль)
             currentState = {
-                path: '/login'
+                path: 'login'
             };
         }
 
-        const controller = this.states[currentState.path];
+        const controller = this.states[currentState.path].controller;
 
         if (this.currentController) {
             this.currentController.offAll();

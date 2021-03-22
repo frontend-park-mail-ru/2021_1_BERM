@@ -1,4 +1,4 @@
-import eventBus from '../eventBus.js'
+import eventBus from '../modules/eventBus.js'
 
 export class Controller {
     /**
