@@ -1,6 +1,6 @@
 import eventBus from '../eventBus.js'
 
-export class View {
+export class Controller {
     /**
      * Добавляет слушателей на события
      * @author Егоров Алексей
