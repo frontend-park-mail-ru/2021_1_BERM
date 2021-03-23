@@ -5,7 +5,6 @@ import {ValidationView} from './validationView.js'
 
 export class ClientRegView extends View {
     render() {
-        console.log('REEEEEEEEEEEEEG')
 
         const root = document.getElementById('root');
         root.innerHTML = navbarTemplate() + clientregTemplate();

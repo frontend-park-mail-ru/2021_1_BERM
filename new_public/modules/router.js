@@ -7,7 +7,6 @@ class Router {
         this.states[path] = {
             controller : controller,
         }
-        console.log(controller);
     }
 
     go(path) {
@@ -22,7 +21,6 @@ class Router {
 
     start() {
         let currentState = history.state;
-        console.log(currentState);
 
         if (!currentState) {
             // ToDo(Алексей Егоров): Здесь идет загрузка страницы по path при перезагрузке.
