@@ -1,36 +1,36 @@
 import {Controller} from './controller.js';
-import {LoginView} from '../views/loginView.js';
+import {ClientRegView} from '../views/clientRegView.js';
 
 import eventBus from "../modules/eventBus.js";
 import router from "../modules/router.js";
 import api from '../modules/ajax.js'
 
-export class LoginController extends Controller {
+export class ClientRegController extends Controller {
     constructor() {
         super();
     }
 
     run() {
-        this.view = new LoginView();
+        this.view = new ClientRegView();
         this.view.render();
 
         this.listeners = new Set([
-                ['login', this._onLogin],
-                ['login-submit', this._submitLogin],
-            ]);
+            ['clientReg', this._onRegCl],
+            ['clientReg-submit', this._submitRegCl],
+        ]);
 
         super.onAll();
     }
 
-    _onLogin(res) {
+    _onRegCl(res) {
         if (res.status === 200) {
-            router.go('index')
+            router.go('profile')
         } else {
-            eventBus.emit('no-login');
+            eventBus.emit('page not found 404');
         }
     }
 
-    _submitLogin({email, password}) {
+    _submitRegCl({email, password}) {
         // ToDo(Алексей Егоров): По идее тут выполняется валидация
 
         api.login({email, password});

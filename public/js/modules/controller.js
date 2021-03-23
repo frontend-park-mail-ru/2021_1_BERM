@@ -171,6 +171,26 @@ export default {
 
         await Valid.runValid();
 
+        const form = document.getElementsByTagName('form')[0];
+        form.onsubmit = (event) => {
+            event.preventDefault();
+
+            let requestData = newFormData(event.target);
+            requestData.executor = true;
+            requestData.specializes = [requestData.specializes,];
+
+            ajax.sendRequest('POST', '/profile', JSON.parse(JSON.stringify(requestData)))
+                .then(async response => {
+                    if (response !== undefined && response.isOk === undefined) {
+                        data.id = response.id; // сохраняем ID
+                        await this.Route();
+                        location.hash = '#';
+                    } else {
+                        alert("Пользователь с такой почтой уже зарегистрирован!");
+                    }
+                })
+        }
+
         // Todo: POST запрос
     },
 

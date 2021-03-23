@@ -35,9 +35,8 @@ export default {
             password = '',
             iserror = false;
             let flag = false;
-            let a = true;
 
-       a = btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', (e) => {
             let formVal = getFormData(form),
                 error;
 
@@ -45,7 +44,6 @@ export default {
             let invalid = false;
             iserror = false;
             for (let property in formVal) {
-                if (property === 'submit') continue;
                 error = getError(formVal, property);
                 if (error.length !== 0) {
                     // iserror = true;
@@ -63,14 +61,14 @@ export default {
 
             if (iserror) {
                 e.preventDefault();
+            } else {
+                sendFormData(formVal);
             }
-            // } else {
-            //     sendFormData(formVal);
-            // }
-           console.log(a)
 
             return false;
         }, );
+
+        console.log("sadasda")
 
         form.addEventListener('focus',  () => {
             let el = document.activeElement;
@@ -155,10 +153,9 @@ export default {
             validate[property]();
             return error;
         }
-        console.log("lalalallala");
 
         [].forEach.call(elements,  (element) => {
-            if (element !== 'submit') {element.addEventListener('blur',  (e) => {
+            element.addEventListener('blur',  (e) => {
                 let formElement = e.target,
                     property = formElement.getAttribute('name'),
                     dataField = {};
@@ -172,8 +169,7 @@ export default {
                     showValid(property)
                 }
                 return false;
-            });}
-
+            });
         });
 
         let showError = (property, error) => {
@@ -187,15 +183,6 @@ export default {
 
         let showValid = (property) => {
             if (property !== 'submit') {
-                let formElement = form.querySelector('[name=' + property + ']'),
-                    validBox = formElement.parentElement.nextElementSibling;
-
-                formElement.classList.add('form-control_valid');
-                validBox.innerHTML = "";
-                validBox.style.display = 'block';
-            }
-
-            if (property === 'submit') {
                 let formElement = form.querySelector('[name=' + property + ']'),
                     validBox = formElement.parentElement.nextElementSibling;
 

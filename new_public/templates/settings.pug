@@ -1,0 +1,32 @@
+div(class="settings")
+    form(action="" id="feedback" class="feedback")
+        h2(class="settings_title") Настройки
+        div(class='settings_column')
+            div(class='settings__item')
+                p(class='settings_column') Логин
+                p(class='settings_column') Фамилия
+                p(class='settings_column') Имя
+                p(class='settings_column') E-mail
+                p(class='settings_column') О себе
+                p(class='settings_column' style="margin-top: 223px;") Новый пароль
+            div(class='settings__item')
+                div(class='settings_input form-control')
+                    input(type="text" class="settings_input form-control" name="user_name" value=nickName)
+                div(class=" error-settings" name="bizarro" style="margin:0px; paddeing:0px;")
+                div(class='settings_input form-control')
+                    input(type="text" class="settings_input form-control" name="second_name" value=surname)
+                div(class=" error-settings" name="bizarro")
+                div(class='settings_input form-control')
+                    input(type="text" class="settings_input form-control" name="first_name" value=name)
+                div(class=" error-settings" name="bizarro")
+                div(class='settings_input form-control')
+                    input(type="text" class="settings_input form-control" name="email" value=email)
+                div(class=" error-settings" name="bizarro")
+                div(class='settings_input form-control textar' style="margin-left: -26px;")
+                    textarea(name="description" placeholder="О себе"  class="textarea__control form-control")
+                div(class=" error-settings" name="bizarro" id="er-text-set")
+                div(class='settings_input form-control')
+                    input(type="password" class="settings_input form-control" name="password" placeholder="********")
+                div(class=" error-settings" name="bizarro")
+            div(class="save_settings ")
+                input(id="send_mess" type="submit" class="settings_submit" name="submit" value="Сохранить")
