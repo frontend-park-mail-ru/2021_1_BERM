@@ -6,7 +6,7 @@ const defaultHeaders = {
     'Content-Type': 'application/json',
 }
 
-function sendRequest (
+export function sendRequest (
     method,
     url,
     body = undefined,
@@ -18,13 +18,4 @@ function sendRequest (
         credentials: 'include',
         headers: headers,
     })
-}
-
-export default {
-    login(data) {
-        sendRequest('POST', '/login', JSON.parse(JSON.stringify(data)))
-            .then((res) => {
-                eventBus.emit('login', res);
-            })
-    }
 }

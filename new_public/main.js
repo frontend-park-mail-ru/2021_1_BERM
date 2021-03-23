@@ -5,7 +5,8 @@ import router from "./modules/router.js";
 
 const controllers = new Set([
     ['login', LoginController],
-    ['clientReg', ClientRegController]
+    ['client-reg', ClientRegController]
+    // ToDo(Алексей Егоров): Здесь добавляем странички
 ]);
 
 controllers.forEach((value) => {

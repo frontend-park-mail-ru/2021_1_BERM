@@ -3,7 +3,6 @@ import {ClientRegView} from '../views/clientRegView.js';
 
 import eventBus from "../modules/eventBus.js";
 import router from "../modules/router.js";
-import api from '../modules/ajax.js'
 
 export class ClientRegController extends Controller {
     constructor() {
@@ -30,9 +29,9 @@ export class ClientRegController extends Controller {
         }
     }
 
-    _submitRegCl({email, password}) {
+    _submitRegCl(data) {
         // ToDo(Алексей Егоров): По идее тут выполняется валидация
-
-        api.login({email, password});
+        console.log(data);
+        // Todo api.registration(data);
     }
 }

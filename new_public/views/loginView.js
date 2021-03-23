@@ -21,10 +21,41 @@ export class LoginView extends View {
                 email: event.target.email.value,
                 password: event.target.password.value,
             };
-            debugger
 
             eventBus.emit('login-submit', data);
         });
+
+        let link = document.getElementById('go-login');
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            eventBus.emit('go-login');
+        })
+
+        link = document.getElementById('go-main-page');
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            eventBus.emit('go-main-page');
+        })
+
+        link = document.getElementById('go-client-reg');
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            eventBus.emit('go-client-reg')
+        })
+
+        link = document.getElementById('go-worker-reg');
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            eventBus.emit('go-worker-reg')
+        })
 
         this.listeners = new Set([
             ['no-login', this._onNoLogin],
