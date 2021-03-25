@@ -22,7 +22,18 @@ class Router {
     start() {
         let currentState = history.state;
 
+        // Если мы зашли на страницу или перезагрузили ее
         if (!currentState) {
+            const body = document.getElementsByTagName('body')[0];
+            body.addEventListener('click', (event) => {
+                // ToDo: Сделать через instanceof
+                if ((event.target.localName === 'a' || event.target.localName === 'button') &&
+                    event.target.href !== '') {
+                    event.preventDefault();
+                    this.go(event.target.getAttribute('href'),
+                        event.target.getAttribute('data-title'));
+                }
+            });
             // ToDo(Алексей Егоров): Здесь идет загрузка страницы по path при перезагрузке.
             //  Нужно обрабатывать текущий pathname. (Пока костыль)
             currentState = {

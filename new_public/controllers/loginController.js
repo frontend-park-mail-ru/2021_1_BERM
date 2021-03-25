@@ -17,10 +17,6 @@ export class LoginController extends Controller {
         this.listeners = new Set([
                 ['login', this._onLogin],
                 ['login-submit', this._submitLogin],
-                ['go-client-reg', this._goClientReg],
-                ['go-worker-reg', this._goWorkerReg],
-                ['go-main-page', this._goStartPage],
-                ['go-login', this._goLogin],
             ]);
 
         super.onAll();
@@ -38,21 +34,5 @@ export class LoginController extends Controller {
         // ToDo(Алексей Егоров): По идее тут выполняется валидация
 
         auth.login({email, password});
-    }
-
-    _goClientReg() {
-        router.go('client-reg', 'Регистрация');
-    }
-
-    _goWorkerReg() {
-        router.go('worker-reg', 'Регистрация');
-    }
-
-    _goStartPage() {
-        router.go('main-page', 'FindFreelancer.ru');
-    }
-
-    _goLogin() {
-        router.go('login', 'Авторизация');
     }
 }
