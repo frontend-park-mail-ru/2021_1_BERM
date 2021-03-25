@@ -24,6 +24,7 @@ class Router {
 
         // Если мы зашли на страницу или перезагрузили ее
         if (!currentState) {
+            // Навешиваем обработчик на клики
             const body = document.getElementsByTagName('body')[0];
             body.addEventListener('click', (event) => {
                 // ToDo: Сделать через instanceof
@@ -34,10 +35,12 @@ class Router {
                         event.target.getAttribute('data-title'));
                 }
             });
+
+
             // ToDo(Алексей Егоров): Здесь идет загрузка страницы по path при перезагрузке.
             //  Нужно обрабатывать текущий pathname. (Пока костыль)
             currentState = {
-                page: 'login'
+                page: 'main-page'
             };
         }
 

@@ -4,7 +4,7 @@ import {ValidationView} from './validationView.js'
 export class ClientRegView extends View {
     render() {
         super.renderHtml(
-            navbarTemplate() + clientregTemplate(),
+            clientregTemplate(),
             [
             ['no-registration', this._onNoRegistration],
         ]);

@@ -1,5 +1,3 @@
-import eventBus from "./eventBus.js";
-
 const origin = 'http://localhost:8080';
 
 const defaultHeaders = {
@@ -18,4 +16,7 @@ export function sendRequest (
         credentials: 'include',
         headers: headers,
     })
+        .catch((res) => {
+            console.log(`Упс, ошибочка. Код: ${res.status}`);
+        })
 }

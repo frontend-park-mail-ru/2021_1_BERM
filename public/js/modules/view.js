@@ -2,7 +2,7 @@ const root = document.getElementById('root');
 
 let saveData = {
     id: 0,
-    img: 'img/profIcon.png',
+    img: 'img/icon.png',
 };
 
 export default {

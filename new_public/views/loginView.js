@@ -5,7 +5,7 @@ import eventBus from "../modules/eventBus.js";
 export class LoginView extends View {
     render() {
         super.renderHtml(
-            navbarTemplate() + loginTemplate(),
+            loginTemplate(),
             [
             ['no-login', this._onNoLogin],
         ]);
