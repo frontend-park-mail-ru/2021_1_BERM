@@ -4,10 +4,15 @@ import eventBus from "../modules/eventBus.js";
 
 export class LoginView extends View {
     render() {
-        super.renderHtml(navbarTemplate() + loginTemplate());
+        super.renderHtml(
+            navbarTemplate() + loginTemplate(),
+            [
+            ['no-login', this._onNoLogin],
+        ]);
 
         const form = document.getElementById('login__window');
         form.addEventListener('submit', (event) => {
+            event.preventDefault();
             const data = {
                 email: event.target.email.value,
                 password: event.target.password.value,
@@ -15,12 +20,6 @@ export class LoginView extends View {
 
             eventBus.emit('login-submit', data);
         });
-
-        this.listeners = new Set([
-            ['no-login', this._onNoLogin],
-        ]);
-
-        super.onAll()
     }
 
     _onNoLogin() {

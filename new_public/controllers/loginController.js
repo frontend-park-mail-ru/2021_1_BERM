@@ -11,15 +11,12 @@ export class LoginController extends Controller {
     }
 
     run() {
-        this.view = new LoginView();
-        this.view.render();
-
-        this.listeners = new Set([
-                ['login', this._onLogin],
-                ['login-submit', this._submitLogin],
-            ]);
-
-        super.onAll();
+        super.run(
+            new LoginView(),
+            [
+            ['login', this._onLogin],
+            ['login-submit', this._submitLogin],
+        ]);
     }
 
     _onLogin(res) {
@@ -31,8 +28,6 @@ export class LoginController extends Controller {
     }
 
     _submitLogin({email, password}) {
-        // ToDo(Алексей Егоров): По идее тут выполняется валидация
-
         auth.login({email, password});
     }
 }

@@ -10,15 +10,12 @@ export class ClientRegController extends Controller {
     }
 
     run() {
-        this.view = new ClientRegView();
-        this.view.render();
-
-        this.listeners = new Set([
-            ['clientReg', this._onRegCl],
-            ['clientReg-submit', this._submitRegCl],
-        ]);
-
-        super.onAll();
+        super.run(
+            new ClientRegView(),
+            [
+                ['clientReg', this._onRegCl],
+                ['clientReg-submit', this._submitRegCl],
+            ]);
     }
 
     _onRegCl(res) {
