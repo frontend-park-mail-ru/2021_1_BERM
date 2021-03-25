@@ -2,11 +2,13 @@ import {LoginController} from "./controllers/loginController.js";
 import {ClientRegController} from "./controllers/clientRegController.js";
 
 import router from "./modules/router.js";
+import {MainPageController} from "./controllers/mainPageController.js";
 
 const controllers = new Set([
     ['login', LoginController],
-    ['client-reg', ClientRegController]
-    // ToDo(Алексей Егоров): Здесь добавляем странички
+    ['client-reg', ClientRegController],
+    ['main-page', MainPageController]
+    // Здесь добавляем странички
 ]);
 
 controllers.forEach((value) => {
