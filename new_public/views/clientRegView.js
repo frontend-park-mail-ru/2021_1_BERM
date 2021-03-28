@@ -22,7 +22,6 @@ export class ClientRegView extends View {
                 user_name: event.target.user_name.value,
                 first_name: event.target.first_name.value,
                 second_name: event.target.second_name.value,
-                // specializes: event.target.specializes.value,
             };
 
             eventBus.emit('registered-submit', data);

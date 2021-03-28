@@ -17,5 +17,4 @@
     clear(type, element) {
         element.classList.remove(type);
     }
-
 }

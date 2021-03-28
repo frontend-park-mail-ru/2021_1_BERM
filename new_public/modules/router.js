@@ -1,6 +1,7 @@
 class Router {
     constructor() {
-        this.states = {}
+        this.states = {};
+        this.isFirstEnter = true;
     }
 
     register(path, controller) {
@@ -21,10 +22,17 @@ class Router {
 
     start() {
         let currentState = history.state;
-        console.log(currentState)
 
-        // Если мы зашли на страницу или перезагрузили ее
         if (!currentState) {
+            currentState = {
+                page: 'main-page',
+            };
+        }
+
+        if (this.isFirstEnter) {
+            this.isFirstEnter = false;
+
+
             // Навешиваем обработчик на клики
             const body = document.getElementsByTagName('body')[0];
             body.addEventListener('click', (event) => {
@@ -40,17 +48,12 @@ class Router {
             });
 
             addEventListener("popstate",() => {
-                // let path = window.location.pathname.slice(1);
-                // console.log((path));
                 this.start();
             },false);
 
 
             // ToDo(Алексей Егоров): Здесь идет загрузка страницы по path при перезагрузке.
             //  Нужно обрабатывать текущий pathname. (Пока костыль)
-            currentState = {
-                page: 'main-page'
-            };
         }
 
         const controller = this.states[currentState.page].controller;

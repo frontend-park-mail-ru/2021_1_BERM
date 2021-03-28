@@ -141,9 +141,8 @@ export class Validator {
     }
 
     _preValid(preParam) {
-        // ToDo реализовать отображени параметров при плохом ответе с бека
+        // ToDo реализовать отображение параметров при плохом ответе с бека
         console.log(preParam);
-
     }
 
 }

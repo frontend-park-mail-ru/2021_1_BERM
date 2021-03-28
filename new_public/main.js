@@ -12,10 +12,10 @@ const controllers = new Set([
     ['worker-reg', WorkerRegController]
     // Здесь добавляем странички
 ]);
-debugger
+
 controllers.forEach((value) => {
     router.register(value[0], value[1]);
 });
-debugger
+
 
 router.start();

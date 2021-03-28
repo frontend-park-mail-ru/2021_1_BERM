@@ -77,8 +77,5 @@ export class ValidHandler {
             };
         validate[property]();
         return error;
-
-
     }
-
 }
