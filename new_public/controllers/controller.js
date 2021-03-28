@@ -4,9 +4,7 @@ import user from "../models/User.js";
 
 export class Controller extends BaseMVC {
     run(className, listenersArr) {
-        debugger
         if (!user.isAuthorized) {
-            debugger
             this.checkAuthorized();
         }
 

@@ -2,7 +2,7 @@ const origin = 'http://localhost:8080';
 
 const defaultHeaders = {
     'Content-Type': 'application/json',
-}
+};
 
 export function sendRequest (
     method,
@@ -18,5 +18,5 @@ export function sendRequest (
     })
         .catch((res) => {
             console.log(`Упс, ошибочка. Код: ${res.status}`);
-        })
+        });
 }

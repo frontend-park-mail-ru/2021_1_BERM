@@ -18,6 +18,6 @@ export class View extends BaseMVC {
 
         this.listeners = new Set(listenersArr);
 
-        super.onAll()
+        super.onAll();
     }
 }
