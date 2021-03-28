@@ -1,6 +1,5 @@
 import eventBus from "../modules/eventBus.js";
 import {sendRequest} from "../modules/ajax.js";
-import ajax from "../../public/js/modules/ajax";
 
 export default class Auth {
     static isAuthorized() {
@@ -36,6 +35,6 @@ export default class Auth {
     }
 
     static logout() {
-        return ajax.sendRequest('DELETE', `/logout`);
+        return sendRequest('DELETE', `/logout`);
     }
 }

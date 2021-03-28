@@ -26,7 +26,5 @@ export class Controller extends BaseMVC {
                         });
                 }
             });
-        user.isAuthorized = true;
-        user.id = 1;
     }
 }
