@@ -21,6 +21,7 @@ class Router {
 
     start() {
         let currentState = history.state;
+        console.log(currentState)
 
         // Если мы зашли на страницу или перезагрузили ее
         if (!currentState) {
@@ -31,10 +32,18 @@ class Router {
                 if ((event.target.localName === 'a' || event.target.localName === 'button') &&
                     event.target.href !== '') {
                     event.preventDefault();
+                    console.log(event.target.getAttribute('href'));
+                    console.log(event.target.getAttribute('data-title'));
                     this.go(event.target.getAttribute('href'),
                         event.target.getAttribute('data-title'));
                 }
             });
+
+            addEventListener("popstate",() => {
+                // let path = window.location.pathname.slice(1);
+                // console.log((path));
+                this.start();
+            },false);
 
 
             // ToDo(Алексей Егоров): Здесь идет загрузка страницы по path при перезагрузке.

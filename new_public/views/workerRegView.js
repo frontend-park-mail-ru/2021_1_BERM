@@ -1,17 +1,17 @@
 import {View} from './view.js';
-import {Validator} from './validator.js'
+// import {ValidationView} from './validationView.js'
 import eventBus from "../modules/eventBus.js";
 
-export class ClientRegView extends View {
+export class WorkerRegView extends View {
     render() {
         super.renderHtml(
-            clientregTemplate(),
+            workerregTemplate(),
             [
-            ['no-registration', this._onNoRegistration],
-        ]);
+                ['no-registration-work', this._onNoRegistration],
+            ]);
 
-        let val = new Validator('feedback', '.form-control', 'send_mess');
-        val.validate();
+        // let val = new ValidationView('feedback', '.form-control', 'send_mess');
+        // val.validate();
 
         const form = document.getElementById('feedback');
         form.addEventListener('submit', (event) => {
@@ -22,10 +22,12 @@ export class ClientRegView extends View {
                 user_name: event.target.user_name.value,
                 first_name: event.target.first_name.value,
                 second_name: event.target.second_name.value,
-                // specializes: event.target.specializes.value,
+                specializes: event.target.specializes.value,
+                about: "gui",
+
             };
 
-            eventBus.emit('registered-submit', data);
+            eventBus.emit('work_registered-submit', data);
         });
     }
 

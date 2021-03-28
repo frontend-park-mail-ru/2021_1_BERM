@@ -15,12 +15,7 @@
     }
 
     clear(type, element) {
-        let errorBox = element.parentElement.nextElementSibling;
-        errorBox.innerHTML = ""
         element.classList.remove(type);
-        errorBox.removeAttribute('style');
     }
 
 }
-
- // export default ValidReflector;
