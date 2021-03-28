@@ -2,7 +2,7 @@ import {BaseMVC} from "../modules/baseMVC.js";
 import user from "../models/User.js";
 
 export class View extends BaseMVC {
-    renderHtml(content, listenersArr) {
+    renderHtml(content, listenersArr = null) {
         let htmlNav = navbarTemplate();
 
         if (user.isAuthorized) {
@@ -16,8 +16,14 @@ export class View extends BaseMVC {
         const root = document.getElementById('root');
         root.innerHTML = htmlNav + content;
 
-        this.listeners = new Set(listenersArr);
+        if (listenersArr) {
+            this.setListeners(listenersArr);
+            super.onAll();
+        }
+    }
 
+    setListeners(listenersArr) {
+        this.listeners = new Set(listenersArr);
         super.onAll();
     }
 }

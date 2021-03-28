@@ -21,7 +21,7 @@ export class LoginController extends Controller {
 
     _onLogin(res) {
         if (res.status === 200) {
-            router.go('main-page', 'FindFreelancer.ru')
+            router.go('main-page', 'FindFreelancer.ru');
         } else {
             eventBus.emit('no-login');
         }

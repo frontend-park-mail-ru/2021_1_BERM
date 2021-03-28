@@ -4,12 +4,14 @@ import {WorkerRegController} from "./controllers/workerRegContoller.js";
 
 import router from "./modules/router.js";
 import {MainPageController} from "./controllers/mainPageController.js";
+import {ProfileController} from "./controllers/profileController.js";
 
 const controllers = new Set([
     ['login', LoginController],
     ['client-reg', ClientRegController],
     ['main-page', MainPageController],
-    ['worker-reg', WorkerRegController]
+    ['worker-reg', WorkerRegController],
+    ['profile', ProfileController],
     // Здесь добавляем странички
 ]);
 

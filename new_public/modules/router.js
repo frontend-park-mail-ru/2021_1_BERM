@@ -37,7 +37,7 @@ class Router {
             const body = document.getElementsByTagName('body')[0];
             body.addEventListener('click', (event) => {
                 // ToDo: Сделать через instanceof
-                if ((event.target.localName === 'a' || event.target.localName === 'button') &&
+                if ((event.target.localName === 'a' || event.target.localName === 'img') &&
                     event.target.href !== '') {
                     event.preventDefault();
                     console.log(event.target.getAttribute('href'));

@@ -1,7 +1,7 @@
 mixin navbarContent()
     if authorized
-        a(class="navbar_icon", href="profile" data-title="Профиль")
-            img(class="icon", src=profIcon)
+        a(class="navbar_icon" href="profile"  data-title="Профиль")
+            img(class="icon" href="profile"  data-title="Профиль" src=profIcon)
         a(href="order-page" data-title="Разместить заказ") Разместить заказ
     else
         a(href="login" id="go-login" data-title="Вход") Вход

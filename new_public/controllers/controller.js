@@ -8,12 +8,11 @@ export class Controller extends BaseMVC {
             this.checkAuthorized();
         }
 
+        this.listeners = new Set(listenersArr);
+        super.onAll();
+
         this.view = className;
         this.view.render();
-
-        this.listeners = new Set(listenersArr);
-
-        super.onAll();
     }
 
     checkAuthorized() {
@@ -27,5 +26,7 @@ export class Controller extends BaseMVC {
                         });
                 }
             });
+        user.isAuthorized = true;
+        user.id = 1;
     }
 }
