@@ -1,5 +1,6 @@
 import eventBus from "../modules/eventBus.js";
 import {sendRequest} from "../modules/ajax.js";
+import User from "./User.js";
 
 export default class Auth {
     static isAuthorized() {
@@ -36,5 +37,19 @@ export default class Auth {
 
     static logout() {
         return sendRequest('DELETE', `/logout`);
+    }
+
+    static updateSettings(data) {
+        sendRequest('PATCH', '/profile' + '/' + String(User.id), JSON.parse(JSON.stringify(data)))
+            .then((res) => {
+                eventBus.emit('settings-update', res);
+            });
+    }
+
+    static createOrder(data) {
+        sendRequest('POST', '/order', JSON.parse(JSON.stringify(data)))
+            .then((res) => {
+                eventBus.emit('order-create', res);
+            });
     }
 }

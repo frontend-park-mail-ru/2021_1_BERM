@@ -66,7 +66,7 @@ export class ValidHandler {
                         error = this.errors[13];
                     }
                 },
-                'price': () => {
+                'budget': () => {
                     if (formVal.price.length === 0 || this.patterns.get('price').test(formVal.price) === false) {
                         error = this.errors[14];
                     }
