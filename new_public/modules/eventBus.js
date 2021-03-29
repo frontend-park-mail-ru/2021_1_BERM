@@ -15,15 +15,8 @@ class EventBus {
         });
     }
 
-    off(event, callback) {
-        if (!this.listeners[event]) {
-            return;
-        }
-
-        this.listeners[event]
-            .filter((listener) => {
-                return listener.callback !== callback;
-            })
+    off() {
+        this.listeners = {};
     }
 
     emit(event, data) {

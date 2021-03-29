@@ -25,9 +25,6 @@ export class BaseMVC {
             return;
         }
 
-        this.listeners
-            .forEach((event) => {
-                eventBus.off(event[0], event[1]);
-            });
+        eventBus.off();
     }
 }
