@@ -27,7 +27,7 @@ export class WorkerRegController extends Controller {
         }
     }
 
-    _submitRegCl({email, password, user_name, first_name, second_name, specializes, about}) {
-        auth.reg({email, password, user_name, first_name, second_name, specializes, about});
+    _submitRegCl(info) {
+        auth.reg(info);
     }
 }

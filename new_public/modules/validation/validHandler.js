@@ -22,10 +22,17 @@ export class ValidHandler {
                         error = this.errors[3];
                     }
                 },
-                'subject': () => {
-                    if (formVal.subject.length === 0) {
+                'order_name': () => {
+                    if (formVal.order_name.length === 0) {
                         error = this.errors[4];
-                    } else if (this.patterns.get('spam').test(formVal.subject) === false) {
+                    } else if (this.patterns.get('spam').test(formVal.order_name) === false) {
+                        error = this.errors[6];
+                    }
+                },
+                'about': () => {
+                    if (formVal.about.length === 0) {
+                        error = this.errors[5];
+                    } else if (this.patterns.get('spam').test(formVal.about) === false) {
                         error = this.errors[6];
                     }
                 },
@@ -67,7 +74,7 @@ export class ValidHandler {
                     }
                 },
                 'budget': () => {
-                    if (formVal.price.length === 0 || this.patterns.get('price').test(formVal.price) === false) {
+                    if (formVal.budget.length === 0 || this.patterns.get('budget').test(formVal.budget) === false) {
                         error = this.errors[14];
                     }
                 },

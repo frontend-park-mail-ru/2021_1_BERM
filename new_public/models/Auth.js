@@ -40,7 +40,7 @@ export default class Auth {
     }
 
     static updateSettings(data) {
-        sendRequest('PATCH', '/profile' + '/' + String(User.id), JSON.parse(JSON.stringify(data)))
+        sendRequest('PATCH', `/profile/${User.id}`, JSON.parse(JSON.stringify(data)))
             .then((res) => {
                 eventBus.emit('settings-update', res);
             });

@@ -28,16 +28,12 @@ export class ProfileController extends Controller {
             ]);
     }
 
-    emitRender() {
-
-    }
-
     _Profile() {
         if (!user.isGetAttr) {
             auth.getProfile(user.id);
         } else {
             eventBus.emit('render-profile', {
-                name: user.name,
+                name: user.first_name + " " + user.second_name,
                 nickName: user.nickName,
                 isExecutor: user.isExecutor,
                 specialize: user.specializes,
@@ -56,18 +52,20 @@ export class ProfileController extends Controller {
         res.json()
             .then((res) => {
                 const data = {
-                    name: res.first_name + ' ' + res.second_name,
+                    first_name: res.first_name,
+                    second_name: res.second_name,
                     nickName: res.user_name,
                     isExecutor: res.executor,
                     specialize: res.specializes,
                     about: res.about,
                     img: res.img_url,
+                    email: 'email@email.ru', // ToDo FIX
                 };
 
                 user.setAttributes(data);
 
                 eventBus.emit('render-profile', {
-                    name: user.name,
+                    name: user.first_name + " " + user.second_name,
                     nickName: user.nickName,
                     isExecutor: user.isExecutor,
                     specialize: user.specializes,

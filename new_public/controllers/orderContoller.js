@@ -1,9 +1,10 @@
 import {Controller} from './controller.js';
-import {SettingsView} from '../views/settingsView.js';
+import {OrderView} from "../views/orderView.js";
 
 import eventBus from "../modules/eventBus.js";
 import router from "../modules/router.js";
 import auth from "../models/Auth.js";
+
 
 export class OrderController extends Controller {
     constructor() {
@@ -12,22 +13,22 @@ export class OrderController extends Controller {
 
     run() {
         super.run(
-            new SettingsView(),
+            new OrderView(),
             [
-                ['order-create', this._onRegCl],
-                ['order-submit', this._submitRegCl],
+                ['order-create', this._orderCreate],
+                ['order-submit', this._orderSubmit],
             ]);
     }
 
-    _onRegCl(res) {
+    _orderCreate(res) {
         if (res.status === 201) {
-            router.go('main-page')
+            router.go('main-page');
         } else {
             eventBus.emit('no-order');
         }
     }
 
-    _submitRegCl({order_name, specialize, description, budget, deadline}) {
-        auth.createOrder({order_name, specialize, description, budget, deadline});
+    _orderSubmit(info) {
+        auth.createOrder(info);
     }
 }

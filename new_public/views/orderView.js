@@ -7,7 +7,7 @@ export class OrderView extends View {
         super.renderHtml(
             orderpageTemplate(),
             [
-                ['no-set-up', this._onNoRegistration],
+                ['no-order', this._onNoOrder],
             ]);
 
         let val = new Validator('feedback', '.form-control', 'send_mess');
@@ -17,10 +17,10 @@ export class OrderView extends View {
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             const data = {
-                order_name: event.target.order_name,
-                specialize: event.target.specialize,
-                description: event.target.description,
-                budget: event.target.budget,
+                order_name: event.target.order_name.value,
+                specialize: "Косяки апишки", // Todo user.first_name + " " + user.second_name
+                description: event.target.description.value,
+                budget: event.target.budget.value,
                 deadline: 1617004533, // ToDo сделать в форме дедлайн заказа
             };
 
@@ -28,9 +28,9 @@ export class OrderView extends View {
         });
     }
 
-    _onNoRegistration() {
-        // ToDo такой email уже существует
-        console.log('bizarro');
+    _onNoOrder() {
+        // ToDo не удалось разместить заказ
+        console.log('ToDo не удалось разместить заказ');
     }
 }
 
