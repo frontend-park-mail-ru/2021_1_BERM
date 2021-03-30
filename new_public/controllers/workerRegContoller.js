@@ -21,7 +21,7 @@ export class WorkerRegController extends Controller {
 
     _onRegCl(res) {
         if (res.status === 200 || res.status === 201) {
-            router.go('main-page')
+            router.go('main-page');
         } else {
             eventBus.emit('page not found 404');
         }

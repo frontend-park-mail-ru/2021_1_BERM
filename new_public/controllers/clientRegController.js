@@ -27,7 +27,7 @@ export class ClientRegController extends Controller {
         }
     }
 
-    _submitRegCl({email, password, user_name, first_name, second_name, specializes}) {
-        auth.reg({email, password, user_name, first_name, second_name, specializes});
+    _submitRegCl(info) {
+        auth.reg(info);
     }
 }

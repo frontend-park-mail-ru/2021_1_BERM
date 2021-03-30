@@ -11,7 +11,7 @@ export class View extends BaseMVC {
                 profIcon: "static/img/icon.png",
             });
         } else {
-            htmlNav = navbarTemplate()
+            htmlNav = navbarTemplate();
         }
 
         // Здесь вся отрисовка

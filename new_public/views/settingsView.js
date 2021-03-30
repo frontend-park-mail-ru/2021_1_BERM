@@ -13,7 +13,8 @@ export class SettingsView extends View {
 
     _renderData(data) {
         super.renderHtml(
-            settingsTemplate(data));
+            settingsTemplate(data)
+        );
 
         let val = new Validator('feedback', '.form-control', 'send_mess');
         val.validate();

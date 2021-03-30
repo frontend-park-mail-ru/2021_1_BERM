@@ -15,7 +15,7 @@ class Router {
             {page: path},
             title,
             '/' + path
-        )
+        );
 
         this.start();
     }
@@ -40,14 +40,12 @@ class Router {
                 if ((event.target.localName === 'a' || event.target.localName === 'img') &&
                     event.target.href !== '') {
                     event.preventDefault();
-                    console.log(event.target.getAttribute('href'));
-                    console.log(event.target.getAttribute('data-title'));
                     this.go(event.target.getAttribute('href'),
                         event.target.getAttribute('data-title'));
                 }
             });
 
-            addEventListener("popstate",() => {
+            addEventListener('popstate',() => {
                 this.start();
             },false);
 
