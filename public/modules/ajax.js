@@ -8,7 +8,7 @@ export const sendRequest = (
     method,
     url,
     body = undefined,
-    headers = defaultHeaders
+    headers = defaultHeaders,
 ) => {
     return fetch(origin + url, {
         method: method,
@@ -17,6 +17,7 @@ export const sendRequest = (
         headers: headers,
     })
         .catch((error) => {
-            console.log(`Упс, ошибочка. Код: ${error.status}. Сообщение: ${error.message}`);
+            console.log(`Упс, ошибочка. Код: ${error.status}.
+             Сообщение: ${error.message}`);
         });
-}
+};

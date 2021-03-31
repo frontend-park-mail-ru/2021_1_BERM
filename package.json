@@ -1,6 +1,9 @@
 {
   "devDependencies": {
-    "eslint": "^7.22.0",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "eslint-config-google": "^0.14.0",
     "pug": "^3.0.0"
   },
   "name": "2021_1_berm",

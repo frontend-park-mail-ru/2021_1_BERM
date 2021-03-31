@@ -1,9 +1,9 @@
-import eventBus from './eventBus.js'
+import eventBus from './eventBus.js';
 
+/** Базовый класс от которого наследуются контроллеры и вьюхи */
 export class BaseMVC {
     /**
      * Добавляет слушателей на события
-     * @author Егоров Алексей
      */
     onAll() {
         if (!this.listeners) {
@@ -18,7 +18,6 @@ export class BaseMVC {
 
     /**
      * Удаляет слушателей событий
-     * @author Егоров Алексей
      */
     offAll() {
         if (!this.listeners) {

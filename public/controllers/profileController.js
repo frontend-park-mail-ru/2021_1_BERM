@@ -1,9 +1,9 @@
-import {Controller} from "./controller.js"
-import auth from '../models/Auth.js'
-import eventBus from "../modules/eventBus.js"
-import user from "../models/User.js"
-import {ProfileView} from "../views/profileView.js";
-import router from "../modules/router.js";
+import {Controller} from './controller.js';
+import auth from '../models/Auth.js';
+import eventBus from '../modules/eventBus.js';
+import user from '../models/User.js';
+import {ProfileView} from '../views/profileView.js';
+import router from '../modules/router.js';
 import {
     EXIT, FAIL_LOAD_IMG,
     IMG_CHANGE,
@@ -11,15 +11,21 @@ import {
     ON_PROFILE,
     PROFILE,
     RENDER_PROFILE,
-    SUCCESS_LOAD_IMG
-} from "../modules/utils/actions.js";
+    SUCCESS_LOAD_IMG,
+} from '../modules/utils/actions.js';
 
-
+/** Контроллер регистрации клиента */
 export class ProfileController extends Controller {
+    /**
+     * Конструктор
+     */
     constructor() {
         super();
     }
 
+    /**
+     * Запуск контроллера профиля
+     */
     run() {
         if (!user.isAuthorized) {
             router.go('login');
@@ -37,12 +43,15 @@ export class ProfileController extends Controller {
             ]);
     }
 
+    /**
+     * Проверка наличия данных пользователя
+     */
     _Profile() {
         if (!user.isGetAttr) {
             auth.getProfile(user.id);
         } else {
             eventBus.emit(RENDER_PROFILE, {
-                name: user.first_name + " " + user.second_name,
+                name: user.first_name + ' ' + user.second_name,
                 nickName: user.nickName,
                 isExecutor: user.isExecutor,
                 specialize: user.specializes,
@@ -52,10 +61,15 @@ export class ProfileController extends Controller {
         }
     }
 
+    /**
+     * Получение данных профиля с сервера
+     *
+     * @param {Response} res - результат запроса
+     */
     _onProfile(res) {
         if (!res.ok) {
             // ToDo: Косяк
-            console.log("Косяк");
+            console.log('Косяк');
             return;
         }
 
@@ -75,7 +89,7 @@ export class ProfileController extends Controller {
                 user.setAttributes(data);
 
                 eventBus.emit(RENDER_PROFILE, {
-                    name: user.first_name + " " + user.second_name,
+                    name: user.first_name + ' ' + user.second_name,
                     nickName: user.nickName,
                     isExecutor: user.isExecutor,
                     specialize: user.specializes,
@@ -85,10 +99,21 @@ export class ProfileController extends Controller {
             });
     }
 
+    /**
+     * Изменение картинки
+     *
+     * @param {string} src - изображение
+     */
     _changeImage(src) {
         auth.sendImage(src);
     }
 
+    /**
+     * Получение изображения с сервера
+     *
+     * @param {string} src - изображение
+     * @param {Response} res - результат запроса
+     */
     _onLoadImage({res, src}) {
         if (res.ok) {
             user.img = src;
@@ -98,8 +123,14 @@ export class ProfileController extends Controller {
         }
     }
 
+    /**
+     * Обработка выхода пользователя
+     */
     _onExit() {
-        auth.logout();
+        auth.logout()
+            .catch((res) => {
+                console.log('не удалось распарсить JSON', res.message);
+            });
         user.isAuthorized = false;
         user.isGetAttr = false;
         router.go('main-page');

@@ -1,17 +1,30 @@
 import {Controller} from './controller.js';
 import {SettingsView} from '../views/settingsView.js';
 
-import eventBus from "../modules/eventBus.js";
-import router from "../modules/router.js";
-import auth from "../models/Auth.js";
-import user from "../models/User.js";
-import {GET_USER_DATA, NO_SET_UP, SEND_USER_DATA, SETTING_SUBMIT, SETTING_UPD} from "../modules/utils/actions.js";
+import eventBus from '../modules/eventBus.js';
+import router from '../modules/router.js';
+import auth from '../models/Auth.js';
+import user from '../models/User.js';
+import {
+    GET_USER_DATA,
+    NO_SET_UP,
+    SEND_USER_DATA,
+    SETTING_SUBMIT,
+    SETTING_UPD,
+} from '../modules/utils/actions.js';
 
+/** Контроллер создания заказа */
 export class SettingsController extends Controller {
+    /**
+     * Конструктор
+     */
     constructor() {
         super();
     }
 
+    /**
+     * Запуск контроллера настроек
+     */
     run() {
         super.run(
             new SettingsView(),
@@ -22,6 +35,11 @@ export class SettingsController extends Controller {
             ]);
     }
 
+    /**
+     * Обработка результата
+     *
+     * @param {Response} res - результат запроса
+     */
     _onUpdate(res) {
         if (res.ok) {
             res.json()
@@ -44,10 +62,18 @@ export class SettingsController extends Controller {
         }
     }
 
+    /**
+     * Отправка результата
+     *
+     * @param {Object} info - данные на отправку
+     */
     _submit(info) {
         auth.updateSettings(info);
     }
 
+    /**
+     * Отправка данных для рендера в SettingsView
+     */
     _sendUserData() {
         eventBus.emit(GET_USER_DATA, {
             nickName: user.nickName,

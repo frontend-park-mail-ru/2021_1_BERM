@@ -1,18 +1,22 @@
 import {View} from './view.js';
-import {Validator} from './validator.js'
-import eventBus from "../modules/eventBus.js";
-import {CLIENT_REG_SUBMIT, NO_REG_CLIENT} from "../modules/utils/actions.js";
+import {Validator} from './validator.js';
+import eventBus from '../modules/eventBus.js';
+import {CLIENT_REG_SUBMIT, NO_REG_CLIENT} from '../modules/utils/actions.js';
 
+/** Вьюха регистрации клиента */
 export class ClientRegView extends View {
+    /**
+     * Отображение страницы и получение с нее данных
+     */
     render() {
         super.renderHtml(
             'Регистрация',
             clientregTemplate(),
             [
-            [NO_REG_CLIENT, this._onNoRegistration],
-        ]);
+                [NO_REG_CLIENT, this._onNoRegistration],
+            ]);
 
-        let val = new Validator('feedback', '.form-control', 'send_mess');
+        const val = new Validator('feedback', '.form-control', 'send_mess');
         val.validate();
 
         const form = document.getElementById('feedback');
@@ -30,6 +34,9 @@ export class ClientRegView extends View {
         });
     }
 
+    /**
+     * Обработка в случае провала
+     */
     _onNoRegistration() {
         // ToDo такой email уже существует
         console.log('sorry, this invalid email');

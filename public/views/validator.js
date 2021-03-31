@@ -13,9 +13,8 @@ export class Validator {
     /**
      * Запускает процесс валидации
      */
-
     validate() {
-        let form = document.getElementById(this.formIdName);
+        const form = document.getElementById(this.formIdName);
         if (!form) return; // ToDo реализовать обработку ошибки
         let reflector = new ValidReflector(form);
         let handler = new ValidHandler();
@@ -42,7 +41,6 @@ export class Validator {
      * @param {ValidHandler} handler - обработчик полей валидации
      * @param {ValidReflector} reflector - отображатель валидации на странице
      */
-
     _validateForButtonClick(form, btn, handler, reflector) {
         btn.addEventListener('click', (e) => {
             let formVal = this._getFormData(form),

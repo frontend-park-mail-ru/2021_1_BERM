@@ -1,7 +1,11 @@
 import {View} from './view.js';
 
-import eventBus from "../modules/eventBus.js";
-import {LOGIN, LOGIN_SUBMIT, NO_LOGIN} from "../modules/utils/actions.js";
+import eventBus from '../modules/eventBus.js';
+import {
+    LOGIN,
+    LOGIN_SUBMIT,
+    NO_LOGIN,
+} from '../modules/utils/actions.js';
 
 export class LoginView extends View {
     render() {
@@ -9,8 +13,8 @@ export class LoginView extends View {
             'Авторизация',
             loginTemplate(),
             [
-            [NO_LOGIN, this._onNoLogin],
-        ]);
+                [NO_LOGIN, this._onNoLogin],
+            ]);
 
         const form = document.getElementById('login__window');
         form.addEventListener('submit', (event) => {
