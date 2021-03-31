@@ -17,9 +17,9 @@ jobs:
         run: |
           sudo apt install nodejs
           sudo apt install npm
-          npm install && npm run generate
-            - name: linters
-              run: npm run lint
+          npm install
+      - name: linters
+        run: npm run lint
 
       - name: deploy
         uses: appleboy/ssh-action@master
