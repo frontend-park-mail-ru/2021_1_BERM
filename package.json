@@ -8,7 +8,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "pug --client --no-debug --name-after-file new_public/templates\n"
+    "generate": "pug --client --no-debug --name-after-file public/templates\\n"
   },
   "repository": {
     "type": "git",
