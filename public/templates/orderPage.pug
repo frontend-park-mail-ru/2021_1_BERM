@@ -1,19 +1,19 @@
 div(class='registration' style="height: 740px;")
     form(action="" id="feedback" class="feedback")
         h2 Ваш заказ
-        label(for="Привет" class="label-reg" ) Введите заголовок
+        label(class="label-reg" ) Введите заголовок
         div(class='registration__input form-control')
-            input(type="text" name="subject" placeholder="Тема" class="registration__input form-control")
-        div(class=" error" name="bizarro")
-        label(for="Привет" class="label-reg" ) Текст заказа
+            input(type="text" name="order_name" placeholder="Тема" class="registration__input form-control")
+        div(class="error")
+        label(class="label-reg" ) Текст заказа
         div(class='registration__input form-control textar' )
-            textarea(name="textmess" placeholder="Текст заказа"  class="textarea__control form-control")
-        div(class=" error" name="bizarro" id="kostyl")
-        label(for="Привет" class="label-reg" ) Введите ваше имя
+            textarea(name="description" placeholder="Текст заказа"  class="textarea__control form-control")
+        div(class="error" id="kostyl")
+        label(class="label-reg" ) Введите ваше имя
         div(class='registration__input form-control')
             input(type="text" name="first_name" placeholder="Иван" class="registration__input form-control")
-        div(class=" error" name="bizarro")
-        label(for="Привет" class="label-reg" ) Выберите вашего специалиста
+        div(class="error")
+        label(class="label-reg" ) Выберите вашего специалиста
         div(class='registration__input form-control')
             select(name="specializes" class='form-control')
                 option(value="err") Выберите специальность
@@ -22,19 +22,11 @@ div(class='registration' style="height: 740px;")
                 option(value="Инженер") Инженер
                 option(value="Архитектор") Архитектор
                 option(value="Лингвист") Лингвист
-        div(class=" error" name="bizarro")
-        label(for="Привет" class="label-reg" ) Введите цену в рублях
+        div(class="error")
+        label(class="label-reg" ) Введите цену в рублях
         div(class='registration__input form-control')
-            input(type="text" name="price" placeholder="1000" class="registration__input form-control")
-        div(class=" error" name="bizarro")
-
-        //- //- НЕ СДЕЛАНА ВАЛИДАЦИЯ, ЕСЛИ НА ПРОВЕРКУ БУДЕТЕ СДАВАТЬ, УДАЛИТЕ ПОКА, ПОТОМ ДОДЕЛАЕМ!!!!!
-        //- label(for="Привет" class="label-reg" ) Дата исполнения   
-        //- div(class='registration__input form-control')
-        //-     input(type="date" name="Date" style="padding: 10px;" class="registration__input form-control")
-        //- div(class=" error" name="bizarro")
-
-
+            input(type="text" name="budget" placeholder="1000" class="registration__input form-control")
+        div(class="error")
         input(id="send_mess" type="submit" class="dws-submit" name="submit" value="Создать заказ")
 
 

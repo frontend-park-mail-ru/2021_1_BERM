@@ -1,0 +1,125 @@
+.registration {
+
+    --bg_reg: #FFFFFF;
+    --main-text-color-reg: #3888C6;
+    --reg-button: #EDEEF0;
+    --reg-button-font-color: black;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    position: center;
+    width: 450px;
+    background-color: var(--bg_reg);
+
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+.registration h2 {
+    color: var(--main-text-color-reg);
+}
+
+select {
+    width: 310px;
+    height: 35px;
+    margin-bottom: 25px;
+    padding-left: 4px;
+    margin-left: 32px;
+    margin-top: 5px;
+}
+
+/* .profile_post textarea{ margin: 0; } 
+.profile_post{ padding: 10px; }  */
+
+/* textarea {
+    width: 300px;
+    height: 120px;
+	display: block;
+    margin-bottom: -5px; 
+    padding-left: 4px;
+    resize: none;
+    margin-left: 32px;
+    margin-top: 5px;
+    box-sizing:border-box;
+    
+} */
+
+.textar {
+    height: 200px !important;
+}
+
+textarea{
+    padding-left: 4px;
+    margin-left: 26px;
+    margin-top: 5px;
+    resize: none;
+    height: 100%;
+    width: 310px;
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.registration__input {
+    width: 300px;
+    height: 30px;
+    /* margin-top: 40px; */
+    margin-bottom: 25px;
+    margin-left: 32px;
+    margin-top: 5px;
+    padding-left: 5px;
+    
+}
+
+.dws-submit {
+    padding: 13px 30px;
+    margin: 5px 0 0 0;
+    font-size: 15px;
+    color: var(--reg-button-font-color);
+    background-color: var(--reg-button);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dws-submit:hover {
+    transition: all 0.5s;
+    background: var(--main-text-color-reg);
+}
+
+.registration__input::before {
+    position: absolute;
+    font: 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
+    padding: 10px 0 0 0;
+    color: var(--main-text-color-reg);
+}
+
+.form-control:focus {
+
+    border-width: 0px;
+    border-color: red;
+    background-color: white;
+    
+}
+
+.label-reg {
+    font-size: 14px;
+    color: var(--main-text-color-reg);
+}
+
+input[type="date"]{
+    padding: 12px;
+    align-items: center; 
+    box-sizing: border-box;
+    width: 310px !important;
+    height:100%;
+    font-size: 18px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+   /* padding-left: 10px; */
+   
+  }
