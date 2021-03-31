@@ -19,7 +19,8 @@ jobs:
           sudo apt install npm
           npm install
       - name: linters
-        run: npm run lint
+        run: |
+          npm run lint
 
       - name: deploy
         uses: appleboy/ssh-action@master
