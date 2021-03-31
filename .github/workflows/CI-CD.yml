@@ -2,10 +2,10 @@ name: CI
 on:
   push:
     branches:
-      - development
+      - dev
   pull_request:
     branches:
-      - development
+      - dev
 jobs:
   check:
     runs-on: ubuntu-latest
