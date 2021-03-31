@@ -8,6 +8,8 @@ import {
     SETTING_SUBMIT,
 } from '../modules/utils/actions.js';
 
+import settingsTemplate from "@/templates/settings.pug"
+
 /** Контроллер регистрации клиента */
 export class SettingsView extends View {
     /**

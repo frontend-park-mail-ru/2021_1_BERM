@@ -9,6 +9,9 @@ import {
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
 
+import profileTemplate from '@/templates/profile.pug';
+import defaultImg from '@/static/img/profile.jpg';
+
 /** Вьюха профиля */
 export class ProfileView extends View {
     /**
@@ -38,7 +41,7 @@ export class ProfileView extends View {
 
         const img = document.getElementById('profile_img');
         if (info.img === null || info.img === undefined) {
-            img.src = 'static/img/profile.jpg';
+            img.src = defaultImg;
         } else {
             img.src = info.img;
         }

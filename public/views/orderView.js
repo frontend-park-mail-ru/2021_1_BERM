@@ -3,6 +3,8 @@ import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
 import {NO_ORDER, ORDER_SUBMIT} from '../modules/utils/actions.js';
 
+import orderPageTemplate from "@/templates/orderPage.pug";
+
 /** Вьюха создания заказа */
 export class OrderView extends View {
     /**
@@ -11,7 +13,7 @@ export class OrderView extends View {
     render() {
         super.renderHtml(
             'Разместить заказ',
-            orderpageTemplate(),
+            orderPageTemplate(),
             [
                 [NO_ORDER, this._onNoOrder],
             ]);

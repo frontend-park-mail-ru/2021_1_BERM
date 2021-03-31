@@ -39,9 +39,14 @@ class Router {
             this.start();
         }, false);
 
-        // ToDo(Алексей Егоров): Здесь
-        //  идет загрузка страницы по path при перезагрузке.
-        //  Нужно обрабатывать текущий pathname. (Пока костыль)
+        // let path = window.location.pathname
+        //     .slice(1);
+        //
+        // if (path === '') {
+        //     path = 'main-page';
+        //     window.location = window.location.host + '/main-page';
+        // }
+
         this.startPath = 'main-page';
     }
 

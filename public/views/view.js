@@ -1,6 +1,9 @@
 import {BaseMVC} from '../modules/baseMVC.js';
 import user from '../models/User.js';
 
+import navbarTemplate from '@/templates/navbar.pug';
+import profIcon from '@/static/img/icon.png';
+
 /** Базовый класс для отображение страниц */
 export class View extends BaseMVC {
     /**
@@ -16,7 +19,7 @@ export class View extends BaseMVC {
         if (user.isAuthorized) {
             htmlNav = navbarTemplate({
                 authorized: true,
-                profIcon: 'static/img/icon.png',
+                profIcon: profIcon,
             });
         } else {
             htmlNav = navbarTemplate();
