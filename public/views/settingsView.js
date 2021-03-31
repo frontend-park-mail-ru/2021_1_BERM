@@ -2,6 +2,8 @@ import {View} from './view.js';
 import {Validator} from './validator.js'
 import eventBus from "../modules/eventBus.js";
 
+import settingsTemplate from "@/templates/settings.pug"
+
 export class SettingsView extends View {
     render() {
         super.setListeners([

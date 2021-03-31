@@ -2,6 +2,8 @@ import {View} from './view.js';
 
 import eventBus from "../modules/eventBus.js";
 
+import loginTemplate from "@/templates/login.pug"
+
 export class LoginView extends View {
     render() {
         super.renderHtml(

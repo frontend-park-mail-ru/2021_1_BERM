@@ -1,6 +1,8 @@
 import {BaseMVC} from "../modules/baseMVC.js";
 import user from "../models/User.js";
 
+import navbarTemplate from '@/templates/navbar.pug'
+
 export class View extends BaseMVC {
     renderHtml(content, listenersArr = null) {
         let htmlNav;
@@ -8,7 +10,7 @@ export class View extends BaseMVC {
         if (user.isAuthorized) {
             htmlNav = navbarTemplate({
                 authorized: true,
-                profIcon: "static/img/icon.png",
+                profIcon: "@/static/img/icon.png",
             });
         } else {
             htmlNav = navbarTemplate();

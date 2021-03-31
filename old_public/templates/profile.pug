@@ -4,8 +4,8 @@ div(class='profile-content')
             p(class='profile__name') #{name}  [#{nickName}]
         div(class='settings_profile_button')
             p
-                img(class='icon', src="static/img/settings.png")
-                a(href='settings' data-title="Настройки") Настройки
+                img(class='icon', src='img/settings.png')
+                a(href='#/settings') Настройки
     div(class='profile__column_text')
         div(class='profile__item_name')
             figure
@@ -21,21 +21,22 @@ div(class='profile-content')
                     li #{specialize}
         div(class='profile__item_info')
             p(class='margin-inc')
-                img(class='icon' src="static/img/reviews.png")
+                img(class='icon' src='img/reviews.png')
                 span Отзывы
-                a 25
-                a(class='good_reviews') 20
-                a(class='bad_reviews') 5
+                a(href='#') 25
+                a(href='#' class='good_reviews') 20
+                a(href='#' class='bad_reviews') 5
             p(class='margin-inc')
-                img(class='icon' src="static/img/rate.png")
+                img(class='icon' src='img/rate.png')
                 span Рейтинг
-                a 7
+                a(href='#') 7
             p(class='margin-inc')
-                img(class='icon' src="static/img/order.png")
+                img(class='icon' src='img/order.png')
                 span Всего заказов
+                a(href='#')
             div(class='profile__item_exit')
                 p(class='margin-inc')
-                    a(id="profile__exit_link") Выход
+                    a(href='#/exit') Выход
     p(class='profile__about') О себе
     div(class='profile__definition_text')
         if (about === undefined)

@@ -1,6 +1,8 @@
 import {View} from "./view.js";
 import eventBus from "../modules/eventBus.js";
 
+import profileTemplate from "@/templates/profile.pug"
+
 export class ProfileView extends View {
     render() {
         super.setListeners([

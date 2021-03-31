@@ -1,0 +1,20 @@
+mixin navbarContent()
+    if authorized
+        a(class="navbar_icon", href="#/profile")
+            img(class="icon", src=profIcon)
+        a(href="#/orderPage") Разместить заказ
+    else
+        a(href="#/login") Вход
+        div(class="navbar__registration")
+            a(class="navbar__registration_btn") Регистрация
+            div(class="navbar__registration_content")
+                a(href="#/clientReg") За клиента
+                a(href="#/workerReg") За исполнителя
+    div(class="navbar__button_title")
+        a(class="active" href="#/") FL
+
+
+div(class="navbar" id="myTopnav")
+    div(class="main__container")
+        div(class="main__container_center")
+            +navbarContent

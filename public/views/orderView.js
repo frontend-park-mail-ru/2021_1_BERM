@@ -2,6 +2,8 @@ import {View} from './view.js';
 import {Validator} from './validator.js'
 import eventBus from "../modules/eventBus.js";
 
+import orderpageTemplate from "@/templates/orderPage.pug"
+
 export class OrderView extends View {
     render() {
         super.renderHtml(

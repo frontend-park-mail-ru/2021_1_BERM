@@ -2,6 +2,8 @@ import {View} from './view.js';
 import eventBus from "../modules/eventBus.js";
 import {Validator} from "./validator.js";
 
+import workerregTemplate from '@/templates/workerReg.pug'
+
 export class WorkerRegView extends View {
     render() {
         super.renderHtml(
