@@ -10,11 +10,11 @@ import {
     SETTING_UPD,
 } from '../modules/utils/actions.js';
 
-/** Синглтон класс, который делает запрос на сервер и отдает
+/** Singleton класс, который делает запрос на сервер и отдает
  * результат контроллеру */
 export default class Auth {
     /**
-     * Конструктор
+     * Запрос на проверку авторизации
      * @return {Object}
      */
     static isAuthorized() {
@@ -70,7 +70,7 @@ export default class Auth {
     }
 
     /**
-     * Отправка на разлогинивание
+     * Отправка запроса на logout
      * @return {Object}
      */
     static logout() {

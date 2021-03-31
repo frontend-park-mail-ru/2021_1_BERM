@@ -6,9 +6,9 @@ import {
     NO_LOGIN,
 } from '../modules/utils/actions.js';
 
-import loginTemplate from "@/templates/login.pug"
+import loginTemplate from '@/templates/login.pug';
 
-/** Вьюха логина */
+/** View логина */
 export class LoginView extends View {
     /**
      * Отображение страницы и получение с нее данных

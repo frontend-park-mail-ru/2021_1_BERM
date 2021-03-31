@@ -11,7 +11,7 @@ export class View extends BaseMVC {
      *
      * @param {string} title - результат запроса
      * @param {HTMLAllCollection} content - результат запроса
-     * @param {Set} listenersArr - результат запроса
+     * @param {Array} listenersArr - результат запроса
      */
     renderHtml(title, content, listenersArr = null) {
         let htmlNav;
@@ -25,8 +25,6 @@ export class View extends BaseMVC {
             htmlNav = navbarTemplate();
         }
 
-        // Здесь вся отрисовка
-
         document.title = title;
 
         const root = document.getElementById('root');
@@ -37,6 +35,11 @@ export class View extends BaseMVC {
         }
     }
 
+    /**
+     * Добавляет слушателей на события
+     *
+     * @param {Array} listenersArr - массив событий
+     */
     setListeners(listenersArr) {
         this.listeners = new Set(listenersArr);
         super.onAll();

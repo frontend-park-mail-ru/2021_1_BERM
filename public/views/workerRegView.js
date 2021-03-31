@@ -3,9 +3,9 @@ import eventBus from '../modules/eventBus.js';
 import {Validator} from './validator.js';
 import {NO_REG_WORKER, WORKER_REG_SUBMIT} from '../modules/utils/actions.js';
 
-import workerregTemplate from '@/templates/workerReg.pug';
+import workerRegTemplate from '@/templates/workerReg.pug';
 
-/** Вьюха регистрации исполнителя */
+/** View регистрации исполнителя */
 export class WorkerRegView extends View {
     /**
      * Отображение страницы и получение с нее данных
@@ -13,7 +13,7 @@ export class WorkerRegView extends View {
     render() {
         super.renderHtml(
             'Регистрация',
-            workerregTemplate(),
+            workerRegTemplate(),
             [
                 [NO_REG_WORKER, this._onNoRegistration],
             ]);

@@ -1,6 +1,6 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'public'),
@@ -13,31 +13,31 @@ module.exports = {
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'public'),
-        }
+        },
     },
     devServer: {
         port: 8000,
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html'
+            template: './index.html',
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
     ],
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,
-                use: ['file-loader']
+                use: ['file-loader'],
             },
             {
                 test: /\.pug$/,
-                use: ['pug-loader']
-            }
-        ]
-    }
-}
+                use: ['pug-loader'],
+            },
+        ],
+    },
+};

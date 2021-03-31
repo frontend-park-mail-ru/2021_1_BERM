@@ -129,7 +129,7 @@ export class ProfileController extends Controller {
     _onExit() {
         auth.logout()
             .catch((res) => {
-                console.log('не удалось распарсить JSON', res.message);
+                console.log('не удалось parse JSON', res.message);
             });
         user.isAuthorized = false;
         user.isGetAttr = false;

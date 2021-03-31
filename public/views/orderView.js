@@ -3,9 +3,9 @@ import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
 import {NO_ORDER, ORDER_SUBMIT} from '../modules/utils/actions.js';
 
-import orderPageTemplate from "@/templates/orderPage.pug";
+import orderPageTemplate from '@/templates/orderPage.pug';
 
-/** Вьюха создания заказа */
+/** View создания заказа */
 export class OrderView extends View {
     /**
      * Отображение страницы и получение с нее данных
@@ -26,7 +26,7 @@ export class OrderView extends View {
             event.preventDefault();
             const data = {
                 order_name: event.target.order_name.value,
-                specialize: 'Косяки апишки',
+                specialize: 'Косяки API',
                 // Todo user.first_name + " " + user.second_name
                 description: event.target.description.value,
                 budget: event.target.budget.value,

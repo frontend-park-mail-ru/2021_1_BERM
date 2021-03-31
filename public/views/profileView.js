@@ -12,7 +12,7 @@ import {
 import profileTemplate from '@/templates/profile.pug';
 import defaultImg from '@/static/img/profile.jpg';
 
-/** Вьюха профиля */
+/** View профиля */
 export class ProfileView extends View {
     /**
      * Отображение страницы и получение с нее данных

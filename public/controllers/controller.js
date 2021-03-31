@@ -3,15 +3,15 @@ import auth from '../models/Auth.js';
 import user from '../models/User.js';
 
 /** Родительский класс, от которого наследуются остальные контроллеры.
- * Осуществляет взаимодействие между моделями и вьюхами  */
+ * Осуществляет взаимодействие между моделями и view  */
 export class Controller extends BaseMVC {
     /**
      * Валидации при срабатывании нажатия кнопки
      *
-     * @param {any} className - форма
+     * @param {any} view - форма
      * @param {Array} listenersArr - массив слушателей
      */
-    run(className, listenersArr) {
+    run(view, listenersArr) {
         if (!user.isAuthorized) {
             this.checkAuthorized();
         }
@@ -19,12 +19,12 @@ export class Controller extends BaseMVC {
         this.listeners = new Set(listenersArr);
         super.onAll();
 
-        this.view = className;
-        this.view.render();
+        this.view = view;
+        view.render();
     }
 
     /**
-     * Проверка авторизованности
+     * Проверка авторизации
      */
     checkAuthorized() {
         auth.isAuthorized()

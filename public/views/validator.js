@@ -47,8 +47,8 @@ export class Validator {
             let isError = false;
             let invalid = false;
 
-            for (const property in formVal) {
-                if (property === 'submit') continue;
+            formVal.forEach((property) => {
+                if (property === 'submit') return;
                 error = handler.getError(formVal, property);
 
                 if (error.length !== 0) {
@@ -57,7 +57,7 @@ export class Validator {
                 } else if (error.length === 0) {
                     reflector.show(reflector.valid, property, '');
                 }
-            }
+            });
 
             if (invalid === true) {
                 isError = true;

@@ -72,7 +72,7 @@ export class SettingsController extends Controller {
     }
 
     /**
-     * Отправка данных для рендера в SettingsView
+     * Отправка данных для render в SettingsView
      */
     _sendUserData() {
         eventBus.emit(GET_USER_DATA, {
