@@ -72,13 +72,13 @@ class Router {
             };
         }
 
-        const controller = this.states[currentState.page].controller;
+        const Controller = this.states[currentState.page].controller;
 
         if (this.currentController) {
             this.currentController.offAll();
         }
 
-        this.currentController = new controller();
+        this.currentController = new Controller();
         this.currentController.run();
     }
 }

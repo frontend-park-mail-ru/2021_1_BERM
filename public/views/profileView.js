@@ -1,8 +1,19 @@
-import {View} from "./view.js";
-import eventBus from "../modules/eventBus.js";
-import {EXIT, FAIL_LOAD_IMG, IMG_CHANGE, PROFILE, RENDER_PROFILE, SUCCESS_LOAD_IMG} from "../modules/utils/actions.js";
+import {View} from './view.js';
+import eventBus from '../modules/eventBus.js';
+import {
+    EXIT,
+    FAIL_LOAD_IMG,
+    IMG_CHANGE,
+    PROFILE,
+    RENDER_PROFILE,
+    SUCCESS_LOAD_IMG,
+} from '../modules/utils/actions.js';
 
+/** Вьюха профиля */
 export class ProfileView extends View {
+    /**
+     * Отображение страницы и получение с нее данных
+     */
     render() {
         super.setListeners([
             [RENDER_PROFILE, this._renderProfile],
@@ -13,14 +24,19 @@ export class ProfileView extends View {
         eventBus.emit(PROFILE);
     }
 
+    /**
+     * Отображения данных пользователя
+     *
+     * @param {Object} info - форма
+     */
     _renderProfile(info) {
         super.renderHtml(
             'Профиль',
-            profileTemplate(info)
+            profileTemplate(info),
         );
 
 
-        let img = document.getElementById('profile_img');
+        const img = document.getElementById('profile_img');
         if (info.img === null || info.img === undefined) {
             img.src = 'static/img/profile.jpg';
         } else {
@@ -36,19 +52,27 @@ export class ProfileView extends View {
                 eventBus.emit(IMG_CHANGE, fReader.result);
             };
             await fReader.readAsDataURL(file);
-        }
+        };
 
         const exitLink = document.getElementById('profile__exit_link');
         exitLink.addEventListener('click', () => {
             eventBus.emit(EXIT);
-        })
+        });
     }
 
+    /**
+     * Отображение успешной загрузки картинки
+     *
+     * @param {string} src - форма
+     */
     _successLoadImage(src) {
-        let img = document.getElementById('profile_img');
+        const img = document.getElementById('profile_img');
         img.src = src;
     }
 
+    /**
+     * Отображение неуспешной загрузки картинки
+     */
     _failLoadImage() {
         // ToDo: Отобразить. Не удалось загрузить изображение
         console.log('Не удалось загрузить изображение');

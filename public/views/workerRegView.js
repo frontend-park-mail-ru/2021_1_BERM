@@ -1,9 +1,13 @@
 import {View} from './view.js';
-import eventBus from "../modules/eventBus.js";
-import {Validator} from "./validator.js";
-import {NO_REG_WORKER, WORKER_REG_SUBMIT} from "../modules/utils/actions.js";
+import eventBus from '../modules/eventBus.js';
+import {Validator} from './validator.js';
+import {NO_REG_WORKER, WORKER_REG_SUBMIT} from '../modules/utils/actions.js';
 
+/** Вьюха регистрации исполнителя */
 export class WorkerRegView extends View {
+    /**
+     * Отображение страницы и получение с нее данных
+     */
     render() {
         super.renderHtml(
             'Регистрация',
@@ -12,7 +16,7 @@ export class WorkerRegView extends View {
                 [NO_REG_WORKER, this._onNoRegistration],
             ]);
 
-        let val = new Validator('feedback', '.form-control', 'send_mess');
+        const val = new Validator('feedback', '.form-control', 'send_mess');
         val.validate();
 
         const form = document.getElementById('feedback');
@@ -24,14 +28,17 @@ export class WorkerRegView extends View {
                 user_name: event.target.user_name.value,
                 first_name: event.target.first_name.value,
                 second_name: event.target.second_name.value,
-                specializes: [event.target.specializes.value,],
-                about: "Заполните информацию о себе",
+                specializes: [event.target.specializes.value],
+                about: 'Заполните информацию о себе',
             };
 
             eventBus.emit(WORKER_REG_SUBMIT, data);
         });
     }
 
+    /**
+     * Обработка в случае провала
+     */
     _onNoRegistration() {
         // ToDo такой email уже существует
         console.log('sorry, this invalid email');

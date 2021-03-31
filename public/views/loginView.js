@@ -2,12 +2,15 @@ import {View} from './view.js';
 
 import eventBus from '../modules/eventBus.js';
 import {
-    LOGIN,
     LOGIN_SUBMIT,
     NO_LOGIN,
 } from '../modules/utils/actions.js';
 
+/** Вьюха логина */
 export class LoginView extends View {
+    /**
+     * Отображение страницы и получение с нее данных
+     */
     render() {
         super.renderHtml(
             'Авторизация',
@@ -28,6 +31,9 @@ export class LoginView extends View {
         });
     }
 
+    /**
+     * Обработка в случае провала
+     */
     _onNoLogin() {
         // ToDo(Алексей Егоров): Неправильная почта или пароль
         console.log('wrong email or password');
