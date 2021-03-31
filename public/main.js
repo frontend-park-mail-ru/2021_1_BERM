@@ -24,4 +24,5 @@ controllers.forEach((value) => {
 });
 
 
+router.setUp();
 router.start();

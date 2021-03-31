@@ -8,81 +8,79 @@ export class ValidHandler {
     }
 
     getError(formVal, property) {
-        let error = '',
-            validate = {
-                'user_name': () => {
+            const validate = {
+                user_name: () => {
                     if (formVal.user_name.length === 0 || this.patterns.get('user_name').test(formVal.user_name) === false) {
-                        error = this.errors[7];
+                        return this.errors[7];
                     }
                 },
-                'email': () => {
+                email: () => {
                     if (formVal.email.length === 0) {
-                        error = this.errors[2];
+                        return this.errors[2];
                     } else if (this.patterns.get('mail').test(formVal.email) === false) {
-                        error = this.errors[3];
+                        return this.errors[3];
                     }
                 },
-                'order_name': () => {
+                order_name: () => {
                     if (formVal.order_name.length === 0) {
-                        error = this.errors[4];
+                        return this.errors[4];
                     } else if (this.patterns.get('spam').test(formVal.order_name) === false) {
-                        error = this.errors[6];
+                        return this.errors[6];
                     }
                 },
-                'about': () => {
+                about: () => {
                     if (formVal.about.length === 0) {
-                        error = this.errors[5];
+                        return this.errors[5];
                     } else if (this.patterns.get('spam').test(formVal.about) === false) {
-                        error = this.errors[6];
+                        return this.errors[6];
                     }
                 },
-                'description': () => {
+                description: () => {
                     if (formVal.description.length === 0) {
-                        error = this.errors[5];
+                        return this.errors[5];
                     } else if (this.patterns.get('spam').test(formVal.description) === false) {
-                        error = this.errors[6];
+                        return this.errors[6];
                     }
                 },
-                'first_name': () => {
+                first_name: () => {
                     // console.log(this.patterns.get('name'))
                     if (formVal.first_name.length === 0 || this.patterns.get('name').test(formVal.first_name) === false) {
-                        error = this.errors[1];
+                        return this.errors[1];
                     }
                 },
-                'second_name': () => {
+                second_name: () => {
                     if (formVal.second_name.length === 0 || this.patterns.get('name').test(formVal.second_name) === false) {
-                        error = this.errors[8];
+                        return this.errors[8];
                     }
                 },
-                'specializes': () => {
+                specializes: () => {
                     if (formVal.specializes === 'err') {
-                        error = this.errors[10];
+                        return this.errors[10];
                     }
                 },
-                'password': () => {
+                password: () => {
                     this.password = formVal.password;
                     if (formVal.password.length === 0 || this.patterns.get('password').test(formVal.password) === false) {
-                        error = this.errors[12];
+                        return this.errors[12];
                     }
                 },
-                'password_repeat': () => {
+                password_repeat: () => {
                     if (formVal.password_repeat.length === 0 || this.patterns.get('password').test(formVal.password_repeat) === false) {
-                        error = this.errors[12];
+                        return this.errors[12];
                     }
                     if (this.password !== formVal.password_repeat) {
-                        error = this.errors[13];
+                        return this.errors[13];
                     }
                 },
-                'budget': () => {
+                budget: () => {
                     if (formVal.budget.length === 0 || this.patterns.get('budget').test(formVal.budget) === false) {
-                        error = this.errors[14];
+                        return this.errors[14];
                     }
                 },
-                'submit': () => {
-                    error = ''
+                submit: () => {
+                    return '';
                 }
             };
         validate[property]();
-        return error;
     }
 }

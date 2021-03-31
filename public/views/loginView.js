@@ -6,6 +6,7 @@ import {LOGIN, LOGIN_SUBMIT, NO_LOGIN} from "../modules/utils/actions.js";
 export class LoginView extends View {
     render() {
         super.renderHtml(
+            'Авторизация',
             loginTemplate(),
             [
             [NO_LOGIN, this._onNoLogin],

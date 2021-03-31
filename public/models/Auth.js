@@ -9,14 +9,14 @@ export default class Auth {
     }
 
     static login(data) {
-        sendRequest('POST', '/login', JSON.parse(JSON.stringify(data)))
+        sendRequest('POST', '/login', data)
             .then((res) => {
                 eventBus.emit(LOGIN, res);
             });
     }
 
     static reg(data) {
-        sendRequest('POST', '/profile', JSON.parse(JSON.stringify(data)))
+        sendRequest('POST', '/profile', data)
             .then((res) => {
                 eventBus.emit(REG, res);
             });
@@ -30,7 +30,7 @@ export default class Auth {
     }
 
     static sendImage(src) {
-        sendRequest('POST', '/profile/avatar', JSON.parse(JSON.stringify({img: src})))
+        sendRequest('POST', '/profile/avatar', {img: src})
             .then((res) => {
                 eventBus.emit(IMG_LOAD, {res, src});
             })
@@ -41,14 +41,14 @@ export default class Auth {
     }
 
     static updateSettings(data) {
-        sendRequest('PATCH', `/profile/${User.id}`, JSON.parse(JSON.stringify(data)))
+        sendRequest('PATCH', `/profile/${User.id}`, data)
             .then((res) => {
                 eventBus.emit(SETTING_UPD, res);
             });
     }
 
     static createOrder(data) {
-        sendRequest('POST', '/order', JSON.parse(JSON.stringify(data)))
+        sendRequest('POST', '/order', data)
             .then((res) => {
                 eventBus.emit(ORDER_CREATE, res);
             });

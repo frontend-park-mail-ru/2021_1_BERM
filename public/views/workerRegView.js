@@ -6,6 +6,7 @@ import {NO_REG_WORKER, WORKER_REG_SUBMIT} from "../modules/utils/actions.js";
 export class WorkerRegView extends View {
     render() {
         super.renderHtml(
+            'Регистрация',
             workerregTemplate(),
             [
                 [NO_REG_WORKER, this._onNoRegistration],

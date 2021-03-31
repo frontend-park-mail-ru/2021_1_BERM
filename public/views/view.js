@@ -2,7 +2,7 @@ import {BaseMVC} from "../modules/baseMVC.js";
 import user from "../models/User.js";
 
 export class View extends BaseMVC {
-    renderHtml(content, listenersArr = null) {
+    renderHtml(title, content, listenersArr = null) {
         let htmlNav;
 
         if (user.isAuthorized) {
@@ -15,6 +15,9 @@ export class View extends BaseMVC {
         }
 
         // Здесь вся отрисовка
+
+        document.title = title;
+
         const root = document.getElementById('root');
         root.innerHTML = htmlNav + content;
 

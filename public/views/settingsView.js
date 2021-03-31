@@ -14,6 +14,7 @@ export class SettingsView extends View {
 
     _renderData(data) {
         super.renderHtml(
+            'Настройки',
             settingsTemplate(data)
         );
 

@@ -6,6 +6,7 @@ import {CLIENT_REG_SUBMIT, NO_REG_CLIENT} from "../modules/utils/actions.js";
 export class ClientRegView extends View {
     render() {
         super.renderHtml(
+            'Регистрация',
             clientregTemplate(),
             [
             [NO_REG_CLIENT, this._onNoRegistration],

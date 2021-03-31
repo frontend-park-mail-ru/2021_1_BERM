@@ -6,6 +6,7 @@ import {NO_ORDER, ORDER_SUBMIT} from "../modules/utils/actions.js";
 export class OrderView extends View {
     render() {
         super.renderHtml(
+            'Разместить заказ',
             orderpageTemplate(),
             [
                 [NO_ORDER, this._onNoOrder],

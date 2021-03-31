@@ -15,6 +15,7 @@ export class ProfileView extends View {
 
     _renderProfile(info) {
         super.renderHtml(
+            'Профиль',
             profileTemplate(info)
         );
 

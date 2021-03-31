@@ -22,7 +22,7 @@ export class LoginController extends Controller {
 
     _onLogin(res) {
         if (res.ok) {
-            router.go('main-page', 'FindFreelancer.ru');
+            router.go('main-page');
         } else {
             eventBus.emit(NO_LOGIN);
         }
