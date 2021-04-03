@@ -1,5 +1,4 @@
 import {BaseMVC} from '../modules/baseMVC.js';
-import user from '../models/User.js';
 
 import navbarTemplate from '@/templates/navbar.pug';
 import profIcon from '@/static/img/icon.png';
@@ -9,14 +8,15 @@ export class View extends BaseMVC {
     /**
      * Обработка результата
      *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
      * @param {string} title - результат запроса
      * @param {HTMLAllCollection} content - результат запроса
      * @param {Array} listenersArr - результат запроса
      */
-    renderHtml(title, content, listenersArr = null) {
+    renderHtml(isAuthorized, title, content, listenersArr = null) {
         let htmlNav;
 
-        if (user.isAuthorized) {
+        if (isAuthorized) {
             htmlNav = navbarTemplate({
                 authorized: true,
                 profIcon: profIcon,

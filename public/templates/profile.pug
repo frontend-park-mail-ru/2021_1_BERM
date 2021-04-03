@@ -1,7 +1,7 @@
 div(class='profile-content')
     div(class='profile__column_text')
         div(class='name profile__item_name')
-            p(class='profile__name') #{name}  [#{nickName}]
+            p(class='profile__name') #{name}  [#{login}]
         div(class='settings_profile_button')
             p
                 img(class='icon', src=require("@/static/img/settings.png").default)
@@ -9,7 +9,7 @@ div(class='profile-content')
     div(class='profile__column_text')
         div(class='profile__item_name')
             figure
-                img(class='profile_photo' id='profile_img' src=profileImgUrl)
+                img(class='profile_photo' id='profile_img')
                 figcaption
                     form(id="upload-container")
                         input(id="file-input" accept="image/jpeg" type="file" name="file")
@@ -18,7 +18,8 @@ div(class='profile-content')
             div(class='profile__item_spec')
                 p(class='spec') Специализации:
                 ul
-                    li #{specialize}
+                    each specialize in specializes
+                        li #{specialize}
         div(class='profile__item_info')
             p(class='margin-inc')
                 img(class='icon' src=require("@/static/img/reviews.png").default)

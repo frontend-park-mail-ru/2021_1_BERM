@@ -9,9 +9,12 @@ import clientRegTemplate from '@/templates/clientReg.pug';
 export class ClientRegView extends View {
     /**
      * Отображение страницы и получение с нее данных
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
      */
-    render() {
+    render(isAuthorized) {
         super.renderHtml(
+            isAuthorized,
             'Регистрация',
             clientRegTemplate(),
             [
@@ -27,9 +30,10 @@ export class ClientRegView extends View {
             const data = {
                 email: event.target.email.value,
                 password: event.target.password.value,
-                user_name: event.target.user_name.value,
-                first_name: event.target.first_name.value,
-                second_name: event.target.second_name.value,
+                login: event.target.user_name.value,
+                name_surname: event.target.first_name.value + ' ' +
+                    event.target.second_name.value,
+                about: 'Заполните информацию о себе',
             };
 
             eventBus.emit(CLIENT_REG_SUBMIT, data);

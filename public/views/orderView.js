@@ -9,9 +9,12 @@ import orderPageTemplate from '@/templates/orderPage.pug';
 export class OrderView extends View {
     /**
      * Отображение страницы и получение с нее данных
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
      */
-    render() {
+    render(isAuthorized) {
         super.renderHtml(
+            isAuthorized,
             'Разместить заказ',
             orderPageTemplate(),
             [
@@ -26,11 +29,12 @@ export class OrderView extends View {
             event.preventDefault();
             const data = {
                 order_name: event.target.order_name.value,
-                specialize: 'Косяки API',
-                // Todo user.first_name + " " + user.second_name
+                category: 'Тут категория заказа',
+                // ToDo: В форму заказа добавить категорию
                 description: event.target.description.value,
                 budget: event.target.budget.value,
-                deadline: 1617004533, // ToDo сделать в форме дедлайн заказа
+                deadline: 1617004533,
+                // ToDo сделать в форме дедлайн заказа
             };
 
             eventBus.emit(ORDER_SUBMIT, data);

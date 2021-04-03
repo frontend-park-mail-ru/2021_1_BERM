@@ -47,7 +47,7 @@ export class Validator {
             let isError = false;
             let invalid = false;
 
-            formVal.forEach((property) => {
+            Object.keys(formVal).forEach((property) => {
                 if (property === 'submit') return;
                 error = handler.getError(formVal, property);
 

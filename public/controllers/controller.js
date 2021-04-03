@@ -11,33 +11,36 @@ export class Controller extends BaseMVC {
      * @param {any} view - форма
      * @param {Array} listenersArr - массив слушателей
      */
-    run(view, listenersArr) {
+    async run(view, listenersArr) {
         if (!user.isAuthorized) {
-            this.checkAuthorized();
+            await this.checkAuthorized();
         }
 
         this.listeners = new Set(listenersArr);
         super.onAll();
 
         this.view = view;
-        view.render();
+        view.render(user.isAuthorized);
     }
 
     /**
      * Проверка авторизации
      */
-    checkAuthorized() {
-        auth.isAuthorized()
+    async checkAuthorized() {
+        return auth.isAuthorized()
             .then((res) => {
                 if (res.ok) {
-                    res.json()
-                        .then((result) => {
-                            user.isAuthorized = true;
-                            user.id = result.id;
-                        });
+                    return res.json();
                 }
+            })
+            .then((result) => {
+                if (result) {
+                    user.isAuthorized = true;
+                    user.id = result.id;
+                }
+            })
+            .catch((result) => {
+                console.log('Error. CheckAuthorized.', result);
             });
-        user.isAuthorized = true;
-        user.id = 12;
     }
 }

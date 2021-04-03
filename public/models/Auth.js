@@ -18,7 +18,7 @@ export default class Auth {
      * @return {Object}
      */
     static isAuthorized() {
-        return sendRequest('GET', '/authorized');
+        return sendRequest('GET', '/profile/authorized');
     }
 
     /**
@@ -83,7 +83,7 @@ export default class Auth {
      * @param {Object} data - данные на отправку
      */
     static updateSettings(data) {
-        sendRequest('PATCH', `/profile/${User.id}`, data)
+        sendRequest('PUT', `/profile/${User.id}`, data)
             .then((res) => {
                 eventBus.emit(SETTING_UPD, res);
             });

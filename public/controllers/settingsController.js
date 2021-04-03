@@ -45,12 +45,12 @@ export class SettingsController extends Controller {
             res.json()
                 .then((res) => {
                     const data = {
-                        first_name: res.first_name,
-                        second_name: res.second_name,
-                        nickName: res.user_name,
+                        nameSurname: res.name_surname,
+                        login: res.login,
                         isExecutor: res.executor,
-                        specialize: res.specializes,
+                        specializes: res.specializes,
                         about: res.about,
+                        email: res.email,
                     };
 
                     user.setAttributes(data);
@@ -76,9 +76,9 @@ export class SettingsController extends Controller {
      */
     _sendUserData() {
         eventBus.emit(GET_USER_DATA, {
-            nickName: user.nickName,
-            name: user.first_name,
-            surname: user.second_name,
+            isAuthorized: user.isAuthorized,
+            login: user.login,
+            name: user.nameSurname,
             email: user.email,
         });
     }

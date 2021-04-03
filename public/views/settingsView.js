@@ -14,8 +14,10 @@ import settingsTemplate from '@/templates/settings.pug';
 export class SettingsView extends View {
     /**
      * Отображение страницы и получение с нее данных
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
      */
-    render() {
+    render(isAuthorized) {
         super.setListeners([
             [GET_USER_DATA, this._renderData],
             [NO_SET_UP, this._onNoSetUp],
@@ -26,10 +28,11 @@ export class SettingsView extends View {
     /**
      * Отображения данных пользователя
      *
-     * @param {Object} data - форма
+     * @param {Object} data - объект с информацией пользователя
      */
     _renderData(data) {
         super.renderHtml(
+            data.isAuthorized,
             'Настройки',
             settingsTemplate(data),
         );
@@ -41,11 +44,9 @@ export class SettingsView extends View {
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             const data = {
-                name_surname: event.target.first_name.value + ' ' + event
-                    .target.second_name.value,
+                name_surname: event.target.nameSurname.value,
                 password: event.target.password.value,
-                user_name: event.target.user_name.value,
-                specialize: '', // TODO event.target.specialize.value,
+                login: event.target.login.value,
                 about: event.target.about.value,
             };
 

@@ -9,9 +9,12 @@ import workerRegTemplate from '@/templates/workerReg.pug';
 export class WorkerRegView extends View {
     /**
      * Отображение страницы и получение с нее данных
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
      */
-    render() {
+    render(isAuthorized) {
         super.renderHtml(
+            isAuthorized,
             'Регистрация',
             workerRegTemplate(),
             [
@@ -27,11 +30,12 @@ export class WorkerRegView extends View {
             const data = {
                 email: event.target.email.value,
                 password: event.target.password.value,
-                user_name: event.target.user_name.value,
-                first_name: event.target.first_name.value,
-                second_name: event.target.second_name.value,
+                login: event.target.user_name.value,
+                name_surname: event.target.first_name.value + ' ' +
+                    event.target.second_name.value,
                 specializes: [event.target.specializes.value],
                 about: 'Заполните информацию о себе',
+                executor: true,
             };
 
             eventBus.emit(WORKER_REG_SUBMIT, data);

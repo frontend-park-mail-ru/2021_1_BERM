@@ -12,9 +12,12 @@ import loginTemplate from '@/templates/login.pug';
 export class LoginView extends View {
     /**
      * Отображение страницы и получение с нее данных
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
      */
-    render() {
+    render(isAuthorized) {
         super.renderHtml(
+            isAuthorized,
             'Авторизация',
             loginTemplate(),
             [

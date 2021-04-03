@@ -16,8 +16,10 @@ import defaultImg from '@/static/img/profile.jpg';
 export class ProfileView extends View {
     /**
      * Отображение страницы и получение с нее данных
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
      */
-    render() {
+    render(isAuthorized) {
         super.setListeners([
             [RENDER_PROFILE, this._renderProfile],
             [SUCCESS_LOAD_IMG, this._successLoadImage],
@@ -30,10 +32,11 @@ export class ProfileView extends View {
     /**
      * Отображения данных пользователя
      *
-     * @param {Object} info - форма
+     * @param {Object} info - объект с информацией пользователя
      */
     _renderProfile(info) {
         super.renderHtml(
+            info.isAuthorized,
             'Профиль',
             profileTemplate(info),
         );

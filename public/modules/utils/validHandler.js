@@ -16,14 +16,16 @@ export class ValidHandler {
      *
      * @param {Object} formVal - значения формы
      * @param {string} property - кнопка
+     *
+     * @return {string} error - сообщение о ошибке
      */
     getError(formVal, property) {
         const validate = {
-            user_name: () => {
-                if (formVal.user_name.length === 0 ||
+            login: () => {
+                if (formVal.login.length === 0 ||
                     this.patterns
                         .get('user_name')
-                        .test(formVal.user_name) === false) {
+                        .test(formVal.login) === false) {
                     return this.errors[7];
                 }
             },
@@ -116,6 +118,11 @@ export class ValidHandler {
                 return '';
             },
         };
-        validate[property]();
+
+        const res = validate[property]();
+        if (res) {
+            return res;
+        }
+        return '';
     }
 }
