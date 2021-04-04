@@ -1,17 +1,17 @@
 mixin navbarContent()
     if authorized
-        a(class="navbar_icon" href="profile"  data-title="Профиль")
-            img(class="icon" href="profile"  data-title="Профиль" src=profIcon)
-        a(href="order-page" data-title="Разместить заказ") Разместить заказ
+        a(class="navbar_icon" href="/profile"  data-title="Профиль")
+            img(class="icon" href="/profile"  data-title="Профиль" src=profIcon)
+        a(href="/order-page" data-title="Разместить заказ") Разместить заказ
     else
-        a(href="login" id="go-login" data-title="Вход") Вход
+        a(href="/login" id="go-login" data-title="Вход") Вход
         div(class="navbar__registration")
             a(class="navbar__registration_btn") Регистрация
             div(class="navbar__registration_content")
-                a(href="client-reg" id="go-client-reg" data-title="Регистрация") За клиента
-                a(href="worker-reg" id="go-worker-reg" data-title="Регистрация") За исполнителя
+                a(href="/client-reg" id="go-client-reg" data-title="Регистрация") За клиента
+                a(href="/worker-reg" id="go-worker-reg" data-title="Регистрация") За исполнителя
     div(class="navbar__button_title")
-        a(class="active" href="main-page" id="go-main-page" data-title="FindFreelancer") FL
+        a(class="active" href="/" id="go-main-page" data-title="FindFreelancer") FL
 
 
 div(class="navbar" id="myTopnav")

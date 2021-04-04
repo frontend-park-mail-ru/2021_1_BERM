@@ -39,15 +39,10 @@ class Router {
             this.start();
         }, false);
 
-        // let path = window.location.pathname
-        //     .slice(1);
-        //
-        // if (path === '') {
-        //     path = 'main-page';
-        //     window.location = window.location.host + '/main-page';
-        // }
+        const path = window.location.pathname
+            .slice(1);
 
-        this.startPath = 'main-page';
+        this.startPath = '/' + path;
     }
 
     /**
@@ -59,7 +54,7 @@ class Router {
         history.pushState(
             {page: path},
             '',
-            '/' + path,
+            path,
         );
 
         this.start();

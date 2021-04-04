@@ -26,7 +26,6 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "webpack serve --mode development --open",
-    "generate": "pug --client --no-debug --name-after-file public/templates\n",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "repository": {

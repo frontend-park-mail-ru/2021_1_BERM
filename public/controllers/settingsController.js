@@ -7,7 +7,7 @@ import auth from '../models/Auth.js';
 import user from '../models/User.js';
 import {
     GET_USER_DATA,
-    NO_SET_UP,
+    NO_SET_UP, PROFILE,
     SEND_USER_DATA,
     SETTING_SUBMIT,
     SETTING_UPD,
@@ -54,7 +54,7 @@ export class SettingsController extends Controller {
                     };
 
                     user.setAttributes(data);
-                    router.go('profile');
+                    router.go(PROFILE);
                 });
             // ToDo eventBus.emit('success-set-up');
         } else {

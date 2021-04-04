@@ -9,6 +9,7 @@ import {
     ORDER_CREATE,
     ORDER_SUBMIT,
 } from '../modules/utils/actions.js';
+import {MAIN_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер создания заказа */
 export class OrderController extends Controller {
@@ -38,7 +39,7 @@ export class OrderController extends Controller {
      */
     _orderCreate(res) {
         if (res.ok) {
-            router.go('main-page');
+            router.go(MAIN_PAGE); // ToDo: Переход на страницу заказа
         } else {
             eventBus.emit(NO_ORDER);
         }

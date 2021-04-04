@@ -5,6 +5,7 @@ import eventBus from '../modules/eventBus.js';
 import router from '../modules/router.js';
 import auth from '../models/Auth.js';
 import {LOGIN, LOGIN_SUBMIT, NO_LOGIN} from '../modules/utils/actions.js';
+import {MAIN_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер регистрации клиента */
 export class LoginController extends Controller {
@@ -34,7 +35,7 @@ export class LoginController extends Controller {
      */
     _onLogin(res) {
         if (res.ok) {
-            router.go('main-page');
+            router.go(MAIN_PAGE);
         } else {
             eventBus.emit(NO_LOGIN);
         }
