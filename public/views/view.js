@@ -41,7 +41,7 @@ export class View extends BaseMVC {
      * @param {Array} listenersArr - массив событий
      */
     setListeners(listenersArr) {
-        this.listeners = new Set(listenersArr);
+        this.listeners = listenersArr;
         super.onAll();
     }
 }

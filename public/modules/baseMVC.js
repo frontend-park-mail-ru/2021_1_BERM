@@ -17,7 +17,7 @@ export class BaseMVC {
             return;
         }
 
-        this.listeners
+        [...this.listeners]
             .forEach((event) => {
                 eventBus.on(event[0], event[1]);
             });

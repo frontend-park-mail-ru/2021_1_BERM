@@ -4,4 +4,4 @@ export const WORKER_REG_PAGE = '/worker-reg';
 export const MAIN_PAGE = '/';
 export const PROFILE_PAGE = '/profile';
 export const SETTINGS_PAGE = '/settings';
-export const ORDER_CREATE_PAGE = '/order-send';
+export const ORDER_CREATE_PAGE = '/order-create';

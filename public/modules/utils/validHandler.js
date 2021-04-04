@@ -65,6 +65,14 @@ export class ValidHandler {
                     return this.errors[6];
                 }
             },
+            nameSurname: () => {
+                if (formVal.nameSurname.length === 0 ||
+                    this.patterns
+                        .get('name')
+                        .test(formVal.nameSurname) === false) {
+                    return this.errors[1];
+                }
+            },
             first_name: () => {
                 if (formVal.first_name.length === 0 ||
                     this.patterns

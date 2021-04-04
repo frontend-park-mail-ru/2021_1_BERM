@@ -29,7 +29,8 @@ export class OrderController extends Controller {
             [
                 [ORDER_CREATE, this._orderCreate],
                 [ORDER_SUBMIT, this._orderSubmit],
-            ]);
+            ],
+            true);
     }
 
     /**

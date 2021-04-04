@@ -8,6 +8,7 @@ export class MainPageController extends Controller {
      */
     constructor() {
         super();
+        this.view = new MainPageView();
     }
 
     /**
@@ -15,7 +16,6 @@ export class MainPageController extends Controller {
      */
     run() {
         super.run(
-            new MainPageView(),
             []);
     }
 }

@@ -13,7 +13,7 @@ import {
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
-import {LOGIN_PAGE, MAIN_PAGE} from '../modules/utils/pageNames.js';
+import {MAIN_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер регистрации клиента */
 export class ProfileController extends Controller {
@@ -22,26 +22,22 @@ export class ProfileController extends Controller {
      */
     constructor() {
         super();
+        this.view = new ProfileView();
     }
 
     /**
      * Запуск контроллера профиля
      */
     run() {
-        if (!user.isAuthorized) {
-            router.go(LOGIN_PAGE);
-            return;
-        }
-
         super.run(
-            new ProfileView(),
             [
                 [PROFILE, this._profile],
                 [ON_PROFILE, this._onProfile],
                 [IMG_CHANGE, this._changeImage],
                 [IMG_LOAD, this._onLoadImage],
                 [EXIT, this._onExit],
-            ]);
+            ],
+            true);
     }
 
     /**

@@ -18,6 +18,7 @@ export class WorkerRegController extends Controller {
      */
     constructor() {
         super();
+        this.view = new WorkerRegView();
     }
 
     /**
@@ -25,7 +26,6 @@ export class WorkerRegController extends Controller {
      */
     run() {
         super.run(
-            new WorkerRegView(),
             [
                 [REG, this._onRegCl],
                 [WORKER_REG_SUBMIT, this._submitRegCl],

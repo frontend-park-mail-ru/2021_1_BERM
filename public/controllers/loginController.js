@@ -14,6 +14,7 @@ export class LoginController extends Controller {
      */
     constructor() {
         super();
+        this.view = new LoginView();
     }
 
     /**
@@ -21,7 +22,6 @@ export class LoginController extends Controller {
      */
     run() {
         super.run(
-            new LoginView(),
             [
                 [LOGIN, this._onLogin],
                 [LOGIN_SUBMIT, this._submitLogin],

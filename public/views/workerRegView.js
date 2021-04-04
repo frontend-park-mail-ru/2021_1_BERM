@@ -30,7 +30,7 @@ export class WorkerRegView extends View {
             const data = {
                 email: event.target.email.value,
                 password: event.target.password.value,
-                login: event.target.user_name.value,
+                login: event.target.login.value,
                 name_surname: event.target.first_name.value + ' ' +
                     event.target.second_name.value,
                 specializes: [event.target.specializes.value],

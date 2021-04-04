@@ -18,6 +18,7 @@ export class ClientRegController extends Controller {
      */
     constructor() {
         super();
+        this.view = new ClientRegView();
     }
 
     /**
@@ -25,7 +26,6 @@ export class ClientRegController extends Controller {
      */
     run() {
         super.run(
-            new ClientRegView(),
             [
                 [REG, this._onRegCl],
                 [CLIENT_REG_SUBMIT, this._submitRegCl],

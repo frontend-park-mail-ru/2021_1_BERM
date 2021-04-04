@@ -7,11 +7,12 @@ import auth from '../models/Auth.js';
 import user from '../models/User.js';
 import {
     GET_USER_DATA,
-    NO_SET_UP, PROFILE,
+    NO_SET_UP,
     SEND_USER_DATA,
     SETTING_SUBMIT,
     SETTING_UPD,
 } from '../modules/utils/actions.js';
+import {PROFILE_PAGE} from '../modules/utils/pageNames';
 
 /** Контроллер создания заказа */
 export class SettingsController extends Controller {
@@ -20,6 +21,7 @@ export class SettingsController extends Controller {
      */
     constructor() {
         super();
+        this.view = new SettingsView();
     }
 
     /**
@@ -27,12 +29,12 @@ export class SettingsController extends Controller {
      */
     run() {
         super.run(
-            new SettingsView(),
             [
                 [SETTING_UPD, this._onUpdate],
                 [SETTING_SUBMIT, this._submit],
                 [SEND_USER_DATA, this._sendUserData],
-            ]);
+            ],
+            true);
     }
 
     /**
@@ -54,7 +56,7 @@ export class SettingsController extends Controller {
                     };
 
                     user.setAttributes(data);
-                    router.go(PROFILE);
+                    router.go(PROFILE_PAGE);
                 });
             // ToDo eventBus.emit('success-set-up');
         } else {
