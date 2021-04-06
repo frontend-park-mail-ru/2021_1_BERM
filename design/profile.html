@@ -34,38 +34,69 @@
             <div class="profile__border">
                 <div class="profile__content">
                     <div class="top">
-                        <div class="top__avatar"></div>
+                        <div class="top__avatar">
+                            <div class="edit">
+                                <button class="edit-button">
+                                    <img src="Icons/edit.svg" alt="">
+                                </button>
+                            </div>
+                        </div>
                         <div class="top__item">
                             <div class="user-name">
                                 <span class="user-name__text">Иванов Иван</span>
                             </div>
                             <div class="nickname">
-                                <span><img src="Icons/dog.svg" alt=""></span>
-                                <span class="nickname__text">nickname</span>
+                                <div class="nickname__icon"><img src="Icons/dog.svg" alt=""></div>
+                                <div class="nickname__text">nickname</div>
                             </div>
                         </div>
                         <div class="top__item">
                             <div class="rating">
-                                <span><img src="Icons/Stats.svg" alt=""></span>
-                                <span class="rating__text">Рейтинг: 5.0</span>
+                                <div><img src="Icons/Stats.svg" alt=""></div>
+                                <div class="rating__text">Рейтинг: 5.0</div>
                             </div>
                             <div class="reviews">
-                                <span><img src="Icons/Star.svg" alt=""></span>
-                                <span class="reviews__text">Отзывы: 54</span>
+                                <div><img src="Icons/Star.svg" alt=""></div>
+                                <div class="reviews__text">Отзывы: 54</div>
                             </div>
                         </div>
                         <div class="top__item">
-                            <button class="settings-button">
-                                <div class="settings-buttion__text">
+                            <div class="settings-buttons">
+                                <button class="settings-buttion__text">
                                     <div>Настройки</div> 
-                                </div>
-                            </button>
-                            <button class="exit-buttion__text">
-                                <div>Выход</div>
-                            </button>
+                                </button>
+                                <button class="exit-buttion__text">
+                                    <div>Выход</div>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="bottom"></div>
+                    <div class="bottom">
+                        <dib class="bottom__item">
+                            <div class="about-title">О себе</div>
+                            <div class="about-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam</div>
+                        </dib>
+                        <dib class="bottom__item">
+                            <div class="specialize-title">Специализации:</div>
+                            <ul class="specializes">
+                                <!-- Сделать for для увеличения числа специализаций -->
+                                <li>
+                                    <img src="Icons/Check.svg" alt="">
+                                    <div class="specializes__name">Мобильная разработка</div>
+                                    <img src="Icons/Close.svg" alt="" class="specializes__close">
+                                </li>
+                                <li>
+                                    <img src="Icons/Check.svg" alt="">
+                                    <div class="specializes__name">Верстка</div>
+                                    <img src="Icons/Close.svg" alt="" class="specializes__close">
+                                </li>
+                            </ul>
+                            <div class="add-spec">
+                                <img src="Icons/Plus.svg" alt="">
+                                <div class="add-spec__text">Добавить</div>
+                            </div>
+                        </dib>
+                    </div>
                 </div>
             </div>
         </div>
