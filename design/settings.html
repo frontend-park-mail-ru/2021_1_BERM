@@ -33,23 +33,23 @@
     </div>
     <div class="settings">
         <div class="settings__bg-form">
-            <form action="" class="custom-form">
+            <form action="" class="settings-container">
                 <div class="settings__form">
                     <div class="settings__column_left">
-                        <div class="custom-form__label">Настройки</div>
-                        <div class="custom-form__input">
+                        <div class="settings__label">Настройки</div>
+                        <div class="settings-form__input">
                             <img class="custom-form__img" src="img/icon.svg" alt="">
                             <input class="custom-form__input_in" type="text" placeholder="Логин"/>
                         </div>
-                        <div class="custom-form__input">
+                        <div class="settings-form__input">
                             <img class="custom-form__img" src="img/avatar.svg" alt="">
                             <input class="custom-form__input_in" type="text" placeholder="Имя Фамилия"/>
                         </div>
-                        <div class="custom-form__input">
+                        <div class="settings-form__input">
                             <img class="custom-form__img" src="img/email.svg" alt="">
                             <input class="custom-form__input_in" type="text" placeholder="Почта"/>
                         </div>
-                        <div class="custom-form__input-mini_bg">
+                        <div class="settings-form__input-mini_bg">
                             <div class="custom-form__input-mini">
                                 <img class="custom-form__img" src="img/block.svg" alt="">
                                 <input class="custom-form__input-mini_in" type="password" placeholder="Пароль"/>
@@ -60,9 +60,20 @@
                                        placeholder="Подтвердите"/>
                             </div>
                         </div>
-                        <button class="custom-form__submit">Зарегистрироваться</button>
+
                     </div>
-                    <div class="settings__column_right"></div>
+                    <div class="settings__column_right">
+                        <div class="settings__about__form__label">О себе</div>
+                        <div class="custom-form__input">
+                            <textarea class="settings__about__textarea "  placeholder="О себе" name="about"></textarea>
+                        </div>
+<!--                        <div class="settings__img_container"></div>-->
+                        <div class="settings-form__submit__container">
+                            <img class="settings__submit__img" src="img/Arrow.svg" alt="">
+                            <button class="settings-form__submit">Сохранить</button>
+                        </div>
+
+                    </div>
                 </div>
             </form>
         </div>
