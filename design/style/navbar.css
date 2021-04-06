@@ -6,11 +6,7 @@
 
     flex: 0 0 auto;
 
-    position: absolute;
     height: 64px;
-    left: 0;
-    right: 0;
-    top: 0;
 
     /* ui/primary */
     background: var(--primary_color);

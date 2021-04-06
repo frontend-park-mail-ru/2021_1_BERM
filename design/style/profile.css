@@ -1,0 +1,38 @@
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
+}
+.profile__border {
+}
+.profile__content {
+}
+.top {
+}
+.top__avatar {
+}
+.top__item {
+}
+.user-name {
+}
+.user-name__text {
+}
+.nickname {
+}
+.nickname__text {
+}
+.rating {
+}
+.rating__text {
+}
+.reviews {
+}
+.reviews__text {
+}
+.settings-button {
+}
+.settings-buttion__text {
+}
+.exit-buttion__text {
+}
