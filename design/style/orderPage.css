@@ -92,6 +92,7 @@
 }
 
 .orderPage__order_definition {
+    width: 720px;
     margin-top: 12px;
     font-style: normal;
     font-weight: normal;
@@ -138,4 +139,145 @@
 
     margin-left: 8px;
     color: var(--primary_color);
+}
+
+.orderPage__comments {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.orderPage__responses {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.orderPage__comments_title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.orderPage__response {
+    box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-top: 20px;
+}
+
+.orderPage__response_img-bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin: 20px;
+}
+
+.orderPage__response_img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+}
+
+.orderPage__response_name {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+
+    letter-spacing: -0.4px;
+}
+
+.orderPage__response_stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px;
+    width: 350px;
+}
+
+.orderPage__response_stat {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.orderPage__response_stat-img {
+    width: 24px;
+    height: 24px;
+    margin: 10px 5px;
+}
+
+.orderPage__response_stat-text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+
+    margin: 10px 6px;
+}
+
+.orderPage__comments_others {
+    margin-top: 20px;
+    height: 50px;
+    border: 2px solid #DFE4EA;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.orderPage__rate {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.orderPage__set-rate {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+
+    background-color: var(--primary_color);
+    border-radius: 8px;
+}
+
+.orderPage__set-rate_title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+
+    color: var(--white);
+
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.orderPage__set-rate_input {
+    margin-left: 30px;
+    width: 350px;
+    margin-top: 10px;
+}
+
+.orderPage__set-rate_button {
+    background: var(--white);
+    border-radius: 8px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+
+    text-align: center;
+    letter-spacing: -0.5px;
+    width: 180px;
+    height: 50px;
+
+    margin: 32px 0 20px 30px;
 }
