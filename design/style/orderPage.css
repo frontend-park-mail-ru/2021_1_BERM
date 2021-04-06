@@ -1,0 +1,141 @@
+.orderPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.orderPage__order {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+
+    background: var(--white);
+    /* shadow/01 */
+
+    box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+    border-radius: 8px;
+
+    flex: 1 0 auto;
+
+    margin-top: 48px;
+
+    width: 1030px;
+    height: 270px;
+}
+
+.orderPage__order_img-bg {
+    margin: 58px 0 58px 64px;
+}
+
+.orderPage__order_img {
+    width: 154px;
+    height: 154px;
+}
+
+.orderPage__order_text {
+    width: 720px;
+    height: 206px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 32px 64px 32px 32px;
+}
+
+.orderPage__order_title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    /* identical to box height, or 122% */
+    color: var(--dark);
+    letter-spacing: -1.5px;
+}
+
+.orderPage__order_category {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height, or 137% */
+
+    letter-spacing: -0.4px;
+}
+
+.orderPage__order_category-text {
+    color: var(--dark);
+}
+
+.orderPage__order_category-button {
+    padding: 0 8px;
+    margin-left: 16px;
+    background: var(--secondary_color);
+    border-radius: 4px;
+
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    text-align: center;
+
+    /* White */
+
+    color: var(--white);
+}
+
+.orderPage__order_definition {
+    margin-top: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    /* or 144% */
+
+    letter-spacing: -0.3px;
+
+    /* Paragraph */
+    color: var(--paragraph);
+}
+
+.orderPage__order_stats {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.orderPage__order_stat {
+    margin-right: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 112px;
+    height: 26px;
+}
+
+.orderPage__order_stat-img {
+    width: 24px;
+    height: 24px;
+}
+
+.orderPage__order_stat-data {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    /* identical to box height, or 162% */
+
+    letter-spacing: -0.2px;
+
+    margin-left: 8px;
+    color: var(--primary_color);
+}
