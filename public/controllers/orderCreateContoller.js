@@ -1,23 +1,25 @@
 import {Controller} from './controller.js';
-import {OrderView} from '../views/orderView.js';
+import {OrderCreateView} from '../views/orderCreateView.js';
 
 import eventBus from '../modules/eventBus.js';
 import router from '../modules/router.js';
 import auth from '../models/Auth.js';
+import order from '../models/Order.js';
 import {
     NO_ORDER,
     ORDER_CREATE,
     ORDER_SUBMIT,
 } from '../modules/utils/actions.js';
-import {MAIN_PAGE} from '../modules/utils/pageNames.js';
+import {ORDER_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер создания заказа */
-export class OrderController extends Controller {
+export class OrderCreateController extends Controller {
     /**
      * Конструктор
      */
     constructor() {
         super();
+        this.view = new OrderCreateView();
     }
 
     /**
@@ -25,7 +27,6 @@ export class OrderController extends Controller {
      */
     run() {
         super.run(
-            new OrderView(),
             [
                 [ORDER_CREATE, this._orderCreate],
                 [ORDER_SUBMIT, this._orderSubmit],
@@ -40,7 +41,20 @@ export class OrderController extends Controller {
      */
     _orderCreate(res) {
         if (res.ok) {
-            router.go(MAIN_PAGE); // ToDo: Переход на страницу заказа
+            res.json()
+                .then((res) => {
+                    order.setAttributes({
+                        id: res.id,
+                        name: res.order_name,
+                        category: res.category,
+                        description: res.description,
+                        budget: res.budget,
+                        deadline: res.deadline,
+                        customerId: res.customer_id,
+                    });
+
+                    router.go(ORDER_PAGE);
+                });
         } else {
             eventBus.emit(NO_ORDER);
         }

@@ -117,7 +117,7 @@ export class ValidHandler {
             budget: () => {
                 if (formVal.budget.length === 0 ||
                     this.patterns
-                        .get('budget')
+                        .get('price')
                         .test(formVal.budget) === false) {
                     return this.errors[14];
                 }

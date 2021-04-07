@@ -152,6 +152,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 458px;
 }
 
 .orderPage__comments_title {
@@ -309,4 +310,9 @@
 
 .orderPage__set-rate_form {
     margin-top: 82px;
+}
+
+.orderPage__responses_scroll {
+    height: 418px;
+    overflow-y: auto;
 }

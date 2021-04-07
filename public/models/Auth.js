@@ -5,7 +5,7 @@ import {
     IMG_LOAD,
     LOGIN,
     ON_PROFILE,
-    ORDER_CREATE,
+    ORDER_CREATE, ORDER_PAGE_RES,
     REG,
     SETTING_UPD,
 } from '../modules/utils/actions.js';
@@ -63,7 +63,7 @@ export default class Auth {
      * @param {string} src - код изображения на отправку
      */
     static sendImage(src) {
-        sendRequest('POST', '/profile/avatar', {img: src})
+        sendRequest('PUT', '/profile/avatar', {img: src})
             .then((res) => {
                 eventBus.emit(IMG_LOAD, {res, src});
             });
@@ -98,6 +98,13 @@ export default class Auth {
         sendRequest('POST', '/order', data)
             .then((res) => {
                 eventBus.emit(ORDER_CREATE, res);
+            });
+    }
+
+    static getResponsesOrder(id) {
+        sendRequest('GET', `/order/${id}/response`)
+            .then((res) => {
+                eventBus.emit(ORDER_PAGE_RES, res);
             });
     }
 }
