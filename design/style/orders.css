@@ -153,6 +153,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
+    margin-bottom: 49px;
 }
 .orders__title {
     align-self: flex-start;
