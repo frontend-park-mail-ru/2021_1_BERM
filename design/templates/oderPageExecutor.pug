@@ -1,0 +1,61 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title Document
+        link(rel='stylesheet' href='style/root.css')
+        link(rel='stylesheet' href='style/navbar.css')
+        link(rel='stylesheet' href='style/orderPage.css')
+    body
+        .root
+            include navbars/navbarExecutor.pug
+            .orderPage
+                div(class='orderPage__order')
+                    div(class='orderPage__order_img-bg')
+                        img(class='orderPage__order_img' src='Icons/avatar.svg')
+                    div(class='orderPage__order_text')
+                        div(class='orderPage__order_title') Кто купит мне хачапури?
+                        div(class='orderPage__order_category')
+                            div(class='orderPage__order_category-text') Категория:
+                            button(class='orderPage__order_category-button') Бизнес-аналитика
+                        div(class='orderPage__order_definition')
+                            | Ищу бизнес-аналитика, на проектную задачу, который знаком с мебельной сферой,
+                            | битриксист. Нужен человек, который возьмет на себя анализ и написание ТЗ,
+                            | коммуникацию с заказчиком от нашего имени.
+                        div(class='orderPage__order_stats')
+                            div(class='orderPage__order_stat')
+                                img(class='orderPage__order_stat-img' src='Icons/iconTime.svg')
+                                div(class='orderPage__order_stat-data') 10.10.2021
+                            div(class='orderPage__order_stat')
+                                img(class='orderPage__order_stat-img' src='Icons/card.svg')
+                                div(class='orderPage__order_stat-data') 100 руб.
+                div(class='orderPage__comments')
+                    div(class='orderPage__responses')
+                        div(class='orderPage__comments_title') Отклики
+                        div(class='orderPage__responses_scroll')
+                            //TODO: добавить for со списком заказов
+                            // возможно вместо инклюдов стоит юзать миксины, но это не точно
+                            include responses/responseOrser.pug
+                            include responses/responseOrser.pug
+                            include responses/responseOrser.pug
+                            include responses/responseOrser.pug
+
+    button(class='orderPage__comments_others') Показать ещё
+                    div(class='orderPage__rate')
+                        div(class='orderPage__comments_title') Минимальная ставка
+                        div(class='orderPage__response')
+                            div(class='orderPage__response_img-bg')
+                                img(class='orderPage__response_img' src='Icons/avatar.svg' alt='')
+                                div(class='orderPage__response_name') Ёжик
+                            div(class='orderPage__response_stats')
+                                div(class='orderPage__response_stat')
+                                    img(src='Icons/support.svg' alt='' class='orderPage__response_stat-img')
+                                    div(class='orderPage__response_stat-text') Сделаю за: 100
+                                div(class='orderPage__response_stat')
+                                    img(src='Icons/date.svg' alt='' class='orderPage__response_stat-img')
+                                    div(class='orderPage__response_stat-text') Дата отклика 10.10.2021 11:33
+                        //TODO: добавить if с проверкой на то, есть у этого пользователя ставка,
+                        // если есть - рисовать rates/chageRate.pug
+                        include rates/makeRate.pug

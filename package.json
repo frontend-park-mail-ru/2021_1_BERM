@@ -43,6 +43,7 @@
   "homepage": "https://github.com/frontend-park-mail-ru/2021_1_BERM#readme",
   "keywords": [],
   "dependencies": {
-    "core-js": "^3.9.0"
+    "core-js": "^3.9.0",
+    "html2pug": "^4.0.0"
   }
 }

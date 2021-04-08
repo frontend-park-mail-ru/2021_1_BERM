@@ -12,7 +12,6 @@
 
 .settings__bg-form {
     width: 1150px;
-    height: 727px;
 
     filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
     border-radius: 8px;
@@ -36,12 +35,12 @@
     /*flex-direction: column;*/
     /*justify-content: center;*/
     margin-left: 22px;
-    margin-top: 12px;
+    margin-top: 67px;
 }
 
 .settings__about__form__label {
+    margin-top: 25px;
     height: 30px;
-    top: calc(50% - 30px/2 - 127px);
 
     font-style: normal;
     font-weight: 600;
@@ -54,9 +53,20 @@
     background-color: var(--white);
     color: var(--dark);
 }
+.about-form__input {
+    display: flex;
+
+    justify-content: left;
+    align-items: center;
+
+    background-color: var(--placeholder);
+    border-radius: 8px;
+
+    margin-top: 10px;
+}
 
 .settings__about__textarea {
-    padding: 28px 31px 29px 16px;
+    padding: 23px;
     height: 338px;
     width: 532px;
 
@@ -96,7 +106,7 @@
 }
 
 .settings-container {
-    padding: 40px 49px;
+    padding: 49px;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -104,7 +114,7 @@
 
 .settings__label {
     height: 30px;
-    top: calc(50% - 30px/2 - 127px);
+    margin-bottom: 48px;
 
     font-style: normal;
     font-weight: 600;
@@ -119,56 +129,32 @@
 }
 
 .settings-form__submit__container {
-    width: 180px;
-    height: 54px;
-    /*display: flex;*/
-    /*justify-content: end;*/
-    float: right;
-
-    margin-top: 26px;
-
-    background: var(--primary_color);
-    border-radius: 8px;
-    /*border-radius: 8px;*/
-
-
-    text-align: center;
-    letter-spacing: -0.5px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
 }
 
 .settings-form__submit {
-    /*width: 168px;*/
-    /*height: 50px;*/
-    /*display: flex;*/
-    /*justify-content: end;*/
-    float: right;
-    padding:12px 18px 14px 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    width: 168px;
+    height: 50px;
     background: var(--primary_color);
+    border-radius: 8px;
 
-
-    color: var(--white);
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    line-height: 28px;
-    /* identical to box height, or 140% */
+    line-height: 22px;
+    letter-spacing: -0.4px;
 
-    text-align: center;
-    letter-spacing: -0.5px;
+    color: var(--white);
 }
 
 .settings__submit__img {
-    max-width: 36px;
-    max-height: 36px;
-    /*width: 26px;*/
-    /*height: 80px;*/
-    background: var(--primary_color);
-    /*padding-top: 10px;*/
-    padding-right: 20px;
-    margin-top: 20px;
-
-    float: right;
+    margin-left: 13px;
 }
 
 /*.settings__img_container {*/

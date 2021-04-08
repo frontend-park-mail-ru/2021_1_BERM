@@ -271,7 +271,7 @@
 
 .orderPage__set-rate_input {
     margin-left: 30px;
-    width: 350px;
+    width: 390px;
     margin-top: 10px;
 
     font-style: normal;
@@ -283,8 +283,38 @@
     letter-spacing: -0.5px;
 }
 
+.orderPage__set-rate_price {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 30px;
+    letter-spacing: -0.55px;
+    color: var(--white);
+    margin-top: 28px;
+    margin-left: 30px;
+}
+
 .orderPage__set-rate_button {
     background: var(--white);
+    border-radius: 8px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+
+    text-align: center;
+    letter-spacing: -0.5px;
+    width: 180px;
+    height: 50px;
+
+    margin: 32px 0 20px 30px;
+}
+
+.orderPage__set-rate_button-del {
+    background: var(--secondary_color);
+    color: var(--white);
     border-radius: 8px;
 
     font-style: normal;
@@ -319,7 +349,7 @@
 }
 
 .orderPage__set-rate_form {
-    margin-top: 82px;
+    margin-top: 28px;
 }
 .orderPage__set-rate_buttons {
     display: flex;
