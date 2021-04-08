@@ -14,6 +14,9 @@ export const SETTING_UPD = 'settings-update';
 export const SETTING_SUBMIT = 'settings-submit';
 export const SEND_USER_DATA = 'send-user-data';
 export const WORKER_REG_SUBMIT = 'work_registered-submit';
+export const ORDER_PAGE_GET_RES = 'order-page_get-res';
+export const ORDER_PAGE_RES = 'order-page_res';
+
 
 // Views actions
 export const NO_REG_CLIENT = 'no-registration-client';
@@ -25,3 +28,4 @@ export const FAIL_LOAD_IMG = 'fail-load-image';
 export const GET_USER_DATA = 'get-user-data';
 export const NO_SET_UP = 'no-set-up';
 export const NO_REG_WORKER = 'no-registration-worker';
+export const ORDER_PAGE_RENDER = 'order_page_render';

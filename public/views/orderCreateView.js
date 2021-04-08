@@ -6,7 +6,7 @@ import {NO_ORDER, ORDER_SUBMIT} from '../modules/utils/actions.js';
 import orderPageTemplate from '@/templates/orderPage.pug';
 
 /** View создания заказа */
-export class OrderView extends View {
+export class OrderCreateView extends View {
     /**
      * Отображение страницы и получение с нее данных
      *
@@ -29,10 +29,9 @@ export class OrderView extends View {
             event.preventDefault();
             const data = {
                 order_name: event.target.order_name.value,
-                category: 'Тут категория заказа',
-                // ToDo: В форму заказа добавить категорию
+                category: event.target.specializes.value,
                 description: event.target.description.value,
-                budget: event.target.budget.value,
+                budget: Number(event.target.budget.value),
                 deadline: 1617004533,
                 // ToDo сделать в форме дедлайн заказа
             };

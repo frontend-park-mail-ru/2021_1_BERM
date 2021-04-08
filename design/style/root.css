@@ -26,6 +26,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}
     --white: #FFF;
     --black: #000000;
     --dark: #18214D;
+    --paragraph: #3E4462;
 }
 
 .root {
@@ -123,7 +124,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}
 .custom-form__input {
     display: flex;
 
-    justify-content: center;
+    justify-content: left;
     align-items: center;
 
     background-color: var(--placeholder);
