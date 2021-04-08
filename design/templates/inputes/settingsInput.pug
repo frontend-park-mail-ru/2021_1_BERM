@@ -1,4 +1,4 @@
-//TODO: Сделать переменные
-div(class='settings-form__input')
-    img(class='custom-form__img' src='img/title.svg' alt='')
-    input(class='custom-form__input_in' type='text' placeholder='Заголовок')
+mixin settingsInput(img, placeholder)
+    div(class='settings-form__input')
+        img(class='custom-form__img' src=img alt='')
+        input(class='custom-form__input_in' type='text' placeholder=placeholder)

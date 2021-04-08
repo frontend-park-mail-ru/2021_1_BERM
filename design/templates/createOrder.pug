@@ -1,3 +1,5 @@
+include inputes/settingsInput.pug
+
 .root
     include navbars/navbarExecutor.pug
     .settings
@@ -6,10 +8,9 @@
                 div(class='settings__form')
                     div(class='settings__column_left')
                         div(class='settings__label') Создать заказ
-                        //TODO: Сделать функцию с переменными возможно стоит юзать миксины, но это не точно
-                        include inputes/settingsInput.pug
-                        include inputes/settingsInput.pug
-                        include inputes/settingsInput.pug
+                        settingsInput(require("@/static/img/title.svg"), 'Заголовок')
+                        settingsInput(require("@/static/img/card.svg"), 'Бюджет')
+                        settingsInput(requer("@/static/img/date.svg"), 'ДД.ММ.ГГГГ')
                         div(class='settings-form__input-mini_bg')
                             #select
                     div(class='settings__column_right')

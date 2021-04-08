@@ -1,3 +1,7 @@
+include rates/changeRate.pug
+include rates/makeRate.pug
+include responses/responseOrder
+
 .root
     include navbars/navbarExecutor.pug
     .orderPage
@@ -24,27 +28,24 @@
             div(class='orderPage__responses')
                 div(class='orderPage__comments_title') Отклики
                 div(class='orderPage__responses_scroll')
-                    //TODO: добавить for со списком заказов
-                    // возможно вместо инклюдов стоит юзать миксины, но это не точно
-                    include responses/responseOrser.pug
-                    include responses/responseOrser.pug
-                    include responses/responseOrser.pug
-                    include responses/responseOrser.pug
+                    each user in usersResponsed
+                        responseOrder(user.avatar, user.login, user.rate, user.date)
 
 button(class='orderPage__comments_others') Показать ещё
     div(class='orderPage__rate')
         div(class='orderPage__comments_title') Минимальная ставка
         div(class='orderPage__response')
             div(class='orderPage__response_img-bg')
-                img(class='orderPage__response_img' src='Icons/avatar.svg' alt='')
-                div(class='orderPage__response_name') Ёжик
+                img(class='orderPage__response_img' src=userMinResponse.avatar alt='')
+                div(class='orderPage__response_name')= userMinResponse.name
             div(class='orderPage__response_stats')
                 div(class='orderPage__response_stat')
                     img(src='Icons/support.svg' alt='' class='orderPage__response_stat-img')
-                    div(class='orderPage__response_stat-text') Сделаю за: 100
+                    div(class='orderPage__response_stat-text') Сделаю за: #{userMinResponse.rate}
                 div(class='orderPage__response_stat')
                     img(src='Icons/date.svg' alt='' class='orderPage__response_stat-img')
-                    div(class='orderPage__response_stat-text') Дата отклика 10.10.2021 11:33
-        //TODO: добавить if с проверкой на то, есть у этого пользователя ставка,
-        // если есть - рисовать rates/chageRate.pug
-        include rates/makeRate.pug
+                    div(class='orderPage__response_stat-text') Дата отклика #{userMinResponse.date}
+        if #{userRate} !== 0
+            +makeRate
+        else
+            +changeRate(#{userRate})
