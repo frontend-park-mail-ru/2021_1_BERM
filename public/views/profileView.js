@@ -18,8 +18,9 @@ export class ProfileView extends View {
      * Отображение страницы и получение с нее данных
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      */
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.setListeners([
             [RENDER_PROFILE, this._renderProfile],
             [SUCCESS_LOAD_IMG, this._successLoadImage],
@@ -37,6 +38,7 @@ export class ProfileView extends View {
     _renderProfile(info) {
         super.renderHtml(
             info.isAuthorized,
+            info.isExecutor,
             'Профиль',
             profileTemplate(info),
         );

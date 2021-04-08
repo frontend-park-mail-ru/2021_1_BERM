@@ -16,8 +16,9 @@ export class SettingsView extends View {
      * Отображение страницы и получение с нее данных
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      */
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.setListeners([
             [GET_USER_DATA, this._renderData],
             [NO_SET_UP, this._onNoSetUp],
@@ -28,13 +29,14 @@ export class SettingsView extends View {
     /**
      * Отображения данных пользователя
      *
-     * @param {Object} data - объект с информацией пользователя
+     * @param {Object} info - объект с информацией пользователя
      */
-    _renderData(data) {
+    _renderData(info) {
         super.renderHtml(
-            data.isAuthorized,
+            info.isAuthorized,
+            info.isExecutor,
             'Настройки',
-            settingsTemplate(data),
+            settingsTemplate(info),
         );
 
         const val = new Validator('feedback', '.form-control', 'send_mess');

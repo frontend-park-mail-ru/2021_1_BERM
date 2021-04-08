@@ -28,6 +28,7 @@ class Router {
         body.addEventListener('click', (event) => {
             // ToDo: Сделать через instanceof
             if ((event.target.localName === 'a' ||
+                event.target.localName === 'button' ||
                 event.target.localName === 'img') &&
                 event.target.href !== '') {
                 event.preventDefault();
@@ -66,7 +67,7 @@ class Router {
     start() {
         let currentState = history.state;
 
-        if (!currentState) {
+        if (!currentState || !currentState.page) {
             currentState = {
                 page: this.startPath,
             };

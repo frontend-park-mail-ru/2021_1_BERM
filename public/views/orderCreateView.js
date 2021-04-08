@@ -3,7 +3,7 @@ import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
 import {NO_ORDER, ORDER_SUBMIT} from '../modules/utils/actions.js';
 
-import orderPageTemplate from '@/templates/orderPage.pug';
+import createOrderTemplate from '@/components/createOrder.pug';
 
 /** View создания заказа */
 export class OrderCreateView extends View {
@@ -11,29 +11,35 @@ export class OrderCreateView extends View {
      * Отображение страницы и получение с нее данных
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      */
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.renderHtml(
             isAuthorized,
+            isExecutor,
             'Разместить заказ',
-            orderPageTemplate(),
+            createOrderTemplate(),
             [
                 [NO_ORDER, this._onNoOrder],
             ]);
 
-        const val = new Validator('feedback', '.form-control', 'send_mess');
-        val.validate();
+        // const val = new Validator( Todo СДЕЛАТЬ
+        //     'order-create_form',
+        //     '.form-control',
+        //     'send_mess',
+        // );
+        // val.validate();
 
-        const form = document.getElementById('feedback');
+        const form = document.getElementById('order-create_form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
+            const date = event.target.date.value.split('.');
             const data = {
                 order_name: event.target.order_name.value,
-                category: event.target.specializes.value,
+                category: 'Категория', // ToDo FIX
                 description: event.target.description.value,
                 budget: Number(event.target.budget.value),
-                deadline: 1617004533,
-                // ToDo сделать в форме дедлайн заказа
+                deadline: new Date(date[2], date[1], date[0]).getTime() / 1000,
             };
 
             eventBus.emit(ORDER_SUBMIT, data);

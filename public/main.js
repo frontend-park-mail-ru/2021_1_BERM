@@ -1,11 +1,9 @@
-import '@/static/css/index.css';
-import '@/static/css/login.css';
-import '@/static/css/navbar.css';
-import '@/static/css/profile.css';
-import '@/static/css/reg.css';
-import '@/static/css/settings.css';
-import '@/static/css/signIn.css';
-import '@/static/css/valid.css';
+import '@/../design/style/navbar_executor.css';
+import '@/../design/style/navbar.css';
+import '@/../design/style/root.css';
+import '@/../design/style/orderPage.css';
+import '@/../design/style/settings.css';
+import '@/../design/style/select.css';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';

@@ -11,10 +11,12 @@ export class WorkerRegView extends View {
      * Отображение страницы и получение с нее данных
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      */
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.renderHtml(
             isAuthorized,
+            isExecutor,
             'Регистрация',
             workerRegTemplate(),
             [

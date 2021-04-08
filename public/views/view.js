@@ -1,7 +1,9 @@
 import {BaseMVC} from '../modules/baseMVC.js';
 
-import navbarTemplate from '@/templates/navbar.pug';
-import profIcon from '@/static/img/icon.png';
+import navbarUnauthTemplate from '@/components/navbars/navbarUnauth.pug';
+import navbarCustomerTemplate from '@/components/navbars/navbarCustomer.pug';
+import navbarExecutorTemplate from '@/components/navbars/navbarExecutor.pug';
+
 
 /** Базовый класс для отображение страниц */
 export class View extends BaseMVC {
@@ -9,20 +11,22 @@ export class View extends BaseMVC {
      * Обработка результата
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      * @param {string} title - результат запроса
      * @param {HTMLAllCollection} content - результат запроса
      * @param {Array} listenersArr - результат запроса
      */
-    renderHtml(isAuthorized, title, content, listenersArr = null) {
+    renderHtml(isAuthorized, isExecutor, title, content, listenersArr = null) {
         let htmlNav;
 
         if (isAuthorized) {
-            htmlNav = navbarTemplate({
-                authorized: true,
-                profIcon: profIcon,
-            });
+            if (isExecutor) {
+                htmlNav = navbarExecutorTemplate();
+            } else {
+                htmlNav = navbarCustomerTemplate();
+            }
         } else {
-            htmlNav = navbarTemplate();
+            htmlNav = navbarUnauthTemplate();
         }
 
         document.title = title;
