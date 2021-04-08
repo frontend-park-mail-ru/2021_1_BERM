@@ -1,3 +1,30 @@
+//Входные парамеры:
+//    {
+//        creator: {            // создатель заказа
+//            avatar,
+//            title,
+//            category,
+//            definition,
+//            date,
+//        },
+//        userResponsed: {      // отклики пользователей
+//            [
+//                {
+//                    avatar,
+//                    login,
+//                    rate,
+//                    date,
+//                }
+//            ]
+//        },
+//        userMinResponse: {    // минимальный отклик по ставке
+//            name,
+//            rate,
+//            date,
+//        },
+//        userRate: '1488',     // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
+//
+//    }
 include rates/changeRate.pug
 include rates/makeRate.pug
 include responses/responseOrder
@@ -5,25 +32,7 @@ include responses/responseOrder
 .root
     include navbars/navbarExecutor.pug
     .orderPage
-        div(class='orderPage__order')
-            div(class='orderPage__order_img-bg')
-                img(class='orderPage__order_img' src='Icons/avatar.svg')
-            div(class='orderPage__order_text')
-                div(class='orderPage__order_title') Кто купит мне хачапури?
-                div(class='orderPage__order_category')
-                    div(class='orderPage__order_category-text') Категория:
-                    button(class='orderPage__order_category-button') Бизнес-аналитика
-                div(class='orderPage__order_definition')
-                    | Ищу бизнес-аналитика, на проектную задачу, который знаком с мебельной сферой,
-                    | битриксист. Нужен человек, который возьмет на себя анализ и написание ТЗ,
-                    | коммуникацию с заказчиком от нашего имени.
-                div(class='orderPage__order_stats')
-                    div(class='orderPage__order_stat')
-                        img(class='orderPage__order_stat-img' src='Icons/iconTime.svg')
-                        div(class='orderPage__order_stat-data') 10.10.2021
-                    div(class='orderPage__order_stat')
-                        img(class='orderPage__order_stat-img' src='Icons/card.svg')
-                        div(class='orderPage__order_stat-data') 100 руб.
+        +orderInOrderPageExecutor(creator.avatar, creator.title, creator.category, creator.definition, creator.date, creator.budget)
         div(class='orderPage__comments')
             div(class='orderPage__responses')
                 div(class='orderPage__comments_title') Отклики
@@ -31,21 +40,21 @@ include responses/responseOrder
                     each user in usersResponsed
                         responseOrder(user.avatar, user.login, user.rate, user.date)
 
-button(class='orderPage__comments_others') Показать ещё
-    div(class='orderPage__rate')
-        div(class='orderPage__comments_title') Минимальная ставка
-        div(class='orderPage__response')
-            div(class='orderPage__response_img-bg')
-                img(class='orderPage__response_img' src=userMinResponse.avatar alt='')
-                div(class='orderPage__response_name')= userMinResponse.name
-            div(class='orderPage__response_stats')
-                div(class='orderPage__response_stat')
-                    img(src='Icons/support.svg' alt='' class='orderPage__response_stat-img')
-                    div(class='orderPage__response_stat-text') Сделаю за: #{userMinResponse.rate}
-                div(class='orderPage__response_stat')
-                    img(src='Icons/date.svg' alt='' class='orderPage__response_stat-img')
-                    div(class='orderPage__response_stat-text') Дата отклика #{userMinResponse.date}
-        if #{userRate} !== 0
-            +makeRate
-        else
-            +changeRate(#{userRate})
+                button(class='orderPage__comments_others') Показать ещё
+            div(class='orderPage__rate')
+                div(class='orderPage__comments_title') Минимальная ставка
+                div(class='orderPage__response')
+                    div(class='orderPage__response_img-bg')
+                        img(class='orderPage__response_img' src=userMinResponse.avatar alt='')
+                        div(class='orderPage__response_name')= userMinResponse.name
+                    div(class='orderPage__response_stats')
+                        div(class='orderPage__response_stat')
+                            img(src='Icons/support.svg' alt='' class='orderPage__response_stat-img')
+                            div(class='orderPage__response_stat-text') Сделаю за: #{userMinResponse.rate}
+                        div(class='orderPage__response_stat')
+                            img(src='Icons/date.svg' alt='' class='orderPage__response_stat-img')
+                            div(class='orderPage__response_stat-text') Дата отклика #{userMinResponse.date}
+                if #{userRate} !== 0
+                    +makeRate
+                else
+                    +changeRate(#{userRate})
