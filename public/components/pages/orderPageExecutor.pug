@@ -18,43 +18,49 @@
 //            ]
 //        },
 //        userMinResponse: {    // минимальный отклик по ставке
+              avatar,
 //            name,
 //            rate,
 //            date,
 //        },
-//        userRate: '1488',     // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
+//        userRate: '1488',     // ставка текущего пользователя, если ее сейчас нет - передавать  0 !!!!1
+          executor: true/false,
+
 //
 //    }
-include ../rates/changeRate
-include ../rates/makeRate
-include ../responses/responseOrder
+include ../rates/changeRate.pug
+include ../rates/makeRate.pug
+include ../rates/rateCustomer.pug
+include ../responses/responseOrderExecutor.pug
+include ../responses/responseOrderCustomer.pug
+include ../responses/responseMinOrderExecutor.pug
+include ../responses/responseMinOrderCustomer.pug
 
-.root
-    include ../navbars/navbarExecutor
-    .orderPage
-        +orderInOrderPageExecutor(creator.avatar, creator.title, creator.category, creator.definition, creator.date, creator.budget)
-        div(class='orderPage__comments')
-            div(class='orderPage__responses')
-                div(class='orderPage__comments_title') Отклики
-                div(class='orderPage__responses_scroll')
-                    each user in usersResponsed
-                        +responseOrder(user.avatar, user.login, user.rate, user.date)
+.orderPage
+    +orderInOrderPageExecutor(creator.avatar, creator.title, creator.category, creator.definition, creator.date, creator.budget)
+    div(class='orderPage__comments')
+        div(class='orderPage__responses')
+            div(class='orderPage__comments_title') Отклики
+            div(class='orderPage__responses_scroll')
+                each user in usersResponsed
+                    if executor
+                        +responseOrderExecutor(user.avatar, user.login, user.rate, user.date)
+                    else
+                        +responseOrderCustomer(user.avatar, user.login, user.rate, user.date)
 
-                button(class='orderPage__comments_others') Показать ещё
-            div(class='orderPage__rate')
-                div(class='orderPage__comments_title') Минимальная ставка
-                div(class='orderPage__response')
-                    div(class='orderPage__response_img-bg')
-                        img(class='orderPage__response_img' src=userMinResponse.avatar alt='')
-                        div(class='orderPage__response_name')= userMinResponse.name
-                    div(class='orderPage__response_stats')
-                        div(class='orderPage__response_stat')
-                            img(src='Icons/support.svg' alt='' class='orderPage__response_stat-img')
-                            div(class='orderPage__response_stat-text') Сделаю за: #{userMinResponse.rate}
-                        div(class='orderPage__response_stat')
-                            img(src='Icons/date.svg' alt='' class='orderPage__response_stat-img')
-                            div(class='orderPage__response_stat-text') Дата отклика #{userMinResponse.date}
-                if userRate !== 0
-                    +makeRate
+            button(class='orderPage__comments_others') Показать ещё
+        div(class='orderPage__rate min-rate')
+            div(class='orderPage__comments_title') Минимальная ставка
+            div(class='orderPage__response')
+                if executor
+                    +responseMinOrderExecutor(userMinResponse.avatar, userMinResponse.name, userMinResponse.rate, userMinResponse.date)
                 else
+                    +responseMinOrderCustomer(userMinResponse.avatar, userMinResponse.name, userMinResponse.rate, userMinResponse.date)
+            if userRate === 0
+                if executor
+                    +makeRate
+            else
+                if executor
                     +changeRate(userRate)
+                else
+                    +rateCustomer(selectExecutor.avatar, selectExecutor.login, selectExecutor.rate, selectExecutor.date)
