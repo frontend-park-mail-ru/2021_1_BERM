@@ -6,7 +6,38 @@ import {
     SEND_RESULT_RENDER,
     ORDERS_RENDER,
 } from "@/modules/utils/actions";
-import settingsTemplate from "@/templates/settings.pug";
+import ordersTemplate from "@/templates/orders.pug";
+import clientRegTemplate from "@/templates/clientReg.pug";
+
+var tempData = {
+    orders: [{
+        avatar: '',
+        login: 'sa',
+        title: 'dasdas',
+        categore: 'asdasd',
+        definition: 'asdasd',
+        date: '100000',
+        budget: '500'
+    },
+        {
+            avatar: '',
+            login: 'saadsdsadsa',
+            title: 'dasdas213123123',
+            categore: 'asdasd1312321',
+            definition: 'asdasd',
+            date: '100000',
+            budget: '500'
+        },
+        {
+            avatar: '',
+            login: 'sa',
+            title: 'dasdas',
+            categore: 'asdasd',
+            definition: 'asdasd',
+            date: '100000',
+            budget: '500'
+        }],
+}
 
 export class OrdersView extends View {
     render(isAuthorized) {
@@ -20,7 +51,8 @@ export class OrdersView extends View {
         super.renderHtml(
             data.isAuthorized,
             'Настройки',
-            orders(data),
+            ordersTemplate(tempData),
+            // avatar, login, title, category, definition, date, budget
         );
     }
 

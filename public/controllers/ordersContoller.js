@@ -42,14 +42,15 @@ export class OrdersController extends Controller {
     }
 
     _sendServices() {
-        auth.getResponsesOrders();
+        // auth.getResponsesOrders();
+        eventBus.emit(ORDERS_RENDER);
     }
 
     _sendResultsRender(res) {
         if (res.ok) {
-            res.json().then((res) => {
-                order.orders = res;
-            })
+            // res.json().then((res) => {
+            //     order.orders = res;
+            // })
             eventBus.emit(ORDERS_RENDER);
         }
 

@@ -1,0 +1,18 @@
+mixin orderInOrderPageExecutor(avatar, title, category, definition, date, budget)
+    div(class='orderPage__order')
+        div(class='orderPage__order_img-bg')
+            img(class='orderPage__order_img' src=avatar)
+        div(class='orderPage__order_text')
+            div(class='orderPage__order_title')= title
+            div(class='orderPage__order_category')
+                div(class='orderPage__order_category-text') Категория:
+                button(class='orderPage__order_category-button')= category
+            div(class='orderPage__order_definition')= definition
+            div(class='orderPage__order_stats')
+                div(class='orderPage__order_stat')
+                    img(class='orderPage__order_stat-img' src=require("@/static/Icons/iconTime.svg").default)
+                    div(class='orderPage__order_stat-data')= date
+                div(class='orderPage__order_stat')
+                    img(class='orderPage__order_stat-img' src=require("@/static/Icons/card.svg").default)
+                    div(class='orderPage__order_stat-data')= budget
+                        //src='Icons/iconTime.svg'

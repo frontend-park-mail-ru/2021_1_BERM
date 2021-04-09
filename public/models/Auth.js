@@ -107,4 +107,11 @@ export default class Auth {
                 eventBus.emit(ORDER_PAGE_RES, res);
             });
     }
+
+    static getResponsesOrders() {
+        sendRequest('GET', '/order')
+            .then((res) => {
+                eventBus.emit(ORDER_PAGE_RES, res);
+            });
+    }
 }

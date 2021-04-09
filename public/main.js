@@ -1,11 +1,17 @@
-import '@/static/css/index.css';
-import '@/static/css/login.css';
+// import '@/static/css/login.css';
 import '@/static/css/navbar.css';
-import '@/static/css/profile.css';
-import '@/static/css/reg.css';
-import '@/static/css/settings.css';
-import '@/static/css/signIn.css';
-import '@/static/css/valid.css';
+// import '@/static/css/settings.css';
+import '@/static/css/orders.css';
+import '@/static/css/root.css';
+// import '@/static/css/orderPage.css';
+// import '@/static/css/orderPageWithRate.css';
+// import '@/static/css/navbar_executor.css';
+// import '@/static/css/new_select.scss';
+// import '@/static/css/select.css';
+// import '@/static/css/settings.css';
+// import '@/static/css/main.css';
+// import '@/static/css/registration.css';
+
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';
@@ -17,6 +23,7 @@ import router from './modules/router.js';
 import {MainPageController} from './controllers/mainPageController.js';
 import {ProfileController} from './controllers/profileController.js';
 import {OrderPageController} from './controllers/orderPageController.js';
+import {OrdersController} from './controllers/ordersContoller.js';
 import {
     CLIENT_REG_PAGE,
     LOGIN_PAGE,
@@ -26,6 +33,7 @@ import {
     PROFILE_PAGE,
     SETTINGS_PAGE,
     WORKER_REG_PAGE,
+    ORDERS_PAGE,
 } from './modules/utils/pageNames.js';
 
 const controllers = new Set([
@@ -37,6 +45,7 @@ const controllers = new Set([
     [SETTINGS_PAGE, SettingsController],
     [ORDER_CREATE_PAGE, OrderCreateController],
     [ORDER_PAGE, OrderPageController],
+    [ORDERS_PAGE, OrdersController],
     // Здесь добавляем странички
 ]);
 

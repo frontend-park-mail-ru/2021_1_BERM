@@ -1,112 +1,52 @@
-body, html {
-    height: 100%;
-    font: 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-    margin: 0;
-}
-
-/* Добавляем цвет фона в верхнюю навигацию */
 .navbar {
-    /*position: -webkit-sticky;*/
-    /*position: -moz-sticky;*/
-    /*position: -ms-sticky;*/
-    /*position: -o-sticky;*/
-    /*position: sticky;*/
-    /*top: 0;*/
-    /*width: 100%;*/
-
-    margin-bottom: -10px;
-    --navbar-bg: #FFFFFF;
-    --navbar-order-bg: #EDEEF0;
-    --navbar-color-front: #3888C6;
-
-    z-index: 100;
-    background-color: var(--navbar-bg);
-    overflow: hidden;
-}
-
-/* Стиль ссылок внутри панели навигации */
- .navbar a {
-    float: right;
-    display: block;
-    color: var(--navbar-color-front);
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar__button_order {
-    background: var(--navbar-order-bg);
-    float: right;
-    display: block;
-    color: var(--navbar-color-front);
-    text-align: center;
-    text-decoration: none;
-    font-size: 17px;
-    margin-top: 13px;
-    border: none;
-    padding-right: 16px;
-    padding-left: 16px;
-    border-radius: 5px;
-}
-
-.main__container {
-    display: grid;
-    grid-template-columns: [one-eighty] auto [one-eighty] 200px [one-eighty] auto [one-eighty] 200px [one-eighty] auto;
-}
-
-.main__container_center {
-    grid-column: one-eighty 2 / one-eighty 5;
-}
-
-div.navbar__button_title a {
-    float: left;
-    display: block;
-    color: var(--navbar-color-front);
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-
-.sticky {
-    position: fixed;
+    position: sticky;
     top: 0;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    flex: 0 0 auto;
+
+    height: 64px;
+
+    /* ui/primary */
+    background: var(--primary_color);
 }
 
+.navbar__title {
+    margin: 14px 0 14px 64px;
 
-.sticky + .login__content {
-    padding-top: 60px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color : var(--white);
+    line-height: 22px;
+
+    text-align: center;
+    letter-spacing: -0.4px;
 }
 
-.navbar_icon {
-    margin-left: 10px;
+.navbar__navigate {
+    margin: 14px 64px 14px 0;
 }
 
-
-
-.dropbtn {
-    /* background-color: #3498DB; */
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-
-.navbar a:hover {
-    background-color: #EDEEF0;
+.navbar__registration_text {
+    display: flex;
+    height: 64px;
+    align-items: center;
 }
 
-.navbar__registration {
-    float: right;
+.navbar__registration_text:hover .navbar__registration_content {
+    display: block;
 }
 
 .navbar__registration_content {
-    margin-top: 47px;
+    margin-left: 17px;
+    margin-top: 155px;
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: var(--placeholder);
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1001;
@@ -119,11 +59,18 @@ div.navbar__button_title a {
     text-decoration: none;
     display: block;
     text-align: left;
-    /*top: -100px;*/
 }
 
-.navbar__registration:hover .navbar__registration_content {
-    display: block;
+.navbar__registration_content a:hover {
+    background-color: var(--neutral_color);
 }
 
+.navbar__enter_text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.4px;
 
+    color: var(--white);
+}
