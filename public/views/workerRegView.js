@@ -3,7 +3,7 @@ import eventBus from '../modules/eventBus.js';
 import {Validator} from './validator.js';
 import {NO_REG_WORKER, WORKER_REG_SUBMIT} from '../modules/utils/actions.js';
 
-import regTemplate from '@/components/registration.pug';
+import regTemplate from '@/components/pages/registration.pug';
 
 /** View регистрации исполнителя */
 export class WorkerRegView extends View {

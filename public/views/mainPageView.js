@@ -1,6 +1,6 @@
 import {View} from './view.js';
 
-import indexTemplate from '@/components/index.pug';
+import indexTemplate from '@/components/pages/index.pug';
 
 /** View главной страницы */
 export class MainPageView extends View {

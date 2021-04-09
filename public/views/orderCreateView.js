@@ -3,7 +3,7 @@ import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
 import {NO_ORDER, ORDER_SUBMIT} from '../modules/utils/actions.js';
 
-import createOrderTemplate from '@/components/createOrder.pug';
+import createOrderTemplate from '@/components/pages/createOrder.pug';
 
 /** View создания заказа */
 export class OrderCreateView extends View {

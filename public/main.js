@@ -1,13 +1,13 @@
-import '@/../design/style/navbar_executor.css';
-import '@/../design/style/navbar.css';
-import '@/../design/style/root.css';
-import '@/../design/style/orderPage.css';
-import '@/../design/style/settings.css';
-import '@/../design/style/select.css';
-import '@/../design/style/login.css';
-import '@/../design/style/registration.css';
-import '@/../design/style/main.css';
-import '@/../design/style/profile.css';
+import '@/static/css/navbar_executor.css';
+import '@/static/css/navbar.css';
+import '@/static/css/root.css';
+import '@/static/css/orderPage.css';
+import '@/static/css/settings.css';
+import '@/static/css/select.css';
+import '@/static/css/login.css';
+import '@/static/css/registration.css';
+import '@/static/css/main.css';
+import '@/static/css/profile.css';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';

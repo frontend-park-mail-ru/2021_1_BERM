@@ -1,153 +1,229 @@
-.profile-content {
-
-    --bg_prof: white;
-    --good_review: #00CD5E;
-    --bad_review: crimson;
-    --text-color: #3888C6;
-
-    margin-left: 9%;
-    margin-right: 9%;
-    margin-top: 4%;
-    padding-bottom: 5%;
-    background-color: var(--bg_prof);
-    border-radius: 10px;
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
 }
-
-.profile_photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-}
-
-.profile__column_text {
-	white-space: nowrap;
-}
-
-.profile__item_name {
-	white-space: normal;
-	display: inline-block;
-	width: 250px;
-    padding-left: 50px;
-	vertical-align: top;
-}
-
-.profile__item_info {
-    white-space: normal;
-    display: inline-block;
-    width: 200px;
-    float: right;
-    padding-left: 16px;
-    vertical-align: top;
-}
-
-.profile__item_spec {
-    white-space: normal;
-    display: inline-block;
-    width: 200px;
-    padding-left: 16px;
-    vertical-align: top;
-}
-
-.profile__column_text .profile__item_name:first-child {
-	margin-right: 0;
-}
-
-ul {
-    padding: 0; /* Убираем поля */
-    margin-left: 20px; /* Отступ слева */
-}
-
-.good_reviews {
-    color: var(--good_review);
-}
-
-.bad_reviews {
-    color: var(--bad_review);
-}
-
-a {
-    color: var(--text-color);
-    text-decoration: none;
-    padding-left: 5px;
-}
-
-.name {
-    padding-left: 50px;
-    margin-top: 50px;
-    font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-    color: var(--text-color);
-}
-
-.settings_profile_button {
-    margin-top: 60px;
-    width: 200px;
-    display: inline-block;
-    float: right;
-}
-
-.spec {
-    color: var(--text-color);
-    font: bold 17px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-}
-
-.icon {
-    max-width: 20px;
-    max-height: 20px; 
-    margin-right: 1%;
-    float: left;
-}
-
-.profile__about {
-    padding-left: 50px;
-    color: var(--text-color);
-    font: 27px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-}
-
-.profile__definition_text {
-    margin-left: 70px;
-    margin-right: 70px;
-}
-
-.margin-inс {
-    margin-left: 5px;
-}
-
-#upload-container {
+.profile__border {
+    width: 1142px;
+    height: 663px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin: 86px 0 0 0;
+    filter: drop-shadow(0px 0px 64px rgba(13, 17, 38, 0.05));
+    border-radius: 8px;
+    background-color: var(--white);
+}
+.profile__content {
+    margin: 66px -20px auto 66px;
+}
+.top {
+    display: flex;
+}
+.top__avatar {
+    width: 156px;
+    height: 156px;
+}
+
+.top__avatar_img {
+    width: 156px;
+    height: 156px;
+}
+.edit {
+    margin: -173px 0 0 -12px;
+}
+
+.edit-button {
+    border-radius: 50%;
+}
+
+.top__item {
+    display: flex;
     flex-direction: column;
-    width: 153px;
-    height: 32px;
-    margin-right: 10px;
+    padding: 0 61px;
+}
+.user-name {
+}
+.user-name__text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 22px;
+    /* identical to box height, or 92% */
+
+    text-align: center;
+    letter-spacing: -0.4px;
+    margin-left: -22px;
 }
 
-#upload-container label {
-    color: var(--text-color);
+.nickname {
+    display: flex;
+    align-items: center;
+    margin: 16px 0px 0px 0px;
+}
+.nickname__icon {
+    margin-left: -22px;
+}
+.nickname__text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+
+    text-align: center;
+    letter-spacing: -0.4px;
+}
+.rating {
+    display: flex;
+    align-items: center;
+}
+.rating__text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.4px;
+    margin-left: 7px;
+}
+.reviews {
+    display: flex;
+    align-items: center;
+    margin-top: 19px;
+}
+.reviews__text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.4px;
+    margin-left: 7px;
+}
+.settings-buttons {
+    display: flex;
+    flex-direction: column;
+}
+.settings-buttion__text {
+    background-color: var(--primary_color);
+
+    margin: 0 32px;
+    width: 228px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+
+    text-align: center;
+    letter-spacing: -0.4px;
+
+    /* White */
+
+    color: #FFFFFF;
+}
+.exit-buttion__text {
+    background-color: var(--secondary_color);
+
+    margin: 0 32px;
+    width: 228px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+
+    text-align: center;
+    letter-spacing: -0.4px;
+    margin-top: 22px;
+
+    /* White */
+
+    color: #FFFFFF;
 }
 
-#upload-container label:hover {
-    cursor: pointer;
-    text-decoration: underline;
+.bottom {
+    display: flex;
+    flex-direction: row;
+    margin: 68px -48px 0px -48px;
 }
 
-#upload-container div {
-    position: relative;
-    z-index: 10;
+.bottom__item {
+    padding: 0 48px;
+    display: flex;
+    flex-direction: column;
+}
+.about-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 22px;
+    /* identical to box height, or 92% */
+
+    letter-spacing: -0.4px
+}
+.about-text {
+    margin-top: 25px;
+    width: 500px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    /* or 157% */
+
+    letter-spacing: -0.4px;
+}
+.specialize-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 22px;
+    /* identical to box height, or 92% */
+
+    letter-spacing: -0.4px;
+    margin-left: 7px;
+}
+.specializes {
+    margin: 28px 0px 11px 0px;
+}
+.specializes li {
+    display: flex;
+    flex-direction: row;
 }
 
-#upload-container input[type=file] {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    position: absolute;
-    z-index: -10;
+.specializes__name {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+    margin-top: 2px;
+    margin: 2px 0px 0px 7px;
+
+    letter-spacing: -0.4px;
+    flex: 1 0 auto;
+}
+.specializes__close {
+    margin: 2px 0px 0px 14px;
+}
+.add-spec {
+    display: flex;
+    margin-top: 7px;
+}
+.add-spec__text {
+    margin: 5px 0px 0px 7px 
 }
 
-.profile__item_exit {
-    padding-top: 46px;
-}
-
-.profile__name {
-    width: max-content;
+input[type="file"] {
+    display: none;
 }

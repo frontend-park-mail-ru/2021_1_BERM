@@ -25,12 +25,12 @@
 //        userRate: '1488',     // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
 //
 //    }
-include rates/changeRate.pug
-include rates/makeRate.pug
-include responses/responseOrder
+include ../rates/changeRate
+include ../rates/makeRate
+include ../responses/responseOrder
 
 .root
-    include navbars/navbarExecutor.pug
+    include ../navbars/navbarExecutor
     .orderPage
         +orderInOrderPageExecutor(creator.avatar, creator.title, creator.category, creator.definition, creator.date, creator.budget)
         div(class='orderPage__comments')

@@ -3,7 +3,7 @@ import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
 import {CLIENT_REG_SUBMIT, NO_REG_CLIENT} from '../modules/utils/actions.js';
 
-import regTemplate from '@/components/registration.pug';
+import regTemplate from '@/components/pages/registration.pug';
 
 /** View регистрации клиента */
 export class ClientRegView extends View {

@@ -9,8 +9,7 @@ import {
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
 
-import profileTemplate from '@/components/profile.pug';
-import defaultImg from '@/static/img/profileAvatar.svg';
+import profileTemplate from '@/components/pages/profile.pug';
 
 /** View профиля */
 export class ProfileView extends View {
@@ -43,16 +42,7 @@ export class ProfileView extends View {
             profileTemplate(info),
         );
 
-        const img = document.querySelector('div.top__avatar');
-        if (info.img === null || info.img === undefined) {
-            img.style.background =
-                `url(${defaultImg}).default}) 
-                no-repeat;`;
-        } else {
-            // img.src.background = info.img;
-        }
-
-        const inputImg = document.getElementById('file-input');
+        const inputImg = document.getElementById('input-file');
         inputImg.onchange = async (ev) => {
             const file = ev.target.files[0];
             const fReader = new FileReader();
@@ -75,7 +65,7 @@ export class ProfileView extends View {
      */
     _successLoadImage(src) {
         const img = document.getElementById('profile_img');
-        img.style.background= `image(${src}) no-repeat;`;
+        img.src = src;
     }
 
     /**

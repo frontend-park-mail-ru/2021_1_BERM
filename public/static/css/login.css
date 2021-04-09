@@ -1,74 +1,20 @@
-.login__window {
-    --bg-login: #ffffff;
-    --label-login-color: #3888C6;
-    --font-color_login: black;
-
-    background: var(--bg-login);
-}
-
-.login__window {
-    position: absolute;
+.login {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    /*margin: 200px auto 0;*/
-    transform: translate(-50%, -50%);
-    padding: 50px;
-    top:50%;
-    left: 50%;
-    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+
+    background-color: var(--white);
+
+    margin: 150px 0 0 0;
 }
 
-.login__window_label {
-    margin: 10px;
-    text-align: center;
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    color: var(--label-login-color);
-}
+.login__bg-form {
+    width: 542px;
+    height: 326px;
 
-.login__window_login {
-    margin: 5px 10px;
-    padding: 5px;
-}
-
-.login__window_password {
-    margin: 5px 10px;
-    padding: 5px;
-}
-
-.login__window_enter {
-    background-color: var(--bg-root);
-    height: 30px;
-    border: none;
-    color: var(--font-color_login);
-    text-align: center;
-    font-size: 12px;
-    margin: 10px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.login__window_enter:hover {
-    background-color: var(--label-login-color);
-}
-
-.login__window_forgot-pass {
-    background: none;
-    margin: 5px 10px;
-    border: none;
-    cursor: pointer;
-    width: 150px;
-    font-size: smaller;
-    color: var(--label-login-color)
-}
-
-.login__error {
-    color: red;
-    text-align: center;
-    font-size: small;
+    filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
+    border-radius: 8px;
+    background-color: var(--white);
 }

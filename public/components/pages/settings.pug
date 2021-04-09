@@ -1,0 +1,21 @@
+include ../inputes/settingsInput
+include ../inputes/customFormMiniInput
+.settings
+    div(class='settings__bg-form')
+        form.settings-container(action='' id='settings-form')
+            div(class='settings__form')
+                div(class='settings__column_left')
+                    div(class='settings__label') Настройки
+                    +settingsInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text')
+                    +settingsInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text')
+                    +settingsInput(require('@/static/img/block.svg').default, 'Старый пароль', 'oldPassword', 'password')
+                    +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'newPassword', 'confirm')
+
+                div(class='settings__column_right')
+                    //TODO: Тоже сделать шаблоном
+                    div(class='about-form__input')
+                        textarea(class='settings__about__textarea ' placeholder='О себе' name='about')
+                    div(class='settings-form__submit__container')
+                        button(class='settings-form__submit')
+                            span Сохранить
+                            img(class='settings__submit__img' src=require('@/static/img/arrow.svg').default alt='')

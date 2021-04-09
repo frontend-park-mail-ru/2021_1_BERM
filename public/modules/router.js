@@ -26,14 +26,15 @@ class Router {
         // Навешиваем обработчик на клики
         const body = document.getElementsByTagName('body')[0];
         body.addEventListener('click', (event) => {
+            const href = event.target.getAttribute('href');
             // ToDo: Сделать через instanceof
             if ((event.target.localName === 'a' ||
                 event.target.localName === 'button' ||
                 event.target.localName === 'img') &&
-                event.target.href !== undefined &&
-                event.target.href !== '') {
+                href) {
                 event.preventDefault();
-                this.go(event.target.getAttribute('href'));
+
+                this.go(href);
             }
         });
 

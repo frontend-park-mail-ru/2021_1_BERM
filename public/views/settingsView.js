@@ -8,7 +8,7 @@ import {
     SETTING_SUBMIT,
 } from '../modules/utils/actions.js';
 
-import settingsTemplate from '@/templates/settings.pug';
+import settingsTemplate from '@/components/pages/settings.pug';
 
 /** Контроллер регистрации клиента */
 export class SettingsView extends View {
@@ -39,17 +39,18 @@ export class SettingsView extends View {
             settingsTemplate(info),
         );
 
-        const val = new Validator('feedback', '.form-control', 'send_mess');
-        val.validate();
+        // const val = new Validator('feedback', '.form-control', 'send_mess');
+        // val.validate();
 
-        const form = document.getElementById('feedback');
+        const form = document.getElementById('settings-form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             const data = {
-                name_surname: event.target.nameSurname.value,
-                password: event.target.password.value,
+                name_surname: event.target.name.value,
+                old_password: event.target.oldPassword.value,
                 login: event.target.login.value,
                 about: event.target.about.value,
+                new_password: event.target.newPassword.value,
             };
 
             eventBus.emit(SETTING_SUBMIT, data);

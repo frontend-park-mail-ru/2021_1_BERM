@@ -45,6 +45,7 @@ export class ProfileController extends Controller {
      */
     _profile() {
         if (!user.isGetAttr) {
+            user.isGetAttr = true;
             auth.getProfile(user.id);
         } else {
             eventBus.emit(RENDER_PROFILE, {

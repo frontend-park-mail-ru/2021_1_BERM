@@ -1,0 +1,23 @@
+.navbar__order-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--primary_color);
+
+    margin: 0 32px;
+    height: 37px;
+    border: 3px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--white);
+    line-height: 19px;
+    /* identical to box height */
+
+    text-align: center;
+    letter-spacing: -0.4px;
+}
