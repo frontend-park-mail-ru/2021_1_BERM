@@ -4,6 +4,10 @@ import '@/../design/style/root.css';
 import '@/../design/style/orderPage.css';
 import '@/../design/style/settings.css';
 import '@/../design/style/select.css';
+import '@/../design/style/login.css';
+import '@/../design/style/registration.css';
+import '@/../design/style/main.css';
+import '@/../design/style/profile.css';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';

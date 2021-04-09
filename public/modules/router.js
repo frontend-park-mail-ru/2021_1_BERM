@@ -30,6 +30,7 @@ class Router {
             if ((event.target.localName === 'a' ||
                 event.target.localName === 'button' ||
                 event.target.localName === 'img') &&
+                event.target.href !== undefined &&
                 event.target.href !== '') {
                 event.preventDefault();
                 this.go(event.target.getAttribute('href'));

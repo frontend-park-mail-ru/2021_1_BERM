@@ -55,6 +55,8 @@ export class ProfileController extends Controller {
                 specializes: user.specializes,
                 about: user.about,
                 img: user.img,
+                rating: 0,
+                reviews: 0,
             });
         }
     }
@@ -93,6 +95,8 @@ export class ProfileController extends Controller {
                     specializes: user.specializes,
                     about: user.about,
                     img: user.img,
+                    rating: 0,
+                    reviews: 0,
                 });
             });
     }

@@ -1,0 +1,20 @@
+include inputes/customFormInput.pug
+include inputes/customFormMiniInput.pug
+.registration
+    div(class='registration__bg-form')
+        form.custom-form(action='' id='registration__form')
+            div(class='custom-form__label') Регистрация
+            +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text')
+            +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text')
+            +customFormInput(require('@/static/img/email.svg').default, 'Почта', 'email', 'text')
+            +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'password', 'passwordRepeat')
+            button(class='custom-form__submit') Зарегистрироваться
+            div(class='registration__other_text') Или авторизуйтесь через
+            div(class='registration__other_reg')
+                div(class='custom-form__input-mini_bg')
+                    button(class='registration__input-other')
+                        img(class='registration__input-other_img' src=require('@/static/img/vk.svg').default alt='')
+                        div(class='registration__input-other_in') ВКонтакте
+                    button(class='registration__input-other')
+                        img(class='registration__input-other_img' src=require('@/static/img/google.svg').default alt='')
+                        div(class='registration__input-other_in') Google

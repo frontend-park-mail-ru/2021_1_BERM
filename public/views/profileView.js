@@ -9,8 +9,8 @@ import {
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
 
-import profileTemplate from '@/templates/profile.pug';
-import defaultImg from '@/static/img/profile.jpg';
+import profileTemplate from '@/components/profile.pug';
+import defaultImg from '@/static/img/profileAvatar.svg';
 
 /** View профиля */
 export class ProfileView extends View {
@@ -43,14 +43,14 @@ export class ProfileView extends View {
             profileTemplate(info),
         );
 
-
-        const img = document.getElementById('profile_img');
+        const img = document.querySelector('div.top__avatar');
         if (info.img === null || info.img === undefined) {
-            img.src = defaultImg;
+            img.style.background =
+                `url(${defaultImg}).default}) 
+                no-repeat;`;
         } else {
-            img.src = info.img;
+            // img.src.background = info.img;
         }
-
 
         const inputImg = document.getElementById('file-input');
         inputImg.onchange = async (ev) => {
@@ -62,7 +62,7 @@ export class ProfileView extends View {
             await fReader.readAsDataURL(file);
         };
 
-        const exitLink = document.getElementById('profile__exit_link');
+        const exitLink = document.querySelector('.exit-buttion__text');
         exitLink.addEventListener('click', () => {
             eventBus.emit(EXIT);
         });
@@ -75,7 +75,7 @@ export class ProfileView extends View {
      */
     _successLoadImage(src) {
         const img = document.getElementById('profile_img');
-        img.src = src;
+        img.style.background= `image(${src}) no-repeat;`;
     }
 
     /**

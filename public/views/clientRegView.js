@@ -3,7 +3,7 @@ import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
 import {CLIENT_REG_SUBMIT, NO_REG_CLIENT} from '../modules/utils/actions.js';
 
-import clientRegTemplate from '@/templates/clientReg.pug';
+import regTemplate from '@/components/registration.pug';
 
 /** View регистрации клиента */
 export class ClientRegView extends View {
@@ -18,24 +18,22 @@ export class ClientRegView extends View {
             isAuthorized,
             isExecutor,
             'Регистрация',
-            clientRegTemplate(),
+            regTemplate(),
             [
                 [NO_REG_CLIENT, this._onNoRegistration],
             ]);
 
-        const val = new Validator('feedback', '.form-control', 'send_mess');
-        val.validate();
+        // const val = new Validator('feedback', '.form-control', 'send_mess');
+        // val.validate();
 
-        const form = document.getElementById('feedback');
+        const form = document.getElementById('registration__form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             const data = {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 login: event.target.login.value,
-                name_surname: event.target.first_name.value + ' ' +
-                    event.target.second_name.value,
-                about: 'Заполните информацию о себе',
+                name_surname: event.target.name.value,
             };
 
             eventBus.emit(CLIENT_REG_SUBMIT, data);
