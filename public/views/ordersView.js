@@ -5,55 +5,30 @@ import {
     SEND_SERVICES,
     SEND_RESULT_RENDER,
     ORDERS_RENDER,
-} from "@/modules/utils/actions";
-import ordersTemplate from "@/templates/orders.pug";
-import clientRegTemplate from "@/templates/clientReg.pug";
-
-var tempData = {
-    orders: [{
-        avatar: '',
-        login: 'sa',
-        title: 'dasdas',
-        categore: 'asdasd',
-        definition: 'asdasd',
-        date: '100000',
-        budget: '500'
-    },
-        {
-            avatar: '',
-            login: 'saadsdsadsa',
-            title: 'dasdas213123123',
-            categore: 'asdasd1312321',
-            definition: 'asdasd',
-            date: '100000',
-            budget: '500'
-        },
-        {
-            avatar: '',
-            login: 'sa',
-            title: 'dasdas',
-            categore: 'asdasd',
-            definition: 'asdasd',
-            date: '100000',
-            budget: '500'
-        }],
-}
+} from '@/modules/utils/actions';
+import ordersTemplate from '@/components/pages/orders.pug';
 
 export class OrdersView extends View {
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.setListeners([
             [ORDERS_RENDER, this._renderData],
         ]);
         eventBus.emit(SEND_SERVICES);
     }
 
-    _renderData(data) {
+    _renderData(dataMap) {
+        const map = [];
+        for (const item of dataMap.map.values()) {
+            map.push(item);
+        }
+
         super.renderHtml(
-            data.isAuthorized,
-            'Настройки',
-            ordersTemplate(tempData),
-            // avatar, login, title, category, definition, date, budget
+            dataMap.isAuthorized,
+            dataMap.isExecutor,
+            'Все заказы',
+            ordersTemplate({
+                orders: map,
+            }),
         );
     }
-
 }

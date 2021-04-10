@@ -1,25 +1,11 @@
-//Входные данные:
-//    {
-//        orders: [         // массив заказов
-//            {
-//                avatar,
-//                login,
-//                title,
-//                category,
-//                definition,
-//                date,
-//                budget,
-//            },
-//        ],
-//    }
-include orders/orderInOrdersPage.pug
+include ../orders/orderInOrdersPage
 
 .orders
     div(class='orders__title') Актуальные заказы
     div(class='orders__content')
         div(class='orders__list')
             each order in orders
-                +orderInOrdersPage(order.avatar, order.login, order.title, order.category, order.definition, order.date, order.budget)
+                +orderInOrdersPage(order.avatar, order.login, order.name, order.category, order.definition, order.date, order.budget)
             button.show-more-button Показать еще
         form.filters
             div(class='filters__title') Фильтры

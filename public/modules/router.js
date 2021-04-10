@@ -28,10 +28,7 @@ class Router {
         body.addEventListener('click', (event) => {
             const href = event.target.getAttribute('href');
             // ToDo: Сделать через instanceof
-            if ((event.target.localName === 'a' ||
-                event.target.localName === 'button' ||
-                event.target.localName === 'img') &&
-                href) {
+            if (href) {
                 event.preventDefault();
 
                 this.go(href);

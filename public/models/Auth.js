@@ -6,7 +6,7 @@ import {
     LOGIN,
     ON_PROFILE,
     ORDER_CREATE, ORDER_PAGE_RES,
-    REG,
+    REG, SEND_RESULT_RENDER,
     SETTING_UPD,
 } from '../modules/utils/actions.js';
 
@@ -108,10 +108,10 @@ export default class Auth {
             });
     }
 
-    static getResponsesOrders() {
+    static getOrders() {
         sendRequest('GET', '/order')
             .then((res) => {
-                eventBus.emit(ORDER_PAGE_RES, res);
+                eventBus.emit(SEND_RESULT_RENDER, res);
             });
     }
 }

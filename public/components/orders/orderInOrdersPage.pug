@@ -13,8 +13,8 @@ mixin orderInOrdersPage(avatar, login, title, category, definition, date, budget
                     a(class="orders__order_link" href="") ...more
             div(class='orders__order_stats')
                 div(class='orders__order_stat')
-                    img(class='orders__order_stat-img' src=require("@/static/Icons/iconTime.svg").default)
+                    img(class='orders__order_stat-img' src=require("@/static/img/iconTime.svg").default)
                     div(class='orders__order_stat-data')= date
                 div(class='orders__order_stat')
-                    img(class='orders__order_stat-img' src=require("@/static/Icons/card.svg").default)
+                    img(class='orders__order_stat-img' src=require("@/static/img/card.svg").default)
                     div(class='orders__order_stat-data')= budget
