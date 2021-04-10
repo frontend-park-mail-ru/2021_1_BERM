@@ -6,7 +6,7 @@ import {
     NO_LOGIN,
 } from '../modules/utils/actions.js';
 
-import loginTemplate from '@/templates/login.pug';
+import loginTemplate from '@/components/pages/login.pug';
 
 /** View логина */
 export class LoginView extends View {
@@ -14,10 +14,12 @@ export class LoginView extends View {
      * Отображение страницы и получение с нее данных
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      */
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.renderHtml(
             isAuthorized,
+            isExecutor,
             'Авторизация',
             loginTemplate(),
             [

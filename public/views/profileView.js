@@ -9,8 +9,7 @@ import {
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
 
-import profileTemplate from '@/templates/profile.pug';
-import defaultImg from '@/static/img/profile.jpg';
+import profileTemplate from '@/components/pages/profile.pug';
 
 /** View профиля */
 export class ProfileView extends View {
@@ -18,8 +17,9 @@ export class ProfileView extends View {
      * Отображение страницы и получение с нее данных
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      */
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.setListeners([
             [RENDER_PROFILE, this._renderProfile],
             [SUCCESS_LOAD_IMG, this._successLoadImage],
@@ -37,20 +37,12 @@ export class ProfileView extends View {
     _renderProfile(info) {
         super.renderHtml(
             info.isAuthorized,
+            info.isExecutor,
             'Профиль',
             profileTemplate(info),
         );
 
-
-        const img = document.getElementById('profile_img');
-        if (info.img === null || info.img === undefined) {
-            img.src = defaultImg;
-        } else {
-            img.src = info.img;
-        }
-
-
-        const inputImg = document.getElementById('file-input');
+        const inputImg = document.getElementById('input-file');
         inputImg.onchange = async (ev) => {
             const file = ev.target.files[0];
             const fReader = new FileReader();
@@ -60,7 +52,7 @@ export class ProfileView extends View {
             await fReader.readAsDataURL(file);
         };
 
-        const exitLink = document.getElementById('profile__exit_link');
+        const exitLink = document.querySelector('.exit-buttion__text');
         exitLink.addEventListener('click', () => {
             eventBus.emit(EXIT);
         });

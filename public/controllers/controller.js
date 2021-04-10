@@ -27,7 +27,7 @@ export class Controller extends BaseMVC {
         this.listeners = listenersArr;
 
         super.onAll();
-        this.view.render(user.isAuthorized);
+        this.view.render(user.isAuthorized, user.isExecutor);
     }
 
     /**
@@ -44,6 +44,7 @@ export class Controller extends BaseMVC {
                 if (result) {
                     user.isAuthorized = true;
                     user.id = result.id;
+                    user.isExecutor = result.executor; // ToDo Пока не работает!
                 }
             })
             .catch((result) => {

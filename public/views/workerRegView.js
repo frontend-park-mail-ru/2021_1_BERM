@@ -3,7 +3,7 @@ import eventBus from '../modules/eventBus.js';
 import {Validator} from './validator.js';
 import {NO_REG_WORKER, WORKER_REG_SUBMIT} from '../modules/utils/actions.js';
 
-import workerRegTemplate from '@/templates/workerReg.pug';
+import regTemplate from '@/components/pages/registration.pug';
 
 /** View регистрации исполнителя */
 export class WorkerRegView extends View {
@@ -11,30 +11,30 @@ export class WorkerRegView extends View {
      * Отображение страницы и получение с нее данных
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
      */
-    render(isAuthorized) {
+    render(isAuthorized, isExecutor) {
         super.renderHtml(
             isAuthorized,
+            isExecutor,
             'Регистрация',
-            workerRegTemplate(),
+            regTemplate(),
             [
                 [NO_REG_WORKER, this._onNoRegistration],
             ]);
 
-        const val = new Validator('feedback', '.form-control', 'send_mess');
-        val.validate();
+        // const val = new Validator('feedback', '.form-control', 'send_mess');
+        // val.validate();
 
-        const form = document.getElementById('feedback');
+        const form = document.getElementById('registration__form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             const data = {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 login: event.target.login.value,
-                name_surname: event.target.first_name.value + ' ' +
-                    event.target.second_name.value,
-                specializes: [event.target.specializes.value],
-                about: 'Заполните информацию о себе',
+                name_surname: event.target.name.value,
+                specializes: ['Крушитель великанов', 'Мышиный король'], // Todo fix
                 executor: true,
             };
 

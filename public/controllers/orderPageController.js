@@ -3,11 +3,13 @@ import {OrderPageView} from '../views/orderPageView.js';
 
 import auth from '../models/Auth.js';
 import order from '../models/Order.js';
+import user from '../models/User.js';
 import {
     ORDER_PAGE_GET_RES,
     ORDER_PAGE_RES,
     ORDER_PAGE_RENDER,
 } from '../modules/utils/actions.js';
+import eventBus from '../modules/eventBus.js';
 
 export class OrderPageController extends Controller {
     constructor() {
@@ -29,10 +31,14 @@ export class OrderPageController extends Controller {
     }
 
     _orderPageRes(res) {
+        eventBus.emit(ORDER_PAGE_RENDER, {
+            isAuthorized: user.isAuthorized,
+            isExecutor: true,
+        }); // ToDo Удалить
         if (res.ok) {
             res.json().then((res) => {
                 order.setResponses(order.currentOrderId, res);
-                emit(ORDER_PAGE_RENDER, {
+                eventBus.emit(ORDER_PAGE_RENDER, {
                     // ToDo отправляем данные для отрисовки
                 });
             });

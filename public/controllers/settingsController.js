@@ -79,6 +79,7 @@ export class SettingsController extends Controller {
     _sendUserData() {
         eventBus.emit(GET_USER_DATA, {
             isAuthorized: user.isAuthorized,
+            isExecutor: user.isExecutor,
             login: user.login,
             name: user.nameSurname,
             email: user.email,

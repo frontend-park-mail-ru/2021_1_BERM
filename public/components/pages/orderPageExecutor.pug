@@ -1,0 +1,36 @@
+include ../orders/orderInOrderPageExecutor
+include ../rates/changeRate.pug
+include ../rates/makeRate.pug
+include ../rates/rateCustomer.pug
+include ../responses/responseOrderExecutor.pug
+include ../responses/responseOrderCustomer.pug
+include ../responses/responseMinOrderExecutor.pug
+include ../responses/responseMinOrderCustomer.pug
+
+.orderPage
+    +orderInOrderPageExecutor(creator.avatar, creator.title, creator.category, creator.definition, creator.date, creator.budget)
+    div(class='orderPage__comments')
+        div(class='orderPage__responses')
+            div(class='orderPage__comments_title') Отклики
+            div(class='orderPage__responses_scroll')
+                each user in usersResponsed
+                    if executor
+                        +responseOrderExecutor(user.avatar, user.login, user.rate, user.date)
+                    else
+                        +responseOrderCustomer(user.avatar, user.login, user.rate, user.date)
+
+            button(class='orderPage__comments_others') Показать ещё
+        div(class='orderPage__rate')
+            div(class='orderPage__comments_title') Минимальная ставка
+                if executor
+                    +responseMinOrderExecutor(userMinResponse.avatar, userMinResponse.name, userMinResponse.rate, userMinResponse.date)
+                else
+                    +responseMinOrderCustomer(userMinResponse.avatar, userMinResponse.name, userMinResponse.rate, userMinResponse.date)
+            if userRate === 0
+                if executor
+                    +makeRate
+            else
+                if executor
+                    +changeRate(userRate)
+                else
+                    +rateCustomer(selectExecutor.avatar, selectExecutor.login, selectExecutor.rate, selectExecutor.date)

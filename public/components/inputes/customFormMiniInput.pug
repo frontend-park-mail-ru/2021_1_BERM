@@ -1,0 +1,8 @@
+mixin customFormMiniInputs(imgFirst, placeholderFirst, imgSecond, placeholderSecond, nameFirst, nameSecond)
+    div(class='custom-form__input-mini_bg')
+        div(class='custom-form__input-mini')
+            img(class='custom-form__img' src=imgFirst alt='')
+            input(class='custom-form__input-mini_in' type='password' placeholder=placeholderFirst name=nameFirst)
+        div(class='custom-form__input-mini')
+            img(class='custom-form__img' src=imgSecond alt='')
+            input(class='custom-form__input-mini_in' type='password' placeholder=placeholderSecond name=nameSecond)
