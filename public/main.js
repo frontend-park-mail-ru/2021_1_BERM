@@ -22,6 +22,7 @@ import router from './modules/router.js';
 import {MainPageController} from './controllers/mainPageController.js';
 import {ProfileController} from './controllers/profileController.js';
 import {OrderPageController} from './controllers/orderPageController.js';
+import {OrdersController} from './controllers/ordersContoller.js';
 import {
     CLIENT_REG_PAGE,
     LOGIN_PAGE,
@@ -31,6 +32,7 @@ import {
     PROFILE_PAGE,
     SETTINGS_PAGE,
     WORKER_REG_PAGE,
+    ORDERS_PAGE,
 } from './modules/utils/pageNames.js';
 
 const controllers = new Set([
@@ -42,6 +44,7 @@ const controllers = new Set([
     [SETTINGS_PAGE, SettingsController],
     [ORDER_CREATE_PAGE, OrderCreateController],
     [ORDER_PAGE, OrderPageController],
+    [ORDERS_PAGE, OrdersController],
     // Здесь добавляем странички
 ]);
 
