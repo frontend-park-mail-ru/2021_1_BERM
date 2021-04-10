@@ -42,8 +42,8 @@ export class OrdersController extends Controller {
     }
 
     _sendServices() {
-        // auth.getResponsesOrders();
-        eventBus.emit(ORDERS_RENDER);
+        auth.getResponsesOrders();
+        // eventBus.emit(ORDERS_RENDER);
     }
 
     _sendResultsRender(res) {

@@ -74,6 +74,8 @@
 }
 
 .category {
+    color: #FFF;
+    font-weight: 600;
     padding: 15px 27px;
     background-color: #808080;
     /*border-bottom: 1px solid #808080;*/
