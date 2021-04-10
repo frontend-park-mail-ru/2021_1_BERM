@@ -22,14 +22,22 @@ export class OrderPageView extends View {
             info.isExecutor,
             'Страница заказа',
             orderPageTemplate({
+                executor: info.isExecutor,
                 creator: { // создатель заказа
                     avatar: '',
                     title: 'Хочу хачапури',
                     category: 'Бизарро',
                     definition: 'Ага',
                     date: 'угу',
+                    budget: '10000',
                 },
-                userResponsed: [{
+                usersResponsed: [{
+                    avatar: '',
+                    login: 'xuy',
+                    rate: '0',
+                    date: '09.008.22',
+                },
+                {
                     avatar: '',
                     login: 'xuy',
                     rate: '0',
@@ -49,11 +57,12 @@ export class OrderPageView extends View {
                 },
                 ],
                 userMinResponse: { // минимальный отклик по ставке
+                    avatar: '',
                     name: '123',
                     rate: '12',
                     date: '1',
                 },
-                userRate: '1488', // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
+                userRate: 1488, // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
             }),
         );
     }

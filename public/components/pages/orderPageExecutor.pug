@@ -1,33 +1,4 @@
-//Входные парамеры:
-//    {
-//        creator: {            // создатель заказа
-//            avatar,
-//            title,
-//            category,
-//            definition,
-//            date,
-//        },
-//        userResponsed: {      // отклики пользователей
-//            [
-//                {
-//                    avatar,
-//                    login,
-//                    rate,
-//                    date,
-//                }
-//            ]
-//        },
-//        userMinResponse: {    // минимальный отклик по ставке
-              avatar,
-//            name,
-//            rate,
-//            date,
-//        },
-//        userRate: '1488',     // ставка текущего пользователя, если ее сейчас нет - передавать  0 !!!!1
-          executor: true/false,
-
-//
-//    }
+include ../orders/orderInOrderPageExecutor
 include ../rates/changeRate.pug
 include ../rates/makeRate.pug
 include ../rates/rateCustomer.pug
@@ -49,9 +20,8 @@ include ../responses/responseMinOrderCustomer.pug
                         +responseOrderCustomer(user.avatar, user.login, user.rate, user.date)
 
             button(class='orderPage__comments_others') Показать ещё
-        div(class='orderPage__rate min-rate')
+        div(class='orderPage__rate')
             div(class='orderPage__comments_title') Минимальная ставка
-            div(class='orderPage__response')
                 if executor
                     +responseMinOrderExecutor(userMinResponse.avatar, userMinResponse.name, userMinResponse.rate, userMinResponse.date)
                 else

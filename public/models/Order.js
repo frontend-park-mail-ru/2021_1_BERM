@@ -4,6 +4,7 @@ class Order {
         this.currentOrderId = -1;
         this.ordersMap = new Map([]);
     }
+
     /**
      * Установка атрибутов пользователя
      *

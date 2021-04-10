@@ -44,7 +44,7 @@ export class Controller extends BaseMVC {
                 if (result) {
                     user.isAuthorized = true;
                     user.id = result.id;
-                    user.isExecutor = result.executor;  // ToDo Пока не работает!
+                    user.isExecutor = result.executor; // ToDo Пока не работает!
                 }
             })
             .catch((result) => {

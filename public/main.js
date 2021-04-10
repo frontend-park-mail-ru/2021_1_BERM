@@ -8,6 +8,9 @@ import '@/static/css/login.css';
 import '@/static/css/registration.css';
 import '@/static/css/main.css';
 import '@/static/css/profile.css';
+import '@/static/css/orderPageCustomer.css';
+import '@/static/css/orderPageWithRate.css';
+import '@/static/css/orders.css';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';
