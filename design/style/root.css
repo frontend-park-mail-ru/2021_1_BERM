@@ -29,7 +29,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}
     --paragraph: #3E4462;
 }
 
-.root {
+#root {
     display: flex;
     flex-direction: column;
 
@@ -146,7 +146,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}
     flex-direction: row;
     align-items: center;
 
-    margin-top: 20px;
+    margin-top: 32px;
 }
 
 .custom-form__submit {

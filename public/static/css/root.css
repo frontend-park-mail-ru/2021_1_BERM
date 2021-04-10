@@ -145,8 +145,8 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    margin-top: 32px;
 
-    margin-top: 20px;
 }
 
 .custom-form__submit {

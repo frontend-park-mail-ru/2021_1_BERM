@@ -45,6 +45,7 @@ export class ProfileController extends Controller {
      */
     _profile() {
         if (!user.isGetAttr) {
+            user.isGetAttr = true;
             auth.getProfile(user.id);
         } else {
             eventBus.emit(RENDER_PROFILE, {
@@ -55,6 +56,8 @@ export class ProfileController extends Controller {
                 specializes: user.specializes,
                 about: user.about,
                 img: user.img,
+                rating: 0,
+                reviews: 0,
             });
         }
     }
@@ -93,6 +96,8 @@ export class ProfileController extends Controller {
                     specializes: user.specializes,
                     about: user.about,
                     img: user.img,
+                    rating: 0,
+                    reviews: 0,
                 });
             });
     }

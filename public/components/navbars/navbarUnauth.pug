@@ -1,0 +1,13 @@
+.navbar
+    a(class='navbar__title' href='/') FindFreelancer.ru
+    div(class='navbar__navigate')
+        .row
+            div(class='navbar__registration_text')
+                a(class='row__item') Регистрация
+                div(class='navbar__registration_content')
+                    a(href='/client-reg')  За клиента
+                    a(href='/worker-reg')  За исполнителя
+            div.row__item
+                a(class='navbar__enter_text' href='/login') Вход
+            div(class='row__item')
+                img(src=require("@/static/img/search.svg").default alt='')

@@ -4,6 +4,7 @@ import {ClientRegView} from '../views/clientRegView.js';
 import eventBus from '../modules/eventBus.js';
 import router from '../modules/router.js';
 import auth from '../models/Auth.js';
+
 import {
     REG,
     CLIENT_REG_SUBMIT,
@@ -39,6 +40,7 @@ export class ClientRegController extends Controller {
      */
     _onRegCl(res) {
         if (res.ok) {
+
             router.go(MAIN_PAGE);
         } else {
             eventBus.emit(NO_REG_CLIENT);

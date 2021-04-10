@@ -21,13 +21,18 @@
     display: flex;
 }
 .top__avatar {
-    background: url('../Icons/avatar.svg') no-repeat;
+    width: 156px;
+    height: 156px;
+}
+
+.top__avatar_img {
     width: 156px;
     height: 156px;
 }
 .edit {
-    margin: -12px 0px 0px -12px;
+    margin: -173px 0 0 -12px;
 }
+
 .edit-button {
     border-radius: 50%;
 }
@@ -50,6 +55,7 @@
     letter-spacing: -0.4px;
     margin-left: -22px;
 }
+
 .nickname {
     display: flex;
     align-items: center;
@@ -218,4 +224,6 @@
     margin: 5px 0px 0px 7px 
 }
 
-
+input[type="file"] {
+    display: none;
+}
