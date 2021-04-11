@@ -51,7 +51,7 @@ export class OrderCreateView extends View {
                 category: event.target.category.value,
                 description: event.target.description.value,
                 budget: Number(event.target.budget.value),
-                deadline: new Date(date[2], date[1], date[0]).getTime() / 1000,
+                deadline: new Date(date[2], date[1] - 1, date[0]).getTime(),
             };
 
             eventBus.emit(ORDER_SUBMIT, data);

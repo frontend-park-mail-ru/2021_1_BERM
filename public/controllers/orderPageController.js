@@ -53,7 +53,7 @@ export class OrderPageController extends Controller {
                         date: creator.date,
                         budget: creator.budget,
                     },
-                    minResponse: creator.minResponse,
+                    minResponse: order.findMin(order.currentOrderId),
                     userRate: order.findRate(order.currentOrderId, user.id),
                 });
             });
@@ -64,17 +64,18 @@ export class OrderPageController extends Controller {
     }
 
     _orderSetRate({rate}) {
+        const date = new Date();
         auth.setResponse({
             user_id: user.id,
             rate: rate,
-            time: Date.now() / 100,
+            time: date.getTime(),
         }, order.currentOrderId);
     }
 
     _orderGetRate(res) {
         if (res.ok) {
             res.json().then((res) => {
-                order.pushResponse(res);
+                order.pushResponse(order.currentOrderId, res);
 
                 const creator = order.getOrderById(order.currentOrderId);
 
@@ -90,7 +91,7 @@ export class OrderPageController extends Controller {
                         date: creator.date,
                         budget: creator.budget,
                     },
-                    minResponse: creator.minResponse,
+                    minResponse: order.findMin(order.currentOrderId),
                     userRate: order.findRate(order.currentOrderId, user.id),
                 });
             });

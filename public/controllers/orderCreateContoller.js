@@ -43,17 +43,7 @@ export class OrderCreateController extends Controller {
         if (res.ok) {
             res.json()
                 .then((res) => {
-                    order.setAttributes({
-                        id: res.id,
-                        avatar: res.img,
-                        login: res.login,
-                        name: res.order_name,
-                        customerId: res.customer_id,
-                        category: res.category,
-                        definition: res.description,
-                        date: res.deadline,
-                        budget: res.budget,
-                    });
+                    order.setOrders([res]);
 
                     router.go(ORDER_PAGE);
                 });

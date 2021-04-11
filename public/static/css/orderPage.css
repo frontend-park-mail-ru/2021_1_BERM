@@ -152,7 +152,7 @@
 .orderPage__responses {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: left;
     width: 458px;
 }
 
@@ -329,6 +329,13 @@
 
 .min-rate {
     border: 2px solid #345DEE;
+}
+
+.orderPage__no-comments {
+    margin-top: 20px;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 30px;
 }
 
 /*.orderPage__responses_scroll {*/

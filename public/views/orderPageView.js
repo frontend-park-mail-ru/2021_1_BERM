@@ -33,7 +33,7 @@ export class OrderPageView extends View {
                     debugger;
                     event.preventDefault();
                     const data = {
-                        rate: event.target.rate.value,
+                        rate: Number(event.target.rate.value),
                     };
 
                     eventBus.emit(ORDER_SET_RATE, data);

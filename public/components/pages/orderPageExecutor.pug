@@ -12,7 +12,7 @@ include ../responses/responseMinOrderCustomer.pug
     div(class='orderPage__comments')
         div(class='orderPage__responses')
             div(class='orderPage__comments_title') Отклики
-            if responses !== []
+            if minResponse.rate !== -1
                 div(class='orderPage__responses_scroll')
                     each user in responses
                         if isExecutor
@@ -22,14 +22,14 @@ include ../responses/responseMinOrderCustomer.pug
 
                 button(class='orderPage__comments_others') Показать ещё
             else
-                div(class="asd") Нет откликов
+                div(class="orderPage__no-comments") Ваш отклик будет первым!
         div(class='orderPage__rate')
-            div(class='orderPage__comments_title') Минимальная ставка
-                if minResponse.rate !== -1
-                    if isExecutor
-                        +responseMinOrderExecutor(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
-                    else
-                        +responseMinOrderCustomer(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
+            if minResponse.rate !== -1
+                div(class='orderPage__comments_title') Минимальная ставка
+                if isExecutor
+                    +responseMinOrderExecutor(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
+                else
+                    +responseMinOrderCustomer(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
             if userRate === 0
                 if isExecutor
                     +makeRate

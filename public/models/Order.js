@@ -17,37 +17,24 @@ class Order {
 
     setResponses(id, res) {
         const responses = [];
-        let min = {rate: -1};
 
         res.forEach((item) => {
-            const dataRes = {
-                creatorId: item.user_id,
-                avatar: item.user_img,
-                login: item.user_login,
-                rate: item.rate,
-                date: new Date(item.time * 1000),
-            };
-
-            if (item.rate > min.rate) {
-                min = dataRes;
-            }
-            responses.push(dataRes);
+            this.pushResponse(id, item);
         });
 
         this.ordersMap.get(id).responses = responses;
-        this.ordersMap.get(id).minResponse = min;
     }
 
-    pushResponse(item) {
+    pushResponse(id, item) {
         const dataRes = {
             creatorId: item.user_id,
             avatar: item.user_img,
             login: item.user_login,
             rate: item.rate,
-            date: new Date(item.time * 1000),
+            date: this.getDate(item.time),
         };
 
-        this.ordersMap.get(this.currentOrderId).responses.push(dataRes);
+        this.ordersMap.get(id).responses.push(dataRes);
     }
 
     findRate(id, creatorId) {
@@ -69,7 +56,7 @@ class Order {
                 customerId: res.customer_id,
                 category: res.category,
                 definition: res.description,
-                date: res.deadline,
+                date: this.getDate(res.deadline),
                 budget: res.budget,
             });
         });
@@ -77,6 +64,33 @@ class Order {
 
     getOrderById(id) {
         return this.ordersMap.get(id);
+    }
+
+    findMin(id) {
+        let min = {rate: -1};
+
+        this.ordersMap.get(id).responses.forEach((item) => {
+            if (min.rate === -1 || item.rate < min.rate) {
+                min = item;
+            }
+        });
+
+        return min;
+    }
+
+    getDate(time) {
+        const date = new Date(time);
+        let day = date.getDate();
+        if (day < 10) {
+            day = `0${day}`;
+        }
+        let month = date.getMonth();
+        if (month < 9) {
+            month = `0${month + 1}`;
+        }
+        const year = date.getFullYear();
+
+        return `${day}:${month}:${year}`;
     }
 }
 
