@@ -16,9 +16,47 @@ class Order {
     }
 
     setResponses(id, res) {
-        // ToDo Если хотим названия полей нормальные,
-        //  то надо пройтись по res
-        this.ordersMap[id].responses = res;
+        const responses = [];
+        let min = {rate: -1};
+
+        res.forEach((item) => {
+            const dataRes = {
+                creatorId: item.user_id,
+                avatar: item.user_img,
+                login: item.user_login,
+                rate: item.rate,
+                date: new Date(item.time * 1000),
+            };
+
+            if (item.rate > min.rate) {
+                min = dataRes;
+            }
+            responses.push(dataRes);
+        });
+
+        this.ordersMap.get(id).responses = responses;
+        this.ordersMap.get(id).minResponse = min;
+    }
+
+    pushResponse(item) {
+        const dataRes = {
+            creatorId: item.user_id,
+            avatar: item.user_img,
+            login: item.user_login,
+            rate: item.rate,
+            date: new Date(item.time * 1000),
+        };
+
+        this.ordersMap.get(this.currentOrderId).responses.push(dataRes);
+    }
+
+    findRate(id, creatorId) {
+        this.ordersMap.get(id).responses.forEach((item) => {
+            if (item.creatorId === creatorId) {
+                return item.rate;
+            }
+        });
+        return 0;
     }
 
     setOrders(data) {
@@ -35,6 +73,10 @@ class Order {
                 budget: res.budget,
             });
         });
+    }
+
+    getOrderById(id) {
+        return this.ordersMap.get(id);
     }
 }
 

@@ -1,4 +1,4 @@
-class DateHandler {
+export default class DateHandler {
     constructor() {
         this.actions = {
             WRITING: true,
@@ -15,6 +15,7 @@ class DateHandler {
         const regex = /[-;":'a-zA-Zа-яА-Я]/;
         let action = this.actions.WRITING;
         const date = document.getElementById('date');
+        date.setAttribute('maxlength', '10');
         date.addEventListener('input', (e) => {
             date.value = date.value.replace(regex, '');
             action = this.lengthHandler(e);
@@ -53,9 +54,3 @@ class DateHandler {
         }
     }
 }
-
-
-// eslint-disable-next-line no-undef
-
-const abr = new DateHandler();
-abr.createDate();

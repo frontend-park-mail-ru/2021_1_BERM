@@ -27,7 +27,6 @@ class Router {
         const body = document.getElementsByTagName('body')[0];
         body.addEventListener('click', (event) => {
             const href = event.target.getAttribute('href');
-            // ToDo: Сделать через instanceof
             if (href) {
                 event.preventDefault();
 

@@ -21,6 +21,8 @@ export const FLIP_THE_PAGE = 'flip-the-page';
 export const SEND_SERVICES = 'services';
 export const SEND_RESULT_RENDER = 'send-result-render';
 export const ORDERS_RENDER = 'orders-render';
+export const ORDER_SET_RATE = 'order-set-rate';
+export const ORDER_GET_RATE = 'order-get-rate';
 
 
 // Views actions

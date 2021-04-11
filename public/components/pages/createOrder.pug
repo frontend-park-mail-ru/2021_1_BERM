@@ -6,11 +6,11 @@ include ../inputes/settingsInput
             div(class='settings__form')
                 div(class='settings__column_left')
                     div(class='settings__label') Создать заказ
-                    +settingsInput(require("@/static/img/title.svg").default, 'Заголовок', 'order_name')
-                    +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget')
-                    +settingsInput(require("@/static/img/date.svg").default, 'ДД.ММ.ГГГГ', 'date')
-                    div(class='settings-form__input-mini_bg')
-                        #select
+                    +settingsInput(require("@/static/img/title.svg").default, 'Заголовок', 'order_name', 'text')
+                    +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text')
+                    +settingsInput(require("@/static/img/date.svg").default, 'ДД.ММ.ГГГГ', 'date', 'text', 'date')
+                    div.settings-form__input-mini_bg
+                        div(id='select')
                 div(class='settings__column_right')
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')

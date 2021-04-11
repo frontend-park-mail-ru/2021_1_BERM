@@ -45,12 +45,14 @@ export class OrderCreateController extends Controller {
                 .then((res) => {
                     order.setAttributes({
                         id: res.id,
+                        avatar: res.img,
+                        login: res.login,
                         name: res.order_name,
-                        category: res.category,
-                        description: res.description,
-                        budget: res.budget,
-                        deadline: res.deadline,
                         customerId: res.customer_id,
+                        category: res.category,
+                        definition: res.description,
+                        date: res.deadline,
+                        budget: res.budget,
                     });
 
                     router.go(ORDER_PAGE);

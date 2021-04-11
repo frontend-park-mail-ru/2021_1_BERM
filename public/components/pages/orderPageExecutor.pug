@@ -12,25 +12,29 @@ include ../responses/responseMinOrderCustomer.pug
     div(class='orderPage__comments')
         div(class='orderPage__responses')
             div(class='orderPage__comments_title') Отклики
-            div(class='orderPage__responses_scroll')
-                each user in usersResponsed
-                    if executor
-                        +responseOrderExecutor(user.avatar, user.login, user.rate, user.date)
-                    else
-                        +responseOrderCustomer(user.avatar, user.login, user.rate, user.date)
+            if responses !== []
+                div(class='orderPage__responses_scroll')
+                    each user in responses
+                        if isExecutor
+                            +responseOrderExecutor(user.avatar, user.login, user.rate, user.date)
+                        else
+                            +responseOrderCustomer(user.avatar, user.login, user.rate, user.date)
 
-            button(class='orderPage__comments_others') Показать ещё
+                button(class='orderPage__comments_others') Показать ещё
+            else
+                div(class="asd") Нет откликов
         div(class='orderPage__rate')
             div(class='orderPage__comments_title') Минимальная ставка
-                if executor
-                    +responseMinOrderExecutor(userMinResponse.avatar, userMinResponse.name, userMinResponse.rate, userMinResponse.date)
-                else
-                    +responseMinOrderCustomer(userMinResponse.avatar, userMinResponse.name, userMinResponse.rate, userMinResponse.date)
+                if minResponse.rate !== -1
+                    if isExecutor
+                        +responseMinOrderExecutor(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
+                    else
+                        +responseMinOrderCustomer(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
             if userRate === 0
-                if executor
+                if isExecutor
                     +makeRate
             else
-                if executor
+                if isExecutor
                     +changeRate(userRate)
                 else
                     +rateCustomer(selectExecutor.avatar, selectExecutor.login, selectExecutor.rate, selectExecutor.date)

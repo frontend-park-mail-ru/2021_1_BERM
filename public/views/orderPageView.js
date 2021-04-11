@@ -2,6 +2,7 @@ import {View} from './view.js';
 import {
     ORDER_PAGE_RENDER,
     ORDER_PAGE_GET_RES,
+    ORDER_SET_RATE,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
 
@@ -21,53 +22,84 @@ export class OrderPageView extends View {
             info.isAuthorized,
             info.isExecutor,
             'Страница заказа',
-            orderPageTemplate({
-                executor: info.isExecutor,
-                creator: { // создатель заказа
-                    avatar: '',
-                    title: 'Хочу хачапури',
-                    category: 'Бизарро',
-                    definition: 'Ага',
-                    date: 'угу',
-                    budget: '10000',
-                },
-                usersResponsed: [{
-                    avatar: '',
-                    login: 'xuy',
-                    rate: '0',
-                    date: '09.008.22',
-                },
-                {
-                    avatar: '',
-                    login: 'xuy',
-                    rate: '0',
-                    date: '09.008.22',
-                },
-                {
-                    avatar: '',
-                    login: 'xuy',
-                    rate: '0',
-                    date: '09.008.22',
-                },
-                {
-                    avatar: '',
-                    login: 'xuy',
-                    rate: '0',
-                    date: '09.008.22',
-                },
-                ],
-                userMinResponse: { // минимальный отклик по ставке
-                    avatar: '',
-                    name: '123',
-                    rate: '12',
-                    date: '1',
-                },
-                userRate: 1488, // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
-            }),
+            orderPageTemplate(info),
         );
+
+        if (info.isExecutor) {
+            const form = document
+                .getElementsByClassName('orderPage__set-rate_form')[0];
+            if (info.userRate === 0) {
+                form.addEventListener('submit', (event) => {
+                    debugger;
+                    event.preventDefault();
+                    const data = {
+                        rate: event.target.rate.value,
+                    };
+
+                    eventBus.emit(ORDER_SET_RATE, data);
+                });
+            } else {
+                const deleteButton = document
+                    .querySelector('.orderPage__set-rate_button-del');
+
+                deleteButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    console.log('удаляем');
+                });
+
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const data = {
+                        rate: event.target.rate.value,
+                    };
+
+                    console.log('изменяем');
+                });
+            }
+        }
     }
-
-    // ToDo Тут навешиваем обработчики и вызываем события
-
-    // Todo Если нажали на один из откликов
 }
+
+// {
+//     executor: info.isExecutor,
+//         creator: { // создатель заказа
+//     avatar: '',
+//         title: 'Хочу хачапури',
+//         category: 'Бизарро',
+//         definition: 'Ага',
+//         date: 'угу',
+//         budget: '10000',
+// },
+//     usersResponsed: [{
+//         avatar: '',
+//         login: 'xuy',
+//         rate: '0',
+//         date: '09.008.22',
+//     },
+//         {
+//             avatar: '',
+//             login: 'xuy',
+//             rate: '0',
+//             date: '09.008.22',
+//         },
+//         {
+//             avatar: '',
+//             login: 'xuy',
+//             rate: '0',
+//             date: '09.008.22',
+//         },
+//         {
+//             avatar: '',
+//             login: 'xuy',
+//             rate: '0',
+//             date: '09.008.22',
+//         },
+//     ],
+//         userMinResponse: { // минимальный отклик по ставке
+//     avatar: '',
+//         name: '123',
+//         rate: '12',
+//         date: '1',
+// },
+//     userRate: 1488, // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
+// }

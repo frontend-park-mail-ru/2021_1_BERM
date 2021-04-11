@@ -4,6 +4,9 @@ import eventBus from '../modules/eventBus.js';
 import {NO_ORDER, ORDER_SUBMIT} from '../modules/utils/actions.js';
 
 import createOrderTemplate from '@/components/pages/createOrder.pug';
+import DateHandler from '../modules/utils/dateHandler.js';
+import Select from '../modules/utils/customSelect.js';
+import {listOfServices} from '../modules/utils/templatesForSelect.js';
 
 /** View создания заказа */
 export class OrderCreateView extends View {
@@ -23,6 +26,15 @@ export class OrderCreateView extends View {
                 [NO_ORDER, this._onNoOrder],
             ]);
 
+        const date = new DateHandler();
+        date.createDate();
+        new Select(
+            '#select', {
+                placeholder: 'Категория',
+                data: listOfServices,
+            }, 'dynamic-style');
+
+
         // const val = new Validator( Todo СДЕЛАТЬ
         //     'order-create_form',
         //     '.form-control',
@@ -36,7 +48,7 @@ export class OrderCreateView extends View {
             const date = event.target.date.value.split('.');
             const data = {
                 order_name: event.target.order_name.value,
-                category: 'Категория', // ToDo FIX
+                category: event.target.category.value,
                 description: event.target.description.value,
                 budget: Number(event.target.budget.value),
                 deadline: new Date(date[2], date[1], date[0]).getTime() / 1000,

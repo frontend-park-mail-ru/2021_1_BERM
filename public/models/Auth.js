@@ -5,8 +5,11 @@ import {
     IMG_LOAD,
     LOGIN,
     ON_PROFILE,
-    ORDER_CREATE, ORDER_PAGE_RES,
-    REG, SEND_RESULT_RENDER,
+    ORDER_CREATE,
+    ORDER_GET_RATE,
+    ORDER_PAGE_RES,
+    REG,
+    SEND_RESULT_RENDER,
     SETTING_UPD,
 } from '../modules/utils/actions.js';
 
@@ -112,6 +115,13 @@ export default class Auth {
         sendRequest('GET', '/order')
             .then((res) => {
                 eventBus.emit(SEND_RESULT_RENDER, res);
+            });
+    }
+
+    static setResponse(data, id) {
+        sendRequest('POST', `/order/${id}/response`, data)
+            .then((res) => {
+                eventBus.emit(ORDER_GET_RATE, res);
             });
     }
 }

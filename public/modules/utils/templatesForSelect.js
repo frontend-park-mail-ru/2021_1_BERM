@@ -1,28 +1,22 @@
+import arrowDown from '@/static/img/Arrow_down.svg';
+
 export const getTemplate = (data = [], placeholder, selectedId, selectorId) => {
     const text = placeholder ?? 'Placeholder по умолчанию';
-    // let type = 'category';
 
     const items = data.map((item) => {
-        // let cls = ''
         let element = 'select__item ${cls}';
         if (item.type === 'category') {
             element = 'category';
         }
-        // if (item.id === selectedId) {
-        //     text = item.value;
-        //     cls = 'selected';
-        //     type = item.type;
-        // }
         return `
-      <li class="${element}" data-type="${item.type}" data-id="${item.id}">${item.value}</li>
-    `;
+            <li class="${element}" data-type="${item.type}" data-id="${item.id}">${item.value}</li>`;
     });
 
     return `
     <div class="select__backdrop" data-type="backdrop"></div>
     <div class="select__input" data-type="input" id="${selectorId}">
-      <span data-type="value">${text}</span>
-      <i><img src="Icons/Arrow_down.svg" class="fa fa-chevron-down" data-type="arrow" alt=""></i>
+      <input data-type="value" id="category" style="display: contents">${text}</input>
+      <img src=${arrowDown} class="setting__arrow" data-type="arrow" alt="">
     </div>
     <div class="select__dropdown">
       <ul class="select__list">
@@ -51,7 +45,7 @@ export const WEB_ISSLED = {id: '11', value: 'Веб-исследования', t
 export const CAT___DATA_SCIENCE = {id: '12', value: 'Data Science и аналитика', type: 'category'};
 export const AB_TESTS = {id: '13', value: 'A/B Тестирование', type: 'item'};
 export const IZVLECH_DATA = {id: '14', value: 'Извлечение данных/ETL', type: 'item'};
-export const INTELECT_ANALIZ = {id: '15', value: 'Интеллектуальный анализ данных и управление ими', type: 'item'};
+export const INTELECT_ANALIZ = {id: '15', value: 'Интеллектуальный анализ данных', type: 'item'};
 export const VIZUAL_DATA = {id: '17', value: 'Визуализация данных', type: 'item'};
 export const MACHINE_LEARNING = {id: '18', value: 'Машинное обучение', type: 'item'};
 
@@ -64,7 +58,7 @@ export const NETWORK_SYST_ADMIN = {id: '23', value: 'Сетевое и сист�
 
 // Веб-разработка, мобильные устройства и программное обеспечение (Web, Mobile & Software Dev)
 export const CAT___WMSD = {id: '24', value: 'Программная разработка', type: 'category'};
-export const DEV_PROGR_OBECPECH = {id: '25', value: 'Разработка программного обеспечения для настольных ПК', type: 'item'};
+export const DEV_PROGR_OBECPECH = {id: '25', value: 'Разработка программного обеспечения ПК', type: 'item'};
 export const ELECTR_COMMERCH = {id: '26', value: 'Развитие электронной коммерции', type: 'item'};
 export const GAME_DEV = {id: '27', value: 'Разработка игр', type: 'item'};
 export const MOMILE_DEV = {id: '28', value: 'Мобильная разработка', type: 'item'};
