@@ -20,10 +20,13 @@ export class ProfileView extends View {
      * @param {boolean} isExecutor - это исполнитель или нет
      */
     render(isAuthorized, isExecutor) {
+        this.isAuthorized = isAuthorized;
+        this.isExecutor = isExecutor;
+
         super.setListeners([
-            [RENDER_PROFILE, this._renderProfile],
-            [SUCCESS_LOAD_IMG, this._successLoadImage],
-            [FAIL_LOAD_IMG, this._failLoadImage],
+            [RENDER_PROFILE, this._renderProfile.bind(this)],
+            [SUCCESS_LOAD_IMG, this._successLoadImage.bind(this)],
+            [FAIL_LOAD_IMG, this._failLoadImage.bind(this)],
         ]);
 
         eventBus.emit(PROFILE);
@@ -36,28 +39,28 @@ export class ProfileView extends View {
      */
     _renderProfile(info) {
         super.renderHtml(
-            info.isAuthorized,
-            info.isExecutor,
+            this.isAuthorized,
+            this.isExecutor,
             'Профиль',
             profileTemplate(info),
         );
 
-        // if (info.isMyProfile) {
-        const inputImg = document.getElementById('input-file');
-        inputImg.onchange = async (ev) => {
-            const file = ev.target.files[0];
-            const fReader = new FileReader();
-            fReader.onload = () => {
-                eventBus.emit(IMG_CHANGE, fReader.result);
+        if (info.isMyProfile) {
+            const inputImg = document.getElementById('input-file');
+            inputImg.onchange = async (ev) => {
+                const file = ev.target.files[0];
+                const fReader = new FileReader();
+                fReader.onload = () => {
+                    eventBus.emit(IMG_CHANGE, fReader.result);
+                };
+                await fReader.readAsDataURL(file);
             };
-            await fReader.readAsDataURL(file);
-        };
 
-        const exitLink = document.querySelector('.exit-buttion__text');
-        exitLink.addEventListener('click', () => {
-            eventBus.emit(EXIT);
-        });
-        // }
+            const exitLink = document.querySelector('.exit-buttion__text');
+            exitLink.addEventListener('click', () => {
+                eventBus.emit(EXIT);
+            });
+        }
     }
 
     /**

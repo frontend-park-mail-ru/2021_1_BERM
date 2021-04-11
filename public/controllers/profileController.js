@@ -48,7 +48,9 @@ export class ProfileController extends Controller {
      */
     _profile() {
         if (!user.isGetAttr || this.id !== user.id) {
-            user.isGetAttr = true;
+            if (this.id === user.id) {
+                user.isGetAttr = true;
+            }
             auth.getProfile(this.id);
         } else {
             eventBus.emit(RENDER_PROFILE, {
@@ -97,12 +99,12 @@ export class ProfileController extends Controller {
                 eventBus.emit(RENDER_PROFILE, {
                     isMyProfile: this.id === user.id,
                     isAuthorized: user.isAuthorized,
-                    name: user.nameSurname,
-                    login: user.login,
-                    isExecutor: user.isExecutor,
-                    specializes: user.specializes,
-                    about: user.about,
-                    img: user.img,
+                    name: data.nameSurname,
+                    login: data.login,
+                    isExecutor: data.isExecutor,
+                    specializes: data.specializes,
+                    about: data.about,
+                    img: data.img,
                     rating: 0,
                     reviews: 0,
                 });
