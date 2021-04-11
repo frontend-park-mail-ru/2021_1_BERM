@@ -11,7 +11,13 @@ import {
     FLIP_THE_PAGE,
     SEND_SERVICES,
     SEND_RESULT_RENDER, ORDERS_RENDER,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions';
+
+import {
+    ORDER_PAGE,
+} from '@/modules/utils/pageNames';
+
+import router from "@/modules/router";
 
 
 export class OrdersController extends Controller {
@@ -34,8 +40,9 @@ export class OrdersController extends Controller {
             true);
     }
 
-    _goToOrder() {
-
+    _goToOrder(id) {
+        order.currentOrderId = Number.parseInt(id);
+        router.go(ORDER_PAGE);
     }
 
     _flipThePage() {
@@ -47,37 +54,18 @@ export class OrdersController extends Controller {
     }
 
     _sendResultsRender(result) {
-        const res = [
-            {
-                id: 228, // id заказа
-                category: 'Верстка',
-                order_name: 'сверстать профиль',
-                customer_id: 322, // id создателя
-                budget: 1488,
-                deadline: 1617004533, // unix-time
-                description: 'Нужен профиль, чтобы в нем была вся необходимая информация, ничего не уезжало, и все было красиво и аккуратно',
-                login: 'AlexDarkStalker',
-                img: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/',
-            },
-            {
-                id: 322, // id заказа
-                category: 'Программирование',
-                order_name: 'сделать наконец нормальный апи',
-                customer_id: 228, // id создателя
-                budget: 3228,
-                deadline: 1617004533, // unix-time
-                description: 'Сделать нормальное апи для сайта поиска фрилансеров',
-                login: 'AlexDarkStalker',
-                img: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/',
-            },
-        ];
-        order.setOrders(res);
+        if (result.ok) {
+            result.json().then((result) => {
+                order.setOrders(result);
 
-        eventBus.emit(ORDERS_RENDER, {
-            isAuthorized: user.isAuthorized,
-            isExecutor: user.isExecutor,
-            map: order.ordersMap,
-        });
+                eventBus.emit(ORDERS_RENDER, {
+                    isAuthorized: user.isAuthorized,
+                    isExecutor: user.isExecutor,
+                    map: order.ordersMap,
+                });
+            });
+        }
+
     }
 
     // if (res.ok) {
