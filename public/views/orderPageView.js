@@ -3,6 +3,8 @@ import {
     ORDER_PAGE_RENDER,
     ORDER_PAGE_GET_RES,
     ORDER_SET_RATE,
+    ORDER_DELETE_RATE,
+    ORDER_CHANGE_RATE,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
 
@@ -45,7 +47,7 @@ export class OrderPageView extends View {
 
                 deleteButton.addEventListener('click', (event) => {
                     event.preventDefault();
-                    console.log('удаляем');
+                    eventBus.emit(ORDER_DELETE_RATE);
                 });
 
                 form.addEventListener('submit', (event) => {
@@ -54,7 +56,7 @@ export class OrderPageView extends View {
                         rate: event.target.rate.value,
                     };
 
-                    console.log('изменяем');
+                    eventBus.emit(ORDER_CHANGE_RATE, data);
                 });
             }
         }

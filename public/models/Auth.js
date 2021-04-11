@@ -9,6 +9,7 @@ import {
     ORDER_GET_RATE,
     ORDER_PAGE_RES,
     REG,
+    ORDER_RATE_DELETED,
     SEND_RESULT_RENDER,
     SETTING_UPD,
 } from '../modules/utils/actions.js';
@@ -120,6 +121,17 @@ export default class Auth {
 
     static setResponse(data, id) {
         sendRequest('POST', `/order/${id}/response`, data)
+            .then((res) => {
+                eventBus.emit(ORDER_GET_RATE, res);
+            });
+    }
+
+    static deleteRate(id) {
+        return sendRequest('DELETE', `/order/${id}/response`);
+    }
+
+    static changeResponse(data, id) {
+        sendRequest('PUT', `/order/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(ORDER_GET_RATE, res);
             });

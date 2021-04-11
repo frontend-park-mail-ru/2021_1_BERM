@@ -27,6 +27,7 @@ class Order {
 
     pushResponse(id, item) {
         const dataRes = {
+            id: item.id,
             creatorId: item.user_id,
             avatar: item.user_img,
             login: item.user_login,
@@ -45,6 +46,17 @@ class Order {
             }
         });
         return rate;
+    }
+
+    deleteResponse(id, creatorId) {
+        let pos;
+        this.ordersMap.get(id).responses.forEach((item, index) => {
+            if (item.creatorId === creatorId) {
+                pos = index;
+            }
+        });
+
+        this.ordersMap.get(id).responses.splice(pos, 1);
     }
 
     setOrders(data) {
