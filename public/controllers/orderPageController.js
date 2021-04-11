@@ -23,7 +23,7 @@ export class OrderPageController extends Controller {
                 [ORDER_PAGE_GET_RES, this._orderPageGetRes],
                 [ORDER_PAGE_RES, this._orderPageRes],
             ],
-        );
+            true);
     }
 
     _orderPageGetRes() {

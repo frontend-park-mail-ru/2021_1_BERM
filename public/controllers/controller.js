@@ -2,7 +2,10 @@ import {BaseMVC} from '../modules/baseMVC.js';
 import auth from '../models/Auth.js';
 import user from '../models/User.js';
 import router from '../modules/router.js';
-import {LOGIN_PAGE} from '../modules/utils/pageNames.js';
+import {
+    LOGIN_PAGE,
+    PROFILE_PAGE,
+} from '../modules/utils/pageNames.js';
 
 /** Родительский класс, от которого наследуются остальные контроллеры.
  * Осуществляет взаимодействие между моделями и view  */
@@ -21,6 +24,11 @@ export class Controller extends BaseMVC {
 
         if (goLogin && !user.isAuthorized) {
             router.go(LOGIN_PAGE);
+            return;
+        }
+
+        if (!goLogin && user.isAuthorized) {
+            router.go(PROFILE_PAGE);
             return;
         }
 

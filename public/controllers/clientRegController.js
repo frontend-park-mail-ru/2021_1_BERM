@@ -40,7 +40,6 @@ export class ClientRegController extends Controller {
      */
     _onRegCl(res) {
         if (res.ok) {
-
             router.go(MAIN_PAGE);
         } else {
             eventBus.emit(NO_REG_CLIENT);

@@ -31,7 +31,7 @@ export class OrdersController extends Controller {
                 [SEND_SERVICES, this._sendServices],
                 [SEND_RESULT_RENDER, this._sendResultsRender],
             ],
-        );
+            true);
     }
 
     _goToOrder() {
