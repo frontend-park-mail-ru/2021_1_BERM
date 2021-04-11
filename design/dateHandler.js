@@ -2,32 +2,32 @@ class DateHandler {
     constructor() {
         this.actions = {
             WRITING: true,
-            DELETING: false,
+            DELETING: false
         };
         this.dotes = {
             day: 2,
-            mouth: 5,
-        };
+            mouth: 5
+        }
         this.lengths = [0];
     }
 
     createDate() {
-        const regex = /[-;":'a-zA-Zа-яА-Я]/;
+        let regex = /[-;":'a-zA-Zа-яА-Я]/;
         let action = this.actions.WRITING;
         const date = document.getElementById('date');
         date.addEventListener('input', (e) => {
             date.value = date.value.replace(regex, '');
-            action = this.lengthHandler(e);
+            action = this.lengthHandler(e)
             this.inputHandler(e, action);
-        });
+        })
     }
 
     inputHandler(e, action) {
-        if (e.target.value.length === this.dotes.day && action === true ||
-        e.target.value.length === this.dotes.mouth && action === true) {
-            e.target.value += '.';
+        if (e.target.value.length === this.dotes.day && action === true
+        || e.target.value.length === this.dotes.mouth && action === true) {
+            e.target.value += '.'
         }
-        console.log(e.target.value.length, ' ', action);
+        console.log(e.target.value.length, " ", action)
         if (e.target.value.length === this.dotes.day && action === false) {
             e.target.value = e.target.value.slice(0, 1);
         }
@@ -52,10 +52,12 @@ class DateHandler {
             return this.actions.WRITING;
         }
     }
+
 }
+
 
 
 // eslint-disable-next-line no-undef
 
-const abr = new DateHandler();
-abr.createDate();
+let abr = new DateHandler();
+abr.createDate()
