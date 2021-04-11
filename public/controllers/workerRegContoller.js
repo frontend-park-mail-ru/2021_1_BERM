@@ -9,7 +9,6 @@ import {
     REG,
     WORKER_REG_SUBMIT,
 } from '../modules/utils/actions.js';
-import {MAIN_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер создания заказа */
 export class WorkerRegController extends Controller {
@@ -24,7 +23,7 @@ export class WorkerRegController extends Controller {
     /**
      * Запуск контроллера регистрации исполнителя
      */
-    run() {
+    run(id) {
         super.run(
             [
                 [REG, this._onRegCl],
@@ -39,7 +38,7 @@ export class WorkerRegController extends Controller {
      */
     _onRegCl(res) {
         if (res.ok) {
-            router.go(MAIN_PAGE);
+            router.go('/');
         } else {
             eventBus.emit(NO_REG_WORKER);
         }

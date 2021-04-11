@@ -10,7 +10,6 @@ import {
     ORDER_CREATE,
     ORDER_SUBMIT,
 } from '../modules/utils/actions.js';
-import {ORDER_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер создания заказа */
 export class OrderCreateController extends Controller {
@@ -25,7 +24,7 @@ export class OrderCreateController extends Controller {
     /**
      * Запуск контроллера создания заказа
      */
-    run() {
+    run(id) {
         super.run(
             [
                 [ORDER_CREATE, this._orderCreate],
@@ -45,7 +44,7 @@ export class OrderCreateController extends Controller {
                 .then((res) => {
                     order.setOrders([res]);
 
-                    router.go(ORDER_PAGE);
+                    router.go(`/order/${order.currentOrderId}`);
                 });
         } else {
             eventBus.emit(NO_ORDER);

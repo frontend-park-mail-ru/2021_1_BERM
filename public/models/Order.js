@@ -11,22 +11,22 @@ class Order {
      * @param {Object} attr - результат запроса
      */
     setAttributes(attr) {
-        this.ordersMap.set(attr.id, attr);
-        this.currentOrderId = attr.id;
+        this.ordersMap.set(Number(attr.id), attr);
+        this.currentOrderId = Number(attr.id);
     }
 
     setResponses(id, res) {
         const responses = [];
 
         res.forEach((item) => {
-            this.pushResponse(id, item);
+            responses.push(this.pushResponse(id, item));
         });
 
         this.ordersMap.get(id).responses = responses;
     }
 
     pushResponse(id, item) {
-        const dataRes = {
+        return {
             id: item.id,
             creatorId: item.user_id,
             avatar: item.user_img,
@@ -34,8 +34,6 @@ class Order {
             rate: item.rate,
             date: this.getDate(item.time),
         };
-
-        this.ordersMap.get(id).responses.push(dataRes);
     }
 
     findRate(id, creatorId) {

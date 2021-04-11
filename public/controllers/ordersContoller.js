@@ -10,14 +10,11 @@ import {
     GO_TO_ORDER,
     FLIP_THE_PAGE,
     SEND_SERVICES,
-    SEND_RESULT_RENDER, ORDERS_RENDER,
-} from '@/modules/utils/actions';
+    SEND_RESULT_RENDER,
+    ORDERS_RENDER,
+} from '../modules/utils/actions.js';
 
-import {
-    ORDER_PAGE,
-} from '@/modules/utils/pageNames';
-
-import router from "@/modules/router";
+import router from '@/modules/router';
 
 
 export class OrdersController extends Controller {
@@ -29,7 +26,7 @@ export class OrdersController extends Controller {
         this.view = new OrdersView();
     }
 
-    run() {
+    run(id) {
         super.run(
             [
                 [GO_TO_ORDER, this._goToOrder],
@@ -41,8 +38,7 @@ export class OrdersController extends Controller {
     }
 
     _goToOrder(id) {
-        order.currentOrderId = Number.parseInt(id);
-        router.go(ORDER_PAGE);
+        router.go(`/order/${id}`);
     }
 
     _flipThePage() {
@@ -65,7 +61,6 @@ export class OrdersController extends Controller {
                 });
             });
         }
-
     }
 
     // if (res.ok) {

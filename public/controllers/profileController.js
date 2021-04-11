@@ -13,7 +13,6 @@ import {
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
-import {MAIN_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер регистрации клиента */
 export class ProfileController extends Controller {
@@ -27,15 +26,19 @@ export class ProfileController extends Controller {
 
     /**
      * Запуск контроллера профиля
+     *
+     * @param {string} id - id пользователя
      */
-    run() {
+    run(id) {
+        this.id = Number(id);
+
         super.run(
             [
-                [PROFILE, this._profile],
-                [ON_PROFILE, this._onProfile],
-                [IMG_CHANGE, this._changeImage],
-                [IMG_LOAD, this._onLoadImage],
-                [EXIT, this._onExit],
+                [PROFILE, this._profile.bind(this)],
+                [ON_PROFILE, this._onProfile.bind(this)],
+                [IMG_CHANGE, this._changeImage.bind(this)],
+                [IMG_LOAD, this._onLoadImage.bind(this)],
+                [EXIT, this._onExit.bind(this)],
             ],
             true);
     }
@@ -44,11 +47,12 @@ export class ProfileController extends Controller {
      * Проверка наличия данных пользователя
      */
     _profile() {
-        if (!user.isGetAttr) {
+        if (!user.isGetAttr || this.id !== user.id) {
             user.isGetAttr = true;
-            auth.getProfile(user.id);
+            auth.getProfile(this.id);
         } else {
             eventBus.emit(RENDER_PROFILE, {
+                isMyProfile: this.id === user.id,
                 isAuthorized: user.isAuthorized,
                 name: user.nameSurname,
                 login: user.login,
@@ -86,9 +90,12 @@ export class ProfileController extends Controller {
                     email: res.email,
                 };
 
-                user.setAttributes(data);
+                if (this.id === user.id) {
+                    user.setAttributes(data);
+                }
 
                 eventBus.emit(RENDER_PROFILE, {
+                    isMyProfile: this.id === user.id,
                     isAuthorized: user.isAuthorized,
                     name: user.nameSurname,
                     login: user.login,
@@ -136,6 +143,6 @@ export class ProfileController extends Controller {
             });
         user.isAuthorized = false;
         user.isGetAttr = false;
-        router.go(MAIN_PAGE);
+        router.go('/');
     }
 }

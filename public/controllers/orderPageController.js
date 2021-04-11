@@ -21,15 +21,17 @@ export class OrderPageController extends Controller {
         this.view = new OrderPageView();
     }
 
-    run() {
+    run(id) {
+        order.currentOrderId = Number(id);
+
         super.run(
             [
-                [ORDER_PAGE_GET_RES, this._orderPageGetRes],
-                [ORDER_PAGE_RES, this._orderPageSetResponses],
-                [ORDER_SET_RATE, this._orderSetRate],
-                [ORDER_GET_RATE, this._orderGetRate],
-                [ORDER_DELETE_RATE, this._orderDeleteRate],
-                [ORDER_CHANGE_RATE, this._orderChangeRate],
+                [ORDER_PAGE_GET_RES, this._orderPageGetRes.bind(this)],
+                [ORDER_PAGE_RES, this._orderPageSetResponses.bind(this)],
+                [ORDER_SET_RATE, this._orderSetRate.bind(this)],
+                [ORDER_GET_RATE, this._orderGetRate.bind(this)],
+                [ORDER_DELETE_RATE, this._orderDeleteRate.bind(this)],
+                [ORDER_CHANGE_RATE, this._orderChangeRate.bind(this)],
             ],
             true);
     }
@@ -65,7 +67,7 @@ export class OrderPageController extends Controller {
         const go = this.go;
         if (res.ok) {
             res.json().then((res) => {
-                order.pushResponse(order.currentOrderId, res);
+                order.setResponses(order.currentOrderId, [res]);
 
                 go();
             });
@@ -80,7 +82,7 @@ export class OrderPageController extends Controller {
 
         eventBus.emit(ORDER_PAGE_RENDER, {
             isAuthorized: user.isAuthorized,
-            isExecutor: true,
+            isExecutor: user.isExecutor,
             responses: creator.responses,
             creator: {
                 avatar: creator.avatar,
@@ -106,7 +108,7 @@ export class OrderPageController extends Controller {
         this.go();
     }
 
-    _orderChangeRate() {
+    _orderChangeRate({rate}) {
         order.deleteResponse(order.currentOrderId, user.id);
 
         const date = new Date();

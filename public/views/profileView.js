@@ -42,6 +42,7 @@ export class ProfileView extends View {
             profileTemplate(info),
         );
 
+        // if (info.isMyProfile) {
         const inputImg = document.getElementById('input-file');
         inputImg.onchange = async (ev) => {
             const file = ev.target.files[0];
@@ -56,6 +57,7 @@ export class ProfileView extends View {
         exitLink.addEventListener('click', () => {
             eventBus.emit(EXIT);
         });
+        // }
     }
 
     /**

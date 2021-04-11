@@ -20,7 +20,6 @@ export class OrderPageView extends View {
     }
 
     _orderPageRender(info) {
-        debugger;
         super.renderHtml(
             info.isAuthorized,
             info.isExecutor,
@@ -53,7 +52,7 @@ export class OrderPageView extends View {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();
                     const data = {
-                        rate: event.target.rate.value,
+                        rate: Number(event.target.rate.value),
                     };
 
                     eventBus.emit(ORDER_CHANGE_RATE, data);
@@ -62,47 +61,3 @@ export class OrderPageView extends View {
         }
     }
 }
-
-// {
-//     executor: info.isExecutor,
-//         creator: { // создатель заказа
-//     avatar: '',
-//         title: 'Хочу хачапури',
-//         category: 'Бизарро',
-//         definition: 'Ага',
-//         date: 'угу',
-//         budget: '10000',
-// },
-//     usersResponsed: [{
-//         avatar: '',
-//         login: 'xuy',
-//         rate: '0',
-//         date: '09.008.22',
-//     },
-//         {
-//             avatar: '',
-//             login: 'xuy',
-//             rate: '0',
-//             date: '09.008.22',
-//         },
-//         {
-//             avatar: '',
-//             login: 'xuy',
-//             rate: '0',
-//             date: '09.008.22',
-//         },
-//         {
-//             avatar: '',
-//             login: 'xuy',
-//             rate: '0',
-//             date: '09.008.22',
-//         },
-//     ],
-//         userMinResponse: { // минимальный отклик по ставке
-//     avatar: '',
-//         name: '123',
-//         rate: '12',
-//         date: '1',
-// },
-//     userRate: 1488, // отклик текущего пользователя, если его сейчас нет - передавать  0 !!!!1
-// }

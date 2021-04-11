@@ -14,8 +14,10 @@ export class MainPageController extends Controller {
     /**
      * Запуск контроллера главной страницы
      */
-    run() {
+    run(id) {
         super.run(
-            []);
+            [],
+            false,
+            true);
     }
 }

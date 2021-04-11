@@ -36,9 +36,9 @@ import {
 } from './modules/utils/pageNames.js';
 
 const controllers = new Set([
+    [MAIN_PAGE, MainPageController],
     [LOGIN_PAGE, LoginController],
     [CLIENT_REG_PAGE, ClientRegController],
-    [MAIN_PAGE, MainPageController],
     [WORKER_REG_PAGE, WorkerRegController],
     [PROFILE_PAGE, ProfileController],
     [SETTINGS_PAGE, SettingsController],

@@ -12,7 +12,6 @@ import {
     SETTING_SUBMIT,
     SETTING_UPD,
 } from '../modules/utils/actions.js';
-import {PROFILE_PAGE} from '../modules/utils/pageNames';
 
 /** Контроллер создания заказа */
 export class SettingsController extends Controller {
@@ -27,7 +26,7 @@ export class SettingsController extends Controller {
     /**
      * Запуск контроллера настроек
      */
-    run() {
+    run(id) {
         super.run(
             [
                 [SETTING_UPD, this._onUpdate],
@@ -56,7 +55,7 @@ export class SettingsController extends Controller {
                     };
 
                     user.setAttributes(data);
-                    router.go(PROFILE_PAGE);
+                    router.go(`/profile/${user.id}`);
                 });
             // ToDo eventBus.emit('success-set-up');
         } else {

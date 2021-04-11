@@ -1,10 +1,12 @@
+import user from '../models/User.js';
+
 /** Роутер, который осуществляет переход между страницами приложения */
 class Router {
     /**
      * Конструктор
      */
     constructor() {
-        this.states = {};
+        this.states = new Map([]);
     }
 
     /**
@@ -14,9 +16,7 @@ class Router {
      * @param {Controller} controller - контроллер данной страницы
      */
     register(path, controller) {
-        this.states[path] = {
-            controller: controller,
-        };
+        this.states.set(path, controller);
     }
 
     /**
@@ -26,10 +26,13 @@ class Router {
         // Навешиваем обработчик на клики
         const body = document.getElementsByTagName('body')[0];
         body.addEventListener('click', (event) => {
-            const href = event.target.getAttribute('href');
+            let href = event.target.getAttribute('href');
             if (href) {
                 event.preventDefault();
 
+                if (href === '/profile') {
+                    href += `/${user.id}`;
+                }
                 this.go(href);
             }
         });
@@ -71,14 +74,26 @@ class Router {
             };
         }
 
-        const Controller = this.states[currentState.page].controller;
+        let Controller;
+        for (const regexp of this.states.keys()) {
+            if (regexp.test(currentState.page)) {
+                Controller = this.states.get(regexp);
+            }
+        }
+
+        if (!Controller) {
+            console.log(404);
+            return;
+        }
+
+        const id = currentState.page.split('/')[2];
 
         if (this.currentController) {
             this.currentController.offAll();
         }
 
         this.currentController = new Controller();
-        this.currentController.run();
+        this.currentController.run(id);
     }
 }
 

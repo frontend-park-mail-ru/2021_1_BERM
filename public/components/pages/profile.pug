@@ -10,6 +10,7 @@ mixin specialize(specName)
             .top
                 div(class='top__avatar')
                     img(class='top__avatar_img' id='profile_img' src=!img?require('@/static/img/profileAvatar.svg').default:img)
+                    //if isMyProfile
                     .edit
                         form
                             input(type='file' id='input-file' accept="image/jpeg" name='file')
@@ -33,6 +34,7 @@ mixin specialize(specName)
                             img(src=require('@/static/img/star.svg').default alt='')
                         div(class='reviews__text') Отзывы: #{reviews}
                 div(class='top__item')
+                    //if isMyProfile
                     .settings-buttons
                         button(href='/settings' class='settings-buttion__text') Настройки
                         button(class='exit-buttion__text') Выход

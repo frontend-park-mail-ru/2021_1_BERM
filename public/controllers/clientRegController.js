@@ -10,7 +10,6 @@ import {
     CLIENT_REG_SUBMIT,
     NO_REG_CLIENT,
 } from '../modules/utils/actions.js';
-import {MAIN_PAGE} from '../modules/utils/pageNames.js';
 
 /** Контроллер регистрации клиента */
 export class ClientRegController extends Controller {
@@ -25,7 +24,7 @@ export class ClientRegController extends Controller {
     /**
      * Запуск контроллера регистрации клиента
      */
-    run() {
+    run(id) {
         super.run(
             [
                 [REG, this._onRegCl],
@@ -40,7 +39,7 @@ export class ClientRegController extends Controller {
      */
     _onRegCl(res) {
         if (res.ok) {
-            router.go(MAIN_PAGE);
+            router.go(`/`);
         } else {
             eventBus.emit(NO_REG_CLIENT);
         }
