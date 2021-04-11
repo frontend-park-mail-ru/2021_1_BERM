@@ -3,7 +3,7 @@ import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
 import {NO_ORDER, ORDER_SUBMIT} from '../modules/utils/actions.js';
 
-import createOrderTemplate from '@/components/pages/createOrder.pug';
+import createOrderTemplate from '@/components/pages/createOrderOrVacancy.pug';
 import DateHandler from '../modules/utils/dateHandler.js';
 import Select from '../modules/utils/customSelect.js';
 import {listOfServices} from '../modules/utils/templatesForSelect.js';
@@ -21,7 +21,7 @@ export class OrderCreateView extends View {
             isAuthorized,
             isExecutor,
             'Разместить заказ',
-            createOrderTemplate(),
+            createOrderTemplate({isOrder: true}),
             [
                 [NO_ORDER, this._onNoOrder],
             ]);
