@@ -18,6 +18,7 @@ export class OrderPageView extends View {
     }
 
     _orderPageRender(info) {
+        debugger;
         super.renderHtml(
             info.isAuthorized,
             info.isExecutor,

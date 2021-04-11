@@ -38,12 +38,13 @@ class Order {
     }
 
     findRate(id, creatorId) {
+        let rate = 0;
         this.ordersMap.get(id).responses.forEach((item) => {
             if (item.creatorId === creatorId) {
-                return item.rate;
+                rate = item.rate;
             }
         });
-        return 0;
+        return rate;
     }
 
     setOrders(data) {
