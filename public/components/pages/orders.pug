@@ -5,7 +5,7 @@ include ../orders/orderInOrdersPage
     div(class='orders__content')
         div(class='orders__list')
             each order in orders
-                +orderInOrdersPage(order.avatar, order.login, order.name, order.category, order.definition, order.date, order.budget)
+                +orderInOrdersPage(order.avatar, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id)
             button.show-more-button Показать еще
         form.filters
             div(class='filters__title') Фильтры
