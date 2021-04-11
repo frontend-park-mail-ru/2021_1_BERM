@@ -80,3 +80,9 @@
     background-color: #808080;
     /*border-bottom: 1px solid #808080;*/
 }
+
+.select__form {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}

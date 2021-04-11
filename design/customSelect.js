@@ -24,17 +24,22 @@ class Select {
         this.$el.addEventListener('click', this.clickHandler);
         this.$arrow = this.$el.querySelector('[data-type="arrow"]');
         this.$value = this.$el.querySelector('[data-type="value"]');
+        console.log('___________________________________')
+        console.log(this.$value.textContent)
+        console.log('___________________________________')
+
     }
 
     clickHandler(event) {
         const {type} = event.target.dataset;
         console.log(event.target.dataset);
+        console.log(event.target.value);
+        //
+        // if (type !== undefined ) {
+        //     console.log(type.type)
+        // }
 
-        if (type !== undefined ) {
-            console.log(type.type)
-        }
-
-        if (type === 'input') {
+        if (type === 'input' || type === 'arrow') {
             this.toggle();
         } else if (type === 'item') {
             const id = event.target.dataset.id;
@@ -49,12 +54,14 @@ class Select {
     }
 
     get current() {
-        return this.options.data.find(item => item.id === this.selectedId);
+        return this.options.data.find((item) => item.id === this.selectedId);
     }
 
     select(id) {
         this.selectedId = id;
-        this.$value.textContent = this.current.value;
+        this.$value.style.width = '0';
+        this.$value.value = this.current.value;
+        this.$value.style.width = this.$value.scrollWidth + 'px';
 
         this.$el.querySelectorAll('[data-type="item"]').forEach(el => {
             el.classList.remove('selected');
@@ -73,14 +80,16 @@ class Select {
         this.$el.classList.add('open');
         // this.$arrow.classList.remove('fa-chevron-down');
         // this.$arrow.classList.add('fa-chevron-up');
-        this.$arrow.src =
+        this.$arrow.src = 'Icons/Arrow_up.svg'
+
     }
 
     close() {
         this.$idSelectorDoc.style.borderRadius = '8px';
         this.$el.classList.remove('open');
-        this.$arrow.classList.add('fa-chevron-down');
-        this.$arrow.classList.remove('fa-chevron-up');
+        // this.$arrow.classList.add('fa-chevron-down');
+        // this.$arrow.classList.remove('fa-chevron-up');
+        this.$arrow.src = 'Icons/Arrow_down.svg'
     }
 
     destroy() {
@@ -105,4 +114,4 @@ let data = [
     {id: '6', value: 'For Привет'}
 ];
 
-console.log(data[0].id);
+// console.log(data[0].id);
