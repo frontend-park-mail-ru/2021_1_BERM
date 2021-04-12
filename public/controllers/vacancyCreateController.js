@@ -3,12 +3,15 @@ import {OrderOrVacancyCreateView} from '../views/orderOrVacancyCreateView.js';
 import {
     VACANCY_SUBMIT,
     VACANCY_CREATE,
-    GET_IS_ORDER_OR_VACANCY, ORDER_CREATE_GO_RENDER, NO_ORDER,
+    GET_IS_ORDER_OR_VACANCY,
+    ORDER_CREATE_GO_RENDER,
+    NO_ORDER,
 } from '../modules/utils/actions.js';
 
 import eventBus from '../modules/eventBus.js';
 import auth from '../models/Auth.js';
 import vacancy from '../models/Vacancy.js';
+import router from '../modules/router.js';
 
 export class VacancyCreateController extends Controller {
     /**
@@ -39,7 +42,7 @@ export class VacancyCreateController extends Controller {
                     vacancy.setVacancys([res]);
                     debugger;
 
-                    // router.go(`/vacancy/${order.currentOrderId}`);
+                    router.go(`/vacancy/${vacancy.currentVacancyId}`);
                 });
         } else {
             eventBus.emit(NO_ORDER);

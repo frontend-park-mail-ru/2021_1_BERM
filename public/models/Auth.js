@@ -13,6 +13,8 @@ import {
     SEND_RESULT_RENDER,
     SETTING_UPD,
     VACANCY_CREATE,
+    VACANCY_PAGE_RES,
+    VACANCY_PAGE_GET_VACANCY,
 } from '../modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -149,6 +151,20 @@ export default class Auth {
         sendRequest('POST', '/vacancy', data)
             .then((res) => {
                 eventBus.emit(VACANCY_CREATE, res);
+            });
+    }
+
+    static getResponsesVacancy(id) {
+        sendRequest('GET', `/vacancy/${id}/response`)
+            .then((res) => {
+                eventBus.emit(VACANCY_PAGE_RES, res);
+            });
+    }
+
+    static getVacancy(id) {
+        sendRequest('GET', `/vacancy/${id}`)
+            .then((res) => {
+                eventBus.emit(VACANCY_PAGE_GET_VACANCY, res);
             });
     }
 }

@@ -29,6 +29,9 @@ export const ORDER_GET = 'order-page-get';
 export const GET_IS_ORDER_OR_VACANCY = 'get_is_order_or_vacancy';
 export const VACANCY_SUBMIT = 'vacancy_submit';
 export const VACANCY_CREATE = 'vacancy_create';
+export const VACANCY_PAGE_GET_RES = 'vacancy_page_get_res';
+export const VACANCY_PAGE_RES = 'vacancy_page_res';
+export const VACANCY_PAGE_GET_VACANCY = 'vacancy_page_get_vacancy';
 
 
 // Views actions
@@ -43,3 +46,4 @@ export const NO_SET_UP = 'no-set-up';
 export const NO_REG_WORKER = 'no-registration-worker';
 export const ORDER_PAGE_RENDER = 'order_page_render';
 export const ORDER_CREATE_GO_RENDER = 'order_create_go_render';
+export const VACANCY_PAGE_RENDER = 'vacancy_page_render';

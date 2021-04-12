@@ -23,6 +23,31 @@ class Vacancy {
             });
         });
     }
+
+    getVacancyById(id) {
+        return this.vacancysMap.get(id);
+    }
+
+    setResponses(id, res) {
+        const responses = [];
+
+        res.forEach((item) => {
+            responses.push(this.pushResponse(id, item));
+        });
+
+        this.currentVacancyId.get(id).responses = responses;
+    }
+
+    pushResponse(id, item) {
+        return {
+            id: item.id,
+            creatorId: item.user_id,
+            avatar: item.user_img,
+            login: item.user_login,
+            rate: item.rate,
+            date: this.getDate(item.time),
+        };
+    }
 }
 
 export default new Vacancy();
