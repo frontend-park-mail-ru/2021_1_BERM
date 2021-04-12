@@ -11,6 +11,7 @@ import '@/static/css/profile.css';
 import '@/static/css/orderPageCustomer.css';
 import '@/static/css/orderPageWithRate.css';
 import '@/static/css/orders.css';
+import '@/static/css/valid.css';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';

@@ -23,8 +23,8 @@ export class WorkerRegView extends View {
                 [NO_REG_WORKER, this._onNoRegistration],
             ]);
 
-        // const val = new Validator('feedback', '.form-control', 'send_mess');
-        // val.validate();
+        const val = new Validator('registration__form', '.form-control', 'send_mess');
+        val.validate();
 
         const form = document.getElementById('registration__form');
         form.addEventListener('submit', (event) => {

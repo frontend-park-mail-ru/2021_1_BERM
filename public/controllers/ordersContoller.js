@@ -1,5 +1,5 @@
 import {Controller} from './controller.js';
-import {OrdersView} from '../views/ordersView.js';
+import {OrdersView} from '@/views/ordersView';
 
 import auth from '../models/Auth.js';
 import order from '../models/Order.js';
