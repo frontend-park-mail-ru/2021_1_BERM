@@ -73,11 +73,11 @@ export class ValidHandler {
                     return this.errors[1];
                 }
             },
-            first_name: () => {
-                if (formVal.first_name.length === 0 ||
+            name: () => {
+                if (formVal.name.length === 0 ||
                     this.patterns
                         .get('name')
-                        .test(formVal.first_name) === false) {
+                        .test(formVal.name) === false) {
                     return this.errors[1];
                 }
             },
@@ -103,14 +103,14 @@ export class ValidHandler {
                     return this.errors[12];
                 }
             },
-            password_repeat: () => {
-                if (formVal.password_repeat.length === 0 ||
+            passwordRepeat: () => {
+                if (formVal.passwordRepeat.length === 0 ||
                     this.patterns
                         .get('password')
-                        .test(formVal.password_repeat) === false) {
+                        .test(formVal.passwordRepeat) === false) {
                     return this.errors[12];
                 }
-                if (this.password !== formVal.password_repeat) {
+                if (this.password !== formVal.passwordRepeat) {
                     return this.errors[13];
                 }
             },

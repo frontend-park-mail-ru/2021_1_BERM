@@ -41,7 +41,9 @@ export class SettingsView extends View {
 
         // const val = new Validator('feedback', '.form-control', 'send_mess');
         // val.validate();
-
+        const val = new Validator('settings-form',
+            '.form-control', 'send_mess');
+        val.validate();
         const form = document.getElementById('settings-form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();

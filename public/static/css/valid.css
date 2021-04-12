@@ -1,0 +1,77 @@
+.errorVal {
+
+}
+
+.clear {
+	padding: 0;
+    margin: 0;
+}
+
+.error-settings {
+	font-size: 12px;
+	color: red;
+	width: 300px;
+	padding-left: 15%;
+	/*padding-bottom: 5px;*/
+	padding-top: 9px;
+	height: 25px;
+}
+
+.error {
+	order: 3;
+	/*position: relative;*/
+	/*top: 10px;*/
+	/*margin-bottom: -20px;*/
+	/*margin-top: -5px;*/
+	font-size: 16px;
+	/*margin-top: -13px;*/
+	color: red;
+	/*width: 300px;*/
+	/*padding-left: 15%;*/
+	/*padding-bottom: 5px;*/
+}
+
+.error__box {
+	margin-bottom: -20px;
+	margin-top: 5px;
+}
+
+/*margin-bottom: -20px;*/
+/*margin-top: 5px;*/
+
+.error:before {
+	box-sizing: content-box;
+	width: 0;
+	height: 0;
+	content: '';
+	position: absolute;
+	/*left: 15px;*/
+	/*top: -7px;*/
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+	
+}
+
+.form-control_error {
+	/*margin-top: 5px;*/
+	box-sizing: content-box;
+	border:solid 1.5px #EE3465;
+	
+}
+ 
+
+.form-control_valid {
+	box-sizing: content-box;
+	border:solid 1.5px #345DEE ;
+}
+
+.label-reg {
+	margin-top: 0%;
+}
+
+.error__repeat_password {
+	/*order: 0;*/
+	/*justify-self: flex-end;*/
+	/*align-self: flex-end;*/
+	margin-right: 125px;
+}

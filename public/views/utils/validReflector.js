@@ -20,12 +20,19 @@ export class ValidReflector {
      *
      */
     show(type, property, error) {
-        const formElement = this.form.querySelector('[name=' + property + ']');
-        const errorBox = formElement.parentElement.nextElementSibling;
+        const formElement = this.form
+            .querySelector('[name=' + property + ']').parentNode;
+        // const errorBox = formElement.parentElement.nextElementSibling;
+        const errorBox = formElement.nextElementSibling;
 
+        // formElement.classList.add(type);
         formElement.classList.add(type);
-        errorBox.innerHTML = error;
-        errorBox.style.display = 'block';
+        if (error) {
+            errorBox.innerHTML = error;
+            errorBox.style.display = 'block';
+            errorBox.style.marginBottom = '-21px';
+            errorBox.style.marginTop = '2px';
+        }
     }
 
     /**
@@ -36,6 +43,15 @@ export class ValidReflector {
      *
      */
     clear(type, element) {
-        element.classList.remove(type);
+        // element.classList.remove(type);
+        // console.log();
+        // element.classList.remove(type);
+        // element.innerHTML = ' ';
+        const el = element.parentNode;
+        el.classList.remove(type);
+        const errorBox = el.nextElementSibling;
+        errorBox.innerHTML = ' ';
+        errorBox.style.marginBottom = '0';
+        errorBox.style.marginTop = '0';
     }
 }
