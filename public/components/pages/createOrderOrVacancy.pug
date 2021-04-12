@@ -14,9 +14,8 @@ include ../inputes/settingsInput
                             div#select
                     else
                         div(class='settings__label') Создать вакансию
-                        +settingsInput(require("@/static/img/title.svg"), 'Название вакансии')
-                        +settingsInput(require("@/static/img/card.svg"), 'Зарплата ₽')
-                        +settingsInput(require("@/static/img/date.svg"), 'ДД.ММ.ГГГГ')
+                        +settingsInput(require("@/static/img/title.svg").default, 'Название вакансии', 'order_name', 'text')
+                        +settingsInput(require("@/static/img/card.svg").default, 'Зарплата ₽', 'budget', 'text')
                         div.settings-form__input-mini_bg
                             div#select
                 div(class='settings__column_right')

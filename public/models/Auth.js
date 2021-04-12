@@ -12,6 +12,7 @@ import {
     ORDER_GET,
     SEND_RESULT_RENDER,
     SETTING_UPD,
+    VACANCY_CREATE,
 } from '../modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -141,6 +142,13 @@ export default class Auth {
         sendRequest('GET', `/order/${id}`)
             .then((res) => {
                 eventBus.emit(ORDER_GET, res);
+            });
+    }
+
+    static vacancyCreate(data) {
+        sendRequest('POST', '/vacancy', data)
+            .then((res) => {
+                eventBus.emit(VACANCY_CREATE, res);
             });
     }
 }

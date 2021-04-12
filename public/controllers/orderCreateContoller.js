@@ -1,5 +1,5 @@
 import {Controller} from './controller.js';
-import {OrderCreateView} from '../views/orderCreateView.js';
+import {OrderOrVacancyCreateView} from '../views/orderOrVacancyCreateView.js';
 
 import eventBus from '../modules/eventBus.js';
 import router from '../modules/router.js';
@@ -9,6 +9,8 @@ import {
     NO_ORDER,
     ORDER_CREATE,
     ORDER_SUBMIT,
+    GET_IS_ORDER_OR_VACANCY,
+    ORDER_CREATE_GO_RENDER,
 } from '../modules/utils/actions.js';
 
 /** Контроллер создания заказа */
@@ -18,7 +20,7 @@ export class OrderCreateController extends Controller {
      */
     constructor() {
         super();
-        this.view = new OrderCreateView();
+        this.view = new OrderOrVacancyCreateView();
     }
 
     /**
@@ -29,6 +31,7 @@ export class OrderCreateController extends Controller {
             [
                 [ORDER_CREATE, this._orderCreate],
                 [ORDER_SUBMIT, this._orderSubmit],
+                [GET_IS_ORDER_OR_VACANCY, this._orderOrVacancy],
             ],
             true);
     }
@@ -58,5 +61,9 @@ export class OrderCreateController extends Controller {
      */
     _orderSubmit(info) {
         auth.createOrder(info);
+    }
+
+    _orderOrVacancy() {
+        eventBus.emit(ORDER_CREATE_GO_RENDER, {isOrder: true});
     }
 }

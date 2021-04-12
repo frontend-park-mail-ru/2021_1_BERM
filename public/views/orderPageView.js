@@ -8,7 +8,7 @@ import {
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
 
-import orderPageTemplate from '@/components/pages/orderPageExecutor.pug';
+import orderPageTemplate from '@/components/pages/orderPage.pug';
 
 export class OrderPageView extends View {
     render(isAuthorized, isExecutor) {

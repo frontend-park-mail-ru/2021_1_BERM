@@ -26,6 +26,9 @@ export const ORDER_GET_RATE = 'order-get-rate';
 export const ORDER_DELETE_RATE = 'order-delete-rate';
 export const ORDER_CHANGE_RATE = 'order-change-rate';
 export const ORDER_GET = 'order-page-get';
+export const GET_IS_ORDER_OR_VACANCY = 'get_is_order_or_vacancy';
+export const VACANCY_SUBMIT = 'vacancy_submit';
+export const VACANCY_CREATE = 'vacancy_create';
 
 
 // Views actions
@@ -39,4 +42,4 @@ export const GET_USER_DATA = 'get-user-data';
 export const NO_SET_UP = 'no-set-up';
 export const NO_REG_WORKER = 'no-registration-worker';
 export const ORDER_PAGE_RENDER = 'order_page_render';
-export const GET_ORDERS = '';
+export const ORDER_CREATE_GO_RENDER = 'order_create_go_render';

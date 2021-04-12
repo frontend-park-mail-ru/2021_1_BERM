@@ -17,6 +17,7 @@ import {ClientRegController} from './controllers/clientRegController.js';
 import {WorkerRegController} from './controllers/workerRegContoller.js';
 import {SettingsController} from './controllers/settingsController.js';
 import {OrderCreateController} from './controllers/orderCreateContoller.js';
+import {VacancyCreateController} from './controllers/vacancyCreateController.js';
 
 import router from './modules/router.js';
 import {MainPageController} from './controllers/mainPageController.js';
@@ -33,6 +34,7 @@ import {
     SETTINGS_PAGE,
     WORKER_REG_PAGE,
     ORDERS_PAGE,
+    VACANCY_CREATE_PAGE,
 } from './modules/utils/pageNames.js';
 
 const controllers = new Set([
@@ -45,6 +47,7 @@ const controllers = new Set([
     [ORDER_CREATE_PAGE, OrderCreateController],
     [ORDER_PAGE, OrderPageController],
     [ORDERS_PAGE, OrdersController],
+    [VACANCY_CREATE_PAGE, VacancyCreateController],
     // Здесь добавляем странички
 ]);
 
