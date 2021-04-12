@@ -8,7 +8,7 @@ include ../responses/responseMinOrderExecutor.pug
 include ../responses/responseMinOrderCustomer.pug
 
 .orderPage
-    +orderInOrderPageExecutor(creator.avatar, creator.title, creator.category, creator.definition, creator.date, creator.budget)
+    +orderInOrderPageExecutor(creator.avatar?creator.avatar:require('@/static/img/profileAvatar.svg').default, creator.title, creator.category, creator.definition, creator.date, creator.budget)
     div(class='orderPage__comments')
         div(class='orderPage__responses')
             div(class='orderPage__comments_title') Отклики
@@ -16,9 +16,9 @@ include ../responses/responseMinOrderCustomer.pug
                 div(class='orderPage__responses_scroll')
                     each user in responses
                         if isExecutor
-                            +responseOrderExecutor(user.avatar, user.login, user.rate, user.date)
+                            +responseOrderExecutor(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date)
                         else
-                            +responseOrderCustomer(user.avatar, user.login, user.rate, user.date)
+                            +responseOrderCustomer(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date)
 
                 button(class='orderPage__comments_others') Показать ещё
             else
@@ -27,9 +27,9 @@ include ../responses/responseMinOrderCustomer.pug
             if minResponse.rate !== -1
                 div(class='orderPage__comments_title') Минимальная ставка
                 if isExecutor
-                    +responseMinOrderExecutor(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
+                    +responseMinOrderExecutor(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date)
                 else
-                    +responseMinOrderCustomer(minResponse.avatar, minResponse.name, minResponse.rate, minResponse.date)
+                    +responseMinOrderCustomer(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date)
             if userRate === 0
                 if isExecutor
                     +makeRate
@@ -37,4 +37,4 @@ include ../responses/responseMinOrderCustomer.pug
                 if isExecutor
                     +changeRate(userRate)
                 else
-                    +rateCustomer(selectExecutor.avatar, selectExecutor.login, selectExecutor.rate, selectExecutor.date)
+                    +rateCustomer(selectExecutor.avatar?selectExecutor.avatar:require('@/static/img/profileAvatar.svg').default, selectExecutor.login, selectExecutor.rate, selectExecutor.date)

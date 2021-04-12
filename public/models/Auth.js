@@ -9,7 +9,7 @@ import {
     ORDER_GET_RATE,
     ORDER_PAGE_RES,
     REG,
-    ORDER_RATE_DELETED,
+    ORDER_GET,
     SEND_RESULT_RENDER,
     SETTING_UPD,
 } from '../modules/utils/actions.js';
@@ -134,6 +134,13 @@ export default class Auth {
         sendRequest('PUT', `/order/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(ORDER_GET_RATE, res);
+            });
+    }
+
+    static getOrder(id) {
+        sendRequest('GET', `/order/${id}`)
+            .then((res) => {
+                eventBus.emit(ORDER_GET, res);
             });
     }
 }

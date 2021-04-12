@@ -25,6 +25,7 @@ export const ORDER_SET_RATE = 'order-set-rate';
 export const ORDER_GET_RATE = 'order-get-rate';
 export const ORDER_DELETE_RATE = 'order-delete-rate';
 export const ORDER_CHANGE_RATE = 'order-change-rate';
+export const ORDER_GET = 'order-page-get';
 
 
 // Views actions

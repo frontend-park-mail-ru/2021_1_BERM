@@ -11,6 +11,7 @@ import {
     ORDER_DELETE_RATE,
     ORDER_SET_RATE,
     ORDER_GET_RATE,
+    ORDER_GET,
     ORDER_CHANGE_RATE,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
@@ -32,12 +33,29 @@ export class OrderPageController extends Controller {
                 [ORDER_GET_RATE, this._orderGetRate.bind(this)],
                 [ORDER_DELETE_RATE, this._orderDeleteRate.bind(this)],
                 [ORDER_CHANGE_RATE, this._orderChangeRate.bind(this)],
+                [ORDER_GET, this._orderGet.bind(this)],
             ],
             true);
     }
 
     _orderPageGetRes() {
-        auth.getResponsesOrder(order.currentOrderId);
+        if (order.getOrderById(order.currentOrderId)) {
+            auth.getResponsesOrder(order.currentOrderId);
+        } else {
+            auth.getOrder(order.currentOrderId);
+        }
+    }
+
+    _orderGet(res) {
+        if (res.ok) {
+            res.json().then((res) => {
+                order.setOrders([res]);
+                auth.getResponsesOrder(order.currentOrderId);
+            });
+        } else {
+            console.log('Запрос /order/id - не сработал');
+            // ToDo Обработка ошибки запроса
+        }
     }
 
     _orderPageSetResponses(res) {
