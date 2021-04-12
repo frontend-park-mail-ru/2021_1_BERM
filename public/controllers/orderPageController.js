@@ -85,7 +85,7 @@ export class OrderPageController extends Controller {
         const go = this.go;
         if (res.ok) {
             res.json().then((res) => {
-                order.setResponses(order.currentOrderId, [res]);
+                order.push(order.currentOrderId, res);
 
                 go();
             });

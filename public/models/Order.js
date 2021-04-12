@@ -15,6 +15,10 @@ class Order {
         this.currentOrderId = Number(attr.id);
     }
 
+    push(id, item) {
+        this.ordersMap.get(id).responses.push(this.pushResponse(id, item));
+    }
+
     setResponses(id, res) {
         const responses = [];
 
