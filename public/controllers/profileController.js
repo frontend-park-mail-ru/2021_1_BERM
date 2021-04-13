@@ -148,12 +148,14 @@ export class ProfileController extends Controller {
      */
     _onExit() {
         auth.logout()
+            .then(() => {
+                user.isAuthorized = false;
+                user.isGetAttr = false;
+                router.go('/');
+            })
             .catch((res) => {
                 console.log('не удалось parse JSON', res.message);
             });
-        user.isAuthorized = false;
-        user.isGetAttr = false;
-        router.go('/');
     }
 
     _sendDeleteSpec(data) {
