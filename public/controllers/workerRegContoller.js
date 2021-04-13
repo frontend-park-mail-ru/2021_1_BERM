@@ -4,6 +4,8 @@ import {WorkerRegView} from '../views/workerRegView.js';
 import eventBus from '../modules/eventBus.js';
 import router from '../modules/router.js';
 import auth from '../models/Auth.js';
+import user from '../models/User.js';
+
 import {
     NO_REG_WORKER,
     REG,
@@ -50,6 +52,7 @@ export class WorkerRegController extends Controller {
      * @param {Object} info - данные на отправку
      */
     _submitRegCl(info) {
+        info.specializes = [user.spec];
         auth.reg(info);
     }
 }

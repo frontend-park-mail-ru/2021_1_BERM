@@ -13,6 +13,7 @@ import '@/static/css/orderPageWithRate.css';
 import '@/static/css/orders.css';
 import '@/static/css/valid.css';
 import '@/static/css/vacancy.css';
+import '@/static/css/selectSpec.css';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';
@@ -29,6 +30,7 @@ import {ProfileController} from './controllers/profileController.js';
 import {OrderPageController} from './controllers/orderPageController.js';
 import {OrdersController} from './controllers/ordersContoller.js';
 import {VacancyPageController} from './controllers/vacancyPageController.js';
+import {SelectSpecController} from './controllers/selectSpecController.js';
 import {
     CLIENT_REG_PAGE,
     LOGIN_PAGE,
@@ -39,7 +41,9 @@ import {
     SETTINGS_PAGE,
     WORKER_REG_PAGE,
     ORDERS_PAGE,
-    VACANCY_CREATE_PAGE, VACANCY_PAGE,
+    VACANCY_CREATE_PAGE,
+    VACANCY_PAGE,
+    SELECT_SPEC,
 } from './modules/utils/pageNames.js';
 
 const controllers = new Set([
@@ -54,6 +58,7 @@ const controllers = new Set([
     [ORDERS_PAGE, OrdersController],
     [VACANCY_CREATE_PAGE, VacancyCreateController],
     [VACANCY_PAGE, VacancyPageController],
+    [SELECT_SPEC, SelectSpecController],
     // Здесь добавляем странички
 ]);
 

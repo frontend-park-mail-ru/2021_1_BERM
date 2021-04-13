@@ -32,6 +32,7 @@ export const VACANCY_CREATE = 'vacancy_create';
 export const VACANCY_PAGE_GET_RES = 'vacancy_page_get_res';
 export const VACANCY_PAGE_RES = 'vacancy_page_res';
 export const VACANCY_PAGE_GET_VACANCY = 'vacancy_page_get_vacancy';
+export const SELECT_SPEC_SELECTED = 'select_spec_selected';
 
 
 // Views actions

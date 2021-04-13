@@ -9,3 +9,4 @@ export const ORDER_PAGE = /^\/order\/\d+$/;
 export const ORDERS_PAGE = /^\/orders$/;
 export const VACANCY_CREATE_PAGE = /^\/vacancy-create$/;
 export const VACANCY_PAGE = /^\/vacancy\/\d+$/;
+export const SELECT_SPEC = /^\/add-spec$/;

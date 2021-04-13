@@ -37,7 +37,6 @@ export class WorkerRegView extends View {
                 password: event.target.password.value,
                 login: event.target.login.value,
                 name_surname: event.target.name.value,
-                specializes: ['Крушитель великанов', 'Мышиный король'], // Todo fix
                 executor: true,
             };
 
