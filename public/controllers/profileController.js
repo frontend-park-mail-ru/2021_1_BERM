@@ -79,8 +79,7 @@ export class ProfileController extends Controller {
      */
     _onProfile(res) {
         if (!res.ok) {
-            // ToDo: Косяк
-            console.log('Косяк');
+            router.go('/404/');
             return;
         }
 

@@ -82,7 +82,7 @@ class Router {
         }
 
         if (!Controller) {
-            console.log(404);
+            this.go('/404/');
             return;
         }
 

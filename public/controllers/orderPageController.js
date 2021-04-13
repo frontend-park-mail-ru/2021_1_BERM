@@ -15,6 +15,7 @@ import {
     ORDER_CHANGE_RATE,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
+import router from '../modules/router.js';
 
 export class OrderPageController extends Controller {
     constructor() {
@@ -53,8 +54,7 @@ export class OrderPageController extends Controller {
                 auth.getResponsesOrder(order.currentOrderId);
             });
         } else {
-            console.log('Запрос /order/id - не сработал');
-            // ToDo Обработка ошибки запроса
+            router.go('/404/');
         }
     }
 
