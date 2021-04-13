@@ -33,7 +33,9 @@ export const VACANCY_PAGE_GET_RES = 'vacancy_page_get_res';
 export const VACANCY_PAGE_RES = 'vacancy_page_res';
 export const VACANCY_PAGE_GET_VACANCY = 'vacancy_page_get_vacancy';
 export const SELECT_SPEC_SELECTED = 'select_spec_selected';
-
+export const SELECT_SPEC_SET = 'select_spec_set';
+export const PROFILE_DELETE_SPEC = 'profile_delete_spec';
+export const PROFILE_DELETE_SPEC_GET = 'profile_delete_spec_get';
 
 // Views actions
 export const NO_REG_CLIENT = 'no-registration-client';

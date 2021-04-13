@@ -54,12 +54,12 @@ export class OrderOrVacancyCreateView extends View {
             }, 'dynamic-style');
 
 
-        // const val = new Validator( Todo СДЕЛАТЬ
-        //     'order-create_form',
-        //     '.form-control',
-        //     'send_mess',
-        // );
-        // val.validate();
+        const val = new Validator(
+            'order-create_form',
+            '.form-control',
+            'send_mess',
+        );
+        val.validate();
 
         const form = document.getElementById('order-create_form');
         form.addEventListener('submit', (event) => {

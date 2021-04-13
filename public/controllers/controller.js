@@ -46,6 +46,9 @@ export class Controller extends BaseMVC {
                 }
             })
             .then((result) => {
+                if (result.status) {
+                    return;
+                }
                 if (result) {
                     user.isAuthorized = true;
                     user.id = result.id;

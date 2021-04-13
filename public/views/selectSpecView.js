@@ -4,6 +4,7 @@ import Select from '../modules/utils/customSelect.js';
 import {listOfServices} from '../modules/utils/templatesForSelect.js';
 import eventBus from '../modules/eventBus.js';
 import {SELECT_SPEC_SELECTED} from '../modules/utils/actions.js';
+import {Validator} from './validator';
 
 export class SelectSpecView extends View {
     render(isAuthorized, isExecutor) {
@@ -20,6 +21,13 @@ export class SelectSpecView extends View {
                 placeholder: 'Категория',
                 data: listOfServices,
             }, 'dynamic-style');
+
+        const val = new Validator(
+            'specForm',
+            '.form-control',
+            'send_mess',
+        );
+        val.validate();
 
         const form = document.getElementById('specForm');
 

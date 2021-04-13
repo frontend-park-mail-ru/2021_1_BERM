@@ -15,9 +15,10 @@ export const getTemplate = (data = [], placeholder, selectedId, selectorId) => {
     return `
     <div class="select__backdrop" data-type="backdrop"></div>
     <div class="select__input" data-type="input" id="${selectorId}">
-      <input data-type="value" class="select__form" name="category" disabled value="${text}"/>
+      <input data-type="value" class="select__form form-control" name="category" disabled value="${text}"/>
       <img src=${arrowDown} class="setting__arrow" data-type="arrow" alt="">
     </div>
+    <div class="error"></div>
     <div class="select__dropdown">
       <ul class="select__list">
         ${items.join('')}

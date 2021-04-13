@@ -57,7 +57,6 @@ export class SettingsController extends Controller {
                     user.setAttributes(data);
                     router.go(`/profile/${user.id}`);
                 });
-            // ToDo eventBus.emit('success-set-up');
         } else {
             eventBus.emit(NO_SET_UP);
         }

@@ -5,6 +5,7 @@ import {
     FAIL_LOAD_IMG,
     IMG_CHANGE,
     PROFILE,
+    PROFILE_DELETE_SPEC,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
@@ -59,6 +60,19 @@ export class ProfileView extends View {
             const exitLink = document.querySelector('.exit-buttion__text');
             exitLink.addEventListener('click', () => {
                 eventBus.emit(EXIT);
+            });
+        }
+
+        if (info.isMyProfile && this.isExecutor) {
+            const closeSpec =
+                document.getElementsByClassName('specializes__close');
+
+            [].forEach.call(closeSpec, (item) => {
+                item.addEventListener('click', (event) => {
+                    const data = event.target.parentNode.children[1].innerHTML;
+
+                    eventBus.emit(PROFILE_DELETE_SPEC, data);
+                });
             });
         }
     }

@@ -8,22 +8,28 @@ include ../inputes/settingsInput
                     if isOrder
                         div(class='settings__label') Создать заказ
                         +settingsInput(require("@/static/img/title.svg").default, 'Заголовок', 'order_name', 'text')
+                        div(class=" error")
                         +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text')
+                        div(class=" error")
                         +settingsInput(require("@/static/img/date.svg").default, 'ДД.ММ.ГГГГ', 'date', 'text', 'date')
+                        div(class=" error")
                         div.settings-form__input-mini_bg
                             div#select
                     else
                         div(class='settings__label') Создать вакансию
                         +settingsInput(require("@/static/img/title.svg").default, 'Название вакансии', 'order_name', 'text')
+                        div(class=" error")
                         +settingsInput(require("@/static/img/card.svg").default, 'Зарплата ₽', 'budget', 'text')
+                        div(class=" error")
                         div.settings-form__input-mini_bg
                             div#select
                 div(class='settings__column_right')
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
-                        textarea(class='settings__about__textarea' placeholder='Описание' name='description')
+                        textarea(class='settings__about__textarea form-control' placeholder='Описание' name='description')
+                    div(class=" error")
                     // <div class="settings__img_container"></div>
                     div(class='settings-form__submit__container')
-                        button(class='settings-form__submit')
+                        button(class='settings-form__submit' id='send_mess')
                             span Создать
                             img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')

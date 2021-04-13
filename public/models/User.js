@@ -6,6 +6,7 @@ class User {
     constructor() {
         this.isGetAttr = false;
         this.isAuthorized = false;
+        this.specializes = [];
         this.id = 0;
     }
 
@@ -19,6 +20,20 @@ class User {
             this[key] = value;
         }
         this.isGetAttr = true;
+    }
+
+    deleteSpec(spec) {
+        let pos = -1;
+        this.specializes.forEach((item, i) => {
+            if (item === spec) {
+                pos = i;
+            }
+        });
+
+        this.specializes.splice(pos, 1);
+        if (!this.specializes) {
+            this.specializes = [];
+        }
     }
 }
 

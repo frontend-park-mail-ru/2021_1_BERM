@@ -29,14 +29,12 @@
 
 .form-control_error {
 	/*margin-top: 5px;*/
-	box-sizing: content-box;
-	border:solid 1.5px #EE3465;
+	border:solid 1.5px var(--secondary_color);
 	
 }
 
 .form-control_valid {
-	box-sizing: content-box;
-	border:solid 1.5px #345DEE ;
+	border:solid 1.5px var(--primary_color) ;
 }
 
 .label-reg {
@@ -44,8 +42,15 @@
 }
 
 .error__repeat_password {
-	/*order: 0;*/
-	/*justify-self: flex-end;*/
-	/*align-self: flex-end;*/
 	margin-right: 125px;
+}
+
+.error_message {
+	font-style: normal;
+	font-weight: 300;
+	font-size: 20px;
+	line-height: 22px;
+	letter-spacing: -0.4px;
+	margin-top: 10px;
+	color: red;
 }

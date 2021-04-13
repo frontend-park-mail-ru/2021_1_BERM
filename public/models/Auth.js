@@ -14,7 +14,7 @@ import {
     SETTING_UPD,
     VACANCY_CREATE,
     VACANCY_PAGE_RES,
-    VACANCY_PAGE_GET_VACANCY,
+    VACANCY_PAGE_GET_VACANCY, SELECT_SPEC_SET, PROFILE_DELETE_SPEC_GET,
 } from '../modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -165,6 +165,20 @@ export default class Auth {
         sendRequest('GET', `/vacancy/${id}`)
             .then((res) => {
                 eventBus.emit(VACANCY_PAGE_GET_VACANCY, res);
+            });
+    }
+
+    static setSpec(id, data) {
+        sendRequest('POST', `/profile/${id}/specialize`, data)
+            .then((res) => {
+                eventBus.emit(SELECT_SPEC_SET, res);
+            });
+    }
+
+    static deleteSpec(id, data) {
+        sendRequest('DELETE', `/profile/${id}/specialize`, data)
+            .then((res) => {
+                eventBus.emit(PROFILE_DELETE_SPEC_GET, res);
             });
     }
 }

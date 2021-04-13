@@ -1,5 +1,3 @@
-// ToDo(Алексей Егоров): Добавить JsDoc.
-
 /** Event Bus */
 class EventBus {
     /**

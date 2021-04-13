@@ -26,6 +26,4 @@ export class VacancyPageView extends View {
             vacancyPageTemplate(info),
         );
     }
-
-    // ToDo обработчики
 }

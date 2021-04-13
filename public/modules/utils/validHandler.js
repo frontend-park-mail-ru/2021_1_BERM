@@ -89,8 +89,8 @@ export class ValidHandler {
                     return this.errors[8];
                 }
             },
-            specializes: () => {
-                if (formVal.specializes === 'err') {
+            category: () => {
+                if (formVal.category === 'Категория') {
                     return this.errors[10];
                 }
             },
@@ -129,6 +129,14 @@ export class ValidHandler {
                         .get('price')
                         .test(formVal.budget) === false) {
                     return this.errors[14];
+                }
+            },
+            date: () => {
+                if (formVal.date.length === 0 ||
+                    this.patterns
+                        .get('date')
+                        .test(formVal.date) === false) {
+                    return this.errors[15];
                 }
             },
             submit: () => {

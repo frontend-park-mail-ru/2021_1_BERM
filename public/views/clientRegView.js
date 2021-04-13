@@ -47,8 +47,11 @@ export class ClientRegView extends View {
      * Обработка в случае провала
      */
     _onNoRegistration() {
-        // ToDo такой email уже существует
-        console.log('sorry, this invalid email');
+        const form = document.getElementById('err_place');
+        form.innerHTML =
+            `<div class="error_message">
+                    Такая почта уже используется
+             </div>`;
     }
 }
 

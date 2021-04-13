@@ -12,6 +12,7 @@ include ../inputes/customFormMiniInput
             div(class=" error")
             +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'password', 'passwordRepeat')
             button(class='custom-form__submit' id='send_mess') Зарегистрироваться
+            div(id="err_place")
             div(class='registration__other_text') Или авторизуйтесь через
             div(class='registration__other_reg')
                 div(class='custom-form__input-mini_bg')

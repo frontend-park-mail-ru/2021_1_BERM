@@ -9,7 +9,7 @@ import {
     IMG_CHANGE,
     IMG_LOAD,
     ON_PROFILE,
-    PROFILE,
+    PROFILE, PROFILE_DELETE_SPEC, PROFILE_DELETE_SPEC_GET,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
@@ -39,6 +39,8 @@ export class ProfileController extends Controller {
                 [IMG_CHANGE, this._changeImage.bind(this)],
                 [IMG_LOAD, this._onLoadImage.bind(this)],
                 [EXIT, this._onExit.bind(this)],
+                [PROFILE_DELETE_SPEC, this._sendDeleteSpec.bind(this)],
+                [PROFILE_DELETE_SPEC_GET, this._getDeleteSpec.bind(this)],
             ],
             true);
     }
@@ -86,7 +88,7 @@ export class ProfileController extends Controller {
                     nameSurname: res.name_surname,
                     login: res.login,
                     isExecutor: res.executor,
-                    specializes: res.specializes,
+                    specializes: res.specializes?res.specializes:[],
                     about: res.about,
                     img: res.img,
                     email: res.email,
@@ -146,5 +148,17 @@ export class ProfileController extends Controller {
         user.isAuthorized = false;
         user.isGetAttr = false;
         router.go('/');
+    }
+
+    _sendDeleteSpec(data) {
+        this.deleteSpec = data;
+        auth.deleteSpec(user.id, {specialize: data});
+    }
+
+    _getDeleteSpec(res) {
+        if (res.ok) {
+            user.deleteSpec(this.deleteSpec);
+            this._profile();
+        }
     }
 }

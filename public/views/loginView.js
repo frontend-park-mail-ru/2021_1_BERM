@@ -42,7 +42,10 @@ export class LoginView extends View {
      * Обработка в случае провала
      */
     _onNoLogin() {
-        // ToDo(Алексей Егоров): Неправильная почта или пароль
-        console.log('wrong email or password');
+        const form = document.getElementById('err_place');
+        form.innerHTML =
+            `<div class="error_message">
+                    Неверный логин или пароль
+             </div>`;
     }
 }
