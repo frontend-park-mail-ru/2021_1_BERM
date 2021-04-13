@@ -27,7 +27,7 @@ export const sendRequest = (
 
             // Обновление token при просрочке токена
             if (res.status === 403) {
-                return fetch(origin + '/profile/authorized', {
+                fetch(origin + '/profile/authorized', {
                     method: 'GET',
                     body: JSON.stringify(body),
                     credentials: 'include',

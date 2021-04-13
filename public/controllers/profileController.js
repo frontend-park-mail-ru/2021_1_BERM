@@ -56,6 +56,7 @@ export class ProfileController extends Controller {
             auth.getProfile(this.id);
         } else {
             eventBus.emit(RENDER_PROFILE, {
+                id: user.id,
                 isMyProfile: this.id === user.id,
                 isAuthorized: user.isAuthorized,
                 name: user.nameSurname,
@@ -66,6 +67,7 @@ export class ProfileController extends Controller {
                 img: user.img,
                 rating: 0,
                 reviews: 0,
+                ordersCount: user.ordersCount,
             });
         }
     }
@@ -85,6 +87,7 @@ export class ProfileController extends Controller {
         res.json()
             .then((res) => {
                 const data = {
+                    id: res.id,
                     nameSurname: res.name_surname,
                     login: res.login,
                     isExecutor: res.executor,
@@ -92,6 +95,7 @@ export class ProfileController extends Controller {
                     about: res.about,
                     img: res.img,
                     email: res.email,
+                    ordersCount: res.orders_count,
                 };
 
                 if (this.id === user.id) {
@@ -99,6 +103,7 @@ export class ProfileController extends Controller {
                 }
 
                 eventBus.emit(RENDER_PROFILE, {
+                    id: data.id,
                     isMyProfile: this.id === user.id,
                     isAuthorized: user.isAuthorized,
                     name: data.nameSurname,
@@ -109,6 +114,7 @@ export class ProfileController extends Controller {
                     img: data.img,
                     rating: 0,
                     reviews: 0,
+                    ordersCount: data.ordersCount,
                 });
             });
     }

@@ -122,6 +122,13 @@ export default class Auth {
             });
     }
 
+    static getMyOrders(id) {
+        sendRequest('GET', `/order/profile/${id}`)
+            .then((res) => {
+                eventBus.emit(SEND_RESULT_RENDER, res);
+            });
+    }
+
     static setResponse(data, id) {
         sendRequest('POST', `/order/${id}/response`, data)
             .then((res) => {

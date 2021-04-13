@@ -6,18 +6,18 @@ include ../inputes/customFormMiniInput
             div(class='settings__form')
                 div(class='settings__column_left')
                     div(class='settings__label') Настройки
-                    +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text')
+                    +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text', 'no-matter')
                     div(class=" error")
-                    +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text')
+                    +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text', 'no-matter')
                     div(class=" error")
-                    +customFormInput(require('@/static/img/block.svg').default, 'Старый пароль', 'oldPassword', 'password')
+                    +customFormInput(require('@/static/img/block.svg').default, 'Текущий пароль *', 'oldPassword', 'password')
                     div(class=" error")
-                    +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'password', 'passwordRepeat')
+                    +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'password', 'passwordRepeat', 'no-matter')
 
                 div(class='settings__column_right')
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
-                        textarea(class='settings__about__textarea form-control' placeholder='О себе' name='about')
+                        textarea(class='settings__about__textarea form-control no-matter' placeholder='О себе' name='about')
                     div(class=" error")
                     div(class='settings-form__submit__container')
                         button(class='settings-form__submit' id='send_mess')

@@ -51,11 +51,16 @@ export class Validator {
                 if (property === 'submit') return;
                 error = handler.getError(formVal, property);
 
-                if (error.length !== 0) {
-                    reflector.show(reflector.invalid, property, error);
-                    invalid = true;
-                } else {
-                    reflector.show(reflector.valid, property, '');
+                const elem = document.querySelector(`[name=\'${property}\']`);
+                const classElem = elem.getAttribute('class');
+
+                if (!classElem.includes('no-matter')) {
+                    if (error.length !== 0) {
+                        reflector.show(reflector.invalid, property, error);
+                        invalid = true;
+                    } else {
+                        reflector.show(reflector.valid, property, '');
+                    }
                 }
             });
 
