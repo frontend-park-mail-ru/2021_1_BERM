@@ -4,9 +4,11 @@ import router from '../modules/router.js';
 import auth from '../models/Auth.js';
 import {SelectSpecView} from '../views/selectSpecView.js';
 import {
+    NOT_SET_CATEGORY,
     SELECT_SPEC_SELECTED,
     SELECT_SPEC_SET,
 } from '../modules/utils/actions.js';
+import eventBus from '../modules/eventBus.js';
 
 export class SelectSpecController extends Controller {
     constructor() {
@@ -39,8 +41,7 @@ export class SelectSpecController extends Controller {
             user.specializes.push(this.spec);
             router.go(`/profile/${user.id}`);
         } else {
-            console.log('Не удалось добавить специализацию');
-            // Todo Add
+            eventBus.emit(NOT_SET_CATEGORY);
         }
     }
 }

@@ -5,8 +5,12 @@ include ../orders/orderInOrdersPage
     div(class='orders__content')
         div(class='orders__list')
             each order in orders
+                -var flag = 1
                 +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id)
-            button.show-more-button Показать еще
+            if flag
+                button.show-more-button Показать еще
+            else
+                div(class="orderPage__no-comments") Пока никто не создал заказ
         form.filters
             div(class='filters__title') Фильтры
             div(class='filters__budget')

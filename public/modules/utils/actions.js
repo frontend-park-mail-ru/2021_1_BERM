@@ -50,3 +50,4 @@ export const NO_REG_WORKER = 'no-registration-worker';
 export const ORDER_PAGE_RENDER = 'order_page_render';
 export const ORDER_CREATE_GO_RENDER = 'order_create_go_render';
 export const VACANCY_PAGE_RENDER = 'vacancy_page_render';
+export const NOT_SET_CATEGORY = 'not_set_category';

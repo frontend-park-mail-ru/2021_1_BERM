@@ -157,7 +157,6 @@
 }
 .orders__title {
     align-self: flex-start;
-    font-family: Inter;
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -165,12 +164,14 @@
 
     letter-spacing: -0.4px;
     margin-top: 55px;
+    margin-bottom: 10px;
 }
 .orders__content {
     width: 100%;
     display: flex;
 }
 .orders__list {
+    width: 430px;
     display: flex;
     flex-direction: column;
 }

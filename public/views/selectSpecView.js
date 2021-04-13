@@ -3,7 +3,7 @@ import {View} from './view.js';
 import Select from '../modules/utils/customSelect.js';
 import {listOfServices} from '../modules/utils/templatesForSelect.js';
 import eventBus from '../modules/eventBus.js';
-import {SELECT_SPEC_SELECTED} from '../modules/utils/actions.js';
+import {NOT_SET_CATEGORY, SELECT_SPEC_SELECTED} from '../modules/utils/actions.js';
 import {Validator} from './validator';
 
 export class SelectSpecView extends View {
@@ -13,7 +13,9 @@ export class SelectSpecView extends View {
             isExecutor,
             'Выбор специализации',
             selectSpec(),
-            [],
+            [
+                [NOT_SET_CATEGORY, this._noSet],
+            ],
         );
 
         new Select(
@@ -40,5 +42,13 @@ export class SelectSpecView extends View {
 
             eventBus.emit(SELECT_SPEC_SELECTED, data);
         });
+    }
+
+    _noSet() {
+        const form = document.getElementById('err_place');
+        form.innerHTML =
+            `<div class="error_message">
+                    Такая специализация у вас уже есть
+             </div>`;
     }
 }

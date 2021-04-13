@@ -4,7 +4,7 @@ mixin orderInOrdersPage(avatar, login, title, category, definition, date, budget
             img(class='orders__order_img' src=avatar)
             div(class='orders__order_nickname')= login
         div(class='orders__order_text')
-            div(class='orders__order_title' name=id)= title
+            a(class='orders__order_title' name=id)= title
             div(class='orders__order_category')
                 div(class='orders__order_category-text') Категория:
                 button(class='orders__order_category-button')= category
