@@ -35,7 +35,7 @@ class Vacancy {
             responses.push(this.pushResponse(id, item));
         });
 
-        this.currentVacancyId.get(id).responses = responses;
+        this.vacancysMap.get(id).responses = responses;
     }
 
     pushResponse(id, item) {

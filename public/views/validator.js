@@ -54,7 +54,7 @@ export class Validator {
                 if (error.length !== 0) {
                     reflector.show(reflector.invalid, property, error);
                     invalid = true;
-                } else if (error.length === 0) {
+                } else {
                     reflector.show(reflector.valid, property, '');
                 }
             });
@@ -86,13 +86,36 @@ export class Validator {
                     const property = formElement.getAttribute('name');
                     const dataField = {};
 
-                    dataField[property] = formElement.value;
+                    if (property.includes('password')) {
+                        const passwords = Array(document.getElementsByClassName(
+                            'custom-form__input-mini_in')[0]);
+                        passwords.push(document.getElementsByClassName(
+                            'custom-form__input-mini_in')[1]);
 
-                    const error = handler.getError(dataField, property);
-                    if (error.length !== 0) {
-                        reflector.show(reflector.invalid, property, error);
-                    } else if (error.length === 0) {
-                        reflector.show(reflector.valid, property, '');
+                        passwords.forEach((item) => {
+                            reflector.clear(reflector.invalid, item);
+                            reflector.clear(reflector.valid, item);
+                            const prop = item.getAttribute('name');
+
+                            dataField[prop] = item.value;
+
+                            const error = handler.getError(dataField, prop);
+
+                            if (error.length !== 0) {
+                                reflector.show(reflector.invalid, prop, error);
+                            } else if (error.length === 0) {
+                                reflector.show(reflector.valid, prop, '');
+                            }
+                        });
+                    } else {
+                        dataField[property] = formElement.value;
+
+                        const error = handler.getError(dataField, property);
+                        if (error.length !== 0) {
+                            reflector.show(reflector.invalid, property, error);
+                        } else if (error.length === 0) {
+                            reflector.show(reflector.valid, property, '');
+                        }
                     }
                     return false;
                 });

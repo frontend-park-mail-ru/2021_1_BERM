@@ -105,6 +105,7 @@ export class OrderPageController extends Controller {
             creator: {
                 avatar: creator.avatar,
                 title: creator.name,
+                name: creator.login,
                 category: creator.category,
                 definition: creator.definition,
                 date: creator.date,

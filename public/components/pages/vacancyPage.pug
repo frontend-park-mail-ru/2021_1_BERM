@@ -19,6 +19,10 @@ include ../responses/responseVacancy.pug
             div(class='vacancyPage__comments_title')
                 | Отклики
                 each response in responses
+                    -var flag = 1
                     +responseVacancy(response.avatar, response.login, response.definition)
+            if flag
+                button(class='vacancyPage__comments_others') Показать ещё
+            else
+                div(class="orderPage__no-comments") Пока никто не оставил отклик
 
-            button(class='vacancyPage__comments_others') Показать ещё

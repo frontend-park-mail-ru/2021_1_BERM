@@ -8,7 +8,7 @@ include ../responses/responseMinOrderExecutor.pug
 include ../responses/responseMinOrderCustomer.pug
 
 .orderPage
-    +orderInOrderPageExecutor(creator.avatar?creator.avatar:require('@/static/img/profileAvatar.svg').default, creator.title, creator.category, creator.definition, creator.date, creator.budget)
+    +orderInOrderPageExecutor(creator.avatar?creator.avatar:require('@/static/img/profileAvatar.svg').default, creator.title, creator.category, creator.definition, creator.date, creator.budget, creator.name)
     div(class='orderPage__comments')
         div(class='orderPage__responses')
             div(class='orderPage__comments_title') Отклики

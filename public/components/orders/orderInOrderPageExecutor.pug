@@ -1,7 +1,8 @@
-mixin orderInOrderPageExecutor(avatar, title, category, definition, date, budget)
+mixin orderInOrderPageExecutor(avatar, title, category, definition, date, budget, name)
     div(class='orderPage__order')
         div(class='orderPage__order_img-bg')
             img(class='orderPage__order_img' src=avatar)
+            div(class='orderPage__order_name')= name
         div(class='orderPage__order_text')
             div(class='orderPage__order_title')= title
             div(class='orderPage__order_category')

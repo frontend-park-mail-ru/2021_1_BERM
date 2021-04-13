@@ -39,7 +39,7 @@ export class VacancyPageController extends Controller {
         }
     }
 
-    _vacancyPageRes() {
+    _vacancyPageRes(res) {
         const go = this.go;
 
         if (res.ok) {
@@ -58,7 +58,7 @@ export class VacancyPageController extends Controller {
         if (res.ok) {
             res.json().then((res) => {
                 vacancy.setVacancys([res]);
-                auth.getResponsesVacancy(order.currentOrderId);
+                auth.getResponsesVacancy(vacancy.currentVacancyId);
             });
         } else {
             console.log('Запрос /order/id - не сработал');

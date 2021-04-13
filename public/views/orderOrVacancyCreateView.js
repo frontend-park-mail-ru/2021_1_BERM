@@ -67,16 +67,17 @@ export class OrderOrVacancyCreateView extends View {
             const info = {
                 category: event.target.category.value,
                 description: event.target.description.value,
-                budget: Number(event.target.budget.value),
             };
 
             if (data.isOrder) {
+                info.budget = Number(event.target.budget.value);
                 const date = event.target.date.value.split('.');
                 info.order_name = event.target.order_name.value;
                 info.deadline =
                     new Date(date[2], date[1] - 1, date[0]).getTime();
                 eventBus.emit(ORDER_SUBMIT, info);
             } else {
+                info.salary = Number(event.target.budget.value);
                 info.vacancy_name = event.target.order_name.value;
                 eventBus.emit(VACANCY_SUBMIT, info);
             }

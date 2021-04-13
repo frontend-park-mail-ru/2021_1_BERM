@@ -143,6 +143,7 @@
 }
 
 .orderPage__comments {
+    width: 1030px;
     margin-top: 44px;
     display: flex;
     flex-direction: row;
@@ -152,7 +153,7 @@
 .orderPage__responses {
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: space-between;
     width: 458px;
 }
 
@@ -177,6 +178,7 @@
     flex-direction: column;
     justify-content: left;
     margin: 20px;
+    align-items: center;
 }
 
 .orderPage__response_img {
@@ -191,7 +193,6 @@
     font-size: 18px;
     line-height: 22px;
     /* identical to box height, or 122% */
-
     letter-spacing: -0.4px;
 }
 
@@ -331,11 +332,23 @@
     border: 2px solid #345DEE;
 }
 
-.orderPage__no-comments {
-    margin-top: 20px;
+.orderPage__order_name {
     font-style: normal;
+    font-weight: 600;
     font-size: 18px;
-    line-height: 30px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: -0.4px;
+    margin-top: 9px;
+}
+
+.orderPage__no-comments {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+    margin-top: 20px;
 }
 
 /*.orderPage__responses_scroll {*/

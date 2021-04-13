@@ -1,4 +1,4 @@
-include ../inputes/settingsInput
+include ../inputes/customFormInput
 include ../inputes/customFormMiniInput
 .settings
     div(class='settings__bg-form')
@@ -6,16 +6,20 @@ include ../inputes/customFormMiniInput
             div(class='settings__form')
                 div(class='settings__column_left')
                     div(class='settings__label') Настройки
-                    +settingsInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text')
-                    +settingsInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text')
-                    +settingsInput(require('@/static/img/block.svg').default, 'Старый пароль', 'oldPassword', 'password')
-                    +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'newPassword', 'confirm')
+                    +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text')
+                    div(class=" error")
+                    +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text')
+                    div(class=" error")
+                    +customFormInput(require('@/static/img/block.svg').default, 'Старый пароль', 'oldPassword', 'password')
+                    div(class=" error")
+                    +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'password', 'passwordRepeat')
 
                 div(class='settings__column_right')
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
-                        textarea(class='settings__about__textarea ' placeholder='О себе' name='about')
+                        textarea(class='settings__about__textarea form-control' placeholder='О себе' name='about')
+                    div(class=" error")
                     div(class='settings-form__submit__container')
-                        button(class='settings-form__submit')
+                        button(class='settings-form__submit' id='send_mess')
                             span Сохранить
                             img(class='settings__submit__img' src=require('@/static/img/arrow.svg').default alt='')

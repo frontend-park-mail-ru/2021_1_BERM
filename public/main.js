@@ -12,13 +12,16 @@ import '@/static/css/orderPageCustomer.css';
 import '@/static/css/orderPageWithRate.css';
 import '@/static/css/orders.css';
 import '@/static/css/valid.css';
+import '@/static/css/vacancy.css';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';
 import {WorkerRegController} from './controllers/workerRegContoller.js';
 import {SettingsController} from './controllers/settingsController.js';
 import {OrderCreateController} from './controllers/orderCreateContoller.js';
-import {VacancyCreateController} from './controllers/vacancyCreateController.js';
+import {
+    VacancyCreateController,
+} from './controllers/vacancyCreateController.js';
 
 import router from './modules/router.js';
 import {MainPageController} from './controllers/mainPageController.js';

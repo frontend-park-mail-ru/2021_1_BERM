@@ -140,6 +140,11 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}
     width: 236px;
 }
 
+.custom-form__input-mini_flex {
+    display: flex;
+    flex-direction: column;
+}
+
 .custom-form__input-mini_bg {
     display: flex;
     justify-content: space-between;

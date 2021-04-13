@@ -94,6 +94,15 @@ export class ValidHandler {
                     return this.errors[10];
                 }
             },
+            oldPassword: () => {
+                this.oldPassword = formVal.oldPassword;
+                if (formVal.oldPassword.length === 0 ||
+                    this.patterns
+                        .get('password')
+                        .test(formVal.oldPassword) === false) {
+                    return this.errors[12];
+                }
+            },
             password: () => {
                 this.password = formVal.password;
                 if (formVal.password.length === 0 ||
@@ -108,7 +117,7 @@ export class ValidHandler {
                     this.patterns
                         .get('password')
                         .test(formVal.passwordRepeat) === false) {
-                    return this.errors[12];
+                    return this.errors[13];
                 }
                 if (this.password !== formVal.passwordRepeat) {
                     return this.errors[13];

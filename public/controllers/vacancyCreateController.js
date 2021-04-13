@@ -40,8 +40,6 @@ export class VacancyCreateController extends Controller {
             res.json()
                 .then((res) => {
                     vacancy.setVacancys([res]);
-                    debugger;
-
                     router.go(`/vacancy/${vacancy.currentVacancyId}`);
                 });
         } else {

@@ -39,11 +39,13 @@ export class SettingsView extends View {
             settingsTemplate(info),
         );
 
-        // const val = new Validator('feedback', '.form-control', 'send_mess');
-        // val.validate();
-        const val = new Validator('settings-form',
-            '.form-control', 'send_mess');
+        const val = new Validator(
+            'settings-form',
+            '.form-control',
+            'send_mess',
+        );
         val.validate();
+
         const form = document.getElementById('settings-form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -52,7 +54,7 @@ export class SettingsView extends View {
                 old_password: event.target.oldPassword.value,
                 login: event.target.login.value,
                 about: event.target.about.value,
-                new_password: event.target.newPassword.value,
+                new_password: event.target.password.value,
             };
 
             eventBus.emit(SETTING_SUBMIT, data);
