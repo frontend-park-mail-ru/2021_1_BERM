@@ -50,7 +50,7 @@ export class VacancyPageController extends Controller {
                 go();
             });
         } else {
-            router.go('/404/');
+            window.location.href = '/404/';
         }
     }
 

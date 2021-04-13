@@ -54,7 +54,7 @@ export class OrderPageController extends Controller {
                 auth.getResponsesOrder(order.currentOrderId);
             });
         } else {
-            router.go('/404/');
+            window.location.href = '/404/';
         }
     }
 

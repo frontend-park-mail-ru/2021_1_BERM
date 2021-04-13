@@ -79,7 +79,7 @@ export class ProfileController extends Controller {
      */
     _onProfile(res) {
         if (!res.ok) {
-            router.go('/404/');
+            window.location.href = '/404/';
             return;
         }
 
