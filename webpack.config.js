@@ -5,7 +5,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
     context: path.resolve(__dirname, 'public'),
     mode: 'development',
-    entry: './main.js',
+    entry: ['@babel/polyfill', './main.js'],
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -44,6 +44,16 @@ module.exports = {
                 test: /\.js$/,
                 enforce: 'pre',
                 use: ['source-map-loader'],
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             },
         ],
     },
