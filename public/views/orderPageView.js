@@ -9,6 +9,7 @@ import {
 import eventBus from '../modules/eventBus.js';
 
 import orderPageTemplate from '@/components/pages/orderPage.pug';
+import {Validator} from './validator';
 
 export class OrderPageView extends View {
     render(isAuthorized, isExecutor) {
@@ -28,6 +29,13 @@ export class OrderPageView extends View {
         );
 
         if (info.isExecutor) {
+            const val = new Validator(
+                'rate-form',
+                '.form-control',
+                'send_mess',
+            );
+            val.validate();
+
             const form = document
                 .getElementsByClassName('orderPage__set-rate_form')[0];
             if (info.userRate === 0) {

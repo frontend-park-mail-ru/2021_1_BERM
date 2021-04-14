@@ -10,11 +10,9 @@ include ../orders/orderInOrdersPage
         div(class='orders__title') Актуальные заказы
     div(class='orders__content')
         div(class='orders__list')
-            - var flag = false;
             each order in orders
-                - var flag = true
-                +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id)
-            if flag === true
+                +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId)
+            if orders.length !== 0
                 button.show-more-button Показать еще
             else
                 div(class="orderPage__no-comments") Заказов пока нет

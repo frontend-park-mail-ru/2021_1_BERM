@@ -94,6 +94,17 @@ export class ValidHandler {
                     return this.errors[10];
                 }
             },
+            rate: () => {
+                if (formVal.rate.length === 0 ||
+                    this.patterns
+                        .get('price')
+                        .test(formVal.rate) === false) {
+                    return this.errors[16];
+                }
+                if (Number(formVal.rate) <= 0) {
+                    return this.errors[16];
+                }
+            },
             oldPassword: () => {
                 this.oldPassword = formVal.oldPassword;
                 if (formVal.oldPassword.length === 0 ||
@@ -130,12 +141,48 @@ export class ValidHandler {
                         .test(formVal.budget) === false) {
                     return this.errors[14];
                 }
+                if (Number(formVal.budget) <= 0) {
+                    return this.errors[14];
+                }
             },
             date: () => {
                 if (formVal.date.length === 0 ||
                     this.patterns
                         .get('date')
                         .test(formVal.date) === false) {
+                    return this.errors[15];
+                }
+                const components = formVal.date.split('.');
+
+                const t = Date.parse(formVal.date);
+                if (isNaN(t)) {
+                    return this.errors[15];
+                }
+
+                const date = new Date();
+                let day = date.getDate();
+                if (day < 10) {
+                    day = `0${day}`;
+                }
+                let month = date.getMonth();
+                if (month < 10) {
+                    month = `0${month + 1}`;
+                }
+                const year = date.getFullYear();
+
+                if (components[2] < year || components[2] > year + 100) {
+                    return this.errors[15];
+                }
+                if (components[2] > year) {
+                    return;
+                }
+                if (components[1] < month || components[1] > 12) {
+                    return this.errors[15];
+                }
+                if (components[1] > month) {
+                    return;
+                }
+                if (components[0] < day || components[0] > 31) {
                     return this.errors[15];
                 }
             },

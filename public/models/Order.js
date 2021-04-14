@@ -100,12 +100,12 @@ class Order {
             day = `0${day}`;
         }
         let month = date.getMonth();
-        if (month < 9) {
+        if (month < 10) {
             month = `0${month + 1}`;
         }
         const year = date.getFullYear();
 
-        return `${day}:${month}:${year}`;
+        return `${day}.${month}.${year}`;
     }
 }
 

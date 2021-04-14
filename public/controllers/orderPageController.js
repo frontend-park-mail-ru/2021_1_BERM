@@ -103,6 +103,7 @@ export class OrderPageController extends Controller {
             isExecutor: user.isExecutor,
             responses: creator.responses,
             creator: {
+                customerId: creator.customerId,
                 avatar: creator.avatar,
                 title: creator.name,
                 name: creator.login,
