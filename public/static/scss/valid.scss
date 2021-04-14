@@ -19,23 +19,10 @@
 
 	&__message {
 		@include font(300, 20px, 22px, -0.4px, red);
-		//font-style: normal;
-		//font-weight: 300;
-		//font-size: 20px;
-		//line-height: 22px;
-		//letter-spacing: -0.4px;
+
 		margin-top: 10px;
-		//color: red;
 	}
 }
-
-//.error__box {
-//	margin-bottom: -20px;
-//	margin-top: 5px;
-//}
-
-/*margin-bottom: -20px;*/
-/*margin-top: 5px;*/
 
 .error:before {
 	box-sizing: content-box;
@@ -61,7 +48,3 @@
 .label-reg {
 	margin-top: 0%;
 }
-
-//.error
-//
-//.error

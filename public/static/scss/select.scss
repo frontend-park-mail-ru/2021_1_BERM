@@ -17,7 +17,6 @@
     &__input {
         background-color: $placeholder;
         border: 1px, solid $placeholder;
-        /*border-radius: 8px;*/
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         -webkit-appearance: none;
@@ -27,12 +26,6 @@
 
         @include font(normal, 20px, 28px, -0.4px, $black);
 
-        //font-style: normal;
-        //font-weight: normal;
-        //font-size: 20px;
-        //line-height: 28px;
-        ///* identical to box height, or 140% */
-        //letter-spacing: -0.4px;
         padding: 15px 27px;
     }
 
@@ -42,15 +35,8 @@
         width: 480px;
         max-height: 240px;
         @include font(normal, 20px, 28px, -0.4px, $black);
-        //font-style: normal;
-        //font-weight: normal;
-        //font-size: 20px;
-        //line-height: 28px;
-        ///* identical to box height, or 140% */
-        //letter-spacing: -0.4px;
-        ///*padding: 15px 27px;*/
+
         background-color: $placeholder;
-        /*border-radius: 8px;*/
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
         overflow-y: auto;
@@ -65,9 +51,7 @@
     }
 
     &__item {
-        /*padding: 1rem;*/
         padding: 15px 27px;
-        /*border-bottom: 1px solid #808080;*/
     }
 
     &__item:hover {
@@ -89,28 +73,9 @@
 
 }
 
-//.select
-//.select
-//.select
-//
-//.select
-//.select
-//.select
-//
-//
-//
-//.select
-//
-//.select
-//
-//.select
-
 .category {
     color: #FFF;
     font-weight: 600;
     padding: 15px 27px;
     background-color: #808080;
-    /*border-bottom: 1px solid #808080;*/
 }
-
-//.select

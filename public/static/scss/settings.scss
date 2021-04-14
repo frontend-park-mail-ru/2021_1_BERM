@@ -1,12 +1,6 @@
 @import "main.scss";
 .settings {
     @include main-block(0);
-    //display: flex;
-    //flex-direction: column;
-    //justify-content: center;
-    //align-items: center;
-    //flex: 0 0 auto;
-
     background-color: var(--white);
 
     margin: 94px 0 0 0;
@@ -17,21 +11,13 @@
 
         filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
         @include uniq_form($white);
-        //border-radius: 8px;
-        //background-color: var(--white);
     }
 
     &__form {
-        //display: flex;
-        //flex-direction: row;
-        //justify-content: center;
         @include form_dis_2($row, $cntr);
     }
 
     &__column_right {
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        /*justify-content: center;*/
         margin-left: 22px;
         margin-top: 67px;
     }
@@ -41,17 +27,8 @@
         height: 30px;
         @include font(600, 20px, 30px, -0.55px, $dark);
 
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 20px;
-        //line-height: 30px;
-        ///* identical to box height, or 136% */
-        //
-        //letter-spacing: -0.55px;
-
-
-        background-color: var(--white);
-        color: var(--dark);
+        background-color: $white;
+        color: $dark;
     }
 
     &__about__textarea {
@@ -62,40 +39,20 @@
         @include uniq_form($placeholder);
         @include font(normal, 20px, 28px, -0.4px, $black);
 
-        //background-color: var(--placeholder);
-        //border-radius: 8px;
         resize: none;
-
-        //font-style: normal;
-        //font-weight: normal;
-        //font-size: 20px;
-        //line-height: 28px;
-        ///* identical to box height, or 140% */
-        //
-        //letter-spacing: -0.4px;
-
     }
 
     &-form__input {
         @include form_dis($cntr, $cntr);
         @include uniq_form($placeholder);
-        //display: flex;
-        //
-        //justify-content: center;
-        //align-items: center;
-
-        //background-color: var(--placeholder);
-        //border-radius: 8px;
 
         margin-top: 32px;
     }
 
     &-form__input-mini_bg {
         @include form_dis($s_b, $cntr);
-        //display: flex;
-        //justify-content: space-between;
+
         flex-direction: row;
-        //align-items: center;
 
         margin-top: 32px;
     }
@@ -112,16 +69,7 @@
         margin-bottom: 48px;
         @include font(600, 36px, 30px,  -0.55px, $dark);
 
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 36px;
-        //line-height: 30px;
-        ///* identical to box height, or 136% */
-        //
-        //letter-spacing: -0.55px;
-
         background-color: var(--white);
-        //color: var(--dark);
     }
 
     &-form__submit__container {
@@ -131,31 +79,15 @@
     }
 
     &-form__submit {
-        //display: flex;
-        //justify-content: center;
-        //align-items: center;
         @include form_dis($cntr, $cntr);
         @include uniq_form($primary_color);
         @include font(600, 18px, 22px, -0.4px, $white);
 
         width: 168px;
         height: 50px;
-        //background: var(--primary_color);
-        //border-radius: 8px;
-        //
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 18px;
-        //line-height: 22px;
-        //letter-spacing: -0.4px;
-        //
-        //color: var(--white);
     }
 
     &form__datetime_in {
-        //background-color: var(--placeholder);
-        //border-radius: 8px;
-
         @include uniq_form($placeholder);
         @include font(normal, 20px, 28px, -0.4px, $dark);
 
@@ -165,13 +97,6 @@
         width: 422px;
         height: 60px;
 
-        //font-style: normal;
-        //font-weight: normal;
-        //font-size: 20px;
-        //line-height: 28px;
-        ///* identical to box height, or 140% */
-        //
-        //letter-spacing: -0.4px;
         padding: 0 7px;
 
 
@@ -188,80 +113,12 @@
 
 }
 
-//.settings
-//
-//.settings__
-//
-//.settings__column_left {
-//    /*display: flex;*/
-//    /*flex-direction: column;*/
-//    /*justify-content: center;*/
-//}
-//
-//.settings
-//
-//.settings
 .about-form__input {
-    //display: flex;
-    //
-    //justify-content: left;
-    //align-items: center;
     @include form_dis($left, $cntr);
     @include uniq_form($placeholder);
-    //
-    //background-color: var(--placeholder);
-    //border-radius: 8px;
 
     margin-top: 10px;
 }
 
-//.settings
-//
-//.settings
-//
-//.settings-form
-//
-//.settings
-//
-//.settings
-//
-//.settings-form
-//
-//.settings
-//
-//.settings
-//
-///*.settings__img_container {*/
-///*    margin-top: 0px;*/
-///*    !*max-width: 36px;*!*/
-///*    !*max-height: 36px;*!*/
-///*    !*height: 50px;*!*/
-///*    !*background: var(--primary_color);*!*/
-///*    float: right;*/
-///*}*/
-//
-//.settings-
-//
-//.setting
-
-//.settings-form__input-mini_bg {
-//    @include form_dis($s_b, $cntr);
-//    //display: flex;
-//    //justify-content: space-between;
-//    flex-direction: row;
-//    //align-items: center;
-//
-//    margin-top: 32px;
-//}
-//
-//.settings__input-mini_bg {
-//    @include form_dis($s_b, $cntr);
-//    //display: flex;
-//    //justify-content: space-between;
-//    flex-direction: row;
-//    //align-items: center;
-//
-//    margin-top: 32px;
-//}
 
 
