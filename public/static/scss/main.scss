@@ -1,0 +1,67 @@
+// colors
+$primary_color: #345DEE;
+$secondary_color: #EE3465;
+$neutral_color: #DFE4EA;
+$placeholder: #EFF2F6;
+$white: #FFF;
+$black: #000000;
+$dark: #18214D;
+$paragraph: #3E4462;
+
+// display
+$s_b: space-between;
+$cntr: center;
+$left: left;
+$col: column;
+$row: row;
+  // variables
+
+
+@mixin main-block($flex_1){
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: $flex_1 0 auto;
+
+  background-color: var(--white);
+
+  margin: 94px 0 0 0;
+}
+@mixin bg-form($width) {
+  width: $width;
+
+  filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
+  border-radius: 8px;
+  background-color: var(--white);
+
+}
+
+@mixin font($font-wt, $font-size, $line-ht, $letter-sg, $color) {
+  font-style: normal;
+  font-weight: $font-wt;
+  font-size: $font-size;
+  line-height: $line-ht;
+  letter-spacing: $letter-sg;
+  color: $color;
+}
+
+@mixin uniq_form($back_color) {
+  background-color: $back_color;
+  border-radius: 8px;
+}
+
+@mixin form_dis($just-cont, $align-it) {
+  display: flex;
+  justify-content: $just-cont;
+  align-items: $align-it;
+}
+
+@mixin form_dis_2($flex-dir, $just-cont) {
+  display: flex;
+  flex-direction: $flex-dir;
+  justify-content: $just-cont;
+}
+
+
+

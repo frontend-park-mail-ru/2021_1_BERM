@@ -1,11 +1,11 @@
 import '@/static/css/navbar_executor.css';
-import '@/static/css/navbar.css';
+// import '@/static/css/navbar.css';
 import '@/static/css/root.css';
 import '@/static/css/orderPage.css';
 import '@/static/css/settings.css';
 import '@/static/css/select.css';
 import '@/static/css/login.css';
-import '@/static/css/registration.css';
+import '@/static/scss/registration.scss';
 import '@/static/css/main.css';
 import '@/static/css/profile.css';
 import '@/static/css/orderPageCustomer.css';
@@ -14,6 +14,10 @@ import '@/static/css/orders.css';
 import '@/static/css/valid.css';
 import '@/static/css/vacancy.css';
 import '@/static/css/selectSpec.css';
+
+import '@/static/scss/root.scss';
+import '@/static/scss/navbar.scss';
+// import '@/static/scss/registration.scss';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';

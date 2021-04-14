@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     context: path.resolve(__dirname, 'public'),
@@ -25,6 +26,7 @@ module.exports = {
             template: './index.html',
         }),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin(),
     ],
     module: {
         rules: [
@@ -51,9 +53,19 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
+                        presets: ['@babel/preset-env'],
+                    },
+                },
+            },
+            {
+                test: /\.s[ac]ss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    'css-loader',
+                    'sass-loader',
+                ],
             },
         ],
     },
