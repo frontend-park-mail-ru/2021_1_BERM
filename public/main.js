@@ -57,6 +57,7 @@ import {
     VACANCY_CREATE_PAGE,
     VACANCY_PAGE,
     SELECT_SPEC,
+    MY_ORDERS,
 } from './modules/utils/pageNames.js';
 
 const controllers = new Set([
@@ -72,6 +73,7 @@ const controllers = new Set([
     [VACANCY_CREATE_PAGE, VacancyCreateController],
     [VACANCY_PAGE, VacancyPageController],
     [SELECT_SPEC, SelectSpecController],
+    [MY_ORDERS, OrdersController],
     // Здесь добавляем странички
 ]);
 

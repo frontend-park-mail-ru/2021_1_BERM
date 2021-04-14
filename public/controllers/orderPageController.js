@@ -15,6 +15,7 @@ import {
     ORDER_CHANGE_RATE,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
+import router from '../modules/router.js';
 
 export class OrderPageController extends Controller {
     constructor() {
@@ -53,8 +54,7 @@ export class OrderPageController extends Controller {
                 auth.getResponsesOrder(order.currentOrderId);
             });
         } else {
-            console.log('Запрос /order/id - не сработал');
-            // ToDo Обработка ошибки запроса
+            window.location.href = '/404/';
         }
     }
 
@@ -98,11 +98,17 @@ export class OrderPageController extends Controller {
     go() {
         const creator = order.getOrderById(order.currentOrderId);
 
+        let isMy = true;
+        if (creator.customerId !== user.id) {
+            isMy = false;
+        }
         eventBus.emit(ORDER_PAGE_RENDER, {
+            isMy: isMy,
             isAuthorized: user.isAuthorized,
             isExecutor: user.isExecutor,
             responses: creator.responses,
             creator: {
+                customerId: creator.customerId,
                 avatar: creator.avatar,
                 title: creator.name,
                 name: creator.login,

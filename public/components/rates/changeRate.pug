@@ -2,10 +2,11 @@ mixin changeRate(userRate)
     div(class='orderPage__set-rate')
         div(class='orderPage__set-rate_title') Ваша ставка
         div(class='orderPage__set-rate_price')= userRate
-        form(class='orderPage__set-rate_form')
+        form(class='orderPage__set-rate_form' id='rate-form')
             div(class='orderPage__set-rate_input')
                 div(class='custom-form__input')
-                    input(class='orderPage__set-rate_input_in' type='text' name='rate' placeholder='Новая цена ₽')
+                    input(class='orderPage__set-rate_input_in form-control' type='text' name='rate' placeholder='Новая цена ₽')
+                div(class="error-rate")
             div(class='orderPage__set-rate_buttons')
-                button(class='orderPage__set-rate_button') Изменить
+                button(class='orderPage__set-rate_button' id='send_mess') Изменить
                 button(class='orderPage__set-rate_button-del') Удалить

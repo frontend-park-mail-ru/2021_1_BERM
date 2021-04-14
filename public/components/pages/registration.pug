@@ -3,7 +3,7 @@ include ../inputes/customFormMiniInput
 .registration
     div(class='registration__bg-form hui')
         form.custom-form(action='' id='registration__form')
-            div(class='custom-form__label') Регистрация
+            div(class='custom-form__label')= title
             +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text')
             div(class=" error")
             +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text')

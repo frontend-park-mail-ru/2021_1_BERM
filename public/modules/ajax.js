@@ -27,7 +27,7 @@ export const sendRequest = (
 
             // Обновление token при просрочке токена
             if (res.status === 403) {
-                return fetch(origin + '/profile/authorized', {
+                fetch(origin + '/profile/authorized', {
                     method: 'GET',
                     body: JSON.stringify(body),
                     credentials: 'include',
@@ -50,7 +50,6 @@ export const sendRequest = (
             }
         })
         .catch((error) => {
-            console.log(`Упс, ошибочка. Код: ${error.status}.
-             Сообщение: ${error.message}`);
+            window.location.href= '/404/';
         });
 };

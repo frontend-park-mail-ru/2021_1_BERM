@@ -82,7 +82,7 @@ class Router {
         }
 
         if (!Controller) {
-            console.log(404);
+            window.location.href = '/404/';
             return;
         }
 

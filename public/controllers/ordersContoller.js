@@ -8,7 +8,6 @@ import user from '../models/User.js';
 
 import {
     GO_TO_ORDER,
-    FLIP_THE_PAGE,
     SEND_SERVICES,
     SEND_RESULT_RENDER,
     ORDERS_RENDER,
@@ -27,12 +26,16 @@ export class OrdersController extends Controller {
     }
 
     run(id) {
+        if (id) {
+            this.isMyOrders = Number(id);
+            this.isI = this.isMyOrders === user.id;
+        }
+
         super.run(
             [
-                [GO_TO_ORDER, this._goToOrder],
-                [FLIP_THE_PAGE, this._flipThePage],
-                [SEND_SERVICES, this._sendServices],
-                [SEND_RESULT_RENDER, this._sendResultsRender],
+                [GO_TO_ORDER, this._goToOrder.bind(this)],
+                [SEND_SERVICES, this._sendServices.bind(this)],
+                [SEND_RESULT_RENDER, this._sendResultsRender.bind(this)],
             ],
             true);
     }
@@ -41,12 +44,12 @@ export class OrdersController extends Controller {
         router.go(`/order/${id}`);
     }
 
-    _flipThePage() {
-
-    }
-
     _sendServices() {
-        auth.getOrders();
+        if (this.isMyOrders) {
+            auth.getMyOrders(this.isMyOrders);
+        } else {
+            auth.getOrders();
+        }
     }
 
     _sendResultsRender(result) {
@@ -55,6 +58,8 @@ export class OrdersController extends Controller {
                 order.setOrders(result);
 
                 eventBus.emit(ORDERS_RENDER, {
+                    isI: this.isI,
+                    isMyOrders: !!this.isMyOrders,
                     isAuthorized: user.isAuthorized,
                     isExecutor: user.isExecutor,
                     map: order.ordersMap,
@@ -62,11 +67,4 @@ export class OrdersController extends Controller {
             });
         }
     }
-
-    // if (res.ok) {
-    //     res.json().then((res) => {
-    //         order.setOrders(res);
-    //         eventBus.emit(ORDERS_RENDER, order.ordersMap);
-    //     });
-    // }
 }

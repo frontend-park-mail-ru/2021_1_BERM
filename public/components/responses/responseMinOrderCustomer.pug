@@ -1,8 +1,8 @@
-mixin responseMinOrderCustomer(userAvatar, userLogin, userRate, responseDate)
+mixin responseMinOrderCustomer(userAvatar, userLogin, userRate, responseDate, id, isMy)
     div(class='orderPage__response min-rate')
         div(class='orderPage__response_img-bg-customer')
-            img(class='orderPage__response_img-customer' src=userAvatar alt='')
-            div(class='orderPage__response_name-customer')= userLogin
+            img(class='orderPage__response_img-customer' href=`/profile/${id}` src=userAvatar alt='')
+            div(class='orderPage__response_name-customer' href=`/profile/${id}`)= userLogin
         div(class='orderPage__response_stats ')
             div(class='orderPage__response_stat')
                 img(src=require('@/static/img/support.svg').default alt='' class='orderPage__response_stat-img')
@@ -10,5 +10,6 @@ mixin responseMinOrderCustomer(userAvatar, userLogin, userRate, responseDate)
             div(class='orderPage__response_stat')
                 img(src=require('@/static/img/date.svg').default alt='' class='orderPage__response_stat-img')
                 div(class='orderPage__response_stat-text') Дата отклика #{responseDate}
-            button(class='orderPage__response_btn') Выбрать
+            if isMy
+                button(class='orderPage__response_btn') Выбрать
 

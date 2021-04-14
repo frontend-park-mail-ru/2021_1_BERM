@@ -11,6 +11,7 @@ import {
     VACANCY_PAGE_RES,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
+import router from '../modules/router.js';
 
 export class VacancyPageController extends Controller {
     constructor() {
@@ -49,8 +50,7 @@ export class VacancyPageController extends Controller {
                 go();
             });
         } else {
-            console.log('Запрос /order/id/responses - не сработал');
-            // ToDo Обработка ошибки запроса
+            window.location.href = '/404/';
         }
     }
 

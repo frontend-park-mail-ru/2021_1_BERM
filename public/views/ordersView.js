@@ -28,6 +28,8 @@ export class OrdersView extends View {
             'Все заказы',
             ordersTemplate({
                 orders: map,
+                isI: dataMap.isI,
+                isMyOrders: dataMap.isMyOrders,
             }),
         );
 

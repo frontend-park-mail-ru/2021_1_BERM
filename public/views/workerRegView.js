@@ -18,7 +18,9 @@ export class WorkerRegView extends View {
             isAuthorized,
             isExecutor,
             'Регистрация',
-            regTemplate(),
+            regTemplate({
+                title: 'Регистрация за исполнителя',
+            }),
             [
                 [NO_REG_WORKER, this._onNoRegistration],
             ]);

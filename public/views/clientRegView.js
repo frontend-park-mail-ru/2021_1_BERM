@@ -18,7 +18,9 @@ export class ClientRegView extends View {
             isAuthorized,
             isExecutor,
             'Регистрация',
-            regTemplate(),
+            regTemplate({
+                title: 'Регистрация за клиента',
+            }),
             [
                 [NO_REG_CLIENT, this._onNoRegistration],
             ]);

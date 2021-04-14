@@ -1,8 +1,9 @@
-mixin specialize(specName)
+mixin specialize(specName, isMyProfile)
     li
         img(src=require('@/static/img/check.svg').default alt='')
         div(class='specializes__name')= specName
-        img(src=require('@/static/img/close.svg').default alt='' class='specializes__close')
+        if isMyProfile
+            img(src=require('@/static/img/close.svg').default alt='' class='specializes__close')
 
 .profile
     div(class='profile__border')
@@ -33,6 +34,15 @@ mixin specialize(specName)
                         div
                             img(src=require('@/static/img/star.svg').default alt='')
                         div(class='reviews__text') Отзывы: #{reviews}
+                    if !isExecutor
+                        .reviews
+                            div
+                                img(src=require('@/static/img/carousel.svg').default alt='')
+                            if isMyProfile
+                                div(class='reviews__text' href=`/profile/${id}/orders`) Мои заказы
+                            else
+                                div(class='reviews__text' href=`/profile/${id}/orders`) Заказы
+                            //: #{ordersCount}
                 div(class='top__item')
                     if isMyProfile
                         .settings-buttons
@@ -50,7 +60,8 @@ mixin specialize(specName)
                         .specialize-title Специализации:
                         ul.specializes
                             each specName in specializes
-                                +specialize(specName)
-                        .add-spec
-                            img(src=require('@/static/img/plus.svg').default href='/add-spec' alt='')
-                            div(class='add-spec__text') Добавить
+                                +specialize(specName, isMyProfile)
+                        if isMyProfile
+                            .add-spec
+                                img(src=require('@/static/img/plus.svg').default href='/add-spec' alt='')
+                                div(class='add-spec__text') Добавить

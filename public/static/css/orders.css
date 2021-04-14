@@ -171,13 +171,13 @@
     display: flex;
 }
 .orders__list {
-    width: 430px;
+    width: 662px;
     display: flex;
     flex-direction: column;
 }
 
 .show-more-button {
-    width: 430px;
+    width: 662px;
     height: 40px;
     margin-top: 49px;
     border: 2px solid #DFE4EA;

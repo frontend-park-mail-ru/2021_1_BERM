@@ -17,7 +17,6 @@ export const WORKER_REG_SUBMIT = 'work_registered-submit';
 export const ORDER_PAGE_GET_RES = 'order-page_get-res';
 export const ORDER_PAGE_RES = 'order-page_res';
 export const GO_TO_ORDER = 'go-to-order';
-export const FLIP_THE_PAGE = 'flip-the-page';
 export const SEND_SERVICES = 'services';
 export const SEND_RESULT_RENDER = 'send-result-render';
 export const ORDERS_RENDER = 'orders-render';
