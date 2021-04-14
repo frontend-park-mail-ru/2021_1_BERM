@@ -39,45 +39,58 @@ export class ValidHandler {
                 }
             },
             order_name: () => {
-                if (formVal.order_name.length === 0) {
+                if (formVal.order_name.length > 100 ||
+                    formVal.order_name.length === 0) {
                     return this.errors[4];
-                } else if (this.patterns
+                }
+                if (this.patterns
                     .get('spam')
                     .test(formVal.order_name) === false) {
                     return this.errors[6];
                 }
             },
             about: () => {
-                if (formVal.about.length === 0) {
-                    return this.errors[5];
-                } else if (this.patterns
+                if (formVal.about.length > 500 ||
+                    formVal.about.length === 0) {
+                    return this.errors[18];
+                }
+                if (this.patterns
                     .get('spam')
                     .test(formVal.about) === false) {
                     return this.errors[6];
                 }
             },
             description: () => {
-                if (formVal.description.length === 0) {
-                    return this.errors[5];
-                } else if (this.patterns
+                if (formVal.description.length > 500 ||
+                    formVal.description.length === 0) {
+                    return this.errors[18];
+                }
+                if (this.patterns
                     .get('spam')
                     .test(formVal.description) === false) {
                     return this.errors[6];
                 }
             },
             nameSurname: () => {
-                if (formVal.nameSurname.length === 0 ||
-                    this.patterns
-                        .get('name')
-                        .test(formVal.nameSurname) === false) {
+                if (formVal.nameSurname.length > 50 ||
+                    formVal.nameSurname.length === 0) {
+                    return this.errors[18];
+                }
+
+                if (this.patterns
+                    .get('name')
+                    .test(formVal.nameSurname) === false) {
                     return this.errors[1];
                 }
             },
             name: () => {
-                if (formVal.name.length === 0 ||
-                    this.patterns
-                        .get('name')
-                        .test(formVal.name) === false) {
+                if (formVal.nameSurname.length > 20 ||
+                    formVal.nameSurname.length === 0) {
+                    return this.errors[18];
+                }
+                if (this.patterns
+                    .get('name')
+                    .test(formVal.name) === false) {
                     return this.errors[1];
                 }
             },
@@ -96,9 +109,12 @@ export class ValidHandler {
             },
             rate: () => {
                 if (formVal.rate.length === 0 ||
-                    this.patterns
-                        .get('price')
-                        .test(formVal.rate) === false) {
+                    formVal.rate.length > 999999999) {
+                    return this.errors[20];
+                }
+                if (this.patterns
+                    .get('price')
+                    .test(formVal.rate) === false) {
                     return this.errors[16];
                 }
                 if (Number(formVal.rate) <= 0) {
@@ -136,9 +152,12 @@ export class ValidHandler {
             },
             budget: () => {
                 if (formVal.budget.length === 0 ||
-                    this.patterns
-                        .get('price')
-                        .test(formVal.budget) === false) {
+                    formVal.budget.length > 999999999) {
+                    return this.errors[20];
+                }
+                if (this.patterns
+                    .get('price')
+                    .test(formVal.budget) === false) {
                     return this.errors[14];
                 }
                 if (Number(formVal.budget) <= 0) {
@@ -158,40 +177,34 @@ export class ValidHandler {
                         return Number(item);
                     });
 
-                const t = new Date(
-                    components[2],
-                    components[1],
-                    components[0],
-                );
-
-                if (isNaN(t)) {
-                    return this.errors[15];
-                }
+                const listofDays = [31, 28, 31, 30, 31, 30,
+                    31, 31, 30, 31, 30, 31];
 
                 const date = new Date();
-                let day = date.getDate();
-                if (day < 10) {
-                    day = `0${day}`;
-                }
-                let month = date.getMonth();
-                if (month < 10) {
-                    month = `0${month + 1}`;
-                }
+                const day = date.getDate();
+                const month = date.getMonth();
                 const year = date.getFullYear();
 
-                if (components[2] < year || components[2] > year + 100) {
+                if (components[2] < year) {
+                    return this.errors[15];
+                }
+                if (components[2] > year + 100) {
+                    return this.errors[17];
+                }
+                if (components[0] > listofDays[Number(components[1]) - 1] ||
+                components[0] < 1) {
                     return this.errors[15];
                 }
                 if (components[2] > year) {
                     return;
                 }
-                if (components[1] < month || components[1] > 12) {
+                if (components[1] < month) {
                     return this.errors[15];
                 }
                 if (components[1] > month) {
                     return;
                 }
-                if (components[0] < day || components[0] > 31) {
+                if (components[0] < day) {
                     return this.errors[15];
                 }
             },
