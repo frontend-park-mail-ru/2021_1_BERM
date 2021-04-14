@@ -39,7 +39,7 @@
         }
 
         &_title {
-            @include font(600, 36px, 44px, -1.5px, $white);
+            @include font(600, 36px, 44px, -1.5px, $dark);
             //font-style: normal;
             //font-weight: 600;
             //font-size: 36px;
@@ -302,6 +302,23 @@
             ///* identical to box height, or 183% */
             //
             //letter-spacing: -0.5px;
+        }
+
+        &_button_del {
+            @include uniq_form($secondary_color);
+            @include font(600, 20px, 28px, -0.5px, $black);
+
+            text-align: center;
+            width: 180px;
+            height: 50px;
+
+            margin: 32px 0 20px 30px;
+        }
+
+        &_price {
+            @include font(600, 28px, 30px, -0.55px, $white);
+            margin-top: 28px;
+            margin-left: 30px;
         }
 
         &_button {

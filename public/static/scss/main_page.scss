@@ -24,6 +24,11 @@
             border-radius: 32px;
             margin-left: 12px;
             margin-right: 12px;
+
+            &:hover {
+                transform: scale(1.05);
+                transition-duration: 0.1s;
+            }
         }
 
         &__img {
