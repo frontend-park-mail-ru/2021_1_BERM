@@ -98,7 +98,12 @@ export class OrderPageController extends Controller {
     go() {
         const creator = order.getOrderById(order.currentOrderId);
 
+        let isMy = true;
+        if (creator.customerId !== user.id) {
+            isMy = false;
+        }
         eventBus.emit(ORDER_PAGE_RENDER, {
+            isMy: isMy,
             isAuthorized: user.isAuthorized,
             isExecutor: user.isExecutor,
             responses: creator.responses,

@@ -67,11 +67,4 @@ export class OrdersController extends Controller {
             });
         }
     }
-
-    // if (res.ok) {
-    //     res.json().then((res) => {
-    //         order.setOrders(res);
-    //         eventBus.emit(ORDERS_RENDER, order.ordersMap);
-    //     });
-    // }
 }

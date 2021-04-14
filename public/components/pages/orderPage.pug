@@ -18,7 +18,7 @@ include ../responses/responseMinOrderCustomer.pug
                         if isExecutor
                             +responseOrderExecutor(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId)
                         else
-                            +responseOrderCustomer(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId)
+                            +responseOrderCustomer(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId, isMy)
 
                 button(class='orderPage__comments_others') Показать ещё
             else
@@ -29,7 +29,7 @@ include ../responses/responseMinOrderCustomer.pug
                 if isExecutor
                     +responseMinOrderExecutor(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId)
                 else
-                    +responseMinOrderCustomer(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId)
+                    +responseMinOrderCustomer(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId, isMy)
             if userRate === 0
                 if isExecutor
                     +makeRate
