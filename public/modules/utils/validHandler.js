@@ -152,9 +152,18 @@ export class ValidHandler {
                         .test(formVal.date) === false) {
                     return this.errors[15];
                 }
-                const components = formVal.date.split('.');
+                const components = formVal.date
+                    .split('.')
+                    .map((item) => {
+                        return Number(item);
+                    });
 
-                const t = Date.parse(formVal.date);
+                const t = new Date(
+                    components[2],
+                    components[1],
+                    components[0],
+                );
+
                 if (isNaN(t)) {
                     return this.errors[15];
                 }
