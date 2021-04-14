@@ -81,7 +81,7 @@ class Router {
             }
         }
 
-        if (!Controller) {
+        if (!Controller && currentState.page !== '/404/' ) {
             window.location.href = '/404/';
             return;
         }

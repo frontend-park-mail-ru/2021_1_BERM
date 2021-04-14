@@ -84,8 +84,8 @@ export class ValidHandler {
                 }
             },
             name: () => {
-                if (formVal.nameSurname.length > 20 ||
-                    formVal.nameSurname.length === 0) {
+                if (formVal.name.length > 20 ||
+                    formVal.name.length === 0) {
                     return this.errors[18];
                 }
                 if (this.patterns

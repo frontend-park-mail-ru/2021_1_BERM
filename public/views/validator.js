@@ -87,6 +87,7 @@ export class Validator {
         [].forEach.call(elements, (element) => {
             if (element !== 'submit') {
                 element.addEventListener('blur', (e) => {
+                    debugger;
                     const formElement = e.target;
                     const property = formElement.getAttribute('name');
                     const dataField = {};

@@ -36,13 +36,12 @@
 }
 
 .form-control_error {
-	/*margin-top: 5px;*/
-	border:solid 1.5px var(--secondary_color);
+	border:solid 1.5px $secondary_color;
 	
 }
 
 .form-control_valid {
-	border:solid 1.5px var(--primary_color) ;
+	border:solid 1.5px $primary_color;
 }
 
 .label-reg {
