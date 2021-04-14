@@ -16,6 +16,7 @@
    display: flex;
    flex-direction: row;
    align-items: center;
+   margin: 0 -32px;
 
    @include font(normal, 18px, 22px, normal, $white);
 
@@ -25,7 +26,8 @@
    //line-height: 22px;
    //color: var(--white);
 
-   margin: 0 -32px
+
+
 
    &__item {
       padding: 0 32px
@@ -42,7 +44,7 @@
 .custom-form {
    padding: 20px 30px;
 
-   &__ label {
+   &__label {
       height: 30px;
       top: calc(50% - 30px/2 - 127px);
 
@@ -56,7 +58,7 @@
       //
       //letter-spacing: -0.55px;
 
-      background-color: var(--white);
+      background-color: $white;
       //color: var(--dark);
    }
 
@@ -66,8 +68,8 @@
       margin: 18px 18px 18px 18px;
    }
 
-   &_input_in {
-      background-color: var(--placeholder);
+   &__input_in {
+      background-color: $placeholder;
       border-radius: 8px;
 
       width: 422px;
@@ -86,7 +88,7 @@
    }
 
    &__input-mini_in {
-      background-color: var(--placeholder);
+      background-color: $placeholder;
       border-radius: 8px;
 
       width: 170px;
@@ -111,14 +113,14 @@
       //justify-content: left;
       //align-items: center;
 
-      background-color: var(--placeholder);
+      background-color: $placeholder;
       border-radius: 8px;
 
       margin-top: 32px;
    }
 
    &__input-mini {
-      background-color: var(--placeholder);
+      background-color: $placeholder;
       border-radius: 8px;
 
       width: 236px;
@@ -146,10 +148,10 @@
 
       margin-top: 32px;
 
-      background: var(--primary_color);
+      background: $primary_color;
       border-radius: 8px;
 
-      color: var(--white);
+      color: $white;
       font-style: normal;
       font-weight: 600;
       font-size: 20px;

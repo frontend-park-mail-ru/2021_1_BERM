@@ -1,0 +1,381 @@
+@import "main.scss";
+.orders {
+    //display: flex;
+    //flex-direction: column;
+    //justify-content: center;
+    //@include form_dis_2($col,$cntr);
+    //align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto auto 49px;
+    //margin: auto auto 49px;
+
+    &__order {
+        @include form_dis_2($row,$left);
+        @include uniq_form($white);
+        //display: flex;
+        //flex-direction: row;
+        //justify-content: left;
+
+        //background: var(--white);
+        /* shadow/01 */
+
+        box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+        //border-radius: 8px;
+
+        flex: 0 0 auto;
+
+        margin-top: 49px;
+
+        width: 661px;
+        height: 239px;
+
+        &_img-bg {
+            @include form_dis_3($col, $cntr);
+            //display: flex;
+            //flex-direction: column;
+            //align-items: center;
+
+            margin: 37px 0 0 44px;
+        }
+
+        &_img {
+            width: 140px;
+            height: 140px;
+        }
+
+        &_nickname {
+            @include font(600, 18px, 22px, -0.4px, $black);
+            margin-top: 9px;
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 18px;
+            //line-height: 22px;
+            ///* identical to box height, or 122% */
+            //
+            //letter-spacing: -0.4px;
+        }
+
+        &_text {
+            @include form_dis_2($col, $s_b);
+            //display: flex;
+            //flex-direction: column;
+            //justify-content: space-between;
+
+            margin: 26px 18px 17px 37px;
+
+        }
+
+        &_title {
+            @include font(600, 24px, 22px, -0.4px, $black);
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 24px;
+            //line-height: 22px;
+            //letter-spacing: -0.4px;
+            //color: var(--dark);
+            //letter-spacing: -1.5px;
+        }
+
+        &_category {
+            margin: 15px 0 15px 0;
+            @include form_dis_2($row, $left);
+            //display: flex;
+            //flex-direction: row;
+            //justify-content: left;
+
+            @include font(600, 16px, 22px, -0.4px, $black);
+
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 16px;
+            //line-height: 22px;
+            ///* identical to box height, or 137% */
+            //
+            //letter-spacing: -0.4px;
+        }
+
+        &_category-text {
+            color: var(--dark);
+        }
+
+        &_category-button {
+            padding: 0 8px;
+            margin-left: 16px;
+            //background: var(--secondary_color);
+            //border-radius: 4px;
+            @include uniq_form($secondary_color);
+            @include font(normal, 14px, 20px, normal, $white);
+            //
+            //font-weight: normal;
+            //font-size: 14px;
+            //line-height: 20px;
+            /* identical to box height, or 143% */
+
+            text-align: center;
+
+            /* White */
+
+            //color: var(--white);
+        }
+
+        &_definition {
+            @include font(normal, 14px, 22px, -0.4px, $paragraph);
+            //font-style: normal;
+            //font-weight: normal;
+            //font-size: 14px;
+            //line-height: 22px;
+            ///* or 157% */
+            //
+            //letter-spacing: -0.4px;
+
+            /* Paragraph */
+            //color: var(--paragraph);
+        }
+
+        &_stats {
+            @include form_dis_2($row, $left);
+            margin-top: 12px;
+            //display: flex;
+            //flex-direction: row;
+            //justify-content: left;
+        }
+
+        &_stat {
+            margin-right: 24px;
+            @include form_dis_3($row, $cntr);
+            //display: flex;
+            //flex-direction: row;
+            //align-items: center;
+
+            width: 112px;
+            height: 26px;
+
+            &-img {
+                width: 24px;
+                height: 24px;
+            }
+
+            &-data {
+                @include font(500, 16px, 26px, -0.2px, $primary_color);
+                //font-style: normal;
+                //font-weight: 500;
+                //font-size: 16px;
+                //line-height: 26px;
+                //
+                //letter-spacing: -0.2px;
+
+                margin-left: 8px;
+                //color: var(--primary_color);
+            }
+        }
+
+    }
+
+    &__title {
+        @include font(600, 36px, 22px, -0.4px, $black);
+        align-self: flex-start;
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 36px;
+        //line-height: 22px;
+        //
+        //letter-spacing: -0.4px;
+        margin-top: 55px;
+        margin-bottom: 10px;
+
+    }
+
+    &_title:hover {
+        color: #EE3465;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+    }
+
+    &__list {
+        width: 662px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+}
+
+//.orders
+//
+//.orders__order
+//
+//.orders__order
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order
+//
+//.orders__order_stat
+//
+//.orders__order_stat
+////.orders {
+////    display: flex;
+////    flex-direction: column;
+////    margin: auto auto 49px;
+////}
+//.orders
+//.orders
+//.orders
+
+.show-more-button {
+    width: 430px;
+    height: 40px;
+    margin-top: 49px;
+    border: 2px solid #DFE4EA;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: -0.4px;
+    background-color: var(--white);
+
+    color: #18214D;
+}
+.filters {
+    display: flex;
+    flex-direction: column;
+
+    width: 408px;
+    height: 425px;
+    flex: 0 0 auto;
+
+    background: #FFFFFF;
+    /* shadow/01 */
+
+    box-shadow: 0px 0px 64px rgba(13, 17, 38, 0.05);
+    border-radius: 8px;
+    margin-left: 88px;
+    margin-top: 49px;
+
+    &__title {
+        @include font(600, 24px, 22px, -0.4px, $black);
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 24px;
+        //line-height: 22px;
+        ///* or 92% */
+        //
+        //letter-spacing: -0.4px;
+        margin: 25px 0 0 25px;
+    }
+
+    &__budget {
+        display: flex;
+        flex-direction: row;
+
+        flex: 1 0 auto;
+
+        margin: 25px 0 0 25px;
+
+        &_title {
+            @include font(600, 18px, 22px, -0.4px, $black);
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 18px;
+            //line-height: 22px;
+            //
+            //letter-spacing: -0.4px;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        margin-left: 11px;
+
+        & input {
+            margin-bottom: 11px;
+        }
+
+        & input:last-child {
+            margin-bottom: 0px;
+        }
+
+        &_input {
+            width: 237px;
+            height: 46px;
+            //background: var(--placeholder);
+            //border-radius: 8px;
+            @include uniq_form($placeholder);
+            @include font(normal, 20px, 28px, -0.4px, $dark);
+
+
+            font-family: Inter;
+            //font-style: normal;
+            //font-weight: normal;
+            //font-size: 20px;
+            //line-height: 28px;
+            //letter-spacing: -0.4px;
+            padding: 9px 18px 9px 18px;
+
+            //color: var(--dark);
+        }
+    }
+
+    &__submit {
+        margin: 0 0 19px 44px;
+        width: 168px;
+        height: 50px;
+        //border-radius: 8px;
+        //background-color: var(--primary_color);
+        @include uniq_form($primary_color);
+        @include font(600, 18px, 22px, -0.4px, $white);
+        //color: var(--white);
+        //
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 18px;
+        //line-height: 22px;
+        //letter-spacing: -0.4px;
+    }
+
+}
+//.filters
+//.filters
+//.filters
+//.filters
+//.filters__form
+//.filters__form
+//
+//.filters__form
+//
+//.filters
+
+.orders__order_title:hover {
+    color: #EE3465;
+}
+
+//.orders__order_title a:hover {
+//    color: #EE3465;
+//}
+
+.orders__order_link:hover {
+    color: #EE3465;
+}
+  

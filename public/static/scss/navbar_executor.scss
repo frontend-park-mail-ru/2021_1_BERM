@@ -1,0 +1,27 @@
+@import "main.scss";
+.navbar__order-button {
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+    @include form_dis($cntr, $cntr);
+
+    //background-color: var(--primary_color);
+    @include uniq_form($primary_color);
+
+    margin: 0 32px;
+    height: 37px;
+    border: 3px solid #FFFFFF;
+    box-sizing: border-box;
+    //border-radius: 8px;
+    @include font(600, 16px, 19px, -0.4px, $white);
+
+    //font-style: normal;
+    //font-weight: 600;
+    //font-size: 16px;
+    //color: var(--white);
+    //line-height: 19px;
+    /* identical to box height */
+
+    text-align: center;
+    //letter-spacing: -0.4px;
+}

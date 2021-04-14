@@ -171,7 +171,7 @@
     justify-content: left;
     margin-top: 20px;
 }
-
+/**/
 .orderPage__response_img-bg {
     display: flex;
     flex-direction: column;
@@ -347,7 +347,7 @@
 
     letter-spacing: -0.5px;
 }
-
+/**/
 .orderPage__set-rate_form {
     margin-top: 28px;
 }

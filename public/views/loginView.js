@@ -44,7 +44,7 @@ export class LoginView extends View {
     _onNoLogin() {
         const form = document.getElementById('err_place');
         form.innerHTML =
-            `<div class="error_message">
+            `<div class="error__message">
                     Неверный логин или пароль
              </div>`;
     }

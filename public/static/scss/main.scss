@@ -24,7 +24,7 @@ $row: row;
   align-items: center;
   flex: $flex_1 0 auto;
 
-  background-color: var(--white);
+  background-color:$white;
 
   margin: 94px 0 0 0;
 }
@@ -33,7 +33,7 @@ $row: row;
 
   filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
   border-radius: 8px;
-  background-color: var(--white);
+  background-color: $white;
 
 }
 
@@ -61,6 +61,12 @@ $row: row;
   display: flex;
   flex-direction: $flex-dir;
   justify-content: $just-cont;
+}
+
+@mixin form_dis_3($flex-dir, $align-it) {
+  display: flex;
+  flex-direction: $flex-dir;
+  align-items: $align-it;
 }
 
 

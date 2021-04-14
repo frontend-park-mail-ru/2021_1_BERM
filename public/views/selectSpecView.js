@@ -47,7 +47,7 @@ export class SelectSpecView extends View {
     _noSet() {
         const form = document.getElementById('err_place');
         form.innerHTML =
-            `<div class="error_message">
+            `<div class="error__message">
                     Такая специализация у вас уже есть
              </div>`;
     }

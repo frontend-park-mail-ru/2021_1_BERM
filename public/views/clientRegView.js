@@ -49,7 +49,7 @@ export class ClientRegView extends View {
     _onNoRegistration() {
         const form = document.getElementById('err_place');
         form.innerHTML =
-            `<div class="error_message">
+            `<div class="error__message">
                     Такая почта уже используется
              </div>`;
     }
