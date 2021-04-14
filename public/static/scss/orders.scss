@@ -53,7 +53,7 @@
         }
 
         &_category-text {
-            color: var(--dark);
+            color: $dark;
         }
 
         &_category-button {
@@ -136,7 +136,7 @@
     line-height: 19px;
     text-align: center;
     letter-spacing: -0.4px;
-    background-color: var(--white);
+    background-color: $white;
 
     color: #18214D;
 }

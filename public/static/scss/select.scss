@@ -65,7 +65,7 @@
         font-style: normal;
         font-weight: normal;
         font-size: 20px;
-        background-color: var(--placeholder);
+        background-color: $placeholder;
     }
 
     &__dropdown::-webkit-scrollbar { width: 0; }
