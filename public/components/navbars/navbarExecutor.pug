@@ -1,0 +1,11 @@
+.navbar
+    a(class='navbar__title' href='/') FindFreelancer.ru
+    div(class='navbar__navigate')
+        .row
+            button(class='navbar__order-button row__item' href='/orders')
+                div(class='navbar__order-button_text' href='/orders') Все заказы
+            div(class='row__item')
+                img(src=require("@/static/img/user.svg").default href='/profile')
+            div(class='row__item')
+                a
+                    img(src=require("@/static/img/search.svg").default alt='')

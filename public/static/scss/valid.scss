@@ -1,0 +1,49 @@
+@import "main.scss";
+.clear {
+	padding: 0;
+    margin: 0;
+}
+
+.error {
+	font-size: 16px;
+	color: red;
+
+	&__box {
+		margin-bottom: -20px;
+		margin-top: 5px;
+	}
+
+	&__repeat_password {
+		margin-right: 125px;
+	}
+
+	&__message {
+		@include font(300, 20px, 22px, -0.4px, red);
+
+		margin-top: 10px;
+	}
+}
+
+.error:before {
+	box-sizing: content-box;
+	width: 0;
+	height: 0;
+	content: '';
+	position: absolute;
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+
+}
+
+.form-control_error {
+	border:solid 1.5px $secondary_color;
+	
+}
+
+.form-control_valid {
+	border:solid 1.5px $primary_color;
+}
+
+.label-reg {
+	margin-top: 0%;
+}

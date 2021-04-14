@@ -1,0 +1,12 @@
+mixin responseOrderExecutor(userAvatar, userLogin, userRate, responseDate, id)
+    div(class='orderPage__response')
+        div(class='orderPage__response_img-bg')
+            img(class='orderPage__response_img' href=`/profile/${id}` src=userAvatar alt='')
+            div(class='orderPage__response_name' href=`/profile/${id}`)= userLogin
+        div(class='orderPage__response_stats')
+            div(class='orderPage__response_stat')
+                img(src=require('@/static/img/support.svg').default alt='' class='orderPage__response_stat-img')
+                div(class='orderPage__response_stat-text') Сделаю за: #{userRate}
+            div(class='orderPage__response_stat')
+                img(src=require('@/static/img/date.svg').default alt='' class='orderPage__response_stat-img')
+                div(class='orderPage__response_stat-text') Дата отклика #{responseDate}

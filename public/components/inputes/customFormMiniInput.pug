@@ -1,0 +1,13 @@
+mixin customFormMiniInputs(imgFirst, placeholderFirst, imgSecond, placeholderSecond, nameFirst, nameSecond, other)
+    div(class='custom-form__input-mini_bg')
+        div.custom-form__input-mini_flex
+            div(class='custom-form__input-mini')
+                img(class='custom-form__img' src=imgFirst alt='')
+                input(class=`custom-form__input-mini_in form-control ${other}` type='password' placeholder=placeholderFirst name=nameFirst)
+            div(class='error')
+        div.custom-form__input-mini_flex
+            div(class='custom-form__input-mini')
+                img(class='custom-form__img' src=imgSecond alt='')
+                input(class=`custom-form__input-mini_in form-control ${other}` type='password' placeholder=placeholderSecond name=nameSecond)
+            div(class='error')
+        div(class="error error__repeat_password")=""

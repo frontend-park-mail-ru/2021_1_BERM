@@ -1,0 +1,24 @@
+mixin orderInOrdersPage(avatar, login, title, category, definition, date, budget, id, creatorId)
+    div(class='orders__order')
+        div(class='orders__order_img-bg')
+            img(class='orders__order_img' href=`/profile/${creatorId}` src=avatar)
+            div(class='orders__order_nickname' href=`/profile/${creatorId}`)= login
+        div(class='orders__order_text')
+            a(class='orders__order_title' name=id)= title
+            div(class='orders__order_category')
+                div(class='orders__order_category-text') Категория:
+                button(class='orders__order_category-button')= category
+            if definition.length > 40
+                - definition = `${definition.substr(-1000, 40)}`;
+                div(class='orders__order_definition')= definition
+                    span
+                        a(class="orders__order_link" name=id) ...показать еще
+            else
+                div(class='orders__order_definition')= definition
+            div(class='orders__order_stats')
+                div(class='orders__order_stat')
+                    img(class='orders__order_stat-img' src=require("@/static/img/iconTime.svg").default)
+                    div(class='orders__order_stat-data')= date
+                div(class='orders__order_stat')
+                    img(class='orders__order_stat-img' src=require("@/static/img/card.svg").default)
+                    div(class='orders__order_stat-data')= budget

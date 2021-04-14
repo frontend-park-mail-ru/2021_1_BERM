@@ -1,0 +1,187 @@
+@import "main.scss";
+.profile {
+    @include form_dis($cntr, $cntr);
+    flex: 1 0 auto;
+
+    &__border {
+        width: 1142px;
+        height: 663px;
+        display: flex;
+        justify-content: center;
+        margin: 86px 0 0 0;
+        filter: drop-shadow(0px 0px 64px rgba(13, 17, 38, 0.05));
+
+        @include uniq_form($white);
+    }
+
+    &__content {
+        margin: 66px -20px auto 66px;
+    }
+
+}
+
+.top {
+    display: flex;
+
+    &__avatar {
+        width: 156px;
+        height: 156px;
+
+        &_img {
+            width: 156px;
+            height: 156px;
+        }
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        padding: 0 61px;
+    }
+}
+
+.edit {
+    margin: -173px 0 0 -12px;
+
+    &-button {
+        border-radius: 50%;
+    }
+}
+
+.user-name {
+
+    &__text {
+        @include font(600,24px, 22px, -0.4px, $black);
+
+        text-align: center;
+        margin-left: -22px;
+    }
+}
+
+.nickname {
+    display: flex;
+    align-items: center;
+    margin: 16px 0px 0px 0px;
+
+    &__icon {
+        margin-left: -22px;
+    }
+
+    &__text {
+        @include font(600,18px, 22px, -0.4px,$black);
+
+        text-align: center;
+    }
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+
+    &__text {
+        @include font(600,16px, 19px, -0.4px,$black);
+        text-align: center;
+        margin-left: 7px;
+    }
+}
+.reviews {
+    display: flex;
+    align-items: center;
+    margin-top: 19px;
+
+    &__text {
+        @include font(600,16px, 19px, -0.4px,$black);
+        text-align: center;
+        margin-left: 7px;
+    }
+}
+
+.settings-buttons {
+    display: flex;
+    flex-direction: column;
+}
+.settings-buttion__text {
+    background-color: $primary_color;
+
+    @include font(600,18px, 22px, -0.4px, #FFFFFF);
+
+    margin: 0 32px;
+    width: 228px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    text-align: center;
+}
+.exit-buttion__text {
+    background-color: $secondary_color;
+
+    margin: 0 32px;
+    width: 228px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    @include font(600,18px, 22px, -0.4px, #FFFFFF);
+
+    text-align: center;
+    margin-top: 22px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    margin: 68px -48px 0px -48px;
+
+    &__item {
+        padding: 0 48px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+//.bottom
+.about-title {
+    @include font(600,24px, 22px, -0.4px, $black);
+}
+.about-text {
+    @include font(normal,14px, 22px, -0.4px, $black);
+    margin-top: 25px;
+    width: 500px;
+}
+.specialize-title {
+    @include font(600,24px, 22px, -0.4px, $black);
+
+    letter-spacing: -0.4px;
+    margin-left: 7px;
+}
+.specializes {
+    margin: 28px 0px 11px 0px;
+}
+.specializes li {
+    display: flex;
+    flex-direction: row;
+}
+
+.specializes__name {
+    @include font(600,18px, 22px, -0.4px, $black);
+
+    margin: 2px 0px 0px 7px;
+
+    letter-spacing: -0.4px;
+    flex: 1 0 auto;
+}
+.specializes__close {
+    margin: 2px 0px 0px 14px;
+}
+.add-spec {
+    display: flex;
+    margin-top: 7px;
+}
+.add-spec__text {
+    margin: 5px 0px 0px 7px 
+}
+
+input[type="file"] {
+    display: none;
+}
