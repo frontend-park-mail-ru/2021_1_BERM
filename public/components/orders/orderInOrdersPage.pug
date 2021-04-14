@@ -8,9 +8,13 @@ mixin orderInOrdersPage(avatar, login, title, category, definition, date, budget
             div(class='orders__order_category')
                 div(class='orders__order_category-text') Категория:
                 button(class='orders__order_category-button')= category
-            div(class='orders__order_definition')= definition
-                span
-                    a(class="orders__order_link" name=id) ...more
+            if definition.length > 40
+                - definition = `${definition.substr(-1000, 40)}`;
+                div(class='orders__order_definition')= definition
+                    span
+                        a(class="orders__order_link" name=id) ...Показать еще
+            else
+                div(class='orders__order_definition')= definition
             div(class='orders__order_stats')
                 div(class='orders__order_stat')
                     img(class='orders__order_stat-img' src=require("@/static/img/iconTime.svg").default)

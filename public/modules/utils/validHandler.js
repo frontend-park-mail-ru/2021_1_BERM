@@ -41,7 +41,7 @@ export class ValidHandler {
             order_name: () => {
                 if (formVal.order_name.length > 100 ||
                     formVal.order_name.length === 0) {
-                    return this.errors[4];
+                    return this.errors[18];
                 }
                 if (this.patterns
                     .get('spam')
@@ -109,7 +109,7 @@ export class ValidHandler {
             },
             rate: () => {
                 if (formVal.rate.length === 0 ||
-                    formVal.rate.length > 999999999) {
+                    formVal.rate.length > 9) {
                     return this.errors[20];
                 }
                 if (this.patterns
@@ -152,7 +152,7 @@ export class ValidHandler {
             },
             budget: () => {
                 if (formVal.budget.length === 0 ||
-                    formVal.budget.length > 999999999) {
+                    formVal.budget.length > 9) {
                     return this.errors[20];
                 }
                 if (this.patterns
