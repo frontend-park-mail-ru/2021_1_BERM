@@ -242,6 +242,7 @@
         height: 50px;
         border: 2px solid #DFE4EA;
         box-sizing: border-box;
+        width: 458px;
         //border-radius: 8px;
         //background-color: var(--white);
         @include uniq_form($white);
@@ -304,9 +305,9 @@
             //letter-spacing: -0.5px;
         }
 
-        &_button_del {
+        &_button-del {
             @include uniq_form($secondary_color);
-            @include font(600, 20px, 28px, -0.5px, $black);
+            @include font(600, 20px, 28px, -0.5px, $white);
 
             text-align: center;
             width: 180px;
@@ -392,70 +393,6 @@
 
 }
 
-
-
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order_stat
-//
-//.orderPage__order_stat
-//
-//.orderPage
-//
-//.orderPage_
-//
-//.orderPage
-//
-//.orderPage
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response_stat
-//
-//.orderPage__response_stat
-//
-//.orderPage
-//
-//.orderPage
-//
-//.orderPage__
-//
-//.orderPage
-//
-//.orderPage__set-rate
-//
-//.orderPage__set-rate
-//
-//.orderPage__set-rate
-//
-//.orderPage__set-rate
-//.orderPage__set-rate
-
 .min-rate {
     border: 2px solid #345DEE;
 }
-
-//.orderPage
-//
-//.orderPage
-
-/*.orderPage__responses_scroll {*/
-/*    height: 418px;*/
-/*    overflow-y: auto;*/
-/*}*/

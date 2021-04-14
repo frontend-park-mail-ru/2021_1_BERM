@@ -11,8 +11,8 @@ export default class Select {
         this.$idSelectorDoc = null;
         this.idSelector = idSelector;
 
-        this.render()
-        this.setup()
+        this.render();
+        this.setup();
     }
 
     render() {
@@ -27,20 +27,10 @@ export default class Select {
         this.$el.addEventListener('click', this.clickHandler);
         this.$arrow = this.$el.querySelector('[data-type="arrow"]');
         this.$value = this.$el.querySelector('[data-type="value"]');
-        console.log('___________________________________')
-        console.log(this.$value.textContent)
-        console.log('___________________________________')
-
     }
 
     clickHandler(event) {
         const {type} = event.target.dataset;
-        console.log(event.target.dataset);
-        console.log(event.target.value);
-        //
-        // if (type !== undefined ) {
-        //     console.log(type.type)
-        // }
 
         if (type === 'input' || type === 'arrow') {
             this.toggle();
@@ -66,9 +56,9 @@ export default class Select {
         this.$value.value = this.current.value;
         this.$value.style.width = this.$value.scrollWidth + 'px';
 
-        this.$el.querySelectorAll('[data-type="item"]').forEach(el => {
+        this.$el.querySelectorAll('[data-type="item"]').forEach((el) => {
             el.classList.remove('selected');
-        })
+        });
         this.$el.querySelector(`[data-id="${id}"]`).classList.add('selected');
 
         this.close();
@@ -99,7 +89,5 @@ export default class Select {
         this.$el.innerHTML = '';
     }
 }
-
-
 
 
