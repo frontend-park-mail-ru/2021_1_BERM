@@ -16,7 +16,7 @@ export const getTemplate = (data = [], placeholder, selectedId, selectorId) => {
     <div class="select__backdrop" data-type="backdrop"></div>
     <div class="select__input" data-type="input" id="${selectorId}">
       <input data-type="value" class="select__form form-control" name="category" disabled value="${text}"/>
-      <img src=${arrowDown} class="setting__arrow" data-type="arrow" alt="">
+      <img src=${arrowDown} class="settings__arrow" data-type="arrow" alt="">
     </div>
     <div class="error"></div>
     <div class="select__dropdown">

@@ -1,3 +1,4 @@
+@import "main.scss";
 .clear {
 	padding: 0;
     margin: 0;
@@ -6,15 +7,22 @@
 .error {
 	font-size: 16px;
 	color: red;
-}
 
-.error__box {
-	margin-bottom: -20px;
-	margin-top: 5px;
-}
+	&__box {
+		margin-bottom: -20px;
+		margin-top: 5px;
+	}
 
-/*margin-bottom: -20px;*/
-/*margin-top: 5px;*/
+	&__repeat_password {
+		margin-right: 125px;
+	}
+
+	&__message {
+		@include font(300, 20px, 22px, -0.4px, red);
+
+		margin-top: 10px;
+	}
+}
 
 .error:before {
 	box-sizing: content-box;
@@ -39,23 +47,4 @@
 
 .label-reg {
 	margin-top: 0%;
-}
-
-.error__repeat_password {
-	margin-right: 125px;
-}
-
-.error__message {
-	font-style: normal;
-	font-weight: 300;
-	font-size: 20px;
-	line-height: 22px;
-	letter-spacing: -0.4px;
-	margin-top: 10px;
-	color: red;
-}
-
-.error-rate {
-	font-size: 24px;
-	color: white;
 }

@@ -1,0 +1,444 @@
+@import "main.scss";
+
+.orderPage {
+    @include form_dis($cntr, $cntr);
+    flex-direction: column;
+    margin-bottom: 50px;
+
+    &__order {
+        @include form_dis($left, $cntr);
+        @include uniq_form($white);
+        flex-direction: row;
+        box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+
+        flex: 1 0 auto;
+
+        margin-top: 48px;
+
+        width: 1030px;
+        height: 270px;
+
+        &_img-bg {
+            margin: 58px 0 58px 64px;
+        }
+
+        &_img {
+            width: 154px;
+            height: 154px;
+        }
+
+        &_text {
+            width: 720px;
+            height: 206px;
+            //display: flex;
+            //flex-direction: column;
+            //justify-content: space-between;
+            @include form_dis_2($col, $s_b);
+
+            margin: 32px 64px 32px 32px;
+        }
+
+        &_title {
+            @include font(600, 36px, 44px, -1.5px, $white);
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 36px;
+            //line-height: 44px;
+            ///* identical to box height, or 122% */
+            //color: var(--dark);
+            //letter-spacing: -1.5px;
+        }
+
+        &_category {
+            margin-top: 12px;
+            //display: flex;
+            //flex-direction: row;
+            //justify-content: left;
+            @include form_dis_2($row, $left);
+            @include font(600, 16px, 22px, -0.4px, $black);
+
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 16px;
+            //line-height: 22px;
+            ///* identical to box height, or 137% */
+            //
+            //letter-spacing: -0.4px;
+        }
+
+        &_category-text {
+            color: $dark;
+        }
+
+        &_category-button {
+            padding: 0 8px;
+            margin-left: 16px;
+            //background: var(--secondary_color);
+            //border-radius: 4px;
+            @include uniq_form($secondary_color);
+            @include font(normal, 14px, 20px, normal, $white);
+
+            //font-weight: normal;
+            //font-size: 14px;
+            //line-height: 20px;
+            /* identical to box height, or 143% */
+
+            text-align: center;
+
+            /* White */
+
+            //color: var(--white);
+        }
+
+        &_definition {
+            width: 720px;
+            margin-top: 12px;
+            @include font(normal, 18px, 26px, -0.3px, $paragraph);
+            //font-style: normal;
+            //font-weight: normal;
+            //font-size: 18px;
+            //line-height: 26px;
+            ///* or 144% */
+            //
+            //letter-spacing: -0.3px;
+            //
+            ///* Paragraph */
+            //color: var(--paragraph);
+        }
+
+        &_stats {
+            margin-top: 12px;
+            @include form_dis_2($row, $left);
+            //display: flex;
+            //flex-direction: row;
+            //justify-content: left;
+        }
+
+        &_stat {
+            margin-right: 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            width: 112px;
+            height: 26px;
+
+            &-img {
+                width: 24px;
+                height: 24px;
+            }
+
+            &-data {
+                @include font(500, 16px, 26px, -0.2px, $primary_color);
+                //font-style: normal;
+                //font-weight: 500;
+                //font-size: 16px;
+                //line-height: 26px;
+                ///* identical to box height, or 162% */
+                //
+                //letter-spacing: -0.2px;
+
+                margin-left: 8px;
+                //color: var(--primary_color);
+            }
+        }
+
+    }
+
+    &__comments {
+        width: 1030px;
+        margin-top: 44px;
+        @include form_dis_2($row, $s_b);
+        //display: flex;
+        //flex-direction: row;
+        //justify-content: space-between;
+    }
+
+    &_responses {
+        @include form_dis_2($col, $s_b);
+        //display: flex;
+        //flex-direction: column;
+        //justify-content: space-between;
+        width: 458px;
+    }
+
+    &__comments_title {
+        @include font(600, 22px, 30px, normal, $black);
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 22px;
+        //line-height: 30px;
+    }
+
+    &__response {
+        box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+        border-radius: 8px;
+        @include form_dis_2($row, $left);
+        //display: flex;
+        //flex-direction: row;
+        //justify-content: left;
+        margin-top: 20px;
+
+        &_img-bg {
+            @include form_dis_2($col, $left);
+            //display: flex;
+            //flex-direction: column;
+            //justify-content: left;
+            margin: 20px;
+            align-items: center;
+        }
+
+        &_img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 10px;
+        }
+
+        &_name {
+            @include font(600, 18px, 22px, -0.4px, $black);
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 18px;
+            //line-height: 22px;
+            ///* identical to box height, or 122% */
+            //letter-spacing: -0.4px;
+        }
+
+        &_stats {
+            @include form_dis_2($col, $s_b);
+            //display: flex;
+            //flex-direction: column;
+            //justify-content: space-between;
+            margin: 10px;
+            width: 350px;
+        }
+
+        &_stat {
+            @include form_dis_2($row, $left);
+            //display: flex;
+            //flex-direction: row;
+            //justify-content: left;
+
+            &-img {
+                width: 24px;
+                height: 24px;
+                margin: 10px 5px;
+            }
+
+            &-text {
+                @include font(600, 16px, 22px, normal, $black);
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+
+                margin: 10px 6px;
+            }
+        }
+    }
+
+    &__comments_others {
+        margin-top: 20px;
+        height: 50px;
+        border: 2px solid #DFE4EA;
+        box-sizing: border-box;
+        //border-radius: 8px;
+        //background-color: var(--white);
+        @include uniq_form($white);
+
+        @include font(600, 16px, 19px, -0.4px, $dark);
+
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 16px;
+        //line-height: 19px;
+        text-align: center;
+        //letter-spacing: -0.4px;
+        //color: var(--dark);
+    }
+
+    &__rate {
+        display: flex;
+        flex-direction: column;
+        margin-left: 50px;
+    }
+
+    &__set-rate {
+        margin-top: 20px;
+        @include form_dis_2($col, $left);
+        //display: flex;
+        //flex-direction: column;
+        //justify-content: left;
+        width: 508px;
+
+        @include uniq_form($primary_color);
+        //background-color: var(--primary_color);
+        //border-radius: 8px;
+
+        &_title {
+            @include font(600, 36px, 44px, normal, $white);
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 36px;
+            //line-height: 44px;
+            //
+            //color: var(--white);
+
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+
+        &_input {
+            margin-left: 30px;
+            width: 350px;
+            margin-top: 10px;
+
+            @include font(normal, 24px, 44px, -0.5px, $black);
+
+            //font-style: normal;
+            //font-weight: normal;
+            //font-size: 24px;
+            //line-height: 44px;
+            ///* identical to box height, or 183% */
+            //
+            //letter-spacing: -0.5px;
+        }
+
+        &_button {
+            //background: var(--white);
+            //border-radius: 8px;
+            @include uniq_form($white);
+
+            @include font(600, 20px, 28px, -0.5px, $black);
+
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 20px;
+            //line-height: 28px;
+            /* or 140% */
+
+            text-align: center;
+            //letter-spacing: -0.5px;
+            width: 180px;
+            height: 50px;
+
+            margin: 32px 0 20px 30px;
+        }
+
+        &_input_in {
+            @include uniq_form($placeholder);
+
+            width: 280px;
+            height: 60px;
+            padding: 0 17px;
+            @include font(normal, 24px, 44px, -0.5px, $black);
+            //font-style: normal;
+            //font-weight: normal;
+            //font-size: 24px;
+            //line-height: 44px;
+            ///* identical to box height, or 183% */
+            //
+            //letter-spacing: -0.5px;
+        }
+
+        &_form {
+            margin-top: 82px;
+        }
+
+        &_buttons {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    &__order_name {
+        @include font(600, 18px, 22px, -0.4px, $black);
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 18px;
+        //line-height: 22px;
+        text-align: center;
+        //letter-spacing: -0.4px;
+        margin-top: 9px;
+    }
+
+    &__no-comments {
+        @include font(300, 20px, 22px, -0.4px, $black);
+        //font-style: normal;
+        //font-weight: 300;
+        //font-size: 20px;
+        //line-height: 22px;
+        //letter-spacing: -0.4px;
+        margin-top: 20px;
+    }
+
+
+}
+
+
+
+//.orderPage__order
+//
+//.orderPage__order
+//
+//.orderPage__order
+//
+//.orderPage__order
+//
+//.orderPage__order
+//
+//.orderPage__order_stat
+//
+//.orderPage__order_stat
+//
+//.orderPage
+//
+//.orderPage_
+//
+//.orderPage
+//
+//.orderPage
+//
+//.orderPage__response
+//
+//.orderPage__response
+//
+//.orderPage__response
+//
+//.orderPage__response
+//
+//.orderPage__response
+//
+//.orderPage__response_stat
+//
+//.orderPage__response_stat
+//
+//.orderPage
+//
+//.orderPage
+//
+//.orderPage__
+//
+//.orderPage
+//
+//.orderPage__set-rate
+//
+//.orderPage__set-rate
+//
+//.orderPage__set-rate
+//
+//.orderPage__set-rate
+//.orderPage__set-rate
+
+.min-rate {
+    border: 2px solid #345DEE;
+}
+
+//.orderPage
+//
+//.orderPage
+
+/*.orderPage__responses_scroll {*/
+/*    height: 418px;*/
+/*    overflow-y: auto;*/
+/*}*/

@@ -1,0 +1,172 @@
+@import "nullstyle.scss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+
+@import "main.scss";
+
+#root {
+   display: flex;
+   flex-direction: column;
+
+   font-family: "inter",sans-serif;
+}
+
+/* ROW */
+
+.row {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin: 0 -32px;
+
+   @include font(normal, 18px, 22px, normal, $white);
+
+   //font-style: normal;
+   //font-weight: normal;
+   //font-size: 18px;
+   //line-height: 22px;
+   //color: var(--white);
+
+
+
+
+   &__item {
+      padding: 0 32px
+   }
+
+}
+//
+//.row__item {
+//   padding: 0 32px
+//}
+
+/* FORM */
+
+.custom-form {
+   padding: 20px 30px;
+
+   &__label {
+      height: 30px;
+      top: calc(50% - 30px/2 - 127px);
+
+
+      @include font(600, 22px, 30px, -0.55px, $dark);
+      //font-style: normal;
+      //font-weight: 600;
+      //font-size: 22px;
+      //line-height: 30px;
+      ///* identical to box height, or 136% */
+      //
+      //letter-spacing: -0.55px;
+
+      background-color: $white;
+      //color: var(--dark);
+   }
+
+   &__img {
+      max-width: 24px;
+      max-height: 24px;
+      margin: 18px 18px 18px 18px;
+   }
+
+   &__input_in {
+      background-color: $placeholder;
+      border-radius: 8px;
+
+      width: 422px;
+      height: 60px;
+
+      @include font(normal, 20px, 28px, -0.4px, $black);
+
+      //font-style: normal;
+      //font-weight: normal;
+      //font-size: 20px;
+      //line-height: 28px;
+      /* identical to box height, or 140% */
+      //
+      //letter-spacing: -0.4px;
+      padding: 0 7px;
+   }
+
+   &__input-mini_in {
+      background-color: $placeholder;
+      border-radius: 8px;
+
+      width: 170px;
+      height: 60px;
+
+      @include font(normal, 20px, 28px, -0.4px, $black);
+
+      //font-style: normal;
+      //font-weight: normal;
+      //font-size: 20px;
+      //line-height: 28px;
+      /* identical to box height, or 140% */
+
+      //letter-spacing: -0.4px;
+      padding: 0 7px;
+   }
+
+   &__input {
+      @include form_dis($left, $cntr);
+      //display: flex;
+      //
+      //justify-content: left;
+      //align-items: center;
+
+      background-color: $placeholder;
+      border-radius: 8px;
+
+      margin-top: 32px;
+   }
+
+   &__input-mini {
+      background-color: $placeholder;
+      border-radius: 8px;
+
+      width: 236px;
+   }
+
+   &__input-mini_flex {
+      display: flex;
+      flex-direction: column;
+   }
+
+   &__input-mini_bg {
+      @include form_dis_2($row, $s_b);
+      //display: flex;
+      //justify-content: space-between;
+      //flex-direction: row;
+      align-items: center;
+      margin-top: 32px;
+      flex-wrap: wrap;
+
+   }
+
+   &__submit {
+      width: 480px;
+      height: 60px;
+
+      margin-top: 32px;
+
+      background: $primary_color;
+      border-radius: 8px;
+
+      color: $white;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      /* identical to box height, or 140% */
+
+      text-align: center;
+      letter-spacing: -0.5px;
+   }
+
+   &m__submit:hover {
+      opacity: 0.8;
+   }
+}
+
+
+
+
