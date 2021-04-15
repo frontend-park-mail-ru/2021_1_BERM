@@ -4,7 +4,7 @@ import {
     ORDER_PAGE_GET_RES,
     ORDER_SET_RATE,
     ORDER_DELETE_RATE,
-    ORDER_CHANGE_RATE, ORDER_SET_EXECUTOR, ORDER_ERROR_SET,
+    ORDER_CHANGE_RATE, ORDER_SET_EXECUTOR, ORDER_ERROR_SET, ORDER_DELETE_EXECUTOR, ORDER_ERROR_DELETE_EX,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
 
@@ -15,7 +15,8 @@ export class OrderPageView extends View {
     render(isAuthorized, isExecutor) {
         super.setListeners([
             [ORDER_PAGE_RENDER, this._orderPageRender],
-            [ORDER_ERROR_SET, this._ErrorSet],
+            [ORDER_ERROR_SET, this._errorSet],
+            [ORDER_ERROR_DELETE_EX, this._errorDeleteEx],
         ]);
 
         eventBus.emit(ORDER_PAGE_GET_RES);
@@ -69,22 +70,36 @@ export class OrderPageView extends View {
                 }
             }
         } else {
-            const selectButtons = document
-                .querySelectorAll('.orderPage__response_btn');
+            if (dataForRender.selectExecutor) {
+                const deleteButton = document
+                    .querySelector('.orderPage__set-rate_button-exit');
 
-            selectButtons.forEach((item) => {
-                item.addEventListener('click', (event) => {
-                    const id = event.target.getAttribute('data-id');
-                    debugger;
-
-                    eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
+                deleteButton.addEventListener('click', () => {
+                    eventBus.emit(ORDER_DELETE_EXECUTOR);
                 });
-            });
+            } else {
+                const selectButtons = document
+                    .querySelectorAll('.orderPage__response_btn');
+
+                selectButtons.forEach((item) => {
+                    item.addEventListener('click', (event) => {
+                        const id = event.target.getAttribute('data-id');
+                        debugger;
+
+                        eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
+                    });
+                });
+            }
         }
     }
 
-    _ErrorSet() {
+    _errorSet() {
         // ToDo: Ошибка сервера. Исполнитель не выбран
         console.log('Ошибка сервера. Исполнитель не выбран');
+    }
+
+    _errorDeleteEx() {
+        // ToDo: Ошибка сервера. Исполнитель не отменен
+        console.log('Ошибка сервера. Исполнитель не отменен');
     }
 }

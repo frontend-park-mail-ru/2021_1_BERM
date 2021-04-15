@@ -55,3 +55,5 @@ export const ORDER_CREATE_GO_RENDER = 'order_create_go_render';
 export const VACANCY_PAGE_RENDER = 'vacancy_page_render';
 export const NOT_SET_CATEGORY = 'not_set_category';
 export const ORDER_ERROR_SET = 'order-error-set';
+export const ORDER_ERROR_DELETE_EX = 'order-error-delete-ex';
+

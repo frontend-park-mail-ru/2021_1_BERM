@@ -47,8 +47,5 @@ export const sendRequest = (
             } else {
                 return Promise.resolve(res);
             }
-        })
-        .catch((error) => {
-            window.location.href= '/404/';
         });
 };

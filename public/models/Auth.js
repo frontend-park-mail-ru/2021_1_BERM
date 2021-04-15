@@ -14,7 +14,7 @@ import {
     SETTING_UPD,
     VACANCY_CREATE,
     VACANCY_PAGE_RES,
-    VACANCY_PAGE_GET_VACANCY, SELECT_SPEC_SET, PROFILE_DELETE_SPEC_GET, ORDER_GET_EXECUTOR,
+    VACANCY_PAGE_GET_VACANCY, SELECT_SPEC_SET, PROFILE_DELETE_SPEC_GET, ORDER_GET_EXECUTOR, ORDER_GET_DELETE_EXECUTOR,
 } from '../modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -193,6 +193,13 @@ export default class Auth {
         sendRequest('PUT', `/order/${id}/select`, data)
             .then((res) => {
                 eventBus.emit(ORDER_GET_EXECUTOR, res);
+            });
+    }
+
+    static deleteOrderExecutor(id) {
+        sendRequest('DELETE', `/order/${id}/select`)
+            .then((res) => {
+                eventBus.emit(ORDER_GET_DELETE_EXECUTOR, res);
             });
     }
 }

@@ -12,7 +12,12 @@ import {
     ORDER_SET_RATE,
     ORDER_GET_RATE,
     ORDER_GET,
-    ORDER_CHANGE_RATE, ORDER_SET_EXECUTOR, ORDER_GET_EXECUTOR, ORDER_ERROR_SET,
+    ORDER_CHANGE_RATE,
+    ORDER_SET_EXECUTOR,
+    ORDER_GET_EXECUTOR,
+    ORDER_ERROR_SET,
+    ORDER_DELETE_EXECUTOR,
+    ORDER_GET_DELETE_EXECUTOR, ORDER_ERROR_DELETE_EX,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
 
@@ -36,6 +41,8 @@ export class OrderPageController extends Controller {
                 [ORDER_GET, this._orderGet.bind(this)],
                 [ORDER_SET_EXECUTOR, this._setExecutor.bind(this)],
                 [ORDER_GET_EXECUTOR, this._getExecutor.bind(this)],
+                [ORDER_DELETE_EXECUTOR, this._deleteExecutor.bind(this)],
+                [ORDER_GET_DELETE_EXECUTOR, this._getDeleteExecutor.bind(this)],
             ],
             true);
     }
@@ -155,12 +162,25 @@ export class OrderPageController extends Controller {
 
     _getExecutor(res) {
         if (res.ok) {
-            this.ordersMap
-                .get(this.currentOrderId)
+            order.ordersMap
+                .get(order.currentOrderId)
                 .selectExecutor = this.selectExecutorId;
             this.go();
         } else {
             eventBus.emit(ORDER_ERROR_SET);
+        }
+    }
+
+    _deleteExecutor() {
+        auth.deleteOrderExecutor(order.currentOrderId);
+    }
+
+    _getDeleteExecutor(res) {
+        if (res.ok) {
+            order.ordersMap.get(order.currentOrderId).selectExecutor = null;
+            this.go();
+        } else {
+            eventBus.emit(ORDER_ERROR_DELETE_EX);
         }
     }
 }
