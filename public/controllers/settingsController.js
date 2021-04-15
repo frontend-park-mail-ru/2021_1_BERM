@@ -49,7 +49,6 @@ export class SettingsController extends Controller {
                         nameSurname: res.name_surname,
                         login: res.login,
                         isExecutor: res.executor,
-                        specializes: res.specializes,
                         about: res.about,
                         email: res.email,
                     };

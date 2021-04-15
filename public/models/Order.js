@@ -73,6 +73,7 @@ class Order {
                 definition: res.description,
                 date: this.getDate(res.deadline),
                 budget: res.budget,
+                selectExecutor: res.executor_id?res.executor_id:null,
             });
         });
     }
@@ -106,6 +107,21 @@ class Order {
         const year = date.getFullYear();
 
         return `${day}.${month}.${year}`;
+    }
+
+    getSelectResponse(order, id) {
+        if (!id || !order) {
+            return null;
+        }
+
+        let select = null;
+        this.ordersMap.get(order).responses.forEach((item) => {
+            if (item.creatorId === id) {
+                select = item;
+            }
+        });
+
+        return select;
     }
 }
 

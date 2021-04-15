@@ -43,10 +43,6 @@ export class ValidReflector {
      *
      */
     clear(type, element) {
-        // element.classList.remove(type);
-        // console.log();
-        // element.classList.remove(type);
-        // element.innerHTML = ' ';
         const el = element.parentNode;
         el.classList.remove(type);
         const errorBox = el.nextElementSibling;

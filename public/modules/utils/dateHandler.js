@@ -28,7 +28,6 @@ export default class DateHandler {
         e.target.value.length === this.dotes.mouth && action === true) {
             e.target.value += '.';
         }
-        console.log(e.target.value.length, ' ', action);
         if (e.target.value.length === this.dotes.day && action === false) {
             e.target.value = e.target.value.slice(0, 1);
         }

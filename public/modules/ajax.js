@@ -29,7 +29,6 @@ export const sendRequest = (
             if (res.status === 403) {
                 fetch(origin + '/profile/authorized', {
                     method: 'GET',
-                    body: JSON.stringify(body),
                     credentials: 'include',
                     headers: headers,
                 })
@@ -48,8 +47,5 @@ export const sendRequest = (
             } else {
                 return Promise.resolve(res);
             }
-        })
-        .catch((error) => {
-            window.location.href= '/404/';
         });
 };

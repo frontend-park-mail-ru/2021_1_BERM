@@ -39,7 +39,7 @@
         }
 
         &_title {
-            @include font(600, 36px, 44px, -1.5px, $white);
+            @include font(600, 36px, 44px, -1.5px, $dark);
             //font-style: normal;
             //font-weight: 600;
             //font-size: 36px;
@@ -204,6 +204,17 @@
             //letter-spacing: -0.4px;
         }
 
+        &_btn {
+            @include font(600, 16px, 19px, -0.4px, $black);
+            @include uniq_form($primary_color);
+            color: $white;
+
+            width: 134px;
+            height: 28px;
+            margin-top: 10px;
+            margin-left: 8px;
+        }
+
         &_stats {
             @include form_dis_2($col, $s_b);
             //display: flex;
@@ -242,6 +253,7 @@
         height: 50px;
         border: 2px solid #DFE4EA;
         box-sizing: border-box;
+        width: 458px;
         //border-radius: 8px;
         //background-color: var(--white);
         @include uniq_form($white);
@@ -304,6 +316,23 @@
             //letter-spacing: -0.5px;
         }
 
+        &_button-del {
+            @include uniq_form($secondary_color);
+            @include font(600, 20px, 28px, -0.5px, $white);
+
+            text-align: center;
+            width: 180px;
+            height: 50px;
+
+            margin: 32px 0 20px 30px;
+        }
+
+        &_price {
+            @include font(600, 28px, 30px, -0.55px, $white);
+            margin-top: 28px;
+            margin-left: 30px;
+        }
+
         &_button {
             //background: var(--white);
             //border-radius: 8px;
@@ -341,10 +370,6 @@
             //letter-spacing: -0.5px;
         }
 
-        &_form {
-            margin-top: 82px;
-        }
-
         &_buttons {
             display: flex;
             flex-direction: row;
@@ -375,70 +400,6 @@
 
 }
 
-
-
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order
-//
-//.orderPage__order_stat
-//
-//.orderPage__order_stat
-//
-//.orderPage
-//
-//.orderPage_
-//
-//.orderPage
-//
-//.orderPage
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response
-//
-//.orderPage__response_stat
-//
-//.orderPage__response_stat
-//
-//.orderPage
-//
-//.orderPage
-//
-//.orderPage__
-//
-//.orderPage
-//
-//.orderPage__set-rate
-//
-//.orderPage__set-rate
-//
-//.orderPage__set-rate
-//
-//.orderPage__set-rate
-//.orderPage__set-rate
-
 .min-rate {
     border: 2px solid #345DEE;
 }
-
-//.orderPage
-//
-//.orderPage
-
-/*.orderPage__responses_scroll {*/
-/*    height: 418px;*/
-/*    overflow-y: auto;*/
-/*}*/

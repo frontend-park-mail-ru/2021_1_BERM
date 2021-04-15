@@ -51,7 +51,7 @@ export class SettingsView extends View {
             event.preventDefault();
             const data = {
                 name_surname: event.target.name.value,
-                old_password: event.target.oldPassword.value,
+                password: event.target.oldPassword.value,
                 login: event.target.login.value,
                 about: event.target.about.value,
                 new_password: event.target.password.value,

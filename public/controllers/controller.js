@@ -56,7 +56,7 @@ export class Controller extends BaseMVC {
                 }
             })
             .catch((result) => {
-                console.log('Error. CheckAuthorized.', result);
+                console.log('Error. CheckAuthorized.', result.status);
             });
     }
 }
