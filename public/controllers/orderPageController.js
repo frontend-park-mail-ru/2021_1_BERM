@@ -12,10 +12,9 @@ import {
     ORDER_SET_RATE,
     ORDER_GET_RATE,
     ORDER_GET,
-    ORDER_CHANGE_RATE,
+    ORDER_CHANGE_RATE, ORDER_SET_EXECUTOR, ORDER_GET_EXECUTOR, ORDER_ERROR_SET,
 } from '../modules/utils/actions.js';
 import eventBus from '../modules/eventBus.js';
-import router from '../modules/router.js';
 
 export class OrderPageController extends Controller {
     constructor() {
@@ -35,6 +34,8 @@ export class OrderPageController extends Controller {
                 [ORDER_DELETE_RATE, this._orderDeleteRate.bind(this)],
                 [ORDER_CHANGE_RATE, this._orderChangeRate.bind(this)],
                 [ORDER_GET, this._orderGet.bind(this)],
+                [ORDER_SET_EXECUTOR, this._setExecutor.bind(this)],
+                [ORDER_GET_EXECUTOR, this._getExecutor.bind(this)],
             ],
             true);
     }
@@ -119,6 +120,9 @@ export class OrderPageController extends Controller {
             },
             minResponse: order.findMin(order.currentOrderId),
             userRate: order.findRate(order.currentOrderId, user.id),
+            selectExecutor: order.getSelectResponse(
+                order.currentOrderId,
+                order.ordersMap.get(order.currentOrderId).selectExecutor),
         });
     }
 
@@ -142,5 +146,21 @@ export class OrderPageController extends Controller {
             rate: rate,
             time: date.getTime(),
         }, order.currentOrderId);
+    }
+
+    _setExecutor(id) {
+        this.selectExecutorId = id;
+        auth.setOrderExecutor(order.currentOrderId, {executor_id: id});
+    }
+
+    _getExecutor(res) {
+        if (res.ok) {
+            this.ordersMap
+                .get(this.currentOrderId)
+                .selectExecutor = this.selectExecutorId;
+            this.go();
+        } else {
+            eventBus.emit(ORDER_ERROR_SET);
+        }
     }
 }

@@ -29,7 +29,6 @@ export const sendRequest = (
             if (res.status === 403) {
                 fetch(origin + '/profile/authorized', {
                     method: 'GET',
-                    body: JSON.stringify(body),
                     credentials: 'include',
                     headers: headers,
                 })
