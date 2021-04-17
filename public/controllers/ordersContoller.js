@@ -32,7 +32,7 @@ export class OrdersController extends Controller {
             this.isI = this.isMyOrders === user.id;
         }
 
-        if (!user.isExecutor) {
+        if (!user.isExecutor && !this.isMyOrders) {
             window.location.href = '/404/';
         }
         super.run(
