@@ -1,9 +1,7 @@
 import {View} from './view.js';
 import eventBus from '../modules/eventBus.js';
 import {
-    GET_ORDERS,
     SEND_SERVICES,
-    SEND_RESULT_RENDER,
     ORDERS_RENDER, GO_TO_ORDER,
 } from '@/modules/utils/actions';
 import ordersTemplate from '@/components/pages/orders.pug';

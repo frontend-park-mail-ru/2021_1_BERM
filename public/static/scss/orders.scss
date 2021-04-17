@@ -19,6 +19,7 @@
 
         &_img-bg {
             @include form_dis_3($col, $cntr);
+            cursor: pointer;
 
             margin: 37px 0 0 44px;
         }

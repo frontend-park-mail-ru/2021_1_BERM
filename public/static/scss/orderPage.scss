@@ -38,13 +38,7 @@
 
     &__select-executor_data-column {
         @include font(600, 18px, 22px, -0.4px, $white);
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 18px;
-        //line-height: 22px;
 
-        //letter-spacing: -0.4px;
-        //color: var(--white);
         margin-left: 20px;
         padding-top: 24px;
     }
@@ -66,6 +60,7 @@
 
         &_img-bg {
             margin: 58px 0 58px 64px;
+            cursor: pointer;
         }
 
         &_img {
@@ -232,6 +227,7 @@
             //justify-content: left;
             margin: 20px;
             align-items: center;
+            width: 100px;
         }
 
         &_img {

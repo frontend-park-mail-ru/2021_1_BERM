@@ -3,10 +3,10 @@
         | Всё для твоего успеха
     .main-buttons
         div(class='main-buttons__sector')
-            div(class='main-buttons__img')
-                img(src=require('@/static/img/executor_img.png').default alt='')
-            div(class='main-buttons__label') Стать исполнителем
+            div(class='main-buttons__img' href='/add-spec')
+                img(src=require('@/static/img/executor_img.png').default href='/add-spec' alt='')
+            div(class='main-buttons__label' href='/add-spec') Стать исполнителем
         div(class='main-buttons__sector')
-            div(class='main-buttons__img')
-                img(src=require('@/static/img/customer_img.png').default alt='')
-            div(class='main-buttons__label') Найти исполнителя
+            div(class='main-buttons__img' href='/add-spec')
+                img(src=require('@/static/img/customer_img.png').default href='/add-spec' alt='')
+            div(class='main-buttons__label' href='/client-reg') Найти исполнителя

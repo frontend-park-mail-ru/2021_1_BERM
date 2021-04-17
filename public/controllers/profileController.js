@@ -4,12 +4,15 @@ import eventBus from '../modules/eventBus.js';
 import user from '../models/User.js';
 import {ProfileView} from '../views/profileView.js';
 import router from '../modules/router.js';
+import order from '../models/Order.js';
 import {
     EXIT, FAIL_LOAD_IMG,
     IMG_CHANGE,
     IMG_LOAD,
     ON_PROFILE,
-    PROFILE, PROFILE_DELETE_SPEC, PROFILE_DELETE_SPEC_GET,
+    PROFILE,
+    PROFILE_DELETE_SPEC,
+    PROFILE_DELETE_SPEC_GET,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
 } from '../modules/utils/actions.js';
@@ -150,6 +153,8 @@ export class ProfileController extends Controller {
             .then(() => {
                 user.isAuthorized = false;
                 user.isGetAttr = false;
+                order.currentOrderId = -1;
+                order.ordersMap = new Map([]);
                 router.go('/');
             })
             .catch((res) => {

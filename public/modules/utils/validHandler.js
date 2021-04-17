@@ -140,10 +140,7 @@ export class ValidHandler {
                 }
             },
             passwordRepeat: () => {
-                if (formVal.passwordRepeat.length === 0 ||
-                    this.patterns
-                        .get('password')
-                        .test(formVal.passwordRepeat) === false) {
+                if (formVal.passwordRepeat.length === 0) {
                     return this.errors[13];
                 }
                 if (this.password !== formVal.passwordRepeat) {
