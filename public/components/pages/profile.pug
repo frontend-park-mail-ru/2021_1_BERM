@@ -37,11 +37,11 @@ mixin specialize(specName, isMyProfile)
                     if !isExecutor
                         .reviews
                             div
-                                img(src=require('@/static/img/carousel.svg').default alt='')
+                                img(src=require('@/static/img/carousel.svg').default style="cursor:pointer;" alt='')
                             if isMyProfile
-                                div(class='reviews__text' href=`/profile/${id}/orders`) Мои заказы
+                                div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
                             else
-                                div(class='reviews__text' href=`/profile/${id}/orders`) Заказы
+                                div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
                             //: #{ordersCount}
                 div(class='top__item')
                     if isMyProfile

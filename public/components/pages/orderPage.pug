@@ -20,7 +20,7 @@ include ../responses/responseMinOrderCustomer.pug
                         else
                             +responseOrderCustomer(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId, isMy, selectExecutor)
 
-                button(class='orderPage__comments_others') Показать ещё
+                //button(class='orderPage__comments_others') Показать ещё
             else
                 div(class="orderPage__no-comments") Пока никто не оставил отклик
         div(class='orderPage__rate')

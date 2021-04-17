@@ -13,7 +13,7 @@ include ../orders/orderInOrdersPage
             each order in orders
                 +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId)
             if orders.length !== 0
-                button.show-more-button Показать еще
+                //button.show-more-button Показать еще
             else
                 div(class="orderPage__no-comments") Заказов пока нет
         form.filters
