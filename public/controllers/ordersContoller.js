@@ -23,6 +23,7 @@ export class OrdersController extends Controller {
     constructor() {
         super();
         this.view = new OrdersView();
+        this.getOrders = false;
     }
 
     run(id) {
@@ -31,6 +32,9 @@ export class OrdersController extends Controller {
             this.isI = this.isMyOrders === user.id;
         }
 
+        if (!user.isExecutor) {
+            window.location.href = '/404/';
+        }
         super.run(
             [
                 [GO_TO_ORDER, this._goToOrder.bind(this)],
@@ -45,6 +49,16 @@ export class OrdersController extends Controller {
     }
 
     _sendServices() {
+        if (this.getOrders) {
+            eventBus.emit(ORDERS_RENDER, {
+                isI: this.isI,
+                isMyOrders: !!this.isMyOrders,
+                isAuthorized: user.isAuthorized,
+                isExecutor: user.isExecutor,
+                map: order.ordersMap,
+            });
+            return;
+        }
         if (this.isMyOrders) {
             auth.getMyOrders(this.isMyOrders);
         } else {

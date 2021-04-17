@@ -17,7 +17,6 @@ export class MainPageController extends Controller {
     run(id) {
         super.run(
             [],
-            false,
-            true);
+            false);
     }
 }
