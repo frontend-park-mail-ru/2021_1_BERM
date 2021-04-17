@@ -5,6 +5,52 @@
     flex-direction: column;
     margin-bottom: 50px;
 
+    &__select-executor {
+        display: flex;
+        margin-top: 22px;
+    }
+
+    &__select-executor_text {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+        margin-top: -24px;
+    }
+
+    &__select-executor_text-column {
+        @include font(600, 18px, 22px, -0.4px, $white);
+
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 18px;
+        //line-height: 22px;
+        /* identical to box height, or 122% */
+        //color: var(--white);
+        //letter-spacing: -0.4px;
+        padding-top: 24px;
+    }
+    //
+    &__select-executor_data {
+        display: flex;
+        flex-direction: column;
+        margin-top: -24px;
+    }
+
+    &__select-executor_data-column {
+        @include font(600, 18px, 22px, -0.4px, $white);
+        //font-style: normal;
+        //font-weight: 600;
+        //font-size: 18px;
+        //line-height: 22px;
+
+        //letter-spacing: -0.4px;
+        //color: var(--white);
+        margin-left: 20px;
+        padding-top: 24px;
+    }
+
+
+
     &__order {
         @include form_dis($left, $cntr);
         @include uniq_form($white);
@@ -287,6 +333,39 @@
         //background-color: var(--primary_color);
         //border-radius: 8px;
 
+        &_title-customer {
+            @include font(600, 36px, 44px, -1.5px, $white);
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 36px;
+            //line-height: 44px;
+            //
+            //color: var(--white);
+
+            margin-top: 20px;
+            //letter-spacing: -1.5px;
+            margin-left: 30px;
+        }
+
+        &_button-exit {
+            @include uniq_form($secondary_color);
+            @include font(600, 20px, 28px, -0.5px, $white);
+            //color: $white;
+            //
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 20px;
+            //line-height: 28px;
+            /* or 140% */
+
+            text-align: center;
+            //letter-spacing: -0.5px;
+            width: 180px;
+            height: 50px;
+
+            margin: 32px 0 20px 30px;
+        }
+
         &_title {
             @include font(600, 36px, 44px, normal, $white);
             //font-style: normal;
@@ -397,6 +476,37 @@
         margin-top: 20px;
     }
 
+    &__select-executor-avatar {
+        @include form_dis_3($col, $cntr);
+        @include uniq_form($white);
+        //display: flex;
+        //flex-direction: column;
+        //align-items: center;
+        justify-content: center;
+        width: auto;
+        min-width: 120px;
+        padding: 10px 10px;
+        height: 120px;
+        //background-color: var(--white);
+        //border-radius: 8px;
+        margin-left: 30px;
+
+        &_img {
+            width: 70px;
+            height: 70px;
+        }
+
+        &_text {
+            @include font(600, 18px, 22px, -0.4px, $black);
+            margin-top: 4px;
+            //font-style: normal;
+            //font-weight: 600;
+            //font-size: 18px;
+            //line-height: 22px;
+            ///* identical to box height, or 122% */
+            //letter-spacing: -0.4px;
+        }
+    }
 
 }
 
