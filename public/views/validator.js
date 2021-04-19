@@ -21,7 +21,7 @@ export class Validator {
      */
     validate() {
         const form = document.getElementById(this.formIdName);
-        if (!form) return; // ToDo реализовать обработку ошибки
+        if (!form) return;
         const reflector = new ValidReflector(form);
         const handler = new ValidHandler();
         const elements = form.querySelectorAll(this.selectorName);

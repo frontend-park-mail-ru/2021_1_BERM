@@ -2,19 +2,23 @@ import eventBus from '../modules/eventBus.js';
 import {sendRequest} from '../modules/ajax.js';
 import User from './User.js';
 import {
-    IMG_LOAD,
-    LOGIN,
-    ON_PROFILE,
-    ORDER_CREATE,
+    PROFILE_IMG_GET,
+    LOGIN_GET,
+    PROFILE_GET,
+    ORDER_CREATE_GET,
     ORDER_GET_RATE,
     ORDER_PAGE_RES,
-    REG,
+    REGISTRATION_GET,
     ORDER_GET,
     SEND_RESULT_RENDER,
-    SETTING_UPD,
+    SETTING_GET,
     VACANCY_CREATE,
     VACANCY_PAGE_RES,
-    VACANCY_PAGE_GET_VACANCY, SELECT_SPEC_SET, PROFILE_DELETE_SPEC_GET, ORDER_GET_EXECUTOR, ORDER_GET_DELETE_EXECUTOR,
+    VACANCY_PAGE_GET_VACANCY,
+    SELECT_SPEC_SET,
+    PROFILE_DELETE_SPEC_GET,
+    ORDER_GET_EXECUTOR,
+    ORDER_GET_DELETE_EXECUTOR,
 } from '../modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -36,7 +40,7 @@ export default class Auth {
     static login(data) {
         sendRequest('POST', '/login', data)
             .then((res) => {
-                eventBus.emit(LOGIN, res);
+                eventBus.emit(LOGIN_GET, res);
             });
     }
 
@@ -48,7 +52,7 @@ export default class Auth {
     static reg(data) {
         sendRequest('POST', '/profile', data)
             .then((res) => {
-                eventBus.emit(REG, res);
+                eventBus.emit(REGISTRATION_GET, res);
             });
     }
 
@@ -60,7 +64,7 @@ export default class Auth {
     static getProfile(id) {
         sendRequest('GET', `/profile/${id}`)
             .then((res) => {
-                eventBus.emit(ON_PROFILE, res);
+                eventBus.emit(PROFILE_GET, res);
             });
     }
 
@@ -72,7 +76,7 @@ export default class Auth {
     static sendImage(src) {
         sendRequest('PUT', '/profile/avatar', {img: src})
             .then((res) => {
-                eventBus.emit(IMG_LOAD, {res, src});
+                eventBus.emit(PROFILE_IMG_GET, {res, src});
             });
     }
 
@@ -92,7 +96,7 @@ export default class Auth {
     static updateSettings(data) {
         sendRequest('PUT', `/profile/${User.id}`, data)
             .then((res) => {
-                eventBus.emit(SETTING_UPD, res);
+                eventBus.emit(SETTING_GET, res);
             });
     }
 
@@ -104,7 +108,7 @@ export default class Auth {
     static createOrder(data) {
         sendRequest('POST', '/order', data)
             .then((res) => {
-                eventBus.emit(ORDER_CREATE, res);
+                eventBus.emit(ORDER_CREATE_GET, res);
             });
     }
 

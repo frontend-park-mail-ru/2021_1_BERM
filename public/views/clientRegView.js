@@ -1,9 +1,10 @@
 import {View} from './view.js';
 import {Validator} from './validator.js';
 import eventBus from '../modules/eventBus.js';
-import {CLIENT_REG_SUBMIT, NO_REG_CLIENT} from '../modules/utils/actions.js';
+import {REGISTRATION_SUBMIT, NO_REG, SERVER_ERROR} from '../modules/utils/actions.js';
 
 import regTemplate from '@/components/pages/registration.pug';
+import {notti} from '../components/notification/notti.js';
 
 /** View регистрации клиента */
 export class ClientRegView extends View {
@@ -22,7 +23,8 @@ export class ClientRegView extends View {
                 title: 'Регистрация за клиента',
             }),
             [
-                [NO_REG_CLIENT, this._onNoRegistration],
+                [NO_REG, this._onNoRegistration],
+                [SERVER_ERROR, this._serverError],
             ]);
 
         const val = new Validator(
@@ -41,7 +43,7 @@ export class ClientRegView extends View {
                 name_surname: event.target.name.value,
             };
 
-            eventBus.emit(CLIENT_REG_SUBMIT, data);
+            eventBus.emit(REGISTRATION_SUBMIT, data);
         });
     }
 
@@ -54,6 +56,10 @@ export class ClientRegView extends View {
             `<div class="error__message">
                     Такая почта уже используется
              </div>`;
+    }
+
+    _serverError() {
+        notti('Ошибка сервера. Не удалось зарегистрироваться');
     }
 }
 

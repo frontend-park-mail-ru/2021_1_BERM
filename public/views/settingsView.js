@@ -4,11 +4,12 @@ import eventBus from '../modules/eventBus.js';
 import {
     GET_USER_DATA,
     NO_SET_UP,
-    SEND_USER_DATA,
+    SETTING_SEND_DATA,
     SETTING_SUBMIT,
 } from '../modules/utils/actions.js';
 
 import settingsTemplate from '@/components/pages/settings.pug';
+import {notti} from '../components/notification/notti.js';
 
 /** Контроллер регистрации клиента */
 export class SettingsView extends View {
@@ -23,7 +24,7 @@ export class SettingsView extends View {
             [GET_USER_DATA, this._renderData],
             [NO_SET_UP, this._onNoSetUp],
         ]);
-        eventBus.emit(SEND_USER_DATA);
+        eventBus.emit(SETTING_SEND_DATA);
     }
 
     /**
@@ -65,8 +66,7 @@ export class SettingsView extends View {
      * Обработка в случае провала
      */
     _onNoSetUp() {
-        // ToDo настройки не удалось сохранить
-        console.log('настройки не удалось сохранить');
+        notti('Ошибка сервера. Не удалось сохранить изменения');
     }
 }
 

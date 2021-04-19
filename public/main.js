@@ -1,20 +1,3 @@
-// import '@/static/css/navbar_executor.css';
-// import '@/static/css/navbar.css';
-// import '@/static/css/root.css';
-// import '@/static/css/orderPage.css';
-// import '@/static/css/settings.css';
-// import '@/static/css/select.css';
-// import '@/static/css/login.css';
-// import '@/static/scss/registration.css';
-// import '@/static/css/main.css';
-// import '@/static/css/profile.css';
-// import '@/static/css/orderPageCustomer.css';
-// import '@/static/css/orderPageWithRate.css';
-// import '@/static/css/orders.css';
-// import '@/static/css/valid.css';
-// import '@/static/css/vacancy.css';
-// import '@/static/css/selectSpec.css';
-
 import './static/scss/main_page.scss';
 import './static/scss/login.scss';
 import './static/scss/valid.scss';
@@ -28,6 +11,7 @@ import './static/scss/profile.scss';
 import './static/scss/settings.scss';
 import './static/scss/registration.scss';
 import './static/scss/orderPage.scss';
+import './static/scss/notti.scss';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';
@@ -82,5 +66,4 @@ controllers.forEach((value) => {
     router.register(value[0], value[1]);
 });
 
-router.setUp();
 router.start();

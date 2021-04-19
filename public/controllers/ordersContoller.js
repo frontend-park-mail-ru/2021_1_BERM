@@ -1,9 +1,9 @@
 import {Controller} from './controller.js';
-import {OrdersView} from '@/views/ordersView';
+import {OrdersView} from '../views/ordersView.js';
 
 import auth from '../models/Auth.js';
 import order from '../models/Order.js';
-import eventBus from '@/modules/eventBus';
+import eventBus from '../modules/eventBus.js';
 import user from '../models/User.js';
 
 import {
@@ -23,7 +23,6 @@ export class OrdersController extends Controller {
     constructor() {
         super();
         this.view = new OrdersView();
-        this.getOrders = false;
     }
 
     run(id) {
@@ -49,7 +48,7 @@ export class OrdersController extends Controller {
     }
 
     _sendServices() {
-        if (this.getOrders) {
+        if (order.getOrders) {
             eventBus.emit(ORDERS_RENDER, {
                 isI: this.isI,
                 isMyOrders: !!this.isMyOrders,
@@ -69,6 +68,7 @@ export class OrdersController extends Controller {
     _sendResultsRender(result) {
         if (result.ok) {
             result.json().then((result) => {
+                order.getOrders = true;
                 order.setOrders(result);
 
                 eventBus.emit(ORDERS_RENDER, {

@@ -1,9 +1,13 @@
 import {View} from './view.js';
 import eventBus from '../modules/eventBus.js';
 import {Validator} from './validator.js';
-import {NO_REG_WORKER, WORKER_REG_SUBMIT} from '../modules/utils/actions.js';
+import {NO_REG,
+    REGISTRATION_SUBMIT,
+    SERVER_ERROR,
+} from '../modules/utils/actions.js';
 
-import regTemplate from '@/components/pages/registration.pug';
+import regTemplate from '../components/pages/registration.pug';
+import {notti} from '../components/notification/notti.js';
 
 /** View регистрации исполнителя */
 export class WorkerRegView extends View {
@@ -22,7 +26,8 @@ export class WorkerRegView extends View {
                 title: 'Регистрация за исполнителя',
             }),
             [
-                [NO_REG_WORKER, this._onNoRegistration],
+                [NO_REG, this._onNoRegistration],
+                [SERVER_ERROR, this._serverError],
             ]);
 
         const val = new Validator(
@@ -42,7 +47,7 @@ export class WorkerRegView extends View {
                 executor: true,
             };
 
-            eventBus.emit(WORKER_REG_SUBMIT, data);
+            eventBus.emit(REGISTRATION_SUBMIT, data);
         });
     }
 
@@ -55,5 +60,9 @@ export class WorkerRegView extends View {
             `<div class="error__message">
                     Такая почта уже используется
              </div>`;
+    }
+
+    _serverError() {
+        notti('Ошибка сервера. Не удалось зарегистрироваться');
     }
 }

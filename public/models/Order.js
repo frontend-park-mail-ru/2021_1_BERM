@@ -3,6 +3,7 @@ class Order {
     constructor() {
         this.currentOrderId = -1;
         this.ordersMap = new Map([]);
+        this.getOrders = false;
     }
 
     /**

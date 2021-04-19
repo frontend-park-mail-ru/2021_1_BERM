@@ -8,9 +8,9 @@ import user from '../models/User.js';
 import {
     GET_USER_DATA,
     NO_SET_UP,
-    SEND_USER_DATA,
+    SETTING_SEND_DATA,
     SETTING_SUBMIT,
-    SETTING_UPD,
+    SETTING_GET,
 } from '../modules/utils/actions.js';
 
 /** Контроллер создания заказа */
@@ -29,9 +29,9 @@ export class SettingsController extends Controller {
     run(id) {
         super.run(
             [
-                [SETTING_UPD, this._onUpdate],
+                [SETTING_GET, this._onUpdate],
                 [SETTING_SUBMIT, this._submit],
-                [SEND_USER_DATA, this._sendUserData],
+                [SETTING_SEND_DATA, this._sendUserData],
             ],
             true);
     }

@@ -10,6 +10,7 @@ import eventBus from '../modules/eventBus.js';
 
 import orderPageTemplate from '@/components/pages/orderPage.pug';
 import {Validator} from './validator';
+import {notti} from '../components/notification/notti.js';
 
 export class OrderPageView extends View {
     render(isAuthorized, isExecutor) {
@@ -94,12 +95,10 @@ export class OrderPageView extends View {
     }
 
     _errorSet() {
-        // ToDo: Ошибка сервера. Исполнитель не выбран
-        console.log('Ошибка сервера. Исполнитель не выбран');
+        notti('Ошибка сервера. Исполнитель не выбран');
     }
 
     _errorDeleteEx() {
-        // ToDo: Ошибка сервера. Исполнитель не отменен
-        console.log('Ошибка сервера. Исполнитель не отменен');
+        notti('Ошибка сервера. Исполнитель не отменен');
     }
 }

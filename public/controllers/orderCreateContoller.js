@@ -7,9 +7,9 @@ import auth from '../models/Auth.js';
 import order from '../models/Order.js';
 import {
     NO_ORDER,
-    ORDER_CREATE,
-    ORDER_SUBMIT,
-    GET_IS_ORDER_OR_VACANCY,
+    ORDER_CREATE_GET,
+    ORDER_CREATE_SUBMIT,
+    ORDER_CREATE_OR_VACANCY,
     ORDER_CREATE_GO_RENDER,
 } from '../modules/utils/actions.js';
 
@@ -29,9 +29,9 @@ export class OrderCreateController extends Controller {
     run(id) {
         super.run(
             [
-                [ORDER_CREATE, this._orderCreate],
-                [ORDER_SUBMIT, this._orderSubmit],
-                [GET_IS_ORDER_OR_VACANCY, this._orderOrVacancy],
+                [ORDER_CREATE_GET, this._orderCreate],
+                [ORDER_CREATE_SUBMIT, this._orderSubmit],
+                [ORDER_CREATE_OR_VACANCY, this._orderOrVacancy],
             ],
             true);
     }

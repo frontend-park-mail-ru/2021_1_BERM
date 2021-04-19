@@ -3,7 +3,7 @@ import {OrderOrVacancyCreateView} from '../views/orderOrVacancyCreateView.js';
 import {
     VACANCY_SUBMIT,
     VACANCY_CREATE,
-    GET_IS_ORDER_OR_VACANCY,
+    ORDER_CREATE_OR_VACANCY,
     ORDER_CREATE_GO_RENDER,
     NO_ORDER,
 } from '../modules/utils/actions.js';
@@ -30,7 +30,7 @@ export class VacancyCreateController extends Controller {
             [
                 [VACANCY_CREATE, this._vacancyCreate],
                 [VACANCY_SUBMIT, this._vacancySubmit],
-                [GET_IS_ORDER_OR_VACANCY, this._orderOrVacancy],
+                [ORDER_CREATE_OR_VACANCY, this._orderOrVacancy],
             ],
             true);
     }

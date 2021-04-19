@@ -6,10 +6,12 @@ import router from '../modules/router.js';
 import auth from '../models/Auth.js';
 
 import {
-    REG,
-    CLIENT_REG_SUBMIT,
-    NO_REG_CLIENT,
+    REGISTRATION_GET,
+    REGISTRATION_SUBMIT,
+    NO_REG,
+    SERVER_ERROR,
 } from '../modules/utils/actions.js';
+import user from '../models/User.js';
 
 /** Контроллер регистрации клиента */
 export class ClientRegController extends Controller {
@@ -27,8 +29,8 @@ export class ClientRegController extends Controller {
     run(id) {
         super.run(
             [
-                [REG, this._onRegCl],
-                [CLIENT_REG_SUBMIT, this._submitRegCl],
+                [REGISTRATION_GET, this._onRegCl],
+                [REGISTRATION_SUBMIT, this._submitRegCl],
             ]);
     }
 
@@ -39,9 +41,20 @@ export class ClientRegController extends Controller {
      */
     _onRegCl(res) {
         if (res.ok) {
-            router.go(`/`);
+            res.json()
+                .then((res) => {
+                    user.isAuthorized = true;
+                    user.id = res.id;
+                    user.isExecutor = res.executor;
+
+                    router.go(`/profile/${user.id}`);
+                });
         } else {
-            eventBus.emit(NO_REG_CLIENT);
+            if (res.status === 400) {
+                eventBus.emit(NO_REG);
+                return;
+            }
+            eventBus.emit(SERVER_ERROR);
         }
     }
 
