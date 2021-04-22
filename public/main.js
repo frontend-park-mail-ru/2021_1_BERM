@@ -44,6 +44,11 @@ import {
     SELECT_SPEC,
     MY_ORDERS,
 } from './modules/utils/pageNames.js';
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+
+if ('serviceWorker' in navigator) {
+    runtime.register();
+}
 
 const controllers = new Set([
     [MAIN_PAGE, MainPageController],

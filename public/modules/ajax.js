@@ -1,5 +1,5 @@
-// const origin = 'http://localhost:8080';
-const origin = 'https://findfreelancer.ru:8080';
+const origin = 'http://localhost:8080';
+// const origin = 'https://findfreelancer.ru:8080';
 
 let token;
 
@@ -37,6 +37,7 @@ export const sendRequest = (
                         if (res.headers.has('x-csrf-token')) {
                             token = res.headers.get('x-csrf-token');
                         }
+                        headers['X-Csrf-Token'] = token?`${token}`:'';
 
                         return fetch(origin + url, {
                             method: method,
