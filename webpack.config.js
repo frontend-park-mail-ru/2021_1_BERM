@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'public'),
@@ -28,9 +27,6 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
-        new ServiceWorkerWebpackPlugin(({
-            entry: path.resolve(__dirname, './public/sw.js'),
-        })),
     ],
     module: {
         rules: [

@@ -3,28 +3,33 @@ const dynamicCacheName = 'd-app-v1';
 
 const timeout = 400;
 
-// const {assets} = global.serviceWorkerOption;
-//
-// let assetsToCache = [...assets, './'];
-//
-// assetsToCache = assetsToCache.map((path) => {
-//     return new URL(path, global.location).toString();
-// });
-//
-// self.addEventListener('install', (event) => {
-//     event.waitUntil(
-//         caches.open(staticCacheName)
-//             .then((cache) => cache.addAll(assetsToCache)));
-// });
+const assetUrls = [
+    '/bundle.js',
+    '/index.html',
+    '/main.css',
+];
 
-self.addEventListener('activate', async (event) => {
-    const cacheNames = await caches.keys();
-    await Promise.all(
-        cacheNames
-            .filter((name) => name !== staticCacheName)
-            .filter((name) => name !== dynamicCacheName)
-            .map((name) => caches.delete(name)));
+self.addEventListener('install', (event) => {
+    console.log('Service worker install event!');
+    event.waitUntil(
+        caches.open(staticCacheName)
+            .then((cache) => {
+                return cache.addAll(assetUrls);
+            }));
 });
+
+self.addEventListener('activate', (event) => {
+    console.log('Service worker activate event!');
+});
+// self.addEventListener('activate', async (event) => {
+//     const cacheNames = await caches.keys();
+//     await Promise.all(
+//         cacheNames
+//             .filter((name) => name !== staticCacheName)
+//             .filter((name) => name !== dynamicCacheName)
+//             .map((name) => caches.delete(name)));
+//     debugger;
+// });
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(fromNetwork(event.request, timeout)
@@ -32,6 +37,7 @@ self.addEventListener('fetch', (event) => {
             console.log(`Error: ${err.message()}`);
             return fromCache(event.request);
         }));
+    debugger;
 });
 
 fromNetwork = (request, timeout) => {

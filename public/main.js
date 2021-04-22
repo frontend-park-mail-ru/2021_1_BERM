@@ -44,10 +44,17 @@ import {
     SELECT_SPEC,
     MY_ORDERS,
 } from './modules/utils/pageNames.js';
-import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 if ('serviceWorker' in navigator) {
-    runtime.register();
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./public/sw.js')
+            .then((reg) => {
+                console.log('Service worker registered! 😎', reg);
+            })
+            .catch((err) => {
+                console.log('😥 Service worker registration failed: ', err);
+            });
+    });
 }
 
 const controllers = new Set([
