@@ -4,6 +4,7 @@ const dynamicCacheName = 'd-app-v1';
 const timeout = 400;
 
 const assetUrls = [
+    '/',
     '/bundle.js',
     '/index.html',
     '/main.css',
