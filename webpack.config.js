@@ -15,12 +15,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
-    // entry: ['@babel/polyfill', './main.js', './sw.js'],
-    // output: {
-    //     filename: 'bundle.js',
-    //     path: path.resolve(__dirname, 'dist'),
-    //     publicPath: '/',
-    // },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'public'),
