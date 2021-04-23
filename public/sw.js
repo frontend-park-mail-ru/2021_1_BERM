@@ -50,25 +50,31 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', (event) => {
-    event.respondWith(fromNetwork(event.request, timeout)
-        .catch((err) => {
-            console.log(`Error: ${err.message()}`);
-            return fromCache(event.request);
-        }));
-    debugger;
+    const {request} = event;
+
+    const url = new URL(request.url);
+    console.log(url);
+    if (url.origin === location.origin) {
+        event.respondWith(cacheFirst(request));
+    } else {
+        event.respondWith(networkFirst(request));
+    }
 });
 
-fromNetwork = (request, timeout) => {
-    return new Promise((fulfill, reject) => {
-        const timeoutId = setTimeout(reject, timeout);
-        fetch(request).then((response) => {
-            clearTimeout(timeoutId);
-            fulfill(response);
-        }, reject);
-    });
-};
-fromCache = (request) => {
-    return caches.open(staticCacheName).then((cache) =>
-        cache.match(request).then((matching) =>
-            matching || Promise.reject(new Error('no-match'))));
-};
+
+async function cacheFirst(request) {
+    const cached = await caches.match(request);
+    return cached ?? await fetch(request);
+}
+
+async function networkFirst(request) {
+    const cache = await caches.open(dynamicCacheName);
+    try {
+        const response = await fetch(request);
+        await cache.put(request, response.clone());
+        return response;
+    } catch (e) {
+        const cached = await cache.match(request);
+        return cached ?? await caches.match('/offline.html');
+    }
+}
