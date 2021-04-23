@@ -45,20 +45,13 @@ import {
     MY_ORDERS,
 } from './modules/utils/pageNames.js';
 
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('./public/modules/sw.js')
-//         .then((registration) => {
-//             console.log('sw registration on scope:', registration.scope);
-//         })
-//         .catch((err) => {
-//             console.error(err);
-//         });
-// }
-
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./public/modules/sw.js')
-        .then(function(registration) {
-            console.log('Service Worker Registered');
+    navigator.serviceWorker.register('./sw.js')
+        .then((registration) => {
+            console.log('sw registration on scope:', registration.scope);
+        })
+        .catch((err) => {
+            console.error(err);
         });
 }
 
