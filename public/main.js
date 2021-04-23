@@ -46,15 +46,13 @@ import {
 } from './modules/utils/pageNames.js';
 
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./public/sw.js')
-            .then((reg) => {
-                console.log('Service worker registered! 😎', reg);
-            })
-            .catch((err) => {
-                console.log('😥 Service worker registration failed: ', err);
-            });
-    });
+    navigator.serviceWorker.register('/public/sw.js', {scope: '/public/'})
+        .then((registration) => {
+            console.log('sw registration on scope:', registration.scope);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 }
 
 const controllers = new Set([
