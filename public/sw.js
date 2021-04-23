@@ -4,6 +4,7 @@ const dynamicCacheName = 'd-app-v1';
 const assetUrls = [
     '/',
     '/bundle.js',
+    '/service-worker.js',
     '/index.html',
     '/main.css',
     '/0cd1bbbd2362acf8e1c16d358d696df0.svg',
@@ -45,11 +46,8 @@ self.addEventListener('install', (event) => {
             }));
 });
 
-self.addEventListener('activate', function(event) {
-    console.log('Claiming control');
-});
-
 self.addEventListener('fetch', (event) => {
+    console.log('FETCH');
     const {request} = event;
 
     const url = new URL(request.url);

@@ -46,7 +46,7 @@ import {
 } from './modules/utils/pageNames.js';
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('@/sw.js')
+    navigator.serviceWorker.register('/service-worker.js')
         .then((registration) => {
             console.log('sw registration on scope:', registration.scope);
         })

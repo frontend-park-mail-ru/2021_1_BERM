@@ -6,12 +6,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     context: path.resolve(__dirname, 'public'),
     mode: 'development',
-    entry: ['@babel/polyfill', './main.js'],
+    entry: {
+        'bundle': ['@babel/polyfill', './main.js'],
+        'service-worker': './sw.js',
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
+    // entry: ['@babel/polyfill', './main.js', './sw.js'],
+    // output: {
+    //     filename: 'bundle.js',
+    //     path: path.resolve(__dirname, 'dist'),
+    //     publicPath: '/',
+    // },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'public'),
