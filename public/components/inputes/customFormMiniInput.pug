@@ -4,10 +4,23 @@ mixin customFormMiniInputs(imgFirst, placeholderFirst, imgSecond, placeholderSec
             div(class='custom-form__input-mini')
                 img(class='custom-form__img' src=imgFirst alt='')
                 input(class=`custom-form__input-mini_in form-control ${other}` type='password' placeholder=placeholderFirst name=nameFirst)
-            div(class='error')
+            div(class=" error")
+                div(class="error__message")
+                div(class="error__main")
+                    div(class="error__box")
+                        ul(class="error__list")
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                    div(class="error__arrow")
         div.custom-form__input-mini_flex
             div(class='custom-form__input-mini')
                 img(class='custom-form__img' src=imgSecond alt='')
                 input(class=`custom-form__input-mini_in form-control ${other}` type='password' placeholder=placeholderSecond name=nameSecond)
-            div(class='error')
+            div(class=" error")
+                div(class="error__message")
+                div(class="error__main")
+                    div(class="error__box")
+
         div(class="error error__repeat_password")=""

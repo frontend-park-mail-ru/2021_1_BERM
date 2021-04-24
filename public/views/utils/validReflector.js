@@ -8,6 +8,10 @@ export class ValidReflector {
         this.form = form;
         this.valid = 'form-control_valid';
         this.invalid = 'form-control_error';
+        this.helper = 'help';
+
+        this.focus = 'focus';
+        this.click = 'click';
     }
 
     /**
@@ -19,19 +23,39 @@ export class ValidReflector {
      * в случае, когда форма валидна, передается пустая строка
      *
      */
-    show(type, property, error) {
+    show(type, property, error, event) {
         const formElement = this.form
             .querySelector('[name=' + property + ']').parentNode;
-        // const errorBox = formElement.parentElement.nextElementSibling;
-        const errorBox = formElement.nextElementSibling;
+        const errorBox = formElement.nextElementSibling.childNodes[1];
+
+        if (event === this.focus &&
+            formElement.classList.contains(this.valid)) {
+            return;
+        }
+
+        if (event === this.focus) {
+            errorBox.classList.add('error__main_active');
+            return;
+        }
+        const errorMes = formElement.nextElementSibling.firstChild;
+        formElement.classList.add(type);
+
+        if (event === this.click) {
+            if (error) {
+                errorMes.innerHTML = error;
+            }
+            return;
+        }
+
 
         // formElement.classList.add(type);
-        formElement.classList.add(type);
+
         if (error) {
-            errorBox.innerHTML = error;
-            errorBox.style.display = 'block';
-            errorBox.style.marginBottom = '-21px';
-            errorBox.style.marginTop = '2px';
+            errorMes.innerHTML = error;
+            errorBox.classList.add('error__main_active');
+            // errorMes.style.display = 'block';
+            // errorMes.style.marginBottom = '-21px';
+            // errorMes.style.marginTop = '2px';
         }
     }
 
@@ -44,10 +68,23 @@ export class ValidReflector {
      */
     clear(type, element) {
         const el = element.parentNode;
-        el.classList.remove(type);
-        const errorBox = el.nextElementSibling;
-        errorBox.innerHTML = ' ';
-        errorBox.style.marginBottom = '0';
-        errorBox.style.marginTop = '0';
+        const errorMes = el.nextElementSibling.firstChild;
+        const errorBox = el.nextElementSibling.childNodes[1];
+
+        if (type === this.helper) {
+            if (errorBox.classList.contains('error__main_active')) {
+                errorBox.classList.remove('error__main_active');
+            }
+            return;
+        }
+
+        if (el.classList.contains(type)) {
+            el.classList.remove(type);
+        }
+
+        errorMes.innerHTML = ' ';
+        errorBox.classList.remove('error__main_active');
+        // errorBox.style.marginBottom = '0';
+        // errorBox.style.marginTop = '0';
     }
 }

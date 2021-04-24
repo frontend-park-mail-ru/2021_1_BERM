@@ -13,6 +13,11 @@ export class Validator {
         this.formIdName = formIdName;
         this.selectorName = selectorName;
         this.buttonIdName = buttonIdName;
+
+        this.passwords = Array(document.getElementsByClassName(
+            'custom-form__input-mini_in')[0]);
+        this.passwords.push(document.getElementsByClassName(
+            'custom-form__input-mini_in')[1]);
     }
 
 
@@ -28,8 +33,9 @@ export class Validator {
         const btn = document.getElementById(this.buttonIdName);
 
         this._validateForButtonClick(form, btn, handler, reflector);
-        this._validateForFocusField(elements, handler, reflector);
+        this._validateForKeyUpField(elements, handler, reflector);
         this._clearField(form, btn, reflector);
+        this._validateForBlurField(elements, handler, reflector);
     }
 
     /**
@@ -56,10 +62,12 @@ export class Validator {
 
                 if (!classElem.includes('no-matter')) {
                     if (error.length !== 0) {
-                        reflector.show(reflector.invalid, property, error);
+                        reflector.show(reflector.invalid, property,
+                            error, reflector.click);
                         invalid = true;
                     } else {
-                        reflector.show(reflector.valid, property, '');
+                        reflector.show(reflector.valid, property,
+                            '', reflector.click);
                     }
                 }
             });
@@ -83,21 +91,16 @@ export class Validator {
      * @param {ValidHandler} handler - обработчик полей валидации
      * @param {ValidReflector} reflector - отображатель валидации на странице
      */
-    _validateForFocusField(elements, handler, reflector) {
+    _validateForKeyUpField(elements, handler, reflector) {
         [].forEach.call(elements, (element) => {
             if (element !== 'submit') {
-                element.addEventListener('blur', (e) => {
+                element.addEventListener('keyup', (e) => {
                     const formElement = e.target;
                     const property = formElement.getAttribute('name');
                     const dataField = {};
 
                     if (property.includes('password')) {
-                        const passwords = Array(document.getElementsByClassName(
-                            'custom-form__input-mini_in')[0]);
-                        passwords.push(document.getElementsByClassName(
-                            'custom-form__input-mini_in')[1]);
-
-                        passwords.forEach((item) => {
+                        this.passwords.forEach((item) => {
                             reflector.clear(reflector.invalid, item);
                             reflector.clear(reflector.valid, item);
                             const prop = item.getAttribute('name');
@@ -117,10 +120,34 @@ export class Validator {
 
                         const error = handler.getError(dataField, property);
                         if (error.length !== 0) {
+                            console.log(property);
+                            reflector.clear(reflector.valid, element);
                             reflector.show(reflector.invalid, property, error);
                         } else if (error.length === 0) {
+                            console.log(element);
+                            reflector.clear(reflector.invalid, element);
                             reflector.show(reflector.valid, property, '');
                         }
+                    }
+                    return false;
+                });
+            }
+        });
+    }
+
+    _validateForBlurField(elements, handler, reflector) {
+        [].forEach.call(elements, (element) => {
+            if (element !== 'submit') {
+                element.addEventListener('blur', (e) => {
+                    const formElement = e.target;
+                    const property = formElement.getAttribute('name');
+
+                    if (property.includes('password')) {
+                        this.passwords.forEach((item) => {
+                            reflector.clear(reflector.helper, item);
+                        });
+                    } else {
+                        reflector.clear(reflector.helper, element);
                     }
                     return false;
                 });
@@ -139,8 +166,10 @@ export class Validator {
         form.addEventListener('focus', () => {
             const el = document.activeElement;
             if (el !== btn) {
-                reflector.clear(reflector.invalid, el);
-                reflector.clear(reflector.valid, el);
+                reflector.show('', el.getAttribute('name'),
+                    '', reflector.focus);
+                // reflector.clear(reflector.invalid, el);
+                // reflector.clear(reflector.valid, el);
             }
         }, true);
     }

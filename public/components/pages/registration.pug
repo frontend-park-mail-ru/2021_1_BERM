@@ -6,10 +6,33 @@ include ../inputes/customFormMiniInput
             div(class='custom-form__label')= title
             +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text')
             div(class=" error")
+                div(class="error__message")
+                div(class="error__main")
+                    div(class="error__box")
+                        ul(class="error__list")
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                    div(class="error__arrow")
             +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text')
             div(class=" error")
+                div(class="error__message")
+                div(class="error__main")
+                    div(class="error__box")
+                        ul(class="error__list")
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                    div(class="error__arrow")
             +customFormInput(require('@/static/img/email.svg').default, 'Почта', 'email', 'text')
             div(class=" error")
+                div(class="error__message")
+                div(class="error__main")
+                    div(class="error__box")
+                        ul(class="error__list")
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                            li(class= "error__help") &#8226 Penis
+                    div(class="error__arrow")
             +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'password', 'passwordRepeat')
             button(class='custom-form__submit' id='send_mess') Зарегистрироваться
             div(id="err_place")

@@ -108,6 +108,7 @@
 
    &__input {
       @include form_dis($left, $cntr);
+      border: 1.5px solid transparent;
       //display: flex;
       //
       //justify-content: left;
@@ -122,6 +123,7 @@
    &__input-mini {
       background-color: $placeholder;
       border-radius: 8px;
+      border: 1.5px solid transparent;
 
       width: 236px;
    }
