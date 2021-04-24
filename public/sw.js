@@ -6,7 +6,7 @@ const assetUrls = [
     '/bundle.js',
     '/service-worker.js',
     '/index.html',
-    '/main.css',
+    '/bundle.css',
     '/0cd1bbbd2362acf8e1c16d358d696df0.svg',
     '/2065182ee5bc74e3bb61a57743d3a8bc.svg',
     '/2405d1975f36adb067e90769c554cd5d.svg',
@@ -38,7 +38,6 @@ const assetUrls = [
 ];
 
 self.addEventListener('install', (event) => {
-    console.log('Service worker install event!');
     event.waitUntil(
         caches.open(staticCacheName)
             .then((cache) => {
@@ -51,7 +50,6 @@ self.addEventListener('fetch', (event) => {
     const {request} = event;
 
     const url = new URL(request.url);
-    console.log(url);
     if (url.origin === location.origin) {
         console.log(1);
         event.respondWith(cacheFirst(request));
@@ -72,9 +70,11 @@ async function networkFirst(request) {
     try {
         const response = await fetch(request);
         await cache.put(request, response.clone());
-        return response;
+        return Promise.resolve(response);
     } catch (e) {
+        console.log('error');
         const cached = await cache.match(request);
-        return cached ?? await caches.match('/offline.html');
+        return cached ??
+            console.log('Отсутствует интернет соединение.'); // ToDo
     }
 }

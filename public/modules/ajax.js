@@ -34,7 +34,9 @@ export const sendRequest = (
                     headers: headers,
                 })
                     .then((res) => {
+                        debugger;
                         if (res.headers.has('x-csrf-token')) {
+                            debugger;
                             token = res.headers.get('x-csrf-token');
                         }
                         headers['X-Csrf-Token'] = token?`${token}`:'';
