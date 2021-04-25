@@ -8,6 +8,7 @@ export class ValidReflector {
         this.form = form;
         this.valid = 'form-control_valid';
         this.invalid = 'form-control_error';
+        this.active = 'error__main_active';
         this.helper = 'help';
         this.pasRep = 'pasRep';
 
@@ -44,7 +45,6 @@ export class ValidReflector {
         const formElement = this.form
             .querySelector('[name=' + property + ']').parentNode;
         const errorBox = formElement.nextElementSibling.childNodes[1];
-        console.log(property);
         const errorMes = formElement.nextElementSibling.firstChild;
         if (type === this.valid && property === 'passwordRepeat') {
             this.pasRepValid = true;
@@ -59,9 +59,7 @@ export class ValidReflector {
         }
 
         if (options === this.pasRep) {
-            console.log(formElement);
-            // this.pasRepEvent = true;
-            if (errorBox.classList.contains('error__main_active') ||
+            if (errorBox.classList.contains(this.active) ||
             type === this.valid) {
                 return;
             }
@@ -69,10 +67,10 @@ export class ValidReflector {
                 const formElement1 = this.form
                     .querySelector('[name=' + 'password' + ']').parentNode;
                 const errorBox1 = formElement1.nextElementSibling.childNodes[1];
-                errorBox1.classList.add('error__main_active');
+                errorBox1.classList.add(this.active);
             }
 
-            if (event !== this.focus) {
+            if (event !== this.focus && error) {
                 errorMes.innerHTML = error;
             }
             return;
@@ -84,8 +82,9 @@ export class ValidReflector {
         }
 
 
-        if (event === this.focus) {
-            errorBox.classList.add('error__main_active');
+        if (event === this.focus &&
+            !errorBox.classList.contains(this.active)) {
+            errorBox.classList.add(this.active);
             return;
         }
 
@@ -102,10 +101,9 @@ export class ValidReflector {
 
         if (error) {
             errorMes.innerHTML = error;
-            errorBox.classList.add('error__main_active');
-            // errorMes.style.display = 'block';
-            // errorMes.style.marginBottom = '-21px';
-            // errorMes.style.marginTop = '2px';
+            if (!errorBox.classList.contains(this.active)) {
+                errorBox.classList.add(this.active);
+            }
         }
     }
 
@@ -122,8 +120,8 @@ export class ValidReflector {
         const errorBox = el.nextElementSibling.childNodes[1];
 
         if (type === this.helper) {
-            if (errorBox.classList.contains('error__main_active')) {
-                errorBox.classList.remove('error__main_active');
+            if (errorBox.classList.contains(this.active)) {
+                errorBox.classList.remove(this.active);
             }
             return;
         }
@@ -132,8 +130,11 @@ export class ValidReflector {
             el.classList.remove(type);
         }
 
-        errorMes.innerHTML = ' ';
-        errorBox.classList.remove('error__main_active');
+        if (this.valid) {
+            errorMes.innerHTML = ' ';
+            errorBox.classList.remove(this.active);
+        }
+
         // errorBox.style.marginBottom = '0';
         // errorBox.style.marginTop = '0';
     }

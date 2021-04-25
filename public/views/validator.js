@@ -136,12 +136,10 @@ export class Validator {
 
                         const error = handler.getError(dataField, property);
                         if (error.length !== 0) {
-                            console.log(property);
                             reflector.clear(reflector.valid, element);
                             reflector.show(reflector.invalid, property, error,
                                 '', '');
                         } else if (error.length === 0) {
-                            console.log(element);
                             reflector.clear(reflector.invalid, element);
                             reflector.show(reflector.valid, property, '',
                                 '', '');
@@ -198,14 +196,6 @@ export class Validator {
             }
         });
     }
-    //     if (error.length !== 0) {
-    //     reflector.show(reflector.invalid, property,
-    //     error, reflector.click);
-    //     invalid = true;
-    // } else {
-    //     reflector.show(reflector.valid, property,
-    //         '', reflector.click);
-    // }
 
     /**
      * Очистка поля формы при нажатии на него
@@ -218,7 +208,6 @@ export class Validator {
         form.addEventListener('focus', () => {
             const el = document.activeElement;
             const pasRep = el.getAttribute('name');
-            console.log(el);
             if (pasRep === 'passwordRepeat') {
                 reflector.show('', 'password',
                     '', reflector.focus, reflector.pasRep);
@@ -227,8 +216,6 @@ export class Validator {
             if (el !== btn) {
                 reflector.show('', el.getAttribute('name'),
                     '', reflector.focus, '');
-                // reflector.clear(reflector.invalid, el);
-                // reflector.clear(reflector.valid, el);
             }
         }, true);
     }
