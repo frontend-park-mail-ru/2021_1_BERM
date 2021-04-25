@@ -34,7 +34,7 @@ export class Validator {
 
         this._validateForButtonClick(form, btn, handler, reflector);
         this._validateForKeyUpField(elements, handler, reflector);
-        this._clearField(form, btn, reflector);
+        this._focusField(form, btn, reflector);
         this._validateForBlurField(elements, handler, reflector);
     }
 
@@ -104,15 +104,31 @@ export class Validator {
                             reflector.clear(reflector.invalid, item);
                             reflector.clear(reflector.valid, item);
                             const prop = item.getAttribute('name');
-
                             dataField[prop] = item.value;
-
                             const error = handler.getError(dataField, prop);
 
+                            if (error.length !== 0 &&
+                                prop === 'passwordRepeat') {
+                                reflector.show(reflector.invalid, prop,
+                                    error, '', reflector.pasRep);
+                                return;
+                            }
+
+                            if (error.length === 0 &&
+                                prop === 'passwordRepeat') {
+                                reflector.show(reflector.valid, prop,
+                                    '', '', reflector.pasRep);
+                                return;
+                            }
+
                             if (error.length !== 0) {
-                                reflector.show(reflector.invalid, prop, error);
-                            } else if (error.length === 0) {
-                                reflector.show(reflector.valid, prop, '');
+                                reflector.show(reflector.invalid, prop,
+                                    error, '', '');
+                                return;
+                            }
+                            if (error.length === 0) {
+                                reflector.show(reflector.valid, prop,
+                                    '', '', '');
                             }
                         });
                     } else {
@@ -122,11 +138,13 @@ export class Validator {
                         if (error.length !== 0) {
                             console.log(property);
                             reflector.clear(reflector.valid, element);
-                            reflector.show(reflector.invalid, property, error);
+                            reflector.show(reflector.invalid, property, error,
+                                '', '');
                         } else if (error.length === 0) {
                             console.log(element);
                             reflector.clear(reflector.invalid, element);
-                            reflector.show(reflector.valid, property, '');
+                            reflector.show(reflector.valid, property, '',
+                                '', '');
                         }
                     }
                     return false;
@@ -141,12 +159,38 @@ export class Validator {
                 element.addEventListener('blur', (e) => {
                     const formElement = e.target;
                     const property = formElement.getAttribute('name');
+                    const dataField = {};
 
                     if (property.includes('password')) {
                         this.passwords.forEach((item) => {
-                            reflector.clear(reflector.helper, item);
+                            const prop = item.getAttribute('name');
+                            dataField[prop] = item.value;
+                            const error = handler.getError(dataField, prop);
+
+                            if (error.length !== 0) {
+                                reflector.show(reflector.invalid, prop,
+                                    error, reflector.click, '');
+                                if (prop === 'passwordRepeat') {
+                                    // eslint-disable-next-line max-len
+                                    reflector.clear(reflector.helper, this.passwords[0]);
+                                    return;
+                                }
+
+                                reflector.clear(reflector.helper, item);
+
+
+                                // return;
+                            }
                         });
                     } else {
+                        dataField[property] = formElement.value;
+                        const error = handler.getError(dataField, property);
+
+                        if (error.length !== 0) {
+                            reflector.show(reflector.invalid, property, error,
+                                reflector.click, '');
+                        }
+
                         reflector.clear(reflector.helper, element);
                     }
                     return false;
@@ -154,6 +198,14 @@ export class Validator {
             }
         });
     }
+    //     if (error.length !== 0) {
+    //     reflector.show(reflector.invalid, property,
+    //     error, reflector.click);
+    //     invalid = true;
+    // } else {
+    //     reflector.show(reflector.valid, property,
+    //         '', reflector.click);
+    // }
 
     /**
      * Очистка поля формы при нажатии на него
@@ -162,12 +214,19 @@ export class Validator {
      * @param {HTMLElement} btn - кнопка
      * @param {ValidReflector} reflector - отображатель валидации на странице
      */
-    _clearField(form, btn, reflector) {
+    _focusField(form, btn, reflector) {
         form.addEventListener('focus', () => {
             const el = document.activeElement;
+            const pasRep = el.getAttribute('name');
+            console.log(el);
+            if (pasRep === 'passwordRepeat') {
+                reflector.show('', 'password',
+                    '', reflector.focus, reflector.pasRep);
+                return;
+            }
             if (el !== btn) {
                 reflector.show('', el.getAttribute('name'),
-                    '', reflector.focus);
+                    '', reflector.focus, '');
                 // reflector.clear(reflector.invalid, el);
                 // reflector.clear(reflector.valid, el);
             }

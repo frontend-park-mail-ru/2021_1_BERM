@@ -9,9 +9,26 @@ export class ValidReflector {
         this.valid = 'form-control_valid';
         this.invalid = 'form-control_error';
         this.helper = 'help';
+        this.pasRep = 'pasRep';
 
         this.focus = 'focus';
         this.click = 'click';
+
+        this.pasRepValid = false;
+
+        this._setUp();
+    }
+
+    _setUp() {
+        const pasArrow = document.getElementById('arrow__password');
+        const textAr = document.getElementById('textAr');
+        if (pasArrow) {
+            pasArrow.style.transform = 'translateX(0)';
+        }
+
+        if (textAr) {
+            textAr.style.transform = 'translateY(-275px)';
+        }
     }
 
     /**
@@ -23,22 +40,55 @@ export class ValidReflector {
      * в случае, когда форма валидна, передается пустая строка
      *
      */
-    show(type, property, error, event) {
+    show(type, property, error, event, options) {
         const formElement = this.form
             .querySelector('[name=' + property + ']').parentNode;
         const errorBox = formElement.nextElementSibling.childNodes[1];
+        console.log(property);
+        const errorMes = formElement.nextElementSibling.firstChild;
+        if (type === this.valid && property === 'passwordRepeat') {
+            this.pasRepValid = true;
+        }
+
+        if (type === this.invalid && property === 'passwordRepeat') {
+            this.pasRepValid = false;
+        }
+
+        if (type) {
+            formElement.classList.add(type);
+        }
+
+        if (options === this.pasRep) {
+            console.log(formElement);
+            // this.pasRepEvent = true;
+            if (errorBox.classList.contains('error__main_active') ||
+            type === this.valid) {
+                return;
+            }
+            if (!this.pasRepValid) {
+                const formElement1 = this.form
+                    .querySelector('[name=' + 'password' + ']').parentNode;
+                const errorBox1 = formElement1.nextElementSibling.childNodes[1];
+                errorBox1.classList.add('error__main_active');
+            }
+
+            if (event !== this.focus) {
+                errorMes.innerHTML = error;
+            }
+            return;
+        }
 
         if (event === this.focus &&
             formElement.classList.contains(this.valid)) {
             return;
         }
 
+
         if (event === this.focus) {
             errorBox.classList.add('error__main_active');
             return;
         }
-        const errorMes = formElement.nextElementSibling.firstChild;
-        formElement.classList.add(type);
+
 
         if (event === this.click) {
             if (error) {
