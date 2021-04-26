@@ -69,11 +69,11 @@ async function networkFirst(request) {
     const cache = await caches.open(dynamicCacheName);
     try {
         const response = await fetch(request);
-        await cache.put(request, response.clone());
+        await cache.put(request.url, response.clone());
         return response;
     } catch (e) {
         console.log('error');
-        const cached = await cache.match(request);
+        const cached = await cache.match(request.url);
         return cached ??
             console.log('Отсутствует интернет соединение.'); // ToDo
     }
