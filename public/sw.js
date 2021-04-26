@@ -45,6 +45,16 @@ self.addEventListener('install', (event) => {
             }));
 });
 
+self.addEventListener('activate', async (event) => {
+    const cacheNames = await caches.keys();
+    await Promise.all(
+        cacheNames
+            .filter((name) => name !== staticCacheName)
+            .filter((name) => name !== dynamicCacheName)
+            .map((name) => caches.delete(name)),
+    );
+});
+
 self.addEventListener('fetch', (event) => {
     const {request} = event;
 
@@ -63,7 +73,15 @@ self.addEventListener('fetch', (event) => {
  */
 async function cacheFirst(request) {
     const cached = await caches.match(request);
-    return cached ?? await fetch(request);
+    if (cached) {
+        return cached;
+    }
+
+    const response = await fetch(request);
+    const cache = await caches.open(staticCacheName);
+    await cache.put(request.url, response.clone());
+
+    return response;
 }
 
 /**
