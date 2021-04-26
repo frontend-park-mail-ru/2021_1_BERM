@@ -58,6 +58,10 @@ self.addEventListener('activate', async (event) => {
 self.addEventListener('fetch', (event) => {
     const {request} = event;
 
+    if (request.method !== 'GET') {
+        return;
+    }
+
     const url = new URL(request.url);
     if (!url.toString().includes(':8080')) {
         event.respondWith(cacheFirst(request));
