@@ -79,7 +79,7 @@ export class SettingsController extends Controller {
             isExecutor: user.isExecutor,
             login: user.login,
             name: user.nameSurname,
-            email: user.email,
+            about: user.about,
         });
     }
 }
