@@ -46,15 +46,12 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    console.log('FETCH');
     const {request} = event;
 
     const url = new URL(request.url);
-    if (url.origin === location.origin) {
-        console.log(1);
+    if (!url.toString().includes(':8080')) {
         event.respondWith(cacheFirst(request));
     } else {
-        console.log(2);
         event.respondWith(networkFirst(request));
     }
 });
@@ -72,7 +69,6 @@ async function networkFirst(request) {
         await cache.put(request.url, response.clone());
         return response;
     } catch (e) {
-        console.log('error');
         const cached = await cache.match(request.url);
         return cached ??
             console.log('Отсутствует интернет соединение.'); // ToDo
