@@ -56,12 +56,21 @@ self.addEventListener('fetch', (event) => {
     }
 });
 
-
+/**
+ * Смотрим в кеш и если он есть возвращаем его, иначе делаем запрос
+ *
+ * @param {Request} request
+ */
 async function cacheFirst(request) {
     const cached = await caches.match(request);
     return cached ?? await fetch(request);
 }
 
+/**
+ * Делаем запрос и если он успешный возвращаем, иначе смотрим в кеш
+ *
+ * @param {Request} request
+ */
 async function networkFirst(request) {
     const cache = await caches.open(dynamicCacheName);
     try {
@@ -70,7 +79,6 @@ async function networkFirst(request) {
         return response;
     } catch (e) {
         const cached = await cache.match(request.url);
-        return cached ??
-            console.log('Отсутствует интернет соединение.'); // ToDo
+        return cached ?? null; // ToDo Сделать страницу offline
     }
 }

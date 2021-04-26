@@ -1,6 +1,6 @@
-export const notti = (data) => {
+export const notification = (data) => {
     const not = document.createElement('not');
-    not.id = 'notti';
+    not.id = 'notification';
 
     const move = () => {
         not.style.transitionDuration = '500ms';
@@ -21,7 +21,7 @@ export const notti = (data) => {
         }, 400);
         setTimeout(() => {
             not.style.opacity = '0';
-            if (document.querySelector('#notti') !== null) {
+            if (document.querySelector('#notification') !== null) {
                 not.parentNode.removeChild(not);
             }
         }, 500);

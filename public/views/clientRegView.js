@@ -1,10 +1,14 @@
 import {View} from './view.js';
 import {Validator} from './validator.js';
-import eventBus from '../modules/eventBus.js';
-import {REGISTRATION_SUBMIT, NO_REG, SERVER_ERROR} from '../modules/utils/actions.js';
+import eventBus from '@/modules/eventBus.js';
+import {
+    REGISTRATION_SUBMIT,
+    NO_REG,
+    SERVER_ERROR,
+} from '@/modules/utils/actions.js';
 
 import regTemplate from '@/components/pages/registration.pug';
-import {notti} from '../components/notification/notti.js';
+import {notification} from '@/components/notification/notification.js';
 
 /** View регистрации клиента */
 export class ClientRegView extends View {
@@ -58,8 +62,11 @@ export class ClientRegView extends View {
              </div>`;
     }
 
+    /**
+     * Обработка ошибки сервера
+     */
     _serverError() {
-        notti('Ошибка сервера. Не удалось зарегистрироваться');
+        notification('Ошибка сервера. Не удалось зарегистрироваться');
     }
 }
 

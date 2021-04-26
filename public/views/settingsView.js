@@ -1,15 +1,15 @@
 import {View} from './view.js';
 import {Validator} from './validator.js';
-import eventBus from '../modules/eventBus.js';
+import eventBus from '@/modules/eventBus.js';
 import {
     GET_USER_DATA,
     NO_SET_UP,
     SETTING_SEND_DATA,
     SETTING_SUBMIT,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
 
 import settingsTemplate from '@/components/pages/settings.pug';
-import {notti} from '../components/notification/notti.js';
+import {notification} from '@/components/notification/notification.js';
 
 /** Контроллер регистрации клиента */
 export class SettingsView extends View {
@@ -66,7 +66,7 @@ export class SettingsView extends View {
      * Обработка в случае провала
      */
     _onNoSetUp() {
-        notti('Ошибка сервера. Не удалось сохранить изменения');
+        notification('Ошибка сервера. Не удалось сохранить изменения');
     }
 }
 

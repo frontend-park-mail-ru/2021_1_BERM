@@ -1,10 +1,10 @@
 import {Controller} from './controller.js';
-import auth from '../models/Auth.js';
-import eventBus from '../modules/eventBus.js';
-import user from '../models/User.js';
-import {ProfileView} from '../views/profileView.js';
-import router from '../modules/router.js';
-import order from '../models/Order.js';
+import auth from '@/models/Auth.js';
+import eventBus from '@/modules/eventBus.js';
+import user from '@/models/User.js';
+import {ProfileView} from '@/views/profileView.js';
+import router from '@/modules/router.js';
+import order from '@/models/Order.js';
 import {
     PROFILE_EXIT, FAIL_LOAD_IMG,
     PROFILE_IMG_CHANGE,
@@ -15,7 +15,8 @@ import {
     PROFILE_DELETE_SPEC_GET,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
+import {getIndexPath, getNotFoundPath} from '@/modules/utils/goPath.js';
 
 /** Контроллер регистрации клиента */
 export class ProfileController extends Controller {
@@ -82,7 +83,7 @@ export class ProfileController extends Controller {
      */
     _onProfile(res) {
         if (!res.ok) {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
             return;
         }
 
@@ -156,18 +157,28 @@ export class ProfileController extends Controller {
                 order.currentOrderId = -1;
                 order.getOrders = false;
                 order.ordersMap = new Map([]);
-                router.go('/');
+                router.go(getIndexPath);
             })
             .catch((res) => {
                 console.log('не удалось parse JSON', res.message);
             });
     }
 
+    /**
+     * Делаем запрос на удаление специализации
+     *
+     * @param {Object} data
+     */
     _sendDeleteSpec(data) {
         this.deleteSpec = data;
         auth.deleteSpec(user.id, {specialize: data});
     }
 
+    /**
+     * Получаем ответ на удаление и выводим ошибку при неудаче
+     *
+     * @param {Response} res
+     */
     _getDeleteSpec(res) {
         if (res.ok) {
             user.deleteSpec(this.deleteSpec);

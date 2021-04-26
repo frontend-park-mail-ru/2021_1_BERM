@@ -1,4 +1,6 @@
+/** Класс обработчика даты */
 export default class DateHandler {
+    /** Конструктор */
     constructor() {
         this.actions = {
             WRITING: true,
@@ -11,6 +13,7 @@ export default class DateHandler {
         this.lengths = [0];
     }
 
+    /** Создание даты */
     createDate() {
         const regex = /[-;":'a-zA-Zа-яА-Я]/;
         let action = this.actions.WRITING;
@@ -23,6 +26,12 @@ export default class DateHandler {
         });
     }
 
+    /**
+     * Обработчик поля ввода
+     *
+     * @param {$ElementType} e
+     * @param {boolean} action
+     */
     inputHandler(e, action) {
         if (e.target.value.length === this.dotes.day && action === true ||
         e.target.value.length === this.dotes.mouth && action === true) {
@@ -38,6 +47,13 @@ export default class DateHandler {
         this.lengthHandler(e);
     }
 
+    /**
+     * Обработчик длины
+     *
+     * @param {$ElementType} e
+     *
+     * @return {Object}
+     */
     lengthHandler(e) {
         if (this.lengths.length < 2) {
             this.lengths.push(e.target.value.length);

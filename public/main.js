@@ -43,7 +43,9 @@ import {
     VACANCY_PAGE,
     SELECT_SPEC,
     MY_ORDERS,
+    NOT_FOUND,
 } from './modules/utils/pageNames.js';
+import {NotFoundController} from '@/controllers/notFound.js';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
@@ -69,6 +71,7 @@ const controllers = new Set([
     [VACANCY_PAGE, VacancyPageController],
     [SELECT_SPEC, SelectSpecController],
     [MY_ORDERS, OrdersController],
+    [NOT_FOUND, NotFoundController],
     // Здесь добавляем странички
 ]);
 

@@ -1,5 +1,5 @@
-import eventBus from '../modules/eventBus.js';
-import {sendRequest} from '../modules/ajax.js';
+import eventBus from '@/modules/eventBus.js';
+import {sendRequest} from '@/modules/ajax.js';
 import User from './User.js';
 import {
     PROFILE_IMG_GET,
@@ -19,7 +19,7 @@ import {
     PROFILE_DELETE_SPEC_GET,
     ORDER_GET_EXECUTOR,
     ORDER_GET_DELETE_EXECUTOR,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
  * результат контроллеру */
@@ -112,6 +112,11 @@ export default class Auth {
             });
     }
 
+    /**
+     * Получение откликов заказа
+     *
+     * @param {number} id - уникальный номер заказа
+     */
     static getResponsesOrder(id) {
         sendRequest('GET', `/order/${id}/response`)
             .then((res) => {
@@ -119,6 +124,9 @@ export default class Auth {
             });
     }
 
+    /**
+     * Запрос на все заказы
+     */
     static getOrders() {
         sendRequest('GET', '/order')
             .then((res) => {
@@ -126,6 +134,11 @@ export default class Auth {
             });
     }
 
+    /**
+     * Запрос на заказы пользователя
+     *
+     * @param {number} id - уникальный номер пользователя
+     */
     static getMyOrders(id) {
         sendRequest('GET', `/order/profile/${id}`)
             .then((res) => {
@@ -133,6 +146,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Устанавливаем отклик
+     *
+     * @param {Object} data - данные на отправку
+     * @param {number} id - уникальный номер заказа
+     */
     static setResponse(data, id) {
         sendRequest('POST', `/order/${id}/response`, data)
             .then((res) => {
@@ -140,10 +159,23 @@ export default class Auth {
             });
     }
 
+    /**
+     * Удаляем ставку
+     *
+     * @param {number} id - уникальный номер заказа
+     *
+     * @return {Object}
+     */
     static deleteRate(id) {
         return sendRequest('DELETE', `/order/${id}/response`);
     }
 
+    /**
+     * Изменяем ставку
+     *
+     * @param {Object} data - данные на отправку
+     * @param {number} id - уникальный номер заказа
+     */
     static changeResponse(data, id) {
         sendRequest('PUT', `/order/${id}/response`, data)
             .then((res) => {
@@ -151,6 +183,11 @@ export default class Auth {
             });
     }
 
+    /**
+     * Запрос на заказ
+     *
+     * @param {number} id - уникальный номер заказ
+     */
     static getOrder(id) {
         sendRequest('GET', `/order/${id}`)
             .then((res) => {
@@ -158,6 +195,11 @@ export default class Auth {
             });
     }
 
+    /**
+     * Создаем вакансию
+     *
+     * @param {Object} data - данные на отправку
+     */
     static vacancyCreate(data) {
         sendRequest('POST', '/vacancy', data)
             .then((res) => {
@@ -165,6 +207,11 @@ export default class Auth {
             });
     }
 
+    /**
+     * Получаем отклики вакансии
+     *
+     * @param {number} id - уникальный номер вакансии
+     */
     static getResponsesVacancy(id) {
         sendRequest('GET', `/vacancy/${id}/response`)
             .then((res) => {
@@ -172,6 +219,11 @@ export default class Auth {
             });
     }
 
+    /**
+     * Получаем данные вакансии
+     *
+     * @param {number} id - уникальный номер вакансии
+     */
     static getVacancy(id) {
         sendRequest('GET', `/vacancy/${id}`)
             .then((res) => {
@@ -179,6 +231,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Устанавливаем специализацию
+     *
+     * @param {number} id - уникальный номер пользователя
+     * @param {Object} data - данные на отправку
+     */
     static setSpec(id, data) {
         sendRequest('POST', `/profile/${id}/specialize`, data)
             .then((res) => {
@@ -186,6 +244,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Удаляем специализацию
+     *
+     * @param {number} id - уникальный номер пользователя
+     * @param {Object} data - данные на отправку
+     */
     static deleteSpec(id, data) {
         sendRequest('DELETE', `/profile/${id}/specialize`, data)
             .then((res) => {
@@ -193,6 +257,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Устанавливаем выбранного исполнителя
+     *
+     * @param {number} id - уникальный номер заказа
+     * @param {Object} data - данные на отправку
+     */
     static setOrderExecutor(id, data) {
         sendRequest('PUT', `/order/${id}/select`, data)
             .then((res) => {
@@ -200,6 +270,11 @@ export default class Auth {
             });
     }
 
+    /**
+     * Удаляем выбранного исполнителя
+     *
+     * @param {number} id - уникальный номер заказа
+     */
     static deleteOrderExecutor(id) {
         sendRequest('DELETE', `/order/${id}/select`)
             .then((res) => {

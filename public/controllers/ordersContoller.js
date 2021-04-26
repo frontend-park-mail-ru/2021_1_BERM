@@ -1,21 +1,22 @@
 import {Controller} from './controller.js';
-import {OrdersView} from '../views/ordersView.js';
+import {OrdersView} from '@/views/ordersView';
 
-import auth from '../models/Auth.js';
-import order from '../models/Order.js';
-import eventBus from '../modules/eventBus.js';
-import user from '../models/User.js';
+import auth from '@/models/Auth.js';
+import order from '@/models/Order.js';
+import eventBus from '@/modules/eventBus.js';
+import user from '@/models/User.js';
 
 import {
     GO_TO_ORDER,
     SEND_SERVICES,
     SEND_RESULT_RENDER,
     ORDERS_RENDER,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
 
-import router from '@/modules/router';
+import router from '@/modules/router.js';
+import {getNotFoundPath, getOrderPath} from '@/modules/utils/goPath.js';
 
-
+/** Контроллер страницы заказов */
 export class OrdersController extends Controller {
     /**
      * Конструктор
@@ -25,6 +26,11 @@ export class OrdersController extends Controller {
         this.view = new OrdersView();
     }
 
+    /**
+     * Запуск контроллера страницы заказов
+     *
+     * @param {number} id - id из url, если он там был
+     */
     run(id) {
         if (id) {
             this.isMyOrders = Number(id);
@@ -32,7 +38,7 @@ export class OrdersController extends Controller {
         }
 
         if (!user.isExecutor && !this.isMyOrders) {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
         }
         super.run(
             [
@@ -43,10 +49,18 @@ export class OrdersController extends Controller {
             true);
     }
 
+    /**
+     * Переход к конкретному заказу
+     *
+     * @param {number} id - id заказа
+     */
     _goToOrder(id) {
-        router.go(`/order/${id}`);
+        router.go(getOrderPath(id));
     }
 
+    /**
+     * Получаем информацию о заказе, если ее нет
+     */
     _sendServices() {
         if (order.getOrders) {
             eventBus.emit(ORDERS_RENDER, {
@@ -65,9 +79,14 @@ export class OrdersController extends Controller {
         }
     }
 
-    _sendResultsRender(result) {
-        if (result.ok) {
-            result.json().then((result) => {
+    /**
+     * Отправляем данные для рендеринга
+     *
+     * @param {Response} res - результат запроса
+     */
+    _sendResultsRender(res) {
+        if (res.ok) {
+            res.json().then((result) => {
                 order.getOrders = true;
                 order.setOrders(result);
 

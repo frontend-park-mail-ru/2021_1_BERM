@@ -22,6 +22,11 @@ class User {
         this.isGetAttr = true;
     }
 
+    /**
+     * Удаление специализации
+     *
+     * @param {string} spec - специализация
+     */
     deleteSpec(spec) {
         let pos = -1;
         this.specializes.forEach((item, i) => {

@@ -1,18 +1,19 @@
 import {Controller} from './controller.js';
-import {OrderOrVacancyCreateView} from '../views/orderOrVacancyCreateView.js';
+import {OrderOrVacancyCreateView} from '@/views/orderOrVacancyCreateView.js';
 import {
     VACANCY_SUBMIT,
     VACANCY_CREATE,
     ORDER_CREATE_OR_VACANCY,
     ORDER_CREATE_GO_RENDER,
     NO_ORDER,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
+import eventBus from '@/modules/eventBus.js';
+import auth from '@/models/Auth.js';
+import vacancy from '@/models/Vacancy.js';
+import router from '@/modules/router.js';
+import {getVacancyPath} from '@/modules/utils/goPath.js';
 
-import eventBus from '../modules/eventBus.js';
-import auth from '../models/Auth.js';
-import vacancy from '../models/Vacancy.js';
-import router from '../modules/router.js';
-
+/** Контроллер создания вакансии */
 export class VacancyCreateController extends Controller {
     /**
      * Конструктор
@@ -23,7 +24,9 @@ export class VacancyCreateController extends Controller {
     }
 
     /**
-     * Запуск контроллера создания заказа
+     * Запуск контроллера создания вакансии
+     *
+     * @param {number} id - id из url, если он там был
      */
     run(id) {
         super.run(
@@ -35,22 +38,36 @@ export class VacancyCreateController extends Controller {
             true);
     }
 
+    /**
+     * Обработка результата
+     *
+     * @param {Response} res - результат запроса
+     */
     _vacancyCreate(res) {
         if (res.ok) {
             res.json()
                 .then((res) => {
                     vacancy.setVacancys([res]);
-                    router.go(`/vacancy/${vacancy.currentVacancyId}`);
+                    router.go(getVacancyPath(vacancy.currentVacancyId));
                 });
         } else {
             eventBus.emit(NO_ORDER);
         }
     }
 
+    /**
+     * Отправка вакансии
+     *
+     * @param {Object} info - данные на отправку
+     */
     _vacancySubmit(info) {
         auth.vacancyCreate(info);
     }
 
+    /**
+     * Метод необходимый для передачи параметра,
+     * определяющего отрисовку или заказа, или вакансии
+     */
     _orderOrVacancy() {
         eventBus.emit(ORDER_CREATE_GO_RENDER, {isOrder: false});
     }

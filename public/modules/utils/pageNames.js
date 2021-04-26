@@ -7,6 +7,7 @@ export const SETTINGS_PAGE = /^\/settings$/;
 export const ORDER_CREATE_PAGE = /^\/order-create$/;
 export const ORDER_PAGE = /^\/order\/\d+$/;
 export const ORDERS_PAGE = /^\/orders$/;
+export const NOT_FOUND = /^\/404$/;
 export const VACANCY_CREATE_PAGE = /^\/vacancy-create$/;
 export const VACANCY_PAGE = /^\/vacancy\/\d+$/;
 export const SELECT_SPEC = /^\/add-spec$/;

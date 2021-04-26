@@ -1,24 +1,34 @@
 import {Controller} from './controller.js';
-import {VacancyPageView} from '../views/vacancyPageView.js';
+import {VacancyPageView} from '@/views/vacancyPageView';
 
-import vacancy from '../models/Vacancy.js';
-import auth from '../models/Auth.js';
-import user from '../models/User.js';
+import vacancy from '@/models/Vacancy.js';
+import auth from '@/models/Auth.js';
+import user from '@/models/User.js';
 
 import {
     VACANCY_PAGE_GET_RES,
     VACANCY_PAGE_GET_VACANCY, VACANCY_PAGE_RENDER,
     VACANCY_PAGE_RES,
-} from '../modules/utils/actions.js';
-import eventBus from '../modules/eventBus.js';
-import router from '../modules/router.js';
+} from '@/modules/utils/actions.js';
+import eventBus from '@/modules/eventBus.js';
+import router from '@/modules/router.js';
+import {getNotFoundPath} from '@/modules/utils/goPath.js';
 
+/** Контроллер страницы вакансии */
 export class VacancyPageController extends Controller {
+    /**
+     * Конструктор
+     */
     constructor() {
         super();
         this.view = new VacancyPageView();
     }
 
+    /**
+     * Запуск контроллера страницы вакансии
+     *
+     * @param {number} id - id из url, если он там был
+     */
     run(id) {
         vacancy.currentVacancyId = Number(id);
 
@@ -26,12 +36,16 @@ export class VacancyPageController extends Controller {
             [
                 [VACANCY_PAGE_GET_RES, this._vacancyPageGetRes.bind(this)],
                 [VACANCY_PAGE_RES, this._vacancyPageRes.bind(this)],
-                [VACANCY_PAGE_GET_VACANCY, this._vacancyPageGetVacancy.bind(this)],
+                [VACANCY_PAGE_GET_VACANCY,
+                    this._vacancyPageGetVacancy.bind(this)],
             ],
             true,
         );
     }
 
+    /**
+     * Определяем недостающие данные и делаем запрос
+     */
     _vacancyPageGetRes() {
         if (vacancy.getVacancyById(vacancy.currentVacancyId)) {
             auth.getResponsesVacancy(vacancy.currentVacancyId);
@@ -40,6 +54,11 @@ export class VacancyPageController extends Controller {
         }
     }
 
+    /**
+     * Получаем данные откликов
+     *
+     * @param {Response} res - результат запроса на заказ
+     */
     _vacancyPageRes(res) {
         const go = this.go;
 
@@ -50,10 +69,15 @@ export class VacancyPageController extends Controller {
                 go();
             });
         } else {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
         }
     }
 
+    /**
+     * Получаем данные вакансии и делаем запрос на отклики
+     *
+     * @param {Response} res - результат запроса на вакансию
+     */
     _vacancyPageGetVacancy(res) {
         if (res.ok) {
             res.json().then((res) => {
@@ -66,6 +90,9 @@ export class VacancyPageController extends Controller {
         }
     }
 
+    /**
+     * Отправляем данные view для отрисовки
+     */
     go() {
         const creator = vacancy.getVacancyById(vacancy.currentVacancyId);
 

@@ -4,15 +4,25 @@ import {
     ORDER_PAGE_GET_RES,
     ORDER_SET_RATE,
     ORDER_DELETE_RATE,
-    ORDER_CHANGE_RATE, ORDER_SET_EXECUTOR, ORDER_ERROR_SET, ORDER_DELETE_EXECUTOR, ORDER_ERROR_DELETE_EX,
-} from '../modules/utils/actions.js';
-import eventBus from '../modules/eventBus.js';
-
+    ORDER_CHANGE_RATE,
+    ORDER_SET_EXECUTOR,
+    ORDER_ERROR_SET,
+    ORDER_DELETE_EXECUTOR,
+    ORDER_ERROR_DELETE_EX,
+} from '@/modules/utils/actions.js';
+import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/orderPage.pug';
 import {Validator} from './validator';
-import {notti} from '../components/notification/notti.js';
+import {notification} from '@/components/notification/notification.js';
 
+/** View страницы заказа */
 export class OrderPageView extends View {
+    /**
+     * Установка обработчиков
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
+     */
     render(isAuthorized, isExecutor) {
         super.setListeners([
             [ORDER_PAGE_RENDER, this._orderPageRender],
@@ -23,6 +33,11 @@ export class OrderPageView extends View {
         eventBus.emit(ORDER_PAGE_GET_RES);
     }
 
+    /**
+     * Отображение страницы
+     *
+     * @param {Object} dataForRender
+     */
     _orderPageRender(dataForRender) {
         super.renderHtml(
             dataForRender.isAuthorized,
@@ -94,11 +109,17 @@ export class OrderPageView extends View {
         }
     }
 
+    /**
+     * Обработка в случае неудачной установке исполнителя
+     */
     _errorSet() {
-        notti('Ошибка сервера. Исполнитель не выбран');
+        notification('Ошибка сервера. Исполнитель не выбран');
     }
 
+    /**
+     * Обработка в случае неудачной отмене исполнителя
+     */
     _errorDeleteEx() {
-        notti('Ошибка сервера. Исполнитель не отменен');
+        notification('Ошибка сервера. Исполнитель не отменен');
     }
 }

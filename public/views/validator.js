@@ -1,5 +1,5 @@
 import {ValidReflector} from './utils/validReflector.js';
-import {ValidHandler} from '../modules/utils/validHandler.js';
+import {ValidHandler} from '@/modules/utils/validHandler.js';
 
 /** Класс, отвечающий за валидацию форм */
 export class Validator {

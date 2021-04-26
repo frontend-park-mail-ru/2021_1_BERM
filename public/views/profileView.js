@@ -1,6 +1,6 @@
 import {View} from './view.js';
-import eventBus from '../modules/eventBus.js';
-import {notti} from '../components/notification/notti.js';
+import eventBus from '@/modules/eventBus.js';
+import {notification} from '@/components/notification/notification.js';
 import {
     PROFILE_EXIT,
     FAIL_LOAD_IMG,
@@ -9,7 +9,7 @@ import {
     PROFILE_DELETE_SPEC,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
 
 import profileTemplate from '@/components/pages/profile.pug';
 
@@ -92,6 +92,6 @@ export class ProfileView extends View {
      * Отображение неуспешной загрузки картинки
      */
     _failLoadImage() {
-        notti('Ошибка сервера. Картинка не загружена');
+        notification('Ошибка сервера. Картинка не загружена');
     }
 }

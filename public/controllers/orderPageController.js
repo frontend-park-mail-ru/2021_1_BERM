@@ -1,9 +1,9 @@
 import {Controller} from './controller.js';
-import {OrderPageView} from '../views/orderPageView.js';
+import {OrderPageView} from '@/views/orderPageView';
 
-import auth from '../models/Auth.js';
-import order from '../models/Order.js';
-import user from '../models/User.js';
+import auth from '@/models/Auth.js';
+import order from '@/models/Order.js';
+import user from '@/models/User.js';
 import {
     ORDER_PAGE_GET_RES,
     ORDER_PAGE_RES,
@@ -18,15 +18,26 @@ import {
     ORDER_ERROR_SET,
     ORDER_DELETE_EXECUTOR,
     ORDER_GET_DELETE_EXECUTOR, ORDER_ERROR_DELETE_EX,
-} from '../modules/utils/actions.js';
-import eventBus from '../modules/eventBus.js';
+} from '@/modules/utils/actions';
+import eventBus from '@/modules/eventBus.js';
+import router from '@/modules/router.js';
+import {getNotFoundPath} from '@/modules/utils/goPath.js';
 
+/** Контроллер страницы заказа */
 export class OrderPageController extends Controller {
+    /**
+     * Конструктор
+     */
     constructor() {
         super();
         this.view = new OrderPageView();
     }
 
+    /**
+     * Запуск контроллера регистрации клиента
+     *
+     * @param {number} id - id из url, если он там был
+     */
     run(id) {
         order.currentOrderId = Number(id);
 
@@ -47,6 +58,9 @@ export class OrderPageController extends Controller {
             true);
     }
 
+    /**
+     * Определяем недостающие данные и делаем запрос
+     */
     _orderPageGetRes() {
         if (order.getOrderById(order.currentOrderId)) {
             auth.getResponsesOrder(order.currentOrderId);
@@ -55,6 +69,11 @@ export class OrderPageController extends Controller {
         }
     }
 
+    /**
+     * Получаем данные заказа и делаем запрос на отклики
+     *
+     * @param {Response} res - результат запроса на заказ
+     */
     _orderGet(res) {
         if (res.ok) {
             res.json().then((res) => {
@@ -62,10 +81,15 @@ export class OrderPageController extends Controller {
                 auth.getResponsesOrder(order.currentOrderId);
             });
         } else {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
         }
     }
 
+    /**
+     * Получаем данные откликов
+     *
+     * @param {Response} res - результат запроса на заказ
+     */
     _orderPageSetResponses(res) {
         const go = this.go;
         if (res.ok) {
@@ -80,6 +104,11 @@ export class OrderPageController extends Controller {
         }
     }
 
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {number} rate - ставка заказа
+     */
     _orderSetRate({rate}) {
         const date = new Date();
         auth.setResponse({
@@ -89,6 +118,11 @@ export class OrderPageController extends Controller {
         }, order.currentOrderId);
     }
 
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {Response} res - результат запроса на установление ставки
+     */
     _orderGetRate(res) {
         const go = this.go;
         if (res.ok) {
@@ -103,6 +137,9 @@ export class OrderPageController extends Controller {
         }
     }
 
+    /**
+     * Отправляем данные view для отрисовки
+     */
     go() {
         const creator = order.getOrderById(order.currentOrderId);
 
@@ -133,6 +170,9 @@ export class OrderPageController extends Controller {
         });
     }
 
+    /**
+     * Запрос на удаление ставки
+     */
     _orderDeleteRate() {
         order.deleteResponse(order.currentOrderId, user.id);
 
@@ -144,6 +184,11 @@ export class OrderPageController extends Controller {
         this.go();
     }
 
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {number} rate - ставка заказа
+     */
     _orderChangeRate({rate}) {
         order.deleteResponse(order.currentOrderId, user.id);
 
@@ -155,11 +200,21 @@ export class OrderPageController extends Controller {
         }, order.currentOrderId);
     }
 
+    /**
+     * Выбираем исполнителя.
+     *
+     * @param {number} id - ставка заказа
+     */
     _setExecutor(id) {
         this.selectExecutorId = id;
         auth.setOrderExecutor(order.currentOrderId, {executor_id: id});
     }
 
+    /**
+     * Получаем ответ на запрос о установке исполнителя
+     *
+     * @param {number} res - результат запроса на выбор исполнителя
+     */
     _getExecutor(res) {
         if (res.ok) {
             order.ordersMap
@@ -171,10 +226,18 @@ export class OrderPageController extends Controller {
         }
     }
 
+    /**
+     * Отменяем ислонителя
+     */
     _deleteExecutor() {
         auth.deleteOrderExecutor(order.currentOrderId);
     }
 
+    /**
+     * Получаем ответ на запрос о отмене исполнителя
+     *
+     * @param {number} res - результат запроса на отмену исполнителя
+     */
     _getDeleteExecutor(res) {
         if (res.ok) {
             order.ordersMap.get(order.currentOrderId).selectExecutor = null;

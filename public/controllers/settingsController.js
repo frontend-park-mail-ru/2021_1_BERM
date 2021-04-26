@@ -1,17 +1,18 @@
 import {Controller} from './controller.js';
-import {SettingsView} from '../views/settingsView.js';
+import {SettingsView} from '@/views/settingsView';
 
-import eventBus from '../modules/eventBus.js';
-import router from '../modules/router.js';
-import auth from '../models/Auth.js';
-import user from '../models/User.js';
+import eventBus from '@/modules/eventBus.js';
+import router from '@/modules/router.js';
+import auth from '@/models/Auth.js';
+import user from '@/models/User.js';
 import {
     GET_USER_DATA,
     NO_SET_UP,
     SETTING_SEND_DATA,
     SETTING_SUBMIT,
     SETTING_GET,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
+import {getProfilePath} from '@/modules/utils/goPath.js';
 
 /** Контроллер создания заказа */
 export class SettingsController extends Controller {
@@ -25,6 +26,8 @@ export class SettingsController extends Controller {
 
     /**
      * Запуск контроллера настроек
+     *
+     * @param {number} id - id из url, если он там был
      */
     run(id) {
         super.run(
@@ -54,7 +57,7 @@ export class SettingsController extends Controller {
                     };
 
                     user.setAttributes(data);
-                    router.go(`/profile/${user.id}`);
+                    router.go(getProfilePath(user.id));
                 });
         } else {
             eventBus.emit(NO_SET_UP);
