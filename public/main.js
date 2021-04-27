@@ -12,6 +12,7 @@ import './static/scss/settings.scss';
 import './static/scss/registration.scss';
 import './static/scss/orderPage.scss';
 import './static/scss/notti.scss';
+import './static/scss/page404.scss';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';
@@ -45,7 +46,7 @@ import {
     MY_ORDERS,
     NOT_FOUND,
 } from './modules/utils/pageNames.js';
-import {NotFoundController} from '@/controllers/notFound.js';
+import {Page404Controller} from '@/controllers/page404Controller.js';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
@@ -71,7 +72,7 @@ const controllers = new Set([
     [VACANCY_PAGE, VacancyPageController],
     [SELECT_SPEC, SelectSpecController],
     [MY_ORDERS, OrdersController],
-    [NOT_FOUND, NotFoundController],
+    [NOT_FOUND, Page404Controller],
     // Здесь добавляем странички
 ]);
 

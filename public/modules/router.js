@@ -1,5 +1,6 @@
 import user from '../models/User.js';
 import utils from './utils/utils.js';
+import {getNotFoundPath} from '@/modules/utils/goPath.js';
 
 /** Роутер, который осуществляет переход между страницами приложения */
 class Router {
@@ -87,8 +88,8 @@ class Router {
             }
         }
 
-        if (!Controller && currentState.page !== '/404/' ) {
-            window.location.href = '/404/';
+        if (!Controller) {
+            this.go(getNotFoundPath);
             return;
         }
 
