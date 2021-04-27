@@ -11,3 +11,4 @@ export const VACANCY_CREATE_PAGE = /^\/vacancy-create$/;
 export const VACANCY_PAGE = /^\/vacancy\/\d+$/;
 export const SELECT_SPEC = /^\/add-spec$/;
 export const MY_ORDERS = /^\/profile\/\d+\/orders$/;
+export const VACANCIES_PAGE = /^\/vacancies$/;

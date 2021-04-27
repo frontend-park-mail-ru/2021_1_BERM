@@ -1,34 +1,35 @@
 import {View} from './view.js';
 import eventBus from '../modules/eventBus.js';
 import {
-    SEND_SERVICES,
-    ORDERS_RENDER,
-    GO_TO_ORDER,
+    SEND_SERVICES_VACANCIES,
+    VACANCIES_RENDER,
+    GO_TO_VACANCY,
 } from '@/modules/utils/actions';
-import ordersTemplate from '@/components/pages/orders.pug';
+import ordersTemplate from '@/components/pages/vacancies.pug';
 
-export class OrdersView extends View {
+export class VacanciesView extends View {
     render(isAuthorized, isExecutor) {
         super.setListeners([
-            [ORDERS_RENDER, this._renderData],
+            [VACANCIES_RENDER, this._renderDataVacancies],
         ]);
-        eventBus.emit(SEND_SERVICES);
+        eventBus.emit(SEND_SERVICES_VACANCIES);
     }
 
-    _renderData(dataMap) {
+    _renderDataVacancies(dataMap) {
         const map = [];
         for (const item of dataMap.map.values()) {
             map.push(item);
         }
+        console.log(map);
 
         super.renderHtml(
             dataMap.isAuthorized,
             dataMap.isExecutor,
             'Все заказы',
             ordersTemplate({
-                orders: map,
+                vacancies: map,
                 isI: dataMap.isI,
-                isMyOrders: dataMap.isMyOrders,
+                isMyVacancies: dataMap.isMyVacancies,
             }),
         );
 
@@ -37,14 +38,14 @@ export class OrdersView extends View {
         allRef.forEach((ref) => {
             ref.addEventListener('click', (e) => {
                 e.preventDefault();
-                eventBus.emit(GO_TO_ORDER, ref.getAttribute('name'));
+                eventBus.emit(GO_TO_VACANCY, ref.getAttribute('name'));
             });
         });
 
         const allTit = document.querySelectorAll('.orders__order_title');
         allTit.forEach((tit) => {
             tit.addEventListener('click', (e) => {
-                eventBus.emit(GO_TO_ORDER, tit.getAttribute('name'));
+                eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));
             });
         });
     }

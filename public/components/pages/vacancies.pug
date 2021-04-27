@@ -1,0 +1,27 @@
+include ../vacancies/vacancyInVacanciesPage
+
+.orders
+    if isMyVacancies === true
+        if isI === true
+            div(class='orders__title') Мои заказы
+        else
+            div(class='orders__title') Заказы пользователя
+    else
+        div(class='orders__title') Актуальные вакансии
+    div(class='orders__content')
+        div(class='orders__list')
+            each vacancy in vacancies
+                +vacancyInVacanciesPage(vacancy.avatar?vacancy.avatar:require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id)
+            if vacancies.length !== 0
+                //button.show-more-button Показать еще
+            else
+                div(class="orderPage__no-comments") Заказов пока нет
+        form.filters
+            div(class='filters__title') Фильтры
+            div(class='filters__budget')
+                div(class='filters__budget_title') Бюджет
+                div(class='filters__form')
+                    input(type='text' placeholder='От' class='filters__form_input')
+                    input(type='text' placeholder='До' class='filters__form_input')
+            button(class='filters__submit')
+                | Применить

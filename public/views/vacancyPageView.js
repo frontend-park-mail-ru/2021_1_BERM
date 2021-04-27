@@ -10,6 +10,7 @@ export class VacancyPageView extends View {
     render(isAuthorized, isExecutor) {
         this.isAuthorized = isAuthorized;
         this.isExecutor = isExecutor;
+        this.isCreated = true;
 
         super.setListeners([
             [VACANCY_PAGE_RENDER, this._vacancyPageRender.bind(this)],

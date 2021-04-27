@@ -19,7 +19,6 @@ export const ORDER_PAGE_RES = 'order-page_res';
 export const GO_TO_ORDER = 'go-to-order';
 export const SEND_SERVICES = 'services';
 export const SEND_RESULT_RENDER = 'send-result-render';
-export const ORDERS_RENDER = 'orders-render';
 export const ORDER_SET_RATE = 'order-set-rate';
 export const ORDER_GET_RATE = 'order-get-rate';
 export const ORDER_DELETE_RATE = 'order-delete-rate';
@@ -39,6 +38,9 @@ export const SELECT_SPEC_SELECTED = 'select_spec_selected';
 export const SELECT_SPEC_SET = 'select_spec_set';
 export const PROFILE_DELETE_SPEC = 'profile_delete_spec';
 export const PROFILE_DELETE_SPEC_GET = 'profile_delete_spec_get';
+export const GO_TO_VACANCY = 'go-to-vacancy';
+export const SEND_SERVICES_VACANCIES = 'services-vacancies';
+export const SEND_RESULT_RENDER_VACANCIES = 'send-result-render-vacancies';
 
 // Views actions
 export const NO_REG_CLIENT = 'no-registration-client';
@@ -56,4 +58,6 @@ export const VACANCY_PAGE_RENDER = 'vacancy_page_render';
 export const NOT_SET_CATEGORY = 'not_set_category';
 export const ORDER_ERROR_SET = 'order-error-set';
 export const ORDER_ERROR_DELETE_EX = 'order-error-delete-ex';
+export const ORDERS_RENDER = 'orders-render';
+export const VACANCIES_RENDER = 'vacancies-render';
 

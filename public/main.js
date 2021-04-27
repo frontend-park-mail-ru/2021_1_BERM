@@ -45,6 +45,7 @@ import {OrderPageController} from './controllers/orderPageController.js';
 import {OrdersController} from './controllers/ordersContoller.js';
 import {VacancyPageController} from './controllers/vacancyPageController.js';
 import {SelectSpecController} from './controllers/selectSpecController.js';
+import {VacanciesController} from '@/controllers/vacanciesController';
 import {
     CLIENT_REG_PAGE,
     LOGIN_PAGE,
@@ -59,6 +60,7 @@ import {
     VACANCY_PAGE,
     SELECT_SPEC,
     MY_ORDERS,
+    VACANCIES_PAGE,
 } from './modules/utils/pageNames.js';
 
 const controllers = new Set([
@@ -75,6 +77,7 @@ const controllers = new Set([
     [VACANCY_PAGE, VacancyPageController],
     [SELECT_SPEC, SelectSpecController],
     [MY_ORDERS, OrdersController],
+    [VACANCIES_PAGE, VacanciesController],
     // Здесь добавляем странички
 ]);
 
