@@ -1,6 +1,9 @@
-mixin rateCustomer(avatar, login, rate, date, isMy)
+mixin rateCustomer(avatar, login, rate, date, isMy, selectMe)
     div(class='orderPage__set-rate')
-        div(class='orderPage__set-rate_title-customer') Выбранный исполнитель
+        if !selectMe
+            div(class='orderPage__set-rate_title-customer') Выбранный исполнитель
+        else
+            div(class='orderPage__set-rate_title-customer') Вас выбрали
         div(class='orderPage__select-executor')
             div(class='orderPage__select-executor-avatar')
                 img(src=avatar alt='' class='orderPage__select-executor-avatar_img')
@@ -12,6 +15,6 @@ mixin rateCustomer(avatar, login, rate, date, isMy)
                 div(class='orderPage__select-executor_data-column')= rate
                 div(class='orderPage__select-executor_data-column')= date
         div(class='orderPage__set-rate_buttons')
-            if isMy
+            if isMy || selectMe
                 button(class='orderPage__set-rate_button') Связаться
                 button(class='orderPage__set-rate_button-exit') Отказаться

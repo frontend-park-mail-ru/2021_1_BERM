@@ -195,6 +195,13 @@ class Order {
 
         return select;
     }
+
+    /** Обнуляем заказы */
+    clear() {
+        this.currentOrderId = -1;
+        this.ordersMap = new Map([]);
+        this.getOrders = false;
+    }
 }
 
 export default new Order();

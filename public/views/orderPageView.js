@@ -91,6 +91,7 @@ export class OrderPageView extends View {
                     .querySelector('.orderPage__order_end');
 
                 endBtn.addEventListener('click', (() => {
+                    // Todo Добавить подтверждение действия
                     eventBus.emit(ORDER_PAGE_END);
                 }));
 
@@ -105,6 +106,7 @@ export class OrderPageView extends View {
                     .querySelector('.orderPage__order_delete');
 
                 deleteBtn.addEventListener('click', (() => {
+                    // Todo Добавить подтверждение действия
                     eventBus.emit(ORDER_PAGE_DELETE);
                 }));
 

@@ -67,11 +67,7 @@ export class OrderPageController extends Controller {
      * Определяем недостающие данные и делаем запрос
      */
     _orderPageGetRes() {
-        if (order.getOrderById(order.currentOrderId)) {
-            auth.getResponsesOrder(order.currentOrderId);
-        } else {
-            auth.getOrder(order.currentOrderId);
-        }
+        auth.getOrder(order.currentOrderId);
     }
 
     /**
@@ -152,6 +148,11 @@ export class OrderPageController extends Controller {
         if (creator.customerId !== user.id) {
             isMy = false;
         }
+
+        const select = order.getSelectResponse(
+            order.currentOrderId,
+            order.ordersMap.get(order.currentOrderId).selectExecutor);
+
         eventBus.emit(ORDER_PAGE_RENDER, {
             isMy: isMy,
             isAuthorized: user.isAuthorized,
@@ -169,9 +170,8 @@ export class OrderPageController extends Controller {
             },
             minResponse: order.findMin(order.currentOrderId),
             userRate: order.findRate(order.currentOrderId, user.id),
-            selectExecutor: order.getSelectResponse(
-                order.currentOrderId,
-                order.ordersMap.get(order.currentOrderId).selectExecutor),
+            selectExecutor: select,
+            selectMe: select ? select.creatorId === user.id : null,
         });
     }
 
@@ -264,6 +264,7 @@ export class OrderPageController extends Controller {
                         'Не удалось завершить заказ');
                     return;
                 }
+                // Todo Переход на страницу "Оставить отзыв"
                 router.go(getProfilePath(user.id));
             });
     }

@@ -62,16 +62,6 @@ export class OrdersController extends Controller {
      * Получаем информацию о заказе, если ее нет
      */
     _sendServices() {
-        if (order.getOrders) {
-            eventBus.emit(ORDERS_RENDER, {
-                isI: this.isI,
-                isMyOrders: !!this.isMyOrders,
-                isAuthorized: user.isAuthorized,
-                isExecutor: user.isExecutor,
-                map: order.ordersMap,
-            });
-            return;
-        }
         if (this.isMyOrders) {
             auth.getMyOrders(this.isMyOrders);
         } else {
@@ -87,7 +77,7 @@ export class OrdersController extends Controller {
     _sendResultsRender(res) {
         if (res.ok) {
             res.json().then((result) => {
-                order.getOrders = true;
+                order.clear();
                 order.setOrders(result);
 
                 eventBus.emit(ORDERS_RENDER, {
