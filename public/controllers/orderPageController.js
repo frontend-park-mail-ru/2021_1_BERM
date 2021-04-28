@@ -15,13 +15,15 @@ import {
     ORDER_CHANGE_RATE,
     ORDER_SET_EXECUTOR,
     ORDER_GET_EXECUTOR,
-    ORDER_ERROR_SET,
     ORDER_DELETE_EXECUTOR,
-    ORDER_GET_DELETE_EXECUTOR, ORDER_ERROR_DELETE_EX,
+    ORDER_GET_DELETE_EXECUTOR,
+    ORDER_PAGE_END,
+    ORDER_PAGE_DELETE,
+    ORDER_PAGE_ERROR,
 } from '@/modules/utils/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
-import {getNotFoundPath} from '@/modules/utils/goPath.js';
+import {getNotFoundPath, getProfilePath} from '@/modules/utils/goPath.js';
 
 /** Контроллер страницы заказа */
 export class OrderPageController extends Controller {
@@ -54,6 +56,9 @@ export class OrderPageController extends Controller {
                 [ORDER_GET_EXECUTOR, this._getExecutor.bind(this)],
                 [ORDER_DELETE_EXECUTOR, this._deleteExecutor.bind(this)],
                 [ORDER_GET_DELETE_EXECUTOR, this._getDeleteExecutor.bind(this)],
+
+                [ORDER_PAGE_END, this._endOrder.bind(this)],
+                [ORDER_PAGE_DELETE, this._deleteOrder.bind(this)],
             ],
             true);
     }
@@ -222,7 +227,7 @@ export class OrderPageController extends Controller {
                 .selectExecutor = this.selectExecutorId;
             this.go();
         } else {
-            eventBus.emit(ORDER_ERROR_SET);
+            eventBus.emit(ORDER_PAGE_ERROR, 'Не удалось выбрать исполнителя');
         }
     }
 
@@ -243,7 +248,38 @@ export class OrderPageController extends Controller {
             order.ordersMap.get(order.currentOrderId).selectExecutor = null;
             this.go();
         } else {
-            eventBus.emit(ORDER_ERROR_DELETE_EX);
+            eventBus.emit(ORDER_PAGE_ERROR,
+                'Не удалось отменить выбор исполнителя');
         }
+    }
+
+    /**
+     * Логика завершения заказа
+     */
+    _endOrder() {
+        auth.endOrder(order.currentOrderId)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(ORDER_PAGE_ERROR,
+                        'Не удалось завершить заказ');
+                    return;
+                }
+                router.go(getProfilePath(user.id));
+            });
+    }
+
+    /**
+     * Логика удаления заказа
+     */
+    _deleteOrder() {
+        auth.deleteOrder(order.currentOrderId)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(ORDER_PAGE_ERROR,
+                        'Не удалось удалить заказ');
+                    return;
+                }
+                router.go(getProfilePath(user.id));
+            });
     }
 }

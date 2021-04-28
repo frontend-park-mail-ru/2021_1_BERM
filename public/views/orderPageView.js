@@ -6,9 +6,10 @@ import {
     ORDER_DELETE_RATE,
     ORDER_CHANGE_RATE,
     ORDER_SET_EXECUTOR,
-    ORDER_ERROR_SET,
     ORDER_DELETE_EXECUTOR,
-    ORDER_ERROR_DELETE_EX,
+    ORDER_PAGE_END,
+    ORDER_PAGE_DELETE,
+    ORDER_PAGE_ERROR,
 } from '@/modules/utils/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/orderPage.pug';
@@ -26,8 +27,7 @@ export class OrderPageView extends View {
     render(isAuthorized, isExecutor) {
         super.setListeners([
             [ORDER_PAGE_RENDER, this._orderPageRender],
-            [ORDER_ERROR_SET, this._errorSet],
-            [ORDER_ERROR_DELETE_EX, this._errorDeleteEx],
+            [ORDER_PAGE_ERROR, this._error],
         ]);
 
         eventBus.emit(ORDER_PAGE_GET_RES);
@@ -91,7 +91,7 @@ export class OrderPageView extends View {
                     .querySelector('.orderPage__order_end');
 
                 endBtn.addEventListener('click', (() => {
-                    // ToDo: Запрос на завершение заказа
+                    eventBus.emit(ORDER_PAGE_END);
                 }));
 
                 const deleteButton = document
@@ -105,7 +105,7 @@ export class OrderPageView extends View {
                     .querySelector('.orderPage__order_delete');
 
                 deleteBtn.addEventListener('click', (() => {
-                    // ToDo: Запрос на удаление в контроллер.
+                    eventBus.emit(ORDER_PAGE_DELETE);
                 }));
 
                 const selectButtons = document
@@ -124,16 +124,11 @@ export class OrderPageView extends View {
     }
 
     /**
-     * Обработка в случае неудачной установке исполнителя
+     * Обработка ошибки
+     *
+     * @param {string} error - текст ошибки
      */
-    _errorSet() {
-        notification('Ошибка сервера. Исполнитель не выбран');
-    }
-
-    /**
-     * Обработка в случае неудачной отмене исполнителя
-     */
-    _errorDeleteEx() {
-        notification('Ошибка сервера. Исполнитель не отменен');
+    _error(error) {
+        notification(`Ошибка сервера. ${error}`);
     }
 }

@@ -281,4 +281,28 @@ export default class Auth {
                 eventBus.emit(ORDER_GET_DELETE_EXECUTOR, res);
             });
     }
+
+    /**
+     * Запрос на завершение заказа
+     *
+     * @param {number} id - уникальный номер заказа
+     *
+     * @return {Promise} - ответ от сервера
+     */
+    static endOrder(id) {
+        // ToDo Запрос на удаление заказа
+        return Promise.resolve({ok: false});
+    }
+
+    /**
+     * Запрос на удаление заказа
+     *
+     * @param {number} id - уникальный номер заказа
+     *
+     * @return {Promise} - ответ от сервера
+     */
+    static deleteOrder(id) {
+        // ToDo Запрос на удаление заказа
+        return Promise.resolve({ok: false});
+    }
 }
