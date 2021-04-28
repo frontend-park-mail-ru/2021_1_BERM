@@ -87,6 +87,13 @@ export class OrderPageView extends View {
             }
         } else {
             if (dataForRender.selectExecutor) {
+                const endBtn = document
+                    .querySelector('.orderPage__order_end');
+
+                endBtn.addEventListener('click', (() => {
+                    // ToDo: Запрос на завершение заказа
+                }));
+
                 const deleteButton = document
                     .querySelector('.orderPage__set-rate_button-exit');
 
@@ -94,6 +101,13 @@ export class OrderPageView extends View {
                     eventBus.emit(ORDER_DELETE_EXECUTOR);
                 });
             } else {
+                const deleteBtn = document
+                    .querySelector('.orderPage__order_delete');
+
+                deleteBtn.addEventListener('click', (() => {
+                    // ToDo: Запрос на удаление в контроллер.
+                }));
+
                 const selectButtons = document
                     .querySelectorAll('.orderPage__response_btn');
 

@@ -58,6 +58,32 @@
         width: 1030px;
         height: 270px;
 
+        &_up-box {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &_delete {
+            cursor: pointer;
+        }
+
+        &_end {
+            @include font(300, 18px, 22px, -0.4px, $black);
+
+            background: $white;
+            cursor: pointer;
+            border: 2px solid $primary_color;
+            box-sizing: border-box;
+            border-radius: 8px;
+
+            width: 150px;
+            height: 30px;
+        }
+
+        &_end:hover {
+            background: $neutral_color;
+        }
+
         &_img-bg {
             margin: 58px 0 58px 64px;
             cursor: pointer;
