@@ -87,12 +87,12 @@ export class VacancyPageController extends Controller {
 
     go() {
         const creator = vacancy.getVacancyById(vacancy.currentVacancyId);
+        console.log(creator.responses);
 
         let isMy = true;
         if (creator.customerId !== user.id) {
             isMy = false;
         }
-        console.log(vacancy.findRate(vacancy.currentVacancyId, user.id));
 
         eventBus.emit(VACANCY_PAGE_RENDER, {
             // isMy: isMy,

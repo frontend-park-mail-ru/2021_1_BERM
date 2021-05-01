@@ -5,47 +5,53 @@
   display: flex;
   flex-direction: column;
 
-  &__comments_title {
-    @include font(600, 22px, 30px, normal, $black);
+
+}
+
+.vacancyPage {
+
+  &__content {
+    //margin-top: 15px;
+    margin-left: 12px;
   }
 
-  &__response {
-    box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
-    border-radius: 8px;
-    @include form_dis_2($row, $left);
-
-    margin-top: 20px;
-    max-width: 1030px
-  }
-
-  &__response_img {
-    width: 130px;
-    height: 130px;
-    margin-bottom: 15px;
-  }
-
-  &__comment {
+  &__row {
     display: flex;
     flex-direction: row;
+    align-items: start;
+    //justify-content: space-between;
+    margin: 0 -32px;
+
+    @include font(normal, 18px, 22px, normal, $white);
+  }
+
+  &__supportImage {
     margin-top: 15px;
+    width: 24px;
+    height: 24px;
   }
 
-  &__comment-content {
-    display: flex;
-    flex-direction: column;
+  &__textArea {
+    //background-color: grey;
+    margin-top: 18px;
+    margin-left: 7px;
+    resize: none;
+    width: 797px;
+    height: 139px;
   }
 
-  &__comment-text {
-    @include font(normal, 15px, 22px, -0.4px, $black);
-
-    margin: 0 26px 8px 14px;
-    flex: 1 0 auto;
+  &__comments_title {
+    @include font(600, 22px, 30px, normal, $black);
+    margin-left: 15px;
+    //margin-right: ;
   }
 
   &__comment-buttons {
     display: flex;
-    margin-left: 14px;
+    margin-left: 29px;
     margin-bottom: 19px;
+    margin-top: 9px;
+    justify-content: space-between;
   }
 
   &__comment-button_select {
@@ -113,4 +119,37 @@
     text-align: center;
   }
 
+  &__response {
+    box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+    border-radius: 8px;
+    @include form_dis_2($row, $left);
+
+    margin-top: 20px;
+    max-width: 1030px;
+    margin-left: 20px;
+  }
+
+  &__response_img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 15px;
+  }
+
+  &__comment {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+  }
+
+  &__comment-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__comment-text {
+    @include font(normal, 15px, 22px, -0.4px, $black);
+
+    margin: 0 26px 8px 14px;
+    flex: 1 0 auto;
+  }
 }

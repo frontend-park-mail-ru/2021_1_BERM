@@ -28,6 +28,7 @@ import './static/scss/profile.scss';
 import './static/scss/settings.scss';
 import './static/scss/registration.scss';
 import './static/scss/orderPage.scss';
+import './static/scss/vacancy.scss';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';

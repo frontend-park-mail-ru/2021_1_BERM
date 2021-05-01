@@ -28,13 +28,11 @@ include ../responses/responseVacancyCustomer
     else
         div(class='orderPage__comments')
             div(class='vacancyPage__responses')
-                div(class='vacancyPage__comments_title')
-                    | Отклики
+                div()
+                    span(class='vacancyPage__comments_title') Отклики
                     each response in responses
                         -var flag = 1
-                        +responseVacancy(response.avatar, response.login, response.definition)
-                if flag
-                    button(class='vacancyPage__comments_others') Показать ещё
-                else
+                        +responseVacancy(response.avatar, response.login, response.text)
+                if !flag
                     div(class="orderPage__no-comments") Пока никто не оставил отклик
 

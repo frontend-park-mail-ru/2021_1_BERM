@@ -1465,3 +1465,160 @@ input[type="file"] {
     align-items: center;
     justify-content: space-between; }
 
+.vacancyPage__responses {
+  width: 1030px;
+  display: flex;
+  flex-direction: column; }
+
+.vacancyPage__content {
+  margin-left: 12px; }
+
+.vacancyPage__row {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  margin: 0 -32px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: normal;
+  color: #FFF; }
+
+.vacancyPage__supportImage {
+  margin-top: 15px;
+  width: 24px;
+  height: 24px; }
+
+.vacancyPage__textArea {
+  margin-top: 18px;
+  margin-left: 7px;
+  resize: none;
+  width: 797px;
+  height: 139px; }
+
+.vacancyPage__comments_title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: normal;
+  color: #000000;
+  margin-left: 15px; }
+
+.vacancyPage__comment-buttons {
+  display: flex;
+  margin-left: 29px;
+  margin-bottom: 19px;
+  margin-top: 9px;
+  justify-content: space-between; }
+
+.vacancyPage__comment-button_select {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.4px;
+  color: #FFF;
+  background-color: #345DEE;
+  border-radius: 8px;
+  margin-right: 42px;
+  width: 134px;
+  height: 29px;
+  text-align: center; }
+
+.vacancyPage__comment-button_info {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  color: #345DEE;
+  background-color: #FFF;
+  border-radius: 8px;
+  border: 2px solid #345DEE;
+  box-sizing: border-box;
+  margin-right: 42px;
+  width: 182px;
+  height: 28.33px;
+  text-align: center; }
+
+.vacancyPage__comment-button_reviews {
+  background: #FFF;
+  color: #345DEE;
+  border: 2px solid #345DEE;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 182px;
+  height: 28.33px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.4px;
+  margin-right: 42px; }
+
+.vacancyPage__comment-button_cancel {
+  background-color: #EE3465;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.4px;
+  color: #FFF;
+  width: 134px;
+  height: 29px;
+  text-align: center; }
+
+.vacancyPage__comments_others {
+  background-color: #FFF;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.4px;
+  color: #18214D;
+  margin-top: 20px;
+  height: 50px;
+  border: 2px solid #DFE4EA;
+  box-sizing: border-box;
+  max-width: 500px;
+  text-align: center; }
+
+.vacancyPage__response {
+  box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-top: 20px;
+  max-width: 1030px;
+  margin-left: 20px; }
+
+.vacancyPage__response_img {
+  width: 130px;
+  height: 130px;
+  margin-bottom: 15px; }
+
+.vacancyPage__comment {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px; }
+
+.vacancyPage__comment-content {
+  display: flex;
+  flex-direction: column; }
+
+.vacancyPage__comment-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -0.4px;
+  color: #000000;
+  margin: 0 26px 8px 14px;
+  flex: 1 0 auto; }
+

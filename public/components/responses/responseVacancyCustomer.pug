@@ -1,16 +1,16 @@
-mixin responseVacancy(avatar, login, definition)
+mixin responseVacancy(avatar, login, text)
     div(class='orderPage__responses_scroll')
-        div(class='vacancyPage__response')
+        div(class='vacancyPage__response vacancyPage__row')
             div(class='orderPage__response_img-bg')
                 img(class='vacancyPage__response_img' src=avatar?avatar:require('@/static/img/profileAvatar.svg').default alt='')
                 div(class='orderPage__response_name')= login
-            div(class='vacancyPage__comment')
-                div(class='vacancyPage__comment-icon')
-                    img(src=require('@/static/img/support.svg').default alt='')
-                div(class='vacancyPage__comment-content')
-                    div(class='vacancyPage__comment-text')= definition
-                    div(class='vacancyPage__comment-buttons')
-                        button(class='vacancyPage__comment-button_select') Выбрать
-                        button(class='vacancyPage__comment-button_info') Информация об исполнителе
-                        button(class='vacancyPage__comment-button_reviews') Отзывы об исполнителе
-                        button(class='vacancyPage__comment-button_cancel') Отказать
+            div(class='vacancyPage__content')
+                div(class='')
+                    img(src=require('@/static/img/support.svg').default alt='' class="vacancyPage__supportImage")
+                    textarea(class="vacancyPage__textArea" readonly)=text
+                    //div(class='vacancyPage__comment-content')
+                div(class='vacancyPage__comment-buttons')
+                    button(class='vacancyPage__comment-button_select') Выбрать
+                    button(class='vacancyPage__comment-button_info') Информация об исполнителе
+                    button(class='vacancyPage__comment-button_reviews') Отзывы об исполнителе
+                    button(class='vacancyPage__comment-button_cancel') Отказать

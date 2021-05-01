@@ -10,7 +10,10 @@ import {
     VACANCY_SET_EXECUTOR,
     VACANCY_ERROR_SET,
     VACANCY_DELETE_EXECUTOR,
-    VACANCY_ERROR_DELETE_EX, ORDER_DELETE_RATE, ORDER_CHANGE_RATE,
+    VACANCY_ERROR_DELETE_EX,
+    ORDER_DELETE_RATE,
+    ORDER_CHANGE_RATE,
+    ORDER_DELETE_EXECUTOR, ORDER_SET_EXECUTOR,
 
 } from '../modules/utils/actions.js';
 
@@ -68,6 +71,30 @@ export class VacancyPageView extends View {
 
                     eventBus.emit(VACANCY_CHANGE_RATE, data);
                 });
+                return;
+            }
+
+            if (!info.isExecutor) {
+                if (info.selectExecutor) {
+                    const deleteButton = document
+                        .querySelector('.orderPage__set-rate_button-exit');
+
+                    deleteButton.addEventListener('click', () => {
+                        eventBus.emit(ORDER_DELETE_EXECUTOR);
+                    });
+                } else {
+                    const selectButtons = document
+                        .querySelectorAll('.orderPage__response_btn');
+
+                    selectButtons.forEach((item) => {
+                        item.addEventListener('click', (event) => {
+                            const id = event.target.getAttribute('data-id');
+                            debugger;
+
+                            eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
+                        });
+                    });
+                }
             }
         }
     }
