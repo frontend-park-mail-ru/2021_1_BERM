@@ -45,8 +45,44 @@ class Vacancy {
             avatar: item.user_img,
             login: item.user_login,
             rate: item.rate,
-            date: this.getDate(item.time),
+            text: item.text,
+            // date: this.getDate(item.time),
         };
+    }
+
+    push(id, item) {
+        this.vacancysMap.get(id).responses.push(this.pushResponse(id, item));
+    }
+
+    findRate(id, creatorId) {
+        let rate = 0;
+        this.vacancysMap.get(id).responses.forEach((item) => {
+            if (item.creatorId === creatorId) {
+                rate = item.rate;
+            }
+        });
+        return rate;
+    }
+
+    findTextRate(id, creatorId) {
+        let text = '';
+        this.vacancysMap.get(id).responses.forEach((item) => {
+            if (item.creatorId === creatorId) {
+                text = item.text;
+            }
+        });
+        return text;
+    }
+
+    deleteResponse(id, creatorId) {
+        let pos;
+        this.vacancysMap.get(id).responses.forEach((item, index) => {
+            if (item.creatorId === creatorId) {
+                pos = index;
+            }
+        });
+
+        this.vacancysMap.get(id).responses.splice(pos, 1);
     }
 }
 

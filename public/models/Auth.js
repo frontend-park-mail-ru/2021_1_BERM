@@ -20,6 +20,7 @@ import {
     ORDER_GET_EXECUTOR,
     ORDER_GET_DELETE_EXECUTOR,
     SEND_RESULT_RENDER_VACANCIES,
+    VACANCY_GET_RATE,
 } from '../modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -180,6 +181,25 @@ export default class Auth {
             });
     }
 
+    static vacancySetResponse(data, id) {
+        sendRequest('POST', `/vacancy/${id}/response`, data)
+            .then((res) => {
+                console.log(res);
+                eventBus.emit(VACANCY_GET_RATE, res);
+            });
+    }
+
+    static vacancyDeleteRate(id) {
+        return sendRequest('DELETE', `/vacancy/${id}/response`);
+    }
+
+    static vacancyChangeResponse(data, id) {
+        sendRequest('PUT', `/vacancy/${id}/response`, data)
+            .then((res) => {
+                eventBus.emit(VACANCY_GET_RATE, res);
+            });
+    }
+
     static setSpec(id, data) {
         sendRequest('POST', `/profile/${id}/specialize`, data)
             .then((res) => {
@@ -209,8 +229,9 @@ export default class Auth {
     }
 
     static getVacancies() {
-        sendRequest('GET', '/vacancies')
+        sendRequest('GET', '/vacancy')
             .then((res) => {
+                console.log(res);
                 eventBus.emit(SEND_RESULT_RENDER_VACANCIES, res);
             });
     }

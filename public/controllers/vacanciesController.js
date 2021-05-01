@@ -23,7 +23,7 @@ export class VacanciesController extends Controller {
     constructor() {
         super();
         this.view = new VacanciesView();
-        this.getOrders = false;
+        this.getVacancies = false;
     }
 
     run(id) {
@@ -52,40 +52,42 @@ export class VacanciesController extends Controller {
 
     _sendServices() {
         const tempMap = new Map;
-        tempMap.set(0, {
-            id: 0, //
-            avatar: '', //
-            login: 'bob', //
-            name: 'bob2', //
-            category: 'frontend', //
-            definition: 'sdsd', //
-            salary: 100, //
-        });
-        if (this.getOrders) {
+        // tempMap.set(0, {
+        //     id: 0, //
+        //     avatar: '', //
+        //     login: 'bob', //
+        //     name: 'bob2', //
+        //     category: 'frontend', //
+        //     definition: 'sdsd', //
+        //     salary: 100, //
+        // });
+        if (this.getVacancies) {
             eventBus.emit(VACANCIES_RENDER, {
                 isI: this.isI,
                 isMyOrders: !!this.isMyOrders,
                 isAuthorized: user.isAuthorized,
                 isExecutor: user.isExecutor,
-                map: vacancy.ordersMap,
+                map: vacancy.vacancysMap,
             });
             return;
         }
         if (this.isMyVacancies) {
-            auth.getMyOrders(this.isMyVacancies);
+           // auth.getVacancies(this.isMyVacancies);
         } else {
-            // auth.getVacancies();
+            auth.getVacancies();
+
             eventBus.emit(VACANCIES_RENDER, {
                 isI: this.isI,
                 isMyVacancies: !!this.isMyVacancies,
                 isAuthorized: user.isAuthorized,
                 isExecutor: user.isExecutor,
-                map: tempMap,
+                map: vacancy.vacancysMap,
             });
         }
     }
 
     _sendResultsRender(result) {
+        debugger;
         if (result.ok) {
             result.json().then((result) => {
                 vacancy.setVacancys(result);

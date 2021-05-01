@@ -2,8 +2,16 @@ import {View} from './view.js';
 import eventBus from '../modules/eventBus.js';
 import vacancyPageTemplate from '@/components/pages/vacancyPage.pug';
 import {
-    VACANCY_PAGE_GET_RES,
     VACANCY_PAGE_RENDER,
+    VACANCY_PAGE_GET_RES,
+    VACANCY_SET_RATE,
+    VACANCY_DELETE_RATE,
+    VACANCY_CHANGE_RATE,
+    VACANCY_SET_EXECUTOR,
+    VACANCY_ERROR_SET,
+    VACANCY_DELETE_EXECUTOR,
+    VACANCY_ERROR_DELETE_EX, ORDER_DELETE_RATE, ORDER_CHANGE_RATE,
+
 } from '../modules/utils/actions.js';
 
 export class VacancyPageView extends View {
@@ -20,11 +28,47 @@ export class VacancyPageView extends View {
     }
 
     _vacancyPageRender(info) {
+        console.log(info);
         super.renderHtml(
             this.isAuthorized,
             this.isExecutor,
             'Страница вакансии',
             vacancyPageTemplate(info),
         );
+
+        const form = document.getElementById('Vacancy_form');
+        if (info.isExecutor) {
+            if (info.userRate === 0) {
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    console.log("PROVEKRA  ", event.target.rate.value);
+                    const data = {
+                        text: event.target.rate.value,
+                    };
+                    console.log(data.text);
+
+                    eventBus.emit(VACANCY_SET_RATE, data);
+                });
+            } else {
+                const deleteButton = document
+                    .querySelector('.vacancy-executor__button_delete');
+
+                deleteButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    console.log('hui');
+                    debugger;
+                    eventBus.emit(VACANCY_DELETE_RATE);
+                });
+
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const data = {
+                        text: event.target.rate.value,
+                    };
+
+                    eventBus.emit(VACANCY_CHANGE_RATE, data);
+                });
+            }
+        }
     }
 }

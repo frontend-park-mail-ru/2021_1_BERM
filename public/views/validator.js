@@ -107,26 +107,26 @@ export class Validator {
                             dataField[prop] = item.value;
                             const error = handler.getError(dataField, prop);
 
-                            if (error.length !== 0 &&
+                            if (error.length &&
                                 prop === 'passwordRepeat') {
                                 reflector.show(reflector.invalid, prop,
                                     error, '', reflector.pasRep);
                                 return;
                             }
 
-                            if (error.length === 0 &&
+                            if (!error.length &&
                                 prop === 'passwordRepeat') {
                                 reflector.show(reflector.valid, prop,
                                     '', '', reflector.pasRep);
                                 return;
                             }
 
-                            if (error.length !== 0) {
+                            if (error.length) {
                                 reflector.show(reflector.invalid, prop,
                                     error, '', '');
                                 return;
                             }
-                            if (error.length === 0) {
+                            if (!error.length) {
                                 reflector.show(reflector.valid, prop,
                                     '', '', '');
                             }
@@ -135,11 +135,11 @@ export class Validator {
                         dataField[property] = formElement.value;
 
                         const error = handler.getError(dataField, property);
-                        if (error.length !== 0) {
+                        if (error.length) {
                             reflector.clear(reflector.valid, element);
                             reflector.show(reflector.invalid, property, error,
                                 '', '');
-                        } else if (error.length === 0) {
+                        } else if (!error.length) {
                             reflector.clear(reflector.invalid, element);
                             reflector.show(reflector.valid, property, '',
                                 '', '');
@@ -169,15 +169,13 @@ export class Validator {
                                 reflector.show(reflector.invalid, prop,
                                     error, reflector.click, '');
                                 if (prop === 'passwordRepeat') {
-                                    // eslint-disable-next-line max-len
-                                    reflector.clear(reflector.helper, this.passwords[0]);
+                                    reflector.clear(reflector.helper,
+                                        this.passwords[0]);
                                     return;
                                 }
 
                                 reflector.clear(reflector.helper, item);
 
-
-                                // return;
                             }
                         });
                     } else {

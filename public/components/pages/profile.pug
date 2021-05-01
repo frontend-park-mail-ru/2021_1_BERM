@@ -40,6 +40,7 @@ mixin specialize(specName, isMyProfile)
                                 img(src=require('@/static/img/carousel.svg').default style="cursor:pointer;" alt='')
                             if isMyProfile
                                 div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
+                                div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/vacancy`) Мои вакансии
                             else
                                 div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
                             //: #{ordersCount}

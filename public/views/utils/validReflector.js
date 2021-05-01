@@ -1,3 +1,4 @@
+import options from '@/modules/utils/validOptions';
 /** Класс, отвечающий за отображение валидации на странице */
 export class ValidReflector {
     /**
@@ -16,19 +17,21 @@ export class ValidReflector {
         this.click = 'click';
 
         this.pasRepValid = false;
+        this.textAr = document.getElementById('textAr');
 
         this._setUp();
     }
 
     _setUp() {
         const pasArrow = document.getElementById('arrow__password');
-        const textAr = document.getElementById('textAr');
+
         if (pasArrow) {
             pasArrow.style.transform = 'translateX(0)';
         }
 
-        if (textAr) {
-            textAr.style.transform = 'translateY(-275px)';
+        if (this.textAr) {
+            this.textAr.style.transform = 'translateY(-275px)';
+            this.textAr.childNodes[1].style.transform = 'translateX(-135px)';
         }
     }
 
@@ -46,12 +49,16 @@ export class ValidReflector {
             .querySelector('[name=' + property + ']').parentNode;
         const errorBox = formElement.nextElementSibling.childNodes[1];
         const errorMes = formElement.nextElementSibling.firstChild;
-        if (type === this.valid && property === 'passwordRepeat') {
+        if (type === this.valid && property === options.passwordRepeat) {
             this.pasRepValid = true;
         }
 
-        if (type === this.invalid && property === 'passwordRepeat') {
+        if (type === this.invalid && property === options.passwordRepeat) {
             this.pasRepValid = false;
+        }
+
+        if ((property === options.about || property === options.des) && error) {
+            this.textAr.style.transform = 'translateY(-290px)';
         }
 
         if (type) {

@@ -15,11 +15,11 @@ include ../responses/responseVacancyCustomer
                     img(class='orderPage__order_stat-img' src=require('@/static/img/card.svg').default)
                     div(class='orderPage__order_stat-data')= creator.salary
     if isExecutor
-        form.custom-form
+        form.custom-form(id="Vacancy_form")
             div(class='orderPage__comments')
-                textarea(class='vacancy-executor' placeholder='Ваш отклик')
+                textarea(class='vacancy-executor' placeholder='Ваш отклик' name='rate')= userText
             div(class="vacancy-executor__row")
-                if isCreated
+                if userRate === 0
                     button(class='vacancy-executor__button_change') Создать
 
                 else
