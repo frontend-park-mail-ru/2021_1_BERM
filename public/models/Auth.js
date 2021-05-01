@@ -291,7 +291,7 @@ export default class Auth {
      */
     static endOrder(id) {
         // ToDo Запрос на удаление заказа
-        return Promise.resolve({ok: false});
+        return Promise.resolve({ok: true});
     }
 
     /**
@@ -304,5 +304,17 @@ export default class Auth {
     static deleteOrder(id) {
         // ToDo Запрос на удаление заказа
         return Promise.resolve({ok: false});
+    }
+
+    static sendFeedback(data) {
+        // ToDo Запрос на сохранение фидбека
+
+        return Promise.resolve({ok: false});
+    }
+
+    static getArchiveOrders(id) {
+        // ToDo Запрос на архив заказов
+
+        eventBus.emit(SEND_RESULT_RENDER, {ok: false});
     }
 }

@@ -10,9 +10,12 @@ import {
     ORDER_PAGE_END,
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
+    ORDER_PAGE_FEEDBACK,
+    ORDER_PAGE_SEND_FEEDBACK,
 } from '@/modules/utils/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/orderPage.pug';
+import feedback from '@/components/pages/feedback.pug';
 import {Validator} from './validator';
 import {notification} from '@/components/notification/notification.js';
 
@@ -26,8 +29,9 @@ export class OrderPageView extends View {
      */
     render(isAuthorized, isExecutor) {
         super.setListeners([
-            [ORDER_PAGE_RENDER, this._orderPageRender],
-            [ORDER_PAGE_ERROR, this._error],
+            [ORDER_PAGE_RENDER, this._orderPageRender.bind(this)],
+            [ORDER_PAGE_ERROR, this._error.bind(this)],
+            [ORDER_PAGE_FEEDBACK, this._feedback.bind(this)],
         ]);
 
         eventBus.emit(ORDER_PAGE_GET_RES);
@@ -56,74 +60,76 @@ export class OrderPageView extends View {
 
             const form = document
                 .getElementsByClassName('orderPage__set-rate_form')[0];
-            if (dataForRender.isExecutor) {
-                if (dataForRender.userRate === 0) {
-                    form.addEventListener('submit', (event) => {
-                        event.preventDefault();
-                        const data = {
-                            rate: Number(event.target.rate.value),
-                        };
+            if (dataForRender.userRate === 0) {
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const data = {
+                        rate: Number(event.target.rate.value),
+                    };
 
-                        eventBus.emit(ORDER_SET_RATE, data);
-                    });
-                } else {
-                    const deleteButton = document
-                        .querySelector('.orderPage__set-rate_button-del');
-
-                    deleteButton.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        eventBus.emit(ORDER_DELETE_RATE);
-                    });
-
-                    form.addEventListener('submit', (event) => {
-                        event.preventDefault();
-                        const data = {
-                            rate: Number(event.target.rate.value),
-                        };
-
-                        eventBus.emit(ORDER_CHANGE_RATE, data);
-                    });
-                }
-            }
-        } else {
-            if (dataForRender.selectExecutor) {
-                const endBtn = document
-                    .querySelector('.orderPage__order_end');
-
-                endBtn.addEventListener('click', (() => {
-                    // Todo Добавить подтверждение действия
-                    eventBus.emit(ORDER_PAGE_END);
-                }));
-
-                const deleteButton = document
-                    .querySelector('.orderPage__set-rate_button-exit');
-
-                deleteButton.addEventListener('click', () => {
-                    eventBus.emit(ORDER_DELETE_EXECUTOR);
+                    eventBus.emit(ORDER_SET_RATE, data);
                 });
             } else {
-                const deleteBtn = document
-                    .querySelector('.orderPage__order_delete');
+                const deleteButton = document
+                    .querySelector('.orderPage__set-rate_button-del');
 
-                deleteBtn.addEventListener('click', (() => {
-                    // Todo Добавить подтверждение действия
-                    eventBus.emit(ORDER_PAGE_DELETE);
-                }));
+                deleteButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    eventBus.emit(ORDER_DELETE_RATE);
+                });
 
-                const selectButtons = document
-                    .querySelectorAll('.orderPage__response_btn');
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const data = {
+                        rate: Number(event.target.rate.value),
+                    };
 
-                selectButtons.forEach((item) => {
-                    item.addEventListener('click', (event) => {
-                        const id = event.target.getAttribute('data-id');
-                        debugger;
-
-                        eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
-                    });
+                    eventBus.emit(ORDER_CHANGE_RATE, data);
                 });
             }
+            return;
+        }
+
+
+        if (dataForRender.selectExecutor) {
+            const endBtn = document
+                .querySelector('.orderPage__order_end');
+
+            endBtn.addEventListener('click', (() => {
+                console.log('asdasd');
+                // Todo Добавить подтверждение действия
+                eventBus.emit(ORDER_PAGE_END);
+            }));
+
+            const deleteButton = document
+                .querySelector('.orderPage__set-rate_button-exit');
+
+            deleteButton.addEventListener('click', () => {
+                eventBus.emit(ORDER_DELETE_EXECUTOR);
+            });
+        } else {
+            const deleteBtn = document
+                .querySelector('.orderPage__order_delete');
+
+            deleteBtn.addEventListener('click', (() => {
+                // Todo Добавить подтверждение действия
+                eventBus.emit(ORDER_PAGE_DELETE);
+            }));
+
+            const selectButtons = document
+                .querySelectorAll('.orderPage__response_btn');
+
+            selectButtons.forEach((item) => {
+                item.addEventListener('click', (event) => {
+                    const id = event.target.getAttribute('data-id');
+                    debugger;
+
+                    eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
+                });
+            });
         }
     }
+
 
     /**
      * Обработка ошибки
@@ -132,5 +138,45 @@ export class OrderPageView extends View {
      */
     _error(error) {
         notification(`Ошибка сервера. ${error}`);
+    }
+
+    /**
+     * Всплывающее окно отзыва
+     */
+    _feedback() {
+        const body = document.getElementsByTagName('body')[0];
+        body.classList.add('scroll_hidden');
+
+        const root = document.getElementById('root');
+        root.insertAdjacentHTML('beforeend', feedback());
+
+        // ToDo Не знаю, нужно это или нет
+        // const bg = document.querySelector('.orderPage__feedback_bg');
+        // bg.addEventListener('click', (event) => {
+        //     bg.remove();
+        // });
+        //
+        // const window = document.querySelector('.orderPage__feedback_window');
+        // window.addEventListener('click', (event) => {
+        //     event.stopPropagation();
+        // });
+
+        const skip = document.querySelector('.orderPage__feedback_skip');
+        skip.addEventListener('click', () => {
+            body.classList.remove('scroll_hidden');
+            eventBus.emit(ORDER_PAGE_SEND_FEEDBACK, {skip: true});
+        });
+
+        const form = document.getElementById('specForm');
+        form.addEventListener('submit', (event) => {
+            body.classList.remove('scroll_hidden');
+            event.preventDefault();
+            const data = {
+                rating: event.target.rating.value,
+                comment: event.target.description.value,
+            };
+
+            eventBus.emit(ORDER_PAGE_SEND_FEEDBACK, data);
+        });
     }
 }

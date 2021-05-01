@@ -4,8 +4,10 @@ import {
     SEND_SERVICES,
     ORDERS_RENDER,
     GO_TO_ORDER,
+    SERVER_ERROR,
 } from '@/modules/utils/actions';
 import ordersTemplate from '@/components/pages/orders.pug';
+import {notification} from '@/components/notification/notification';
 
 /** View страницы всех заказов */
 export class OrdersView extends View {
@@ -18,6 +20,7 @@ export class OrdersView extends View {
     render(isAuthorized, isExecutor) {
         super.setListeners([
             [ORDERS_RENDER, this._renderData],
+            [SERVER_ERROR, this._error],
         ]);
         eventBus.emit(SEND_SERVICES);
     }
@@ -41,6 +44,7 @@ export class OrdersView extends View {
                 orders: map,
                 isI: dataForRender.isI,
                 isMyOrders: dataForRender.isMyOrders,
+                isArchive: dataForRender.isArchive,
             }),
         );
 
@@ -59,5 +63,9 @@ export class OrdersView extends View {
                 eventBus.emit(GO_TO_ORDER, tit.getAttribute('name'));
             });
         });
+    }
+
+    _error(str) {
+        notification(`Ошибка сервера! ${str}`);
     }
 }

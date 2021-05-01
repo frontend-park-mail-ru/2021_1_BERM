@@ -23,6 +23,7 @@ export const SETTING_SEND_DATA = 'send-user-data';
 
 export const ORDER_PAGE_DELETE = 'order_page_delete';
 export const ORDER_PAGE_END = 'order_page_end';
+export const ORDER_PAGE_SEND_FEEDBACK = 'order_page_send_feedback';
 
 export const ORDER_PAGE_GET_RES = 'order-page_get-res';
 export const ORDER_PAGE_RES = 'order-page_res';
@@ -51,6 +52,8 @@ export const SELECT_SPEC_SET = 'select_spec_set';
 export const SERVER_ERROR = 'server_error';
 
 export const NO_REG = 'no-registration';
+
+export const ORDER_PAGE_FEEDBACK = 'order_page_feedback';
 
 export const NO_LOGIN = 'no-login';
 export const NO_ORDER = 'no-order';

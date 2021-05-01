@@ -42,7 +42,10 @@ mixin specialize(specName, isMyProfile)
                                 div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
                             else
                                 div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
-                            //: #{ordersCount}
+                    .reviews
+                        div
+                            img(src=require('@/static/img/document.svg').default style="cursor:pointer;" alt='')
+                        div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/archive`) Архив
                 div(class='top__item')
                     if isMyProfile
                         .settings-buttons

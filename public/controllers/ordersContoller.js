@@ -10,11 +10,12 @@ import {
     GO_TO_ORDER,
     SEND_SERVICES,
     SEND_RESULT_RENDER,
-    ORDERS_RENDER,
+    ORDERS_RENDER, SERVER_ERROR,
 } from '@/modules/utils/actions.js';
 
 import router from '@/modules/router.js';
 import {getNotFoundPath, getOrderPath} from '@/modules/utils/goPath.js';
+import {ARCHIVE} from '@/modules/utils/pageNames.js';
 
 /** Контроллер страницы заказов */
 export class OrdersController extends Controller {
@@ -33,6 +34,12 @@ export class OrdersController extends Controller {
      */
     run(id) {
         if (id) {
+            const path = '/' + window.location.pathname
+                .slice(1);
+
+            if (ARCHIVE.test(path)) {
+                this.isArchive = true;
+            }
             this.isMyOrders = Number(id);
             this.isI = this.isMyOrders === user.id;
         }
@@ -62,11 +69,17 @@ export class OrdersController extends Controller {
      * Получаем информацию о заказе, если ее нет
      */
     _sendServices() {
+        if (this.isArchive) {
+            auth.getArchiveOrders(this.isMyOrders);
+            return;
+        }
+
         if (this.isMyOrders) {
             auth.getMyOrders(this.isMyOrders);
-        } else {
-            auth.getOrders();
+            return;
         }
+
+        auth.getOrders();
     }
 
     /**
@@ -75,19 +88,31 @@ export class OrdersController extends Controller {
      * @param {Response} res - результат запроса
      */
     _sendResultsRender(res) {
-        if (res.ok) {
-            res.json().then((result) => {
-                order.clear();
-                order.setOrders(result);
-
-                eventBus.emit(ORDERS_RENDER, {
-                    isI: this.isI,
-                    isMyOrders: !!this.isMyOrders,
-                    isAuthorized: user.isAuthorized,
-                    isExecutor: user.isExecutor,
-                    map: order.ordersMap,
-                });
+        if (!res.ok) {
+            eventBus.emit(ORDERS_RENDER, {
+                isArchive: this.isArchive,
+                isI: this.isI,
+                isMyOrders: !!this.isMyOrders,
+                isAuthorized: user.isAuthorized,
+                isExecutor: user.isExecutor,
+                map: new Map([]),
             });
+            eventBus.emit(SERVER_ERROR, 'Не удалось получить заказы');
+            return;
         }
+
+        res.json().then((result) => {
+            order.clear();
+            order.setOrders(result);
+
+            eventBus.emit(ORDERS_RENDER, {
+                isArchive: this.isArchive,
+                isI: this.isI,
+                isMyOrders: !!this.isMyOrders,
+                isAuthorized: user.isAuthorized,
+                isExecutor: user.isExecutor,
+                map: order.ordersMap,
+            });
+        });
     }
 }

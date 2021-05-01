@@ -20,6 +20,7 @@ import {
     ORDER_PAGE_END,
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
+    ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK,
 } from '@/modules/utils/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
@@ -59,6 +60,7 @@ export class OrderPageController extends Controller {
 
                 [ORDER_PAGE_END, this._endOrder.bind(this)],
                 [ORDER_PAGE_DELETE, this._deleteOrder.bind(this)],
+                [ORDER_PAGE_SEND_FEEDBACK, this._sendFeedback.bind(this)],
             ],
             true);
     }
@@ -264,8 +266,8 @@ export class OrderPageController extends Controller {
                         'Не удалось завершить заказ');
                     return;
                 }
-                // Todo Переход на страницу "Оставить отзыв"
-                router.go(getProfilePath(user.id));
+                eventBus.emit(ORDER_PAGE_FEEDBACK);
+                // router.go(getProfilePath(user.id));
             });
     }
 
@@ -278,6 +280,28 @@ export class OrderPageController extends Controller {
                 if (!res.ok) {
                     eventBus.emit(ORDER_PAGE_ERROR,
                         'Не удалось удалить заказ');
+                    return;
+                }
+                router.go(getProfilePath(user.id));
+            });
+    }
+
+    /**
+     * Логика отзыва
+     *
+     * @param {Object} data - содержание отзыва
+     */
+    _sendFeedback(data) {
+        if (data.skip) {
+            router.go(getProfilePath(user.id));
+        }
+
+        // Todo Реализовать тут получить id кому и id от кого
+        auth.sendFeedback(data)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(ORDER_PAGE_ERROR,
+                        'Не удалось оставить отклик');
                     return;
                 }
                 router.go(getProfilePath(user.id));

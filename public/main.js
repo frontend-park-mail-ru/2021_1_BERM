@@ -45,6 +45,7 @@ import {
     SELECT_SPEC,
     MY_ORDERS,
     NOT_FOUND,
+    ARCHIVE,
 } from './modules/utils/pageNames.js';
 import {Page404Controller} from '@/controllers/page404Controller.js';
 
@@ -72,6 +73,7 @@ const controllers = new Set([
     [VACANCY_PAGE, VacancyPageController],
     [SELECT_SPEC, SelectSpecController],
     [MY_ORDERS, OrdersController],
+    [ARCHIVE, OrdersController],
     [NOT_FOUND, Page404Controller],
     // Здесь добавляем странички
 ]);
