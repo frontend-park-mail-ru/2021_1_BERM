@@ -96,7 +96,6 @@ export class OrderPageView extends View {
                 .querySelector('.orderPage__order_end');
 
             endBtn.addEventListener('click', (() => {
-                console.log('asdasd');
                 // Todo Добавить подтверждение действия
                 eventBus.emit(ORDER_PAGE_END);
             }));

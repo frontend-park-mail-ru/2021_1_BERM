@@ -51,7 +51,7 @@ export class ReviewsController extends Controller {
                     return;
                 }
 
-                // res.json((r) => {
+                // res.json((r) => { // Todo Раскомментить
                 eventBus.emit(REVIEWS_RENDER, {
                     name: 'Имя Пользователя',
                     login: 'Логин',

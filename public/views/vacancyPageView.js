@@ -11,8 +11,12 @@ import {
     VACANCY_SET_EXECUTOR,
     VACANCY_DELETE_EXECUTOR,
     GO_TO_USER,
-
+    VACANCY_PAGE_DELETE,
+    VACANCY_PAGE_END,
+    SERVER_ERROR, VACANCY_PAGE_FEEDBACK,
 } from '@/modules/utils/actions.js';
+import {notification} from '@/components/notification/notification';
+import feedback from '@/components/pages/feedback.pug';
 
 /** View страницы вакансии */
 
@@ -30,6 +34,8 @@ export class VacancyPageView extends View {
 
         super.setListeners([
             [VACANCY_PAGE_RENDER, this._vacancyPageRender.bind(this)],
+            [SERVER_ERROR, this._error.bind(this)],
+            [VACANCY_PAGE_FEEDBACK, this._feedback.bind(this)],
         ]);
 
         eventBus.emit(VACANCY_PAGE_GET_RES);
@@ -39,14 +45,14 @@ export class VacancyPageView extends View {
     /**
      * Отображение страницы
      *
-     * @param {Object} dataForRender
+     * @param {Object} info
      */
-    _vacancyPageRender(dataForRender) {
+    _vacancyPageRender(info) {
         super.renderHtml(
             this.isAuthorized,
             this.isExecutor,
             'Страница вакансии',
-            vacancyPageTemplate(dataForRender),
+            vacancyPageTemplate(info),
         );
 
         const form = document.getElementById('Vacancy_form');
@@ -101,7 +107,23 @@ export class VacancyPageView extends View {
                 deleteButton.addEventListener('click', () => {
                     eventBus.emit(VACANCY_DELETE_EXECUTOR);
                 });
+
+                const endBtn = document
+                    .querySelector('.orderPage__order_end');
+
+                endBtn.addEventListener('click', (() => {
+                    // Todo Добавить подтверждение действия
+                    eventBus.emit(VACANCY_PAGE_END);
+                }));
             } else {
+                const deleteBtn = document
+                    .querySelector('.orderPage__order_delete');
+
+                deleteBtn.addEventListener('click', (() => {
+                    // Todo Добавить подтверждение действия
+                    eventBus.emit(VACANCY_PAGE_DELETE);
+                }));
+
                 const selectButtons = document
                     .querySelectorAll(
                         '.vacancyPage__comment-button_select');
@@ -114,5 +136,54 @@ export class VacancyPageView extends View {
                 });
             }
         }
+    }
+
+    /**
+     * Обработка ошибки
+     *
+     * @param {string} error - текст ошибки
+     */
+    _error(error) {
+        notification(`Ошибка сервера. ${error}`);
+    }
+
+    /**
+     * Всплывающее окно отзыва
+     */
+    _feedback() {
+        const body = document.getElementsByTagName('body')[0];
+        body.classList.add('scroll_hidden');
+
+        const root = document.getElementById('root');
+        root.insertAdjacentHTML('beforeend', feedback());
+
+        // ToDo Не знаю, нужно это или нет
+        // const bg = document.querySelector('.orderPage__feedback_bg');
+        // bg.addEventListener('click', (event) => {
+        //     bg.remove();
+        // });
+        //
+        // const window = document.querySelector('.orderPage__feedback_window');
+        // window.addEventListener('click', (event) => {
+        //     event.stopPropagation();
+        // });
+
+        const skip = document.querySelector('.orderPage__feedback_skip');
+        skip.addEventListener('click', () => {
+            body.classList.remove('scroll_hidden');
+            eventBus.emit(VACANCY_PAGE_SEND_FEEDBACK, {skip: true});
+        });
+
+        const form = document.getElementById('specForm');
+        form.addEventListener('submit', (event) => {
+            body.classList.remove('scroll_hidden');
+            event.preventDefault();
+            const data = {
+                rating: event.target.rating.value,
+                comment: event.target.description.value,
+            };
+
+            eventBus.emit(VACANCY_PAGE_SEND_FEEDBACK, data);
+        });
     }
 }

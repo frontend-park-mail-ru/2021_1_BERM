@@ -324,6 +324,8 @@ export default class Auth {
                 console.log(res);
                 eventBus.emit(SEND_RESULT_RENDER_VACANCIES, res);
             });
+    }
+
     /**
      * Запрос на завершение заказа
      *
@@ -364,5 +366,29 @@ export default class Auth {
         // Todo Запрос на отзывы
 
         return Promise.resolve({ok: true});
+    }
+
+    /**
+     * Запрос на завершение вакансии
+     *
+     * @param {number} id - уникальный номер вакансии
+     *
+     * @return {Promise} - ответ от сервера
+     */
+    static endVacancy(id) {
+        // ToDo Запрос на удаление вакансии
+        return Promise.resolve({ok: true});
+    }
+
+    /**
+     * Запрос на удаление вакансии
+     *
+     * @param {number} id - уникальный номер вакансии
+     *
+     * @return {Promise} - ответ от сервера
+     */
+    static deleteVacancy(id) {
+        // ToDo Запрос на удаление вакансии
+        return Promise.resolve({ok: false});
     }
 }

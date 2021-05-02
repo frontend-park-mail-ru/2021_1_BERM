@@ -19,11 +19,17 @@ import {
     VACANCY_PAGE_RENDER,
     VACANCY_PAGE_RES,
     GO_TO_USER,
+    VACANCY_PAGE_END,
+    VACANCY_PAGE_DELETE,
+    VACANCY_PAGE_SEND_FEEDBACK,
+    SERVER_ERROR,
+    VACANCY_PAGE_FEEDBACK,
 } from '@/modules/utils/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
 
-import {getNotFoundPath} from '@/modules/utils/goPath.js';
+import {getNotFoundPath, getProfilePath} from '@/modules/utils/goPath.js';
+import order from '@/models/Order';
 
 export class VacancyPageController extends Controller {
     /**
@@ -59,6 +65,10 @@ export class VacancyPageController extends Controller {
                 [VACANCY_GET_DELETE_EXECUTOR,
                     this._vacancyGetDeleteExecutor.bind(this)],
                 [GO_TO_USER, this._goToUser.bind(this)],
+
+                [VACANCY_PAGE_END, this._endVacancy.bind(this)],
+                [VACANCY_PAGE_DELETE, this._deleteVacancy.bind(this)],
+                [VACANCY_PAGE_SEND_FEEDBACK, this._sendFeedback.bind(this)],
             ],
             true,
         );
@@ -220,5 +230,57 @@ export class VacancyPageController extends Controller {
         } else {
             // eventBus.emit(VACANCY_ERROR_DELETE_EX);
         }
+    }
+
+    /**
+     * Логика завершения вакансии
+     */
+    _endVacancy() {
+        auth.endVacancy(order.currentOrderId)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(SERVER_ERROR,
+                        'Не удалось завершить вакансию');
+                    return;
+                }
+                eventBus.emit(VACANCY_PAGE_FEEDBACK);
+            });
+    }
+
+    /**
+     * Логика удаления вакансии
+     */
+    _deleteVacancy() {
+        auth.deleteVacancy(order.currentOrderId)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(SERVER_ERROR,
+                        'Не удалось удалить вакансию');
+                    return;
+                }
+                router.go(getProfilePath(user.id));
+            });
+    }
+
+    /**
+     * Логика отзыва
+     *
+     * @param {Object} data - содержание отзыва
+     */
+    _sendFeedback(data) {
+        if (data.skip) {
+            router.go(getProfilePath(user.id));
+        }
+
+        // Todo Реализовать тут получить id кому и id от кого
+        auth.sendFeedback(data)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(SERVER_ERROR,
+                        'Не удалось оставить отклик');
+                    return;
+                }
+                router.go(getProfilePath(user.id));
+            });
     }
 }
