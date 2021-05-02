@@ -1,4 +1,6 @@
 import user from '../models/User.js';
+import utils from './utils/utils.js';
+import {getNotFoundPath} from '@/modules/utils/goPath.js';
 
 /** Роутер, который осуществляет переход между страницами приложения */
 class Router {
@@ -22,7 +24,8 @@ class Router {
     /**
      * Установка слушателей на событие перехода по различным событиям
      */
-    setUp() {
+    async setUp() {
+        await utils.checkAuthorized();
         // Навешиваем обработчик на клики
         const body = document.getElementsByTagName('body')[0];
         body.addEventListener('click', (event) => {
@@ -65,7 +68,11 @@ class Router {
     /**
      * Осуществление перехода на страницу
      */
-    start() {
+    async start() {
+        if (!this.set) {
+            this.set = true;
+            await this.setUp();
+        }
         let currentState = history.state;
 
         if (!currentState || !currentState.page) {
@@ -81,15 +88,15 @@ class Router {
             }
         }
 
-        if (!Controller && currentState.page !== '/404/' ) {
-            window.location.href = '/404/';
+        if (!Controller) {
+            this.go(getNotFoundPath);
             return;
         }
 
         const id = currentState.page.split('/')[2];
 
         if (this.currentController) {
-            this.currentController.offAll();
+            await this.currentController.offAll();
         }
 
         this.currentController = new Controller();

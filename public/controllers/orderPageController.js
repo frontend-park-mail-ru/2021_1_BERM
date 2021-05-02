@@ -1,9 +1,9 @@
 import {Controller} from './controller.js';
-import {OrderPageView} from '../views/orderPageView.js';
+import {OrderPageView} from '@/views/orderPageView';
 
-import auth from '../models/Auth.js';
-import order from '../models/Order.js';
-import user from '../models/User.js';
+import auth from '@/models/Auth.js';
+import order from '@/models/Order.js';
+import user from '@/models/User.js';
 import {
     ORDER_PAGE_GET_RES,
     ORDER_PAGE_RES,
@@ -15,18 +15,32 @@ import {
     ORDER_CHANGE_RATE,
     ORDER_SET_EXECUTOR,
     ORDER_GET_EXECUTOR,
-    ORDER_ERROR_SET,
     ORDER_DELETE_EXECUTOR,
-    ORDER_GET_DELETE_EXECUTOR, ORDER_ERROR_DELETE_EX,
-} from '../modules/utils/actions.js';
-import eventBus from '../modules/eventBus.js';
+    ORDER_GET_DELETE_EXECUTOR,
+    ORDER_PAGE_END,
+    ORDER_PAGE_DELETE,
+    ORDER_PAGE_ERROR,
+    ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK,
+} from '@/modules/utils/actions';
+import eventBus from '@/modules/eventBus.js';
+import router from '@/modules/router.js';
+import {getNotFoundPath, getProfilePath} from '@/modules/utils/goPath.js';
 
+/** Контроллер страницы заказа */
 export class OrderPageController extends Controller {
+    /**
+     * Конструктор
+     */
     constructor() {
         super();
         this.view = new OrderPageView();
     }
 
+    /**
+     * Запуск контроллера регистрации клиента
+     *
+     * @param {number} id - id из url, если он там был
+     */
     run(id) {
         order.currentOrderId = Number(id);
 
@@ -43,18 +57,26 @@ export class OrderPageController extends Controller {
                 [ORDER_GET_EXECUTOR, this._getExecutor.bind(this)],
                 [ORDER_DELETE_EXECUTOR, this._deleteExecutor.bind(this)],
                 [ORDER_GET_DELETE_EXECUTOR, this._getDeleteExecutor.bind(this)],
+
+                [ORDER_PAGE_END, this._endOrder.bind(this)],
+                [ORDER_PAGE_DELETE, this._deleteOrder.bind(this)],
+                [ORDER_PAGE_SEND_FEEDBACK, this._sendFeedback.bind(this)],
             ],
             true);
     }
 
+    /**
+     * Определяем недостающие данные и делаем запрос
+     */
     _orderPageGetRes() {
-        if (order.getOrderById(order.currentOrderId)) {
-            auth.getResponsesOrder(order.currentOrderId);
-        } else {
-            auth.getOrder(order.currentOrderId);
-        }
+        auth.getOrder(order.currentOrderId);
     }
 
+    /**
+     * Получаем данные заказа и делаем запрос на отклики
+     *
+     * @param {Response} res - результат запроса на заказ
+     */
     _orderGet(res) {
         if (res.ok) {
             res.json().then((res) => {
@@ -62,10 +84,15 @@ export class OrderPageController extends Controller {
                 auth.getResponsesOrder(order.currentOrderId);
             });
         } else {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
         }
     }
 
+    /**
+     * Получаем данные откликов
+     *
+     * @param {Response} res - результат запроса на заказ
+     */
     _orderPageSetResponses(res) {
         const go = this.go;
         if (res.ok) {
@@ -80,6 +107,11 @@ export class OrderPageController extends Controller {
         }
     }
 
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {number} rate - ставка заказа
+     */
     _orderSetRate({rate}) {
         const date = new Date();
         auth.setResponse({
@@ -89,6 +121,11 @@ export class OrderPageController extends Controller {
         }, order.currentOrderId);
     }
 
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {Response} res - результат запроса на установление ставки
+     */
     _orderGetRate(res) {
         const go = this.go;
         if (res.ok) {
@@ -103,6 +140,9 @@ export class OrderPageController extends Controller {
         }
     }
 
+    /**
+     * Отправляем данные view для отрисовки
+     */
     go() {
         const creator = order.getOrderById(order.currentOrderId);
 
@@ -110,6 +150,11 @@ export class OrderPageController extends Controller {
         if (creator.customerId !== user.id) {
             isMy = false;
         }
+
+        const select = order.getSelectResponse(
+            order.currentOrderId,
+            order.ordersMap.get(order.currentOrderId).selectExecutor);
+
         eventBus.emit(ORDER_PAGE_RENDER, {
             isMy: isMy,
             isAuthorized: user.isAuthorized,
@@ -127,12 +172,14 @@ export class OrderPageController extends Controller {
             },
             minResponse: order.findMin(order.currentOrderId),
             userRate: order.findRate(order.currentOrderId, user.id),
-            selectExecutor: order.getSelectResponse(
-                order.currentOrderId,
-                order.ordersMap.get(order.currentOrderId).selectExecutor),
+            selectExecutor: select,
+            selectMe: select ? select.creatorId === user.id : null,
         });
     }
 
+    /**
+     * Запрос на удаление ставки
+     */
     _orderDeleteRate() {
         order.deleteResponse(order.currentOrderId, user.id);
 
@@ -144,6 +191,11 @@ export class OrderPageController extends Controller {
         this.go();
     }
 
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {number} rate - ставка заказа
+     */
     _orderChangeRate({rate}) {
         order.deleteResponse(order.currentOrderId, user.id);
 
@@ -155,11 +207,21 @@ export class OrderPageController extends Controller {
         }, order.currentOrderId);
     }
 
+    /**
+     * Выбираем исполнителя.
+     *
+     * @param {number} id - ставка заказа
+     */
     _setExecutor(id) {
         this.selectExecutorId = id;
         auth.setOrderExecutor(order.currentOrderId, {executor_id: id});
     }
 
+    /**
+     * Получаем ответ на запрос о установке исполнителя
+     *
+     * @param {number} res - результат запроса на выбор исполнителя
+     */
     _getExecutor(res) {
         if (res.ok) {
             order.ordersMap
@@ -167,20 +229,82 @@ export class OrderPageController extends Controller {
                 .selectExecutor = this.selectExecutorId;
             this.go();
         } else {
-            eventBus.emit(ORDER_ERROR_SET);
+            eventBus.emit(ORDER_PAGE_ERROR, 'Не удалось выбрать исполнителя');
         }
     }
 
+    /**
+     * Отменяем ислонителя
+     */
     _deleteExecutor() {
         auth.deleteOrderExecutor(order.currentOrderId);
     }
 
+    /**
+     * Получаем ответ на запрос о отмене исполнителя
+     *
+     * @param {number} res - результат запроса на отмену исполнителя
+     */
     _getDeleteExecutor(res) {
         if (res.ok) {
             order.ordersMap.get(order.currentOrderId).selectExecutor = null;
             this.go();
         } else {
-            eventBus.emit(ORDER_ERROR_DELETE_EX);
+            eventBus.emit(ORDER_PAGE_ERROR,
+                'Не удалось отменить выбор исполнителя');
         }
+    }
+
+    /**
+     * Логика завершения заказа
+     */
+    _endOrder() {
+        auth.endOrder(order.currentOrderId)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(ORDER_PAGE_ERROR,
+                        'Не удалось завершить заказ');
+                    return;
+                }
+                eventBus.emit(ORDER_PAGE_FEEDBACK);
+                // router.go(getProfilePath(user.id));
+            });
+    }
+
+    /**
+     * Логика удаления заказа
+     */
+    _deleteOrder() {
+        auth.deleteOrder(order.currentOrderId)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(ORDER_PAGE_ERROR,
+                        'Не удалось удалить заказ');
+                    return;
+                }
+                router.go(getProfilePath(user.id));
+            });
+    }
+
+    /**
+     * Логика отзыва
+     *
+     * @param {Object} data - содержание отзыва
+     */
+    _sendFeedback(data) {
+        if (data.skip) {
+            router.go(getProfilePath(user.id));
+        }
+
+        // Todo Реализовать тут получить id кому и id от кого
+        auth.sendFeedback(data)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(ORDER_PAGE_ERROR,
+                        'Не удалось оставить отклик');
+                    return;
+                }
+                router.go(getProfilePath(user.id));
+            });
     }
 }

@@ -1,12 +1,22 @@
 import selectSpec from '@/components/pages/selectSpec.pug';
 import {View} from './view.js';
-import Select from '../modules/utils/customSelect.js';
-import {listOfServices} from '../modules/utils/templatesForSelect.js';
-import eventBus from '../modules/eventBus.js';
-import {NOT_SET_CATEGORY, SELECT_SPEC_SELECTED} from '../modules/utils/actions.js';
+import Select from '@/modules/utils/customSelect.js';
+import {listOfServices} from '@/modules/utils/templatesForSelect.js';
+import eventBus from '@/modules/eventBus.js';
+import {
+    NOT_SET_CATEGORY,
+    SELECT_SPEC_SELECTED,
+} from '@/modules/utils/actions.js';
 import {Validator} from './validator';
 
+/** View страницы выбора специализации */
 export class SelectSpecView extends View {
+    /**
+     * Отображение страницы
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
+     */
     render(isAuthorized, isExecutor) {
         super.renderHtml(
             isAuthorized,
@@ -44,6 +54,9 @@ export class SelectSpecView extends View {
         });
     }
 
+    /**
+     * Отображение неуспешной установки специализации
+     */
     _noSet() {
         const form = document.getElementById('err_place');
         form.innerHTML =

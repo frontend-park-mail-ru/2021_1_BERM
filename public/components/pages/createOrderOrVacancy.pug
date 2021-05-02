@@ -9,18 +9,55 @@ include ../inputes/settingsInput
                         div(class='settings__label') Создать заказ
                         +settingsInput(require("@/static/img/title.svg").default, 'Заголовок', 'order_name', 'text')
                         div(class=" error")
+                            div(class="error__message")
+                            div(class="error__main")
+                                div(class="error__box")
+                                    ul(class="error__list")
+                                        li(class= "error__help") &#8226 Penis
+                                        li(class= "error__help") &#8226 Penis
+                                div(class="error__arrow")
                         +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text')
                         div(class=" error")
-                        +settingsInput(require("@/static/img/date.svg").default, 'ДД.ММ.ГГГГ', 'date', 'text', 'date')
+
+                            div(class="error__message")
+                            div(class="error__main")
+                                div(class="error__box")
+                                    ul(class="error__list")
+                                        li(class= "error__help") &#8226 Penis
+                                        li(class= "error__help") &#8226 Penis
+                                div(class="error__arrow")
+                        +settingsInput(require("@/static/img/date.svg").default, 'Дедлайн', 'date', 'text', 'date')
+
                         div(class=" error")
+                            div(class="error__message")
+                            div(class="error__main")
+                                div(class="error__box")
+                                    ul(class="error__list")
+                                        li(class= "error__help") &#8226 Penis
+                                        li(class= "error__help") &#8226 Penis
+                                div(class="error__arrow")
                         div.settings-form__input-mini_bg
                             div#select
                     else
                         div(class='settings__label') Создать вакансию
                         +settingsInput(require("@/static/img/title.svg").default, 'Название вакансии', 'order_name', 'text')
                         div(class=" error")
+                            div(class="error__message")
+                            div(class="error__main")
+                                div(class="error__box")
+                                    ul(class="error__list")
+                                        li(class= "error__help") &#8226 Penis
+                                        li(class= "error__help") &#8226 Penis
+                                div(class="error__arrow")
                         +settingsInput(require("@/static/img/card.svg").default, 'Зарплата ₽', 'budget', 'text')
                         div(class=" error")
+                            div(class="error__message")
+                            div(class="error__main")
+                                div(class="error__box")
+                                    ul(class="error__list")
+                                        li(class= "error__help") &#8226 Penis
+                                        li(class= "error__help") &#8226 Penis
+                                div(class="error__arrow")
                         div.settings-form__input-mini_bg
                             div#select
                 div(class='settings__column_right')
@@ -28,6 +65,13 @@ include ../inputes/settingsInput
                     div(class='about-form__input')
                         textarea(class='settings__about__textarea form-control' placeholder='Описание' name='description')
                     div(class=" error")
+                        div(class="error__message")
+                        div(class="error__main" id="textAr")
+                            div(class="error__box")
+                                ul(class="error__list")
+                                    li(class= "error__help") &#8226 Penis
+                                    li(class= "error__help") &#8226 Penis
+                            div(class="error__arrow")
                     // <div class="settings__img_container"></div>
                     div(class='settings-form__submit__container')
                         button(class='settings-form__submit' id='send_mess')

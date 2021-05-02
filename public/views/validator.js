@@ -1,5 +1,5 @@
 import {ValidReflector} from './utils/validReflector.js';
-import {ValidHandler} from '../modules/utils/validHandler.js';
+import {ValidHandler} from '@/modules/utils/validHandler.js';
 
 /** Класс, отвечающий за валидацию форм */
 export class Validator {
@@ -13,6 +13,11 @@ export class Validator {
         this.formIdName = formIdName;
         this.selectorName = selectorName;
         this.buttonIdName = buttonIdName;
+
+        this.passwords = Array(document.getElementsByClassName(
+            'custom-form__input-mini_in')[0]);
+        this.passwords.push(document.getElementsByClassName(
+            'custom-form__input-mini_in')[1]);
     }
 
 
@@ -21,15 +26,16 @@ export class Validator {
      */
     validate() {
         const form = document.getElementById(this.formIdName);
-        if (!form) return; // ToDo реализовать обработку ошибки
+        if (!form) return;
         const reflector = new ValidReflector(form);
         const handler = new ValidHandler();
         const elements = form.querySelectorAll(this.selectorName);
         const btn = document.getElementById(this.buttonIdName);
 
         this._validateForButtonClick(form, btn, handler, reflector);
-        this._validateForFocusField(elements, handler, reflector);
-        this._clearField(form, btn, reflector);
+        this._validateForKeyUpField(elements, handler, reflector);
+        this._focusField(form, btn, reflector);
+        this._validateForBlurField(elements, handler, reflector);
     }
 
     /**
@@ -56,10 +62,12 @@ export class Validator {
 
                 if (!classElem.includes('no-matter')) {
                     if (error.length !== 0) {
-                        reflector.show(reflector.invalid, property, error);
+                        reflector.show(reflector.invalid, property,
+                            error, reflector.click);
                         invalid = true;
                     } else {
-                        reflector.show(reflector.valid, property, '');
+                        reflector.show(reflector.valid, property,
+                            '', reflector.click);
                     }
                 }
             });
@@ -83,7 +91,67 @@ export class Validator {
      * @param {ValidHandler} handler - обработчик полей валидации
      * @param {ValidReflector} reflector - отображатель валидации на странице
      */
-    _validateForFocusField(elements, handler, reflector) {
+    _validateForKeyUpField(elements, handler, reflector) {
+        [].forEach.call(elements, (element) => {
+            if (element !== 'submit') {
+                element.addEventListener('keyup', (e) => {
+                    const formElement = e.target;
+                    const property = formElement.getAttribute('name');
+                    const dataField = {};
+
+                    if (property.includes('password')) {
+                        this.passwords.forEach((item) => {
+                            reflector.clear(reflector.invalid, item);
+                            reflector.clear(reflector.valid, item);
+                            const prop = item.getAttribute('name');
+                            dataField[prop] = item.value;
+                            const error = handler.getError(dataField, prop);
+
+                            if (error.length &&
+                                prop === 'passwordRepeat') {
+                                reflector.show(reflector.invalid, prop,
+                                    error, '', reflector.pasRep);
+                                return;
+                            }
+
+                            if (!error.length &&
+                                prop === 'passwordRepeat') {
+                                reflector.show(reflector.valid, prop,
+                                    '', '', reflector.pasRep);
+                                return;
+                            }
+
+                            if (error.length) {
+                                reflector.show(reflector.invalid, prop,
+                                    error, '', '');
+                                return;
+                            }
+                            if (!error.length) {
+                                reflector.show(reflector.valid, prop,
+                                    '', '', '');
+                            }
+                        });
+                    } else {
+                        dataField[property] = formElement.value;
+
+                        const error = handler.getError(dataField, property);
+                        if (error.length) {
+                            reflector.clear(reflector.valid, element);
+                            reflector.show(reflector.invalid, property, error,
+                                '', '');
+                        } else if (!error.length) {
+                            reflector.clear(reflector.invalid, element);
+                            reflector.show(reflector.valid, property, '',
+                                '', '');
+                        }
+                    }
+                    return false;
+                });
+            }
+        });
+    }
+
+    _validateForBlurField(elements, handler, reflector) {
         [].forEach.call(elements, (element) => {
             if (element !== 'submit') {
                 element.addEventListener('blur', (e) => {
@@ -92,35 +160,34 @@ export class Validator {
                     const dataField = {};
 
                     if (property.includes('password')) {
-                        const passwords = Array(document.getElementsByClassName(
-                            'custom-form__input-mini_in')[0]);
-                        passwords.push(document.getElementsByClassName(
-                            'custom-form__input-mini_in')[1]);
-
-                        passwords.forEach((item) => {
-                            reflector.clear(reflector.invalid, item);
-                            reflector.clear(reflector.valid, item);
+                        this.passwords.forEach((item) => {
                             const prop = item.getAttribute('name');
-
                             dataField[prop] = item.value;
-
                             const error = handler.getError(dataField, prop);
 
                             if (error.length !== 0) {
-                                reflector.show(reflector.invalid, prop, error);
-                            } else if (error.length === 0) {
-                                reflector.show(reflector.valid, prop, '');
+                                reflector.show(reflector.invalid, prop,
+                                    error, reflector.click, '');
+                                if (prop === 'passwordRepeat') {
+                                    reflector.clear(reflector.helper,
+                                        this.passwords[0]);
+                                    return;
+                                }
+
+                                reflector.clear(reflector.helper, item);
+
                             }
                         });
                     } else {
                         dataField[property] = formElement.value;
-
                         const error = handler.getError(dataField, property);
+
                         if (error.length !== 0) {
-                            reflector.show(reflector.invalid, property, error);
-                        } else if (error.length === 0) {
-                            reflector.show(reflector.valid, property, '');
+                            reflector.show(reflector.invalid, property, error,
+                                reflector.click, '');
                         }
+
+                        reflector.clear(reflector.helper, element);
                     }
                     return false;
                 });
@@ -135,12 +202,18 @@ export class Validator {
      * @param {HTMLElement} btn - кнопка
      * @param {ValidReflector} reflector - отображатель валидации на странице
      */
-    _clearField(form, btn, reflector) {
+    _focusField(form, btn, reflector) {
         form.addEventListener('focus', () => {
             const el = document.activeElement;
+            const pasRep = el.getAttribute('name');
+            if (pasRep === 'passwordRepeat') {
+                reflector.show('', 'password',
+                    '', reflector.focus, reflector.pasRep);
+                return;
+            }
             if (el !== btn) {
-                reflector.clear(reflector.invalid, el);
-                reflector.clear(reflector.valid, el);
+                reflector.show('', el.getAttribute('name'),
+                    '', reflector.focus, '');
             }
         }, true);
     }

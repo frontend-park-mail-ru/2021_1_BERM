@@ -1,24 +1,44 @@
 import {Controller} from './controller.js';
-import {VacancyPageView} from '../views/vacancyPageView.js';
+import {VacancyPageView} from '@/views/vacancyPageView';
 
-import vacancy from '../models/Vacancy.js';
-import auth from '../models/Auth.js';
-import user from '../models/User.js';
+import vacancy from '@/models/Vacancy.js';
+import auth from '@/models/Auth.js';
+import user from '@/models/User.js';
 
 import {
+    VACANCY_CHANGE_RATE,
+    VACANCY_DELETE_EXECUTOR,
+    VACANCY_DELETE_RATE,
+    VACANCY_GET_DELETE_EXECUTOR,
+    VACANCY_GET_EXECUTOR,
+    VACANCY_GET_RATE,
+    VACANCY_SET_EXECUTOR,
+    VACANCY_SET_RATE,
     VACANCY_PAGE_GET_RES,
-    VACANCY_PAGE_GET_VACANCY, VACANCY_PAGE_RENDER,
+    VACANCY_PAGE_GET_VACANCY,
+    VACANCY_PAGE_RENDER,
     VACANCY_PAGE_RES,
-} from '../modules/utils/actions.js';
-import eventBus from '../modules/eventBus.js';
-import router from '../modules/router.js';
+    GO_TO_USER,
+} from '@/modules/utils/actions.js';
+import eventBus from '@/modules/eventBus.js';
+import router from '@/modules/router.js';
+
+import {getNotFoundPath} from '@/modules/utils/goPath.js';
 
 export class VacancyPageController extends Controller {
+    /**
+     * Конструктор
+     */
     constructor() {
         super();
         this.view = new VacancyPageView();
     }
 
+    /**
+     * Запуск контроллера страницы вакансии
+     *
+     * @param {number} id - id из url, если он там был
+     */
     run(id) {
         vacancy.currentVacancyId = Number(id);
 
@@ -26,12 +46,32 @@ export class VacancyPageController extends Controller {
             [
                 [VACANCY_PAGE_GET_RES, this._vacancyPageGetRes.bind(this)],
                 [VACANCY_PAGE_RES, this._vacancyPageRes.bind(this)],
-                [VACANCY_PAGE_GET_VACANCY, this._vacancyPageGetVacancy.bind(this)],
+                [VACANCY_PAGE_GET_VACANCY,
+                    this._vacancyPageGetVacancy.bind(this)],
+                [VACANCY_SET_RATE, this._vacancySetRate.bind(this)],
+                [VACANCY_GET_RATE, this._vacancyGetRate.bind(this)],
+                [VACANCY_DELETE_RATE, this._vacancyDeleteRate.bind(this)],
+                [VACANCY_CHANGE_RATE, this._vacancyChangeRate.bind(this)],
+                [VACANCY_SET_EXECUTOR, this._vacancySetExecutor.bind(this)],
+                [VACANCY_GET_EXECUTOR, this._vacancyGetExecutor.bind(this)],
+                [VACANCY_DELETE_EXECUTOR,
+                    this._vacancydDeleteExecutor.bind(this)],
+                [VACANCY_GET_DELETE_EXECUTOR,
+                    this._vacancyGetDeleteExecutor.bind(this)],
+                [GO_TO_USER, this._goToUser.bind(this)],
             ],
             true,
         );
     }
 
+
+    _goToUser(id) {
+        router.go(`/profile/${id}`);
+    }
+
+    /**
+     * Определяем недостающие данные и делаем запрос
+     */
     _vacancyPageGetRes() {
         if (vacancy.getVacancyById(vacancy.currentVacancyId)) {
             auth.getResponsesVacancy(vacancy.currentVacancyId);
@@ -40,6 +80,11 @@ export class VacancyPageController extends Controller {
         }
     }
 
+    /**
+     * Получаем данные откликов
+     *
+     * @param {Response} res - результат запроса на заказ
+     */
     _vacancyPageRes(res) {
         const go = this.go;
 
@@ -50,10 +95,15 @@ export class VacancyPageController extends Controller {
                 go();
             });
         } else {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
         }
     }
 
+    /**
+     * Получаем данные вакансии и делаем запрос на отклики
+     *
+     * @param {Response} res - результат запроса на вакансию
+     */
     _vacancyPageGetVacancy(res) {
         if (res.ok) {
             res.json().then((res) => {
@@ -61,15 +111,23 @@ export class VacancyPageController extends Controller {
                 auth.getResponsesVacancy(vacancy.currentVacancyId);
             });
         } else {
-            console.log('Запрос /order/id - не сработал');
             // ToDo Обработка ошибки запроса
         }
     }
 
+    /**
+     * Отправляем данные view для отрисовки
+     */
     go() {
         const creator = vacancy.getVacancyById(vacancy.currentVacancyId);
 
+        let isMy = true;
+        if (creator.customerId !== user.id) {
+            isMy = false;
+        }
+
         eventBus.emit(VACANCY_PAGE_RENDER, {
+            isMy: isMy,
             isExecutor: user.isExecutor,
             responses: creator.responses,
             creator: {
@@ -80,6 +138,87 @@ export class VacancyPageController extends Controller {
                 definition: creator.definition,
                 salary: creator.salary,
             },
+            userRate: vacancy.findRate(vacancy.currentVacancyId, user.id),
+            userText: vacancy.findTextRate(vacancy.currentVacancyId, user.id),
+            selectExecutor: vacancy.getSelectResponse(
+                vacancy.currentVacancyId,
+                vacancy.vacancysMap
+                    .get(vacancy.currentVacancyId).selectExecutor),
         });
+    }
+
+    _vacancySetRate({text}) {
+        const date = new Date();
+        auth.vacancySetResponse({
+            user_id: user.id,
+            time: date.getTime(),
+            text: text,
+        }, vacancy.currentVacancyId);
+        eventBus.emit(VACANCY_GET_RATE);
+    }
+
+    _vacancyGetRate(res) {
+        const go = this.go;
+        if (res.ok) {
+            res.json().then((res) => {
+                vacancy.push(vacancy.currentVacancyId, res);
+
+                go();
+            });
+        } else {
+            console.log('Запрос не сработал');
+            // ToDo Обработка ошибки запроса
+        }
+    }
+
+    _vacancyDeleteRate() {
+        vacancy.deleteResponse(vacancy.currentVacancyId, user.id);
+
+        auth.vacancyDeleteRate(vacancy.currentVacancyId)
+            .catch(() => {
+            });
+
+        this.go();
+    }
+
+    _vacancyChangeRate({text}) {
+        vacancy.deleteResponse(vacancy.currentVacancyId, user.id);
+
+        const date = new Date();
+        auth.vacancyChangeResponse({
+            user_id: user.id,
+            text: text,
+            time: date.getTime(),
+        }, vacancy.currentVacancyId);
+    }
+
+    _vacancySetExecutor(id) {
+        this.selectExecutorId = id;
+        auth.vacancySetExecutor(vacancy.currentVacancyId, {executor_id: id});
+    }
+
+    _vacancyGetExecutor(res) {
+        if (res.ok) {
+            vacancy.vacancysMap
+                .get(vacancy.currentVacancyId)
+                .selectExecutor = this.selectExecutorId;
+            this.go();
+        } else {
+            // eventBus.emit(VACANCY_ERROR_SET);
+        }
+    }
+
+    _vacancydDeleteExecutor() {
+        auth.vacancyDeleteExecutor(vacancy.currentVacancyId);
+    }
+
+    _vacancyGetDeleteExecutor(res) {
+        if (res.ok) {
+            vacancy.vacancysMap.
+                get(vacancy.currentVacancyId).selectExecutor = null;
+            this.go();
+        } else {
+            // eventBus.emit(VACANCY_ERROR_DELETE_EX);
+        }
     }
 }

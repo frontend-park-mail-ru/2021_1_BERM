@@ -10,6 +10,93 @@
         margin-top: 22px;
     }
 
+    &__feedback {
+        &_bg {
+            background: rgba(102, 102, 102, 0.5);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &_bg:target {
+            display: block;
+        }
+
+        &_title {
+            @include font(600, 25px, 25px, -0.4px, $black);
+            margin-bottom: 32px;
+        }
+
+        &_window {
+            width: 520px;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-250px, -300px);
+            text-align: center;
+            @include uniq_form($white);
+        }
+
+        &_skip {
+            width: 480px;
+            height: 60px;
+
+            margin-top: 10px;
+
+            background: $secondary_color;
+            border-radius: 8px;
+
+            @include font(600, 20px, 28px, -0.5px, $white);
+            text-align: center;
+        }
+
+        &_rating-area {
+            overflow: hidden;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        &_rating-area:not(:checked) > input {
+            display: none;
+        }
+        &_rating-area:not(:checked) > label {
+            float: left;
+            width: 42px;
+            padding: 0;
+            cursor: pointer;
+            font-size: 32px;
+            line-height: 32px;
+            color: lightgrey;
+            text-shadow: 1px 1px #bbb;
+        }
+        &_rating-area:not(:checked) > label:before {
+            content: '★';
+        }
+        &_rating-area > input:checked ~ label {
+            color: gold;
+            text-shadow: 1px 1px #c60;
+        }
+        &_rating-area:not(:checked) > label:hover,
+        &_rating-area:not(:checked) > label:hover ~ label {
+            color: gold;
+        }
+        &_rating-area > input:checked + label:hover,
+        &_rating-area > input:checked + label:hover ~ label,
+        &_rating-area > input:checked ~ label:hover,
+        &_rating-area > input:checked ~ label:hover ~ label,
+        &_rating-area > label:hover ~ input:checked ~ label {
+            color: gold;
+            text-shadow: 1px 1px goldenrod;
+        }
+        &_rate-area > label:active {
+            position: relative;
+        }
+    }
+
     &__select-executor_text {
         display: flex;
         flex-direction: column;
@@ -20,13 +107,6 @@
     &__select-executor_text-column {
         @include font(600, 18px, 22px, -0.4px, $white);
 
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 18px;
-        //line-height: 22px;
-        /* identical to box height, or 122% */
-        //color: var(--white);
-        //letter-spacing: -0.4px;
         padding-top: 24px;
     }
     //
@@ -57,6 +137,32 @@
 
         width: 1030px;
         height: 270px;
+
+        &_up-box {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &_delete {
+            cursor: pointer;
+        }
+
+        &_end {
+            @include font(300, 18px, 22px, -0.4px, $black);
+
+            background: $white;
+            cursor: pointer;
+            border: 2px solid $primary_color;
+            box-sizing: border-box;
+            border-radius: 8px;
+
+            width: 150px;
+            height: 30px;
+        }
+
+        &_end:hover {
+            background: $neutral_color;
+        }
 
         &_img-bg {
             margin: 58px 0 58px 64px;
@@ -506,4 +612,48 @@
 
 .min-rate {
     border: 2px solid #345DEE;
+}
+
+.vacancy-executor {
+    padding: 23px;
+    height: 305px;
+    width: 1044px;
+
+    @include uniq_form($placeholder);
+    @include font(normal, 20px, 28px, -0.4px, $black);
+
+    resize: none;
+
+    &__button_change {
+        @include uniq_form($primary_color);
+        @include font(600, 20px, 28px, -0.5px, $white);
+
+        text-align: center;
+        width: 198px;
+        height: 43px;
+
+        margin-top: 36px;
+
+    }
+
+    &__button_delete {
+        @include uniq_form($secondary_color);
+        @include font(600, 20px, 28px, -0.5px, $white);
+
+        text-align: center;
+        width: 198px;
+        height: 43px;
+
+        margin-top: 36px;
+
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        //margin: 0 -32px;
+
+    }
 }

@@ -1,7 +1,7 @@
-import {BaseMVC} from '../modules/baseMVC.js';
-import auth from '../models/Auth.js';
-import user from '../models/User.js';
-import router from '../modules/router.js';
+import {BaseMVC} from '@/modules/baseMVC';
+import user from '@/models/User.js';
+import router from '@/modules/router.js';
+import {getLoginPath, getProfilePath} from '@/modules/utils/goPath.js';
 
 /** Родительский класс, от которого наследуются остальные контроллеры.
  * Осуществляет взаимодействие между моделями и view  */
@@ -14,18 +14,14 @@ export class Controller extends BaseMVC {
      * @param {Boolean } anyGo - Безразлична ли авторизация
      * для перехода на эту страницу
      */
-    async run(listenersArr, goLogin = false, anyGo = false) {
-        if (!user.isAuthorized) {
-            await this.checkAuthorized();
-        }
-
+    run(listenersArr, goLogin = false, anyGo = false) {
         if (goLogin && !user.isAuthorized && !anyGo) {
-            router.go('/login');
+            router.go(getLoginPath);
             return;
         }
 
         if (!goLogin && user.isAuthorized && !anyGo) {
-            router.go(`/profile/${user.id}`);
+            router.go(getProfilePath(user.id));
             return;
         }
 
@@ -33,30 +29,5 @@ export class Controller extends BaseMVC {
 
         super.onAll();
         this.view.render(user.isAuthorized, user.isExecutor);
-    }
-
-    /**
-     * Проверка авторизации
-     */
-    async checkAuthorized() {
-        return auth.isAuthorized()
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-            })
-            .then((result) => {
-                if (result.status) {
-                    return;
-                }
-                if (result) {
-                    user.isAuthorized = true;
-                    user.id = result.id;
-                    user.isExecutor = result.executor;
-                }
-            })
-            .catch((result) => {
-                console.log('Error. CheckAuthorized.', result.status);
-            });
     }
 }

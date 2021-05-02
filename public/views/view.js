@@ -1,4 +1,4 @@
-import {BaseMVC} from '../modules/baseMVC.js';
+import {BaseMVC} from '@/modules/baseMVC.js';
 
 import navbarUnauthTemplate from '@/components/navbars/navbarUnauth.pug';
 import navbarCustomerTemplate from '@/components/navbars/navbarCustomer.pug';

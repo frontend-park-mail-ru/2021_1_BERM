@@ -1,3 +1,6 @@
+import auth from '../../models/Auth.js';
+import user from '../../models/User.js';
+
 export default {
     getAllErrors() {
         return ['Незаполненное поле ввода', // 0
@@ -28,12 +31,30 @@ export default {
         return new Map([['name', /^[а-яёА-ЯЁ\s]+$/],
             // eslint-disable-next-line max-len
             ['mail', /^[A-Za-z0-9](([_.-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([.-]?[a-zA-Z0-9]+)*)\.([A-Za-z])+$/],
-            ['spam', /[^<>%&'`]+$/], ['user_name', /^[a-zA-Z0-9]{0,19}$/],
+            ['spam', /^[a-zA-ZА-ЯЁа-яё0-9-_.()\s]+$/], ['user_name', /^[a-zA-Z0-9]{0,19}$/],
             // eslint-disable-next-line max-len
             ['password', /([a-z]+[A-Z]+[0-9]+|[a-z]+[0-9]+[A-Z]+|[A-Z]+[a-z]+[0-9]+|[A-Z]+[0-9]+[a-z]+|[0-9]+[a-z]+[A-Z]+|[0-9]+[A-Z]+[a-z]+)/],
             ['price', /^[0-9]+$/],
             ['date', /^(\d{2}|\d)([./-])(0[1-9]|1[1-2])([./-])\d{4}$/]]);
     },
 
+    /**
+     * Проверка авторизации
+     */
+    async checkAuthorized() {
+        return auth.isAuthorized()
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then((result) => {
+                if (result) {
+                    user.isAuthorized = true;
+                    user.id = result.id;
+                    user.isExecutor = result.executor;
+                }
+            });
+    },
 };
 

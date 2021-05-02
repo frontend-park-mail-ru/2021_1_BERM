@@ -45,6 +45,7 @@
     &-form__input {
         @include form_dis($cntr, $cntr);
         @include uniq_form($placeholder);
+        border: 1.5px solid transparent;
 
         margin-top: 32px;
     }
@@ -116,6 +117,7 @@
 .about-form__input {
     @include form_dis($left, $cntr);
     @include uniq_form($placeholder);
+    border: 1.5px solid transparent;
 
     margin-top: 10px;
 }

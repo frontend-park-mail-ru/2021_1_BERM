@@ -1,0 +1,17 @@
+mixin review(title, stars, sender, comment)
+    .reviews__element
+        .reviews__element_title= title
+        .reviews__element_stats
+            .reviews__element_stars
+                - let i = 0;
+                while i < stars
+                    span.active
+                    - i += 1;
+                while i < 5
+                    span
+                    - i += 1;
+
+            .reviews__element_sender= sender
+        .reviews__element_comment
+            img.reviews__element_img(src=require('@/static/img/text.svg').default alt='')
+            .reviews__element_text= comment
