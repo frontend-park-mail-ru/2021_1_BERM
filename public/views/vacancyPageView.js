@@ -8,14 +8,11 @@ import {
     VACANCY_DELETE_RATE,
     VACANCY_CHANGE_RATE,
     VACANCY_SET_EXECUTOR,
-    VACANCY_ERROR_SET,
     VACANCY_DELETE_EXECUTOR,
-    VACANCY_ERROR_DELETE_EX,
-    ORDER_DELETE_RATE,
-    ORDER_CHANGE_RATE,
-    ORDER_DELETE_EXECUTOR, ORDER_SET_EXECUTOR,
+    GO_TO_USER,
 
 } from '../modules/utils/actions.js';
+
 
 export class VacancyPageView extends View {
     render(isAuthorized, isExecutor) {
@@ -44,12 +41,9 @@ export class VacancyPageView extends View {
             if (info.userRate === 0) {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();
-                    console.log("PROVEKRA  ", event.target.rate.value);
                     const data = {
                         text: event.target.rate.value,
                     };
-                    console.log(data.text);
-
                     eventBus.emit(VACANCY_SET_RATE, data);
                 });
             } else {
@@ -58,8 +52,6 @@ export class VacancyPageView extends View {
 
                 deleteButton.addEventListener('click', (event) => {
                     event.preventDefault();
-                    console.log('hui');
-                    debugger;
                     eventBus.emit(VACANCY_DELETE_RATE);
                 });
 
@@ -73,28 +65,40 @@ export class VacancyPageView extends View {
                 });
                 return;
             }
+        }
 
-            if (!info.isExecutor) {
-                if (info.selectExecutor) {
-                    const deleteButton = document
-                        .querySelector('.orderPage__set-rate_button-exit');
+        if (!info.isExecutor) {
+            const revButton = document.
+                querySelectorAll('.vacancyPage__comment-button_info');
 
-                    deleteButton.addEventListener('click', () => {
-                        eventBus.emit(ORDER_DELETE_EXECUTOR);
+            revButton.forEach((but) => {
+                but.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log(but
+                        .getAttribute('data-id-user'), ' But');
+                    eventBus.emit(GO_TO_USER, but
+                        .getAttribute('data-id-user'));
+                });
+            });
+            if (info.selectExecutor) {
+                const deleteButton = document
+                    .querySelector(
+                        '.vacancyPage__comment-button_cancel');
+
+                deleteButton.addEventListener('click', () => {
+                    eventBus.emit(VACANCY_DELETE_EXECUTOR);
+                });
+            } else {
+                const selectButtons = document
+                    .querySelectorAll(
+                        '.vacancyPage__comment-button_select');
+
+                selectButtons.forEach((item) => {
+                    item.addEventListener('click', (event) => {
+                        const id = event.target.getAttribute('data-id');
+                        eventBus.emit(VACANCY_SET_EXECUTOR, Number(id));
                     });
-                } else {
-                    const selectButtons = document
-                        .querySelectorAll('.orderPage__response_btn');
-
-                    selectButtons.forEach((item) => {
-                        item.addEventListener('click', (event) => {
-                            const id = event.target.getAttribute('data-id');
-                            debugger;
-
-                            eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
-                        });
-                    });
-                }
+                });
             }
         }
     }

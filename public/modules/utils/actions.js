@@ -50,6 +50,7 @@ export const PROFILE_DELETE_SPEC_GET = 'profile_delete_spec_get';
 export const GO_TO_VACANCY = 'go-to-vacancy';
 export const SEND_SERVICES_VACANCIES = 'services-vacancies';
 export const SEND_RESULT_RENDER_VACANCIES = 'send-result-render-vacancies';
+export const GO_TO_USER = 'go-to-user';
 
 // Views actions
 export const NO_REG_CLIENT = 'no-registration-client';

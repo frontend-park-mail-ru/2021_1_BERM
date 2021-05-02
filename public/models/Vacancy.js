@@ -13,13 +13,14 @@ class Vacancy {
         data.forEach((res) => {
             this.setAttributes({
                 id: res.id,
-                avatar: res.img, // этого нет
-                login: res.login, // этого нет
+                avatar: res.img,
+                login: res.login,
                 name: res.vacancy_name,
-                customerId: res.customer_id, // этого нет
+                customerId: res.customer_id,
                 category: res.category,
                 definition: res.description,
                 salary: res.salary,
+                selectExecutor: res.executor_id?res.executor_id:null,
             });
         });
     }
@@ -46,7 +47,6 @@ class Vacancy {
             login: item.user_login,
             rate: item.rate,
             text: item.text,
-            // date: this.getDate(item.time),
         };
     }
 
@@ -83,6 +83,22 @@ class Vacancy {
         });
 
         this.vacancysMap.get(id).responses.splice(pos, 1);
+    }
+
+    getSelectResponse(vacancy, id) {
+        console.log(vacancy, id);
+        if (!id || !vacancy) {
+            return null;
+        }
+
+        let select = null;
+        this.vacancysMap.get(vacancy).responses.forEach((item) => {
+            if (item.creatorId === id) {
+                select = item;
+            }
+        });
+        console.log('SELECT ', select);
+        return select;
     }
 }
 

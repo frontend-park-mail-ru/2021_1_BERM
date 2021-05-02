@@ -20,7 +20,7 @@ import {
     ORDER_GET_EXECUTOR,
     ORDER_GET_DELETE_EXECUTOR,
     SEND_RESULT_RENDER_VACANCIES,
-    VACANCY_GET_RATE,
+    VACANCY_GET_RATE, VACANCY_GET_EXECUTOR, VACANCY_GET_DELETE_EXECUTOR,
 } from '../modules/utils/actions.js';
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -184,7 +184,6 @@ export default class Auth {
     static vacancySetResponse(data, id) {
         sendRequest('POST', `/vacancy/${id}/response`, data)
             .then((res) => {
-                console.log(res);
                 eventBus.emit(VACANCY_GET_RATE, res);
             });
     }
@@ -197,6 +196,21 @@ export default class Auth {
         sendRequest('PUT', `/vacancy/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(VACANCY_GET_RATE, res);
+            });
+    }
+
+    static vacancySetExecutor(id, data) {
+        sendRequest('PUT', `/vacancy/${id}/select`, data)
+            .then((res) => {
+                console.log(res);
+                eventBus.emit(VACANCY_GET_EXECUTOR, res);
+            });
+    }
+
+    static vacancyDeleteExecutor(id) {
+        sendRequest('DELETE', `/vacancy/${id}/select`)
+            .then((res) => {
+                eventBus.emit(VACANCY_GET_DELETE_EXECUTOR, res);
             });
     }
 

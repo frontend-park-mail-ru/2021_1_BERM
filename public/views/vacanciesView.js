@@ -33,7 +33,6 @@ export class VacanciesView extends View {
             }),
         );
 
-        // const allId = document.querySelectorAll('#id');
         const allRef = document.querySelectorAll('.orders__order_link');
         allRef.forEach((ref) => {
             ref.addEventListener('click', (e) => {

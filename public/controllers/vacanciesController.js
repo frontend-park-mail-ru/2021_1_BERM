@@ -32,9 +32,9 @@ export class VacanciesController extends Controller {
             this.isI = this.isMyVacancies === user.id;
         }
 
-        // if (!user.isExecutor && !this.isMyVacancies) {
-        //     window.location.href = '/404/';
-        // }
+        if (!user.isExecutor && !this.isMyVacancies) {
+            window.location.href = '/404/';
+        }
         super.run(
             [
                 [GO_TO_VACANCY, this._goToVacancy.bind(this)],
@@ -51,16 +51,6 @@ export class VacanciesController extends Controller {
 
 
     _sendServices() {
-        const tempMap = new Map;
-        // tempMap.set(0, {
-        //     id: 0, //
-        //     avatar: '', //
-        //     login: 'bob', //
-        //     name: 'bob2', //
-        //     category: 'frontend', //
-        //     definition: 'sdsd', //
-        //     salary: 100, //
-        // });
         if (this.getVacancies) {
             eventBus.emit(VACANCIES_RENDER, {
                 isI: this.isI,
@@ -72,7 +62,7 @@ export class VacanciesController extends Controller {
             return;
         }
         if (this.isMyVacancies) {
-           // auth.getVacancies(this.isMyVacancies);
+            auth.getVacancies(this.isMyVacancies);
         } else {
             auth.getVacancies();
 
