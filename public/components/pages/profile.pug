@@ -26,26 +26,26 @@ mixin specialize(specName, isMyProfile)
                             img(src=require('@/static/img/dog.svg').default alt='')
                         div(class='nickname__text')= login
                 div(class='top__item')
-                    .rating
+                    .rating-stat
                         div
                             img(src=require('@/static/img/stats.svg').default alt='')
-                        div(class='rating__text') Рейтинг: #{rating}
-                    .reviews
+                        div(class='rating-stat__text') Рейтинг: #{rating}
+                    .reviews-stat
                         div
                             img(src=require('@/static/img/star.svg').default alt='')
-                        div(class='reviews__text') Отзывы: #{reviews}
+                        div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/reviews`) Отзывы: #{reviews}
                     if !isExecutor
-                        .reviews
+                        .reviews-stat
                             div
                                 img(src=require('@/static/img/carousel.svg').default style="cursor:pointer;" alt='')
                             if isMyProfile
-                                div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
                             else
-                                div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
-                    .reviews
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
+                    .reviews-stat
                         div
                             img(src=require('@/static/img/document.svg').default style="cursor:pointer;" alt='')
-                        div(class='reviews__text' style="cursor:pointer;" href=`/profile/${id}/archive`) Архив
+                        div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/archive`) Архив
                 div(class='top__item')
                     if isMyProfile
                         .settings-buttons

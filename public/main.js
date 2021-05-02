@@ -12,6 +12,7 @@ import './static/scss/settings.scss';
 import './static/scss/registration.scss';
 import './static/scss/orderPage.scss';
 import './static/scss/notti.scss';
+import './static/scss/reviews.scss';
 import './static/scss/page404.scss';
 
 import {LoginController} from './controllers/loginController.js';
@@ -45,9 +46,10 @@ import {
     SELECT_SPEC,
     MY_ORDERS,
     NOT_FOUND,
-    ARCHIVE,
+    ARCHIVE, REVIEWS,
 } from './modules/utils/pageNames.js';
 import {Page404Controller} from '@/controllers/page404Controller.js';
+import {ReviewsController} from '@/controllers/reviewsController';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
@@ -74,6 +76,7 @@ const controllers = new Set([
     [SELECT_SPEC, SelectSpecController],
     [MY_ORDERS, OrdersController],
     [ARCHIVE, OrdersController],
+    [REVIEWS, ReviewsController],
     [NOT_FOUND, Page404Controller],
     // Здесь добавляем странички
 ]);

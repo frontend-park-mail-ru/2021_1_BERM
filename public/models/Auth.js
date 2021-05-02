@@ -317,4 +317,10 @@ export default class Auth {
 
         eventBus.emit(SEND_RESULT_RENDER, {ok: false});
     }
+
+    static getReviews(id) {
+        // Todo Запрос на отзывы
+
+        return Promise.resolve({ok: true});
+    }
 }
