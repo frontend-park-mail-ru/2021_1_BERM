@@ -1,5 +1,5 @@
 import {ValidReflector} from './utils/validReflector.js';
-import {ValidHandler} from '../modules/utils/validHandler.js';
+import {ValidHandler} from '@/modules/utils/validHandler.js';
 
 /** Класс, отвечающий за валидацию форм */
 export class Validator {
@@ -26,7 +26,7 @@ export class Validator {
      */
     validate() {
         const form = document.getElementById(this.formIdName);
-        if (!form) return; // ToDo реализовать обработку ошибки
+        if (!form) return;
         const reflector = new ValidReflector(form);
         const handler = new ValidHandler();
         const elements = form.querySelectorAll(this.selectorName);

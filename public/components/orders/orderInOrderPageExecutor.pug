@@ -1,10 +1,16 @@
-mixin orderInOrderPageExecutor(avatar, title, category, definition, date, budget, name, id)
+mixin orderInOrderPageExecutor(avatar, title, category, definition, date, budget, name, id, isExecutor, selectExecutor)
     div(class='orderPage__order')
         div(class='orderPage__order_img-bg')
             img(class='orderPage__order_img' href=`/profile/${id}` src=avatar)
             div(class='orderPage__order_name' href=`/profile/${id}`)= name
         div(class='orderPage__order_text')
-            div(class='orderPage__order_title')= title
+            .orderPage__order_up-box
+                div(class='orderPage__order_title')= title
+                if !isExecutor
+                    if selectExecutor
+                        button.orderPage__order_end Завершить заказ
+                    else
+                        img.orderPage__order_delete(src=require('@/static/img/delete.svg').default)
             div(class='orderPage__order_category')
                 div(class='orderPage__order_category-text') Категория:
                 button(class='orderPage__order_category-button')= category

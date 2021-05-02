@@ -1,34 +1,50 @@
 import {View} from './view.js';
-import eventBus from '../modules/eventBus.js';
+import eventBus from '@/modules/eventBus.js';
 import {
     SEND_SERVICES,
     ORDERS_RENDER,
     GO_TO_ORDER,
+    SERVER_ERROR,
 } from '@/modules/utils/actions';
 import ordersTemplate from '@/components/pages/orders.pug';
+import {notification} from '@/components/notification/notification';
 
+/** View страницы всех заказов */
 export class OrdersView extends View {
+    /**
+     * Установка обработчиков
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
+     */
     render(isAuthorized, isExecutor) {
         super.setListeners([
             [ORDERS_RENDER, this._renderData],
+            [SERVER_ERROR, this._error],
         ]);
         eventBus.emit(SEND_SERVICES);
     }
 
-    _renderData(dataMap) {
+    /**
+     * Отображение страницы
+     *
+     * @param {Object} dataForRender
+     */
+    _renderData(dataForRender) {
         const map = [];
-        for (const item of dataMap.map.values()) {
+        for (const item of dataForRender.map.values()) {
             map.push(item);
         }
 
         super.renderHtml(
-            dataMap.isAuthorized,
-            dataMap.isExecutor,
+            dataForRender.isAuthorized,
+            dataForRender.isExecutor,
             'Все заказы',
             ordersTemplate({
                 orders: map,
-                isI: dataMap.isI,
-                isMyOrders: dataMap.isMyOrders,
+                isI: dataForRender.isI,
+                isMyOrders: dataForRender.isMyOrders,
+                isArchive: dataForRender.isArchive,
             }),
         );
 
@@ -43,9 +59,13 @@ export class OrdersView extends View {
 
         const allTit = document.querySelectorAll('.orders__order_title');
         allTit.forEach((tit) => {
-            tit.addEventListener('click', (e) => {
+            tit.addEventListener('click', () => {
                 eventBus.emit(GO_TO_ORDER, tit.getAttribute('name'));
             });
         });
+    }
+
+    _error(str) {
+        notification(`Ошибка сервера! ${str}`);
     }
 }

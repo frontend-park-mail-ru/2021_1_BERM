@@ -1,21 +1,23 @@
 import {Controller} from './controller.js';
 import {OrdersView} from '@/views/ordersView';
 
-import auth from '../models/Auth.js';
-import order from '../models/Order.js';
-import eventBus from '@/modules/eventBus';
-import user from '../models/User.js';
+import auth from '@/models/Auth.js';
+import order from '@/models/Order.js';
+import eventBus from '@/modules/eventBus.js';
+import user from '@/models/User.js';
 
 import {
     GO_TO_ORDER,
     SEND_SERVICES,
     SEND_RESULT_RENDER,
-    ORDERS_RENDER,
-} from '../modules/utils/actions.js';
+    ORDERS_RENDER, SERVER_ERROR,
+} from '@/modules/utils/actions.js';
 
-import router from '@/modules/router';
+import router from '@/modules/router.js';
+import {getNotFoundPath, getOrderPath} from '@/modules/utils/goPath.js';
+import {ARCHIVE} from '@/modules/utils/pageNames.js';
 
-
+/** Контроллер страницы заказов */
 export class OrdersController extends Controller {
     /**
      * Конструктор
@@ -23,17 +25,27 @@ export class OrdersController extends Controller {
     constructor() {
         super();
         this.view = new OrdersView();
-        this.getOrders = false;
     }
 
+    /**
+     * Запуск контроллера страницы заказов
+     *
+     * @param {number} id - id из url, если он там был
+     */
     run(id) {
         if (id) {
+            const path = '/' + window.location.pathname
+                .slice(1);
+
+            if (ARCHIVE.test(path)) {
+                this.isArchive = true;
+            }
             this.isMyOrders = Number(id);
             this.isI = this.isMyOrders === user.id;
         }
 
         if (!user.isExecutor && !this.isMyOrders) {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
         }
         super.run(
             [
@@ -44,41 +56,63 @@ export class OrdersController extends Controller {
             true);
     }
 
+    /**
+     * Переход к конкретному заказу
+     *
+     * @param {number} id - id заказа
+     */
     _goToOrder(id) {
-        router.go(`/order/${id}`);
+        router.go(getOrderPath(id));
     }
 
+    /**
+     * Получаем информацию о заказе, если ее нет
+     */
     _sendServices() {
-        if (this.getOrders) {
+        if (this.isArchive) {
+            auth.getArchiveOrders(this.isMyOrders);
+            return;
+        }
+
+        if (this.isMyOrders) {
+            auth.getMyOrders(this.isMyOrders);
+            return;
+        }
+
+        auth.getOrders();
+    }
+
+    /**
+     * Отправляем данные для рендеринга
+     *
+     * @param {Response} res - результат запроса
+     */
+    _sendResultsRender(res) {
+        if (!res.ok) {
             eventBus.emit(ORDERS_RENDER, {
+                isArchive: this.isArchive,
+                isI: this.isI,
+                isMyOrders: !!this.isMyOrders,
+                isAuthorized: user.isAuthorized,
+                isExecutor: user.isExecutor,
+                map: new Map([]),
+            });
+            eventBus.emit(SERVER_ERROR, 'Не удалось получить заказы');
+            return;
+        }
+
+        res.json().then((result) => {
+            order.clear();
+            order.setOrders(result);
+
+            eventBus.emit(ORDERS_RENDER, {
+                isArchive: this.isArchive,
                 isI: this.isI,
                 isMyOrders: !!this.isMyOrders,
                 isAuthorized: user.isAuthorized,
                 isExecutor: user.isExecutor,
                 map: order.ordersMap,
             });
-            return;
-        }
-        if (this.isMyOrders) {
-            auth.getMyOrders(this.isMyOrders);
-        } else {
-            auth.getOrders();
-        }
-    }
-
-    _sendResultsRender(result) {
-        if (result.ok) {
-            result.json().then((result) => {
-                order.setOrders(result);
-
-                eventBus.emit(ORDERS_RENDER, {
-                    isI: this.isI,
-                    isMyOrders: !!this.isMyOrders,
-                    isAuthorized: user.isAuthorized,
-                    isExecutor: user.isExecutor,
-                    map: order.ordersMap,
-                });
-            });
-        }
+        });
     }
 }

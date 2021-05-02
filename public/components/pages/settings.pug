@@ -6,7 +6,7 @@ include ../inputes/customFormMiniInput
             div(class='settings__form')
                 div(class='settings__column_left')
                     div(class='settings__label') Настройки
-                    +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text', 'no-matter')
+                    +customFormInput(require('@/static/img/icon.svg').default, 'Логин', 'login', 'text', 'no-matter', login)
                     div(class=" error")
                         div(class="error__message")
                         div(class="error__main")
@@ -15,7 +15,8 @@ include ../inputes/customFormMiniInput
                                     li(class= "error__help") &#8226 Penis
                                     li(class= "error__help") &#8226 Penis
                             div(class="error__arrow")
-                    +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text', 'no-matter')
+                    +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text', 'no-matter', name)
+
                     div(class=" error")
                         div(class="error__message")
                         div(class="error__main")
@@ -38,7 +39,7 @@ include ../inputes/customFormMiniInput
                 div(class='settings__column_right')
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
-                        textarea(class='settings__about__textarea form-control no-matter' placeholder='О себе' name='about')
+                        textarea(class='settings__about__textarea form-control no-matter' placeholder='О себе' name='about')= about
                     div(class=" error")
                         div(class="error__message")
                         div(class="error__main" id="textAr")

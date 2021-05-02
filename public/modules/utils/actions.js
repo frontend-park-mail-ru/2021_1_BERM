@@ -1,19 +1,33 @@
 // Controllers actions
-export const REG = 'registered';
-export const CLIENT_REG_SUBMIT = 'registered-submit';
-export const LOGIN = 'login';
+export const REGISTRATION_GET = 'registered';
+export const REGISTRATION_SUBMIT = 'registered-submit';
+
+export const LOGIN_GET = 'login';
 export const LOGIN_SUBMIT = 'login-submit';
-export const ORDER_CREATE = 'order-create';
-export const ORDER_SUBMIT = 'order-submit';
-export const PROFILE = 'profile';
-export const ON_PROFILE = 'onProfile';
-export const IMG_CHANGE = 'change-image';
-export const IMG_LOAD = 'load-image';
-export const EXIT = 'exit';
-export const SETTING_UPD = 'settings-update';
+
+export const ORDER_CREATE_GET = 'order-create';
+export const ORDER_CREATE_SUBMIT = 'order-submit';
+export const ORDER_CREATE_OR_VACANCY = 'get_is_order_or_vacancy';
+
+export const PROFILE_GO = 'profile';
+export const PROFILE_GET = 'onProfile';
+export const PROFILE_IMG_CHANGE = 'change-image';
+export const PROFILE_IMG_GET = 'load-image';
+export const PROFILE_EXIT = 'exit';
+export const PROFILE_DELETE_SPEC = 'profile_delete_spec';
+export const PROFILE_DELETE_SPEC_GET = 'profile_delete_spec_get';
+
+export const SETTING_GET = 'settings-update';
 export const SETTING_SUBMIT = 'settings-submit';
-export const SEND_USER_DATA = 'send-user-data';
-export const WORKER_REG_SUBMIT = 'work_registered-submit';
+export const SETTING_SEND_DATA = 'send-user-data';
+
+export const ORDER_PAGE_DELETE = 'order_page_delete';
+export const ORDER_PAGE_END = 'order_page_end';
+export const ORDER_PAGE_SEND_FEEDBACK = 'order_page_send_feedback';
+
+export const REVIEWS_GET_DATA = 'reviews_get_data';
+export const REVIEWS_GO_ORDER = 'reviews_go_order';
+
 export const ORDER_PAGE_GET_RES = 'order-page_get-res';
 export const ORDER_PAGE_RES = 'order-page_res';
 export const GO_TO_ORDER = 'go-to-order';
@@ -28,7 +42,6 @@ export const ORDER_GET_EXECUTOR = 'order-get-executor';
 export const ORDER_DELETE_EXECUTOR = 'order-delete-executor';
 export const ORDER_GET_DELETE_EXECUTOR = 'order-get-delete-executor';
 export const ORDER_GET = 'order-page-get';
-export const GET_IS_ORDER_OR_VACANCY = 'get_is_order_or_vacancy';
 export const VACANCY_SUBMIT = 'vacancy_submit';
 export const VACANCY_CREATE = 'vacancy_create';
 export const VACANCY_PAGE_GET_RES = 'vacancy_page_get_res';
@@ -52,8 +65,17 @@ export const SEND_SERVICES_VACANCIES = 'services-vacancies';
 export const SEND_RESULT_RENDER_VACANCIES = 'send-result-render-vacancies';
 export const GO_TO_USER = 'go-to-user';
 
+
 // Views actions
-export const NO_REG_CLIENT = 'no-registration-client';
+export const SERVER_ERROR = 'server_error';
+
+export const NO_REG = 'no-registration';
+
+export const ORDER_PAGE_FEEDBACK = 'order_page_feedback';
+
+export const REVIEWS_ERROR = 'reviews_error';
+export const REVIEWS_RENDER = 'reviews_render';
+
 export const NO_LOGIN = 'no-login';
 export const NO_ORDER = 'no-order';
 export const RENDER_PROFILE = 'render-profile';
@@ -61,7 +83,6 @@ export const SUCCESS_LOAD_IMG = 'success-load-image';
 export const FAIL_LOAD_IMG = 'fail-load-image';
 export const GET_USER_DATA = 'get-user-data';
 export const NO_SET_UP = 'no-set-up';
-export const NO_REG_WORKER = 'no-registration-worker';
 export const ORDER_PAGE_RENDER = 'order_page_render';
 export const ORDER_CREATE_GO_RENDER = 'order_create_go_render';
 export const VACANCY_PAGE_RENDER = 'vacancy_page_render';
@@ -70,4 +91,5 @@ export const ORDER_ERROR_SET = 'order-error-set';
 export const ORDER_ERROR_DELETE_EX = 'order-error-delete-ex';
 export const ORDERS_RENDER = 'orders-render';
 export const VACANCIES_RENDER = 'vacancies-render';
+export const ORDER_PAGE_ERROR = 'order_page_error';
 

@@ -18,7 +18,11 @@ export default class Select {
     render() {
         const {placeholder, data} = this.options;
         this.$el.classList.add('select');
-        this.$el.innerHTML = getTemplate(data, placeholder, this.selectedId, this.idSelector);
+        this.$el.innerHTML = getTemplate(
+            data,
+            placeholder,
+            this.selectedId,
+            this.idSelector);
         this.$idSelectorDoc = document.getElementById(this.idSelector);
     }
 

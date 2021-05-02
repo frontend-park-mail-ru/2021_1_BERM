@@ -1,10 +1,12 @@
 import {Controller} from './controller.js';
-import {LoginView} from '../views/loginView.js';
+import {LoginView} from '@/views/loginView';
 
-import eventBus from '../modules/eventBus.js';
-import router from '../modules/router.js';
-import auth from '../models/Auth.js';
-import {LOGIN, LOGIN_SUBMIT, NO_LOGIN} from '../modules/utils/actions.js';
+import eventBus from '@/modules/eventBus.js';
+import router from '@/modules/router.js';
+import auth from '@/models/Auth.js';
+import {LOGIN_GET, LOGIN_SUBMIT, NO_LOGIN} from '@/modules/utils/actions';
+import user from '@/models/User.js';
+import {getProfilePath} from '@/modules/utils/goPath.js';
 
 /** Контроллер регистрации клиента */
 export class LoginController extends Controller {
@@ -17,12 +19,14 @@ export class LoginController extends Controller {
     }
 
     /**
-     * Запуск контроллера входа
+     * Запуск контроллера регистрации клиента
+     *
+     * @param {number} id - id из url, если он там был
      */
     run(id) {
         super.run(
             [
-                [LOGIN, this._onLogin],
+                [LOGIN_GET, this._onLogin],
                 [LOGIN_SUBMIT, this._submitLogin],
             ]);
     }
@@ -34,7 +38,14 @@ export class LoginController extends Controller {
      */
     _onLogin(res) {
         if (res.ok) {
-            router.go(`/`);
+            res.json()
+                .then((res) => {
+                    user.isAuthorized = true;
+                    user.id = res.id;
+                    user.isExecutor = res.executor;
+
+                    router.go(getProfilePath(user.id));
+                });
         } else {
             eventBus.emit(NO_LOGIN);
         }

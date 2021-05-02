@@ -1,13 +1,16 @@
 include ../orders/orderInOrdersPage
 
 .orders
-    if isMyOrders === true
-        if isI === true
-            div(class='orders__title') Мои заказы
-        else
-            div(class='orders__title') Заказы пользователя
+    if isArchive === true
+        div(class='orders__title') Архив заказов
     else
-        div(class='orders__title') Актуальные заказы
+        if isMyOrders === true
+            if isI === true
+                div(class='orders__title') Мои заказы
+            else
+                div(class='orders__title') Заказы пользователя
+        else
+            div(class='orders__title') Актуальные заказы
     div(class='orders__content')
         div(class='orders__list')
             each order in orders

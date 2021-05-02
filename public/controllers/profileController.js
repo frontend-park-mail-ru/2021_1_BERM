@@ -1,21 +1,22 @@
 import {Controller} from './controller.js';
-import auth from '../models/Auth.js';
-import eventBus from '../modules/eventBus.js';
-import user from '../models/User.js';
-import {ProfileView} from '../views/profileView.js';
-import router from '../modules/router.js';
-import order from '../models/Order.js';
+import auth from '@/models/Auth.js';
+import eventBus from '@/modules/eventBus.js';
+import user from '@/models/User.js';
+import {ProfileView} from '@/views/profileView.js';
+import router from '@/modules/router.js';
+import order from '@/models/Order.js';
 import {
-    EXIT, FAIL_LOAD_IMG,
-    IMG_CHANGE,
-    IMG_LOAD,
-    ON_PROFILE,
-    PROFILE,
+    PROFILE_EXIT, FAIL_LOAD_IMG,
+    PROFILE_IMG_CHANGE,
+    PROFILE_IMG_GET,
+    PROFILE_GET,
+    PROFILE_GO,
     PROFILE_DELETE_SPEC,
     PROFILE_DELETE_SPEC_GET,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
+import {getIndexPath, getNotFoundPath} from '@/modules/utils/goPath.js';
 
 /** Контроллер регистрации клиента */
 export class ProfileController extends Controller {
@@ -37,11 +38,11 @@ export class ProfileController extends Controller {
 
         super.run(
             [
-                [PROFILE, this._profile.bind(this)],
-                [ON_PROFILE, this._onProfile.bind(this)],
-                [IMG_CHANGE, this._changeImage.bind(this)],
-                [IMG_LOAD, this._onLoadImage.bind(this)],
-                [EXIT, this._onExit.bind(this)],
+                [PROFILE_GO, this._profile.bind(this)],
+                [PROFILE_GET, this._onProfile.bind(this)],
+                [PROFILE_IMG_CHANGE, this._changeImage.bind(this)],
+                [PROFILE_IMG_GET, this._onLoadImage.bind(this)],
+                [PROFILE_EXIT, this._onExit.bind(this)],
                 [PROFILE_DELETE_SPEC, this._sendDeleteSpec.bind(this)],
                 [PROFILE_DELETE_SPEC_GET, this._getDeleteSpec.bind(this)],
             ],
@@ -82,7 +83,7 @@ export class ProfileController extends Controller {
      */
     _onProfile(res) {
         if (!res.ok) {
-            window.location.href = '/404/';
+            router.go(getNotFoundPath);
             return;
         }
 
@@ -127,6 +128,7 @@ export class ProfileController extends Controller {
      * @param {string} src - изображение
      */
     _changeImage(src) {
+        eventBus.emit(SUCCESS_LOAD_IMG, src);
         auth.sendImage(src);
     }
 
@@ -139,7 +141,6 @@ export class ProfileController extends Controller {
     _onLoadImage({res, src}) {
         if (res.ok) {
             user.img = src;
-            eventBus.emit(SUCCESS_LOAD_IMG, src);
         } else {
             eventBus.emit(FAIL_LOAD_IMG);
         }
@@ -154,19 +155,30 @@ export class ProfileController extends Controller {
                 user.isAuthorized = false;
                 user.isGetAttr = false;
                 order.currentOrderId = -1;
+                order.getOrders = false;
                 order.ordersMap = new Map([]);
-                router.go('/');
+                router.go(getIndexPath);
             })
             .catch((res) => {
                 console.log('не удалось parse JSON', res.message);
             });
     }
 
+    /**
+     * Делаем запрос на удаление специализации
+     *
+     * @param {Object} data
+     */
     _sendDeleteSpec(data) {
         this.deleteSpec = data;
         auth.deleteSpec(user.id, {specialize: data});
     }
 
+    /**
+     * Получаем ответ на удаление и выводим ошибку при неудаче
+     *
+     * @param {Response} res
+     */
     _getDeleteSpec(res) {
         if (res.ok) {
             user.deleteSpec(this.deleteSpec);

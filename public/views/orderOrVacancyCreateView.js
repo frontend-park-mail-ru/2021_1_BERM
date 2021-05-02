@@ -1,23 +1,24 @@
 import {View} from './view.js';
 import {Validator} from './validator.js';
-import eventBus from '../modules/eventBus.js';
+import eventBus from '@/modules/eventBus.js';
 import {
     NO_ORDER,
-    ORDER_SUBMIT,
+    ORDER_CREATE_SUBMIT,
     ORDER_CREATE_GO_RENDER,
-    GET_IS_ORDER_OR_VACANCY,
+    ORDER_CREATE_OR_VACANCY,
     VACANCY_SUBMIT,
-} from '../modules/utils/actions.js';
+} from '@/modules/utils/actions.js';
 
 import createOrderTemplate from '@/components/pages/createOrderOrVacancy.pug';
-import DateHandler from '../modules/utils/dateHandler.js';
-import Select from '../modules/utils/customSelect.js';
-import {listOfServices} from '../modules/utils/templatesForSelect.js';
+import DateHandler from '@/modules/utils/dateHandler.js';
+import Select from '@/modules/utils/customSelect.js';
+import {listOfServices} from '@/modules/utils/templatesForSelect.js';
+import {notification} from '@/components/notification/notification.js';
 
 /** View создания заказа */
 export class OrderOrVacancyCreateView extends View {
     /**
-     * Отображение страницы и получение с нее данных
+     * Установка обработчиков
      *
      * @param {boolean} isAuthorized - авторизирован пользователь или нет
      * @param {boolean} isExecutor - это исполнитель или нет
@@ -31,9 +32,14 @@ export class OrderOrVacancyCreateView extends View {
             [NO_ORDER, this._onNoOrder.bind(this)],
         ]);
 
-        eventBus.emit(GET_IS_ORDER_OR_VACANCY);
+        eventBus.emit(ORDER_CREATE_OR_VACANCY);
     }
 
+    /**
+     * Отображение страницы
+     *
+     * @param {Object} data
+     */
     _renderWithData(data) {
         super.renderHtml(
             this.isAuthorized,
@@ -75,7 +81,7 @@ export class OrderOrVacancyCreateView extends View {
                 info.order_name = event.target.order_name.value;
                 info.deadline =
                     new Date(date[2], date[1] - 1, date[0]).getTime();
-                eventBus.emit(ORDER_SUBMIT, info);
+                eventBus.emit(ORDER_CREATE_SUBMIT, info);
             } else {
                 info.salary = Number(event.target.budget.value);
                 info.vacancy_name = event.target.order_name.value;
@@ -88,8 +94,7 @@ export class OrderOrVacancyCreateView extends View {
      * Обработка в случае провала
      */
     _onNoOrder() {
-        // ToDo не удалось разместить заказ
-        console.log('ToDo не удалось создать');
+        notification('Ошибка сервера. Не удалось разместить заказ');
     }
 }
 

@@ -1,3 +1,6 @@
+import auth from '../../models/Auth.js';
+import user from '../../models/User.js';
+
 export default {
     getAllErrors() {
         return ['Незаполненное поле ввода', // 0
@@ -35,5 +38,23 @@ export default {
             ['date', /^(\d{2}|\d)([./-])(0[1-9]|1[1-2])([./-])\d{4}$/]]);
     },
 
+    /**
+     * Проверка авторизации
+     */
+    async checkAuthorized() {
+        return auth.isAuthorized()
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then((result) => {
+                if (result) {
+                    user.isAuthorized = true;
+                    user.id = result.id;
+                    user.isExecutor = result.executor;
+                }
+            });
+    },
 };
 

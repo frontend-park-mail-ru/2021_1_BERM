@@ -1,8 +1,12 @@
-/** Класс для хранения заказа */
+/** Класс для хранения заказов */
 class Order {
+    /**
+     * Конструктор
+     */
     constructor() {
         this.currentOrderId = -1;
         this.ordersMap = new Map([]);
+        this.getOrders = false;
     }
 
     /**
@@ -15,10 +19,22 @@ class Order {
         this.currentOrderId = Number(attr.id);
     }
 
+    /**
+     * Устанавливаем один отклик
+     *
+     * @param {number} id - уникальный номер заказа
+     * @param {Object} item - информация отклика
+     */
     push(id, item) {
         this.ordersMap.get(id).responses.push(this.pushResponse(id, item));
     }
 
+    /**
+     * Устанавливаем отклики
+     *
+     * @param {number} id - уникальный номер заказа
+     * @param {Response} res - все отклики
+     */
     setResponses(id, res) {
         const responses = [];
 
@@ -29,6 +45,14 @@ class Order {
         this.ordersMap.get(id).responses = responses;
     }
 
+    /**
+     * Возвращаем структурированный отклик
+     *
+     * @param {number} id - уникальный номер заказа
+     * @param {Object} item - информация отклика
+     *
+     * @return {Object}
+     */
     pushResponse(id, item) {
         return {
             id: item.id,
@@ -40,6 +64,14 @@ class Order {
         };
     }
 
+    /**
+     * Ищем ставку по уникальным номерам
+     *
+     * @param {number} id - уникальный номер заказа
+     * @param {Object} creatorId - уникальный номер автора отклика
+     *
+     * @return {Object} rate - найденную ставку
+     */
     findRate(id, creatorId) {
         let rate = 0;
         this.ordersMap.get(id).responses.forEach((item) => {
@@ -50,8 +82,14 @@ class Order {
         return rate;
     }
 
+    /**
+     * Удаляем ставку
+     *
+     * @param {number} id - уникальный номер заказа
+     * @param {Object} creatorId - уникальный номер автора отклика
+     */
     deleteResponse(id, creatorId) {
-        let pos;
+        let pos = 0;
         this.ordersMap.get(id).responses.forEach((item, index) => {
             if (item.creatorId === creatorId) {
                 pos = index;
@@ -61,6 +99,11 @@ class Order {
         this.ordersMap.get(id).responses.splice(pos, 1);
     }
 
+    /**
+     * Устанавливаем заказы
+     *
+     * @param {Object} data - массив заказов
+     */
     setOrders(data) {
         data.forEach((res) => {
             this.setAttributes({
@@ -78,10 +121,24 @@ class Order {
         });
     }
 
+    /**
+     * Получаем информацию о заказе
+     *
+     * @param {number} id - уникальный номер заказа
+     *
+     * @return {Object} - информация о заказе
+     */
     getOrderById(id) {
         return this.ordersMap.get(id);
     }
 
+    /**
+     * Поиск минимальной ставки
+     *
+     * @param {number} id - уникальный номер заказа
+     *
+     * @return {number} min - минимальная ставка
+     */
     findMin(id) {
         let min = {rate: -1};
 
@@ -94,6 +151,13 @@ class Order {
         return min;
     }
 
+    /**
+     * Перевод unix time в формат ДД.ММ.ГГГГ
+     *
+     * @param {number} time - unix time
+     *
+     * @return {string} data
+     */
     getDate(time) {
         const date = new Date(time);
         let day = date.getDate();
@@ -109,6 +173,14 @@ class Order {
         return `${day}.${month}.${year}`;
     }
 
+    /**
+     * Ищем отклик
+     *
+     * @param {Object} order - уникальный номер заказа
+     * @param {number} id - уникальный номер отклика
+     *
+     * @return {Object} select - информацию по отклику
+     */
     getSelectResponse(order, id) {
         if (!id || !order) {
             return null;
@@ -122,6 +194,13 @@ class Order {
         });
 
         return select;
+    }
+
+    /** Обнуляем заказы */
+    clear() {
+        this.currentOrderId = -1;
+        this.ordersMap = new Map([]);
+        this.getOrders = false;
     }
 }
 
