@@ -10,6 +10,10 @@
 
 .vacancyPage {
 
+  &__otz {
+    margin-left: 30px;
+  }
+
   &__content {
     //margin-top: 15px;
     margin-left: 12px;
@@ -57,7 +61,7 @@
     @include font(600, 16px, 19px, -0.4px, $white);
     @include uniq_form($primary_color);
 
-    margin-right: 42px;
+    //margin-right: 42px;
     width: 134px;
     height: 29px;
 
@@ -70,7 +74,7 @@
     @include uniq_form($white);
     border: 2px solid $primary_color;
     box-sizing: border-box;
-    margin-right: 42px;
+    //margin-right: 42px;
 
     width: 182px;
     height: 28.33px;
@@ -93,7 +97,7 @@
     line-height: 20px;
     text-align: center;
     letter-spacing: -0.4px;
-    margin-right: 42px;
+    //margin-right: 42px;
   }
 
   &__comment-button_cancel {

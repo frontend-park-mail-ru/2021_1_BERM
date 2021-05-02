@@ -1470,6 +1470,9 @@ input[type="file"] {
   display: flex;
   flex-direction: column; }
 
+.vacancyPage__otz {
+  margin-left: 30px; }
+
 .vacancyPage__content {
   margin-left: 12px; }
 
@@ -1522,7 +1525,6 @@ input[type="file"] {
   color: #FFF;
   background-color: #345DEE;
   border-radius: 8px;
-  margin-right: 42px;
   width: 134px;
   height: 29px;
   text-align: center; }
@@ -1538,7 +1540,6 @@ input[type="file"] {
   border-radius: 8px;
   border: 2px solid #345DEE;
   box-sizing: border-box;
-  margin-right: 42px;
   width: 182px;
   height: 28.33px;
   text-align: center; }
@@ -1556,8 +1557,7 @@ input[type="file"] {
   font-size: 12px;
   line-height: 20px;
   text-align: center;
-  letter-spacing: -0.4px;
-  margin-right: 42px; }
+  letter-spacing: -0.4px; }
 
 .vacancyPage__comment-button_cancel {
   background-color: #EE3465;
