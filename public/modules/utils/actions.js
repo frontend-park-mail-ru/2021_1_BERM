@@ -65,6 +65,7 @@ export const GO_TO_VACANCY = 'go-to-vacancy';
 export const SEND_SERVICES_VACANCIES = 'services-vacancies';
 export const SEND_RESULT_RENDER_VACANCIES = 'send-result-render-vacancies';
 export const GO_TO_USER = 'go-to-user';
+export const CHANGE_VACANCY = 'change-vacancy';
 
 
 // Views actions
@@ -93,4 +94,5 @@ export const NOT_SET_CATEGORY = 'not_set_category';
 export const ORDERS_RENDER = 'orders-render';
 export const VACANCIES_RENDER = 'vacancies-render';
 export const ORDER_PAGE_ERROR = 'order_page_error';
+export const CHANGE_VACANCY_RENDER = 'change-vacancy-render';
 
