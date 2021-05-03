@@ -1,4 +1,4 @@
-import options from '@/modules/utils/validOptions';
+import {optionsValid} from '@/modules/utils/validOptions';
 /** Класс, отвечающий за отображение валидации на странице */
 export class ValidReflector {
     /**
@@ -49,15 +49,17 @@ export class ValidReflector {
             .querySelector('[name=' + property + ']').parentNode;
         const errorBox = formElement.nextElementSibling.childNodes[1];
         const errorMes = formElement.nextElementSibling.firstChild;
-        if (type === this.valid && property === options.passwordRepeat) {
+        console.log(property, optionsValid.passwordRepeat);
+        if (type === this.valid && property === optionsValid.passwordRepeat) {
             this.pasRepValid = true;
         }
 
-        if (type === this.invalid && property === options.passwordRepeat) {
+        if (type === this.invalid && property === optionsValid.passwordRepeat) {
             this.pasRepValid = false;
         }
 
-        if ((property === options.about || property === options.des) && error) {
+        if ((property === optionsValid.about ||
+            property === optionsValid.description) && error) {
             this.textAr.style.transform = 'translateY(-290px)';
         }
 
@@ -98,6 +100,7 @@ export class ValidReflector {
 
         if (event === this.click) {
             if (error) {
+                console.log(error);
                 errorMes.innerHTML = error;
             }
             return;

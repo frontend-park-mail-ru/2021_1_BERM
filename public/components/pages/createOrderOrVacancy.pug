@@ -69,6 +69,11 @@ include ../inputes/settingsInput
                                 div(class="error__arrow")
                         div.settings-form__input-mini_bg
                             div#select
+                        if isChange
+                            div(class='change-form')
+                                button(class='change-form__cancel')
+                                    img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
+                                    span Отменить
                 div(class='settings__column_right')
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
@@ -90,11 +95,11 @@ include ../inputes/settingsInput
                             button(class='settings-form__submit' id='send_mess')
                                 span Создать
                                 img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')
-            if isChange
-                div(class='change-form')
-                    button(class='change-form__cancel')
-                        img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
-                        span Отменить
-                    button(class='settings-form__submit' id='send_mess')
-                        span Изменить
-                        img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')
+                    if isChange
+                        div(class='change-form')
+                            //button(class='change-form__cancel')
+                            //    img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
+                            //    span Отменить
+                            button(class='settings-form__submit' id='send_mess')
+                                span Изменить
+                                img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')

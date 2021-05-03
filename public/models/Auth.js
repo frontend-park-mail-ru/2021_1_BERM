@@ -254,7 +254,8 @@ export default class Auth {
     }
 
     static vacancySetExecutor(id, data) {
-        sendRequest('PUT', `/vacancy/${id}/select`, data)
+        console.log(id, data);
+        sendRequest('POST', `/vacancy/${id}/select`, data)
             .then((res) => {
                 console.log(res);
                 eventBus.emit(VACANCY_GET_EXECUTOR, res);
@@ -397,7 +398,7 @@ export default class Auth {
         sendRequest('PATCH', `/vacancy/${id}`, info)
             .then((res) => {
                 console.log(res);
-                eventBus.emit(VACANCY_PAGE_RES, res);
+                eventBus.emit(VACANCY_PAGE_GET_VACANCY, res);
             });
     }
 }
