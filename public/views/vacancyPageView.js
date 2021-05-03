@@ -246,7 +246,7 @@ export class VacancyPageView extends View {
             };
             sendInfo.salary = Number(e.target.budget.value);
             sendInfo.vacancy_name = e.target.order_name.value;
-            sendInfo.emit(CHANGE_VACANCY, sendInfo);
+            eventBus.emit(CHANGE_VACANCY, sendInfo);
         });
     }
 }

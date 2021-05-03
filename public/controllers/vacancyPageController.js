@@ -287,7 +287,6 @@ export class VacancyPageController extends Controller {
     }
 
     _changeVacancy(info) {
-
-
+        auth.changeVacancy(vacancy.currentVacancyId, info);
     }
 }

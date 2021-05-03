@@ -392,4 +392,12 @@ export default class Auth {
         // ToDo Запрос на удаление вакансии
         return Promise.resolve({ok: false});
     }
+
+    static changeVacancy(id, info) {
+        sendRequest('PATCH', `/vacancy/${id}`, info)
+            .then((res) => {
+                console.log(res);
+                eventBus.emit(VACANCY_PAGE_RES, res);
+            });
+    }
 }
