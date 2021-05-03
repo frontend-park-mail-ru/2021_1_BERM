@@ -46,6 +46,7 @@ export const ORDER_GET_EXECUTOR = 'order-get-executor';
 export const ORDER_DELETE_EXECUTOR = 'order-delete-executor';
 export const ORDER_GET_DELETE_EXECUTOR = 'order-get-delete-executor';
 export const ORDER_GET = 'order-page-get';
+export const CHANGE_ORDER = 'change-order';
 export const VACANCY_SUBMIT = 'vacancy_submit';
 export const VACANCY_CREATE = 'vacancy_create';
 export const VACANCY_PAGE_GET_RES = 'vacancy_page_get_res';
@@ -95,4 +96,5 @@ export const ORDERS_RENDER = 'orders-render';
 export const VACANCIES_RENDER = 'vacancies-render';
 export const ORDER_PAGE_ERROR = 'order_page_error';
 export const CHANGE_VACANCY_RENDER = 'change-vacancy-render';
+export const CHANGE_ORDER_RENDER = 'change-order-render';
 

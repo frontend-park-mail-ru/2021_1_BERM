@@ -20,7 +20,10 @@ import {
     ORDER_GET_EXECUTOR,
     ORDER_GET_DELETE_EXECUTOR,
     SEND_RESULT_RENDER_VACANCIES,
-    VACANCY_GET_RATE, VACANCY_GET_EXECUTOR, VACANCY_GET_DELETE_EXECUTOR,
+    VACANCY_GET_RATE,
+    VACANCY_GET_EXECUTOR,
+    VACANCY_GET_DELETE_EXECUTOR,
+    ORDER_PAGE_GET_RES,
 } from '@/modules/utils/actions.js';
 
 
@@ -399,6 +402,14 @@ export default class Auth {
             .then((res) => {
                 console.log(res);
                 eventBus.emit(VACANCY_PAGE_GET_VACANCY, res);
+            });
+    }
+
+    static changeOrder(id, info) {
+        sendRequest('PATCH', `/order/${id}`, info)
+            .then((res) => {
+                console.log(res);
+                eventBus.emit(ORDER_PAGE_GET_RES, res);
             });
     }
 }

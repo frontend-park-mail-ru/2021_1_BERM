@@ -6,8 +6,14 @@ include ../inputes/settingsInput
             div(class='settings__form')
                 div(class='settings__column_left')
                     if isOrder
-                        div(class='settings__label') Создать заказ
-                        +settingsInput(require("@/static/img/title.svg").default, 'Заголовок', 'order_name', 'text')
+                        if !isChange
+                            div(class='settings__label') Создать заказ
+                        else
+                            div(class='settings__label') Изменить заказ
+                        if !isChange
+                            +settingsInput(require("@/static/img/title.svg").default, 'Заголовок', 'order_name', 'text')
+                        else
+                            +settingsInput(require("@/static/img/title.svg").default, 'Заголовок', 'order_name', 'text', '', creator.title)
                         div(class=" error")
                             div(class="error__message")
                             div(class="error__main")
@@ -16,7 +22,10 @@ include ../inputes/settingsInput
                                         li(class= "error__help") &#8226 Penis
                                         li(class= "error__help") &#8226 Penis
                                 div(class="error__arrow")
-                        +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text')
+                        if !isChange
+                            +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text')
+                        else
+                            +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text', '', creator.budget)
                         div(class=" error")
 
                             div(class="error__message")
@@ -26,8 +35,10 @@ include ../inputes/settingsInput
                                         li(class= "error__help") &#8226 Penis
                                         li(class= "error__help") &#8226 Penis
                                 div(class="error__arrow")
-                        +settingsInput(require("@/static/img/date.svg").default, 'Дедлайн', 'date', 'text', 'date')
-
+                        if !isChange
+                            +settingsInput(require("@/static/img/date.svg").default, 'Дедлайн', 'date', 'text', 'date')
+                        else
+                            +settingsInput(require("@/static/img/date.svg").default, 'Дедлайн', 'date', 'text', 'date', creator.date)
                         div(class=" error")
                             div(class="error__message")
                             div(class="error__main")
@@ -38,6 +49,7 @@ include ../inputes/settingsInput
                                 div(class="error__arrow")
                         div.settings-form__input-mini_bg
                             div#select
+
                     else
                         if !isChange
                             div(class='settings__label') Создать вакансию
@@ -97,9 +109,9 @@ include ../inputes/settingsInput
                                 img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')
                     if isChange
                         div(class='change-form')
-                            //button(class='change-form__cancel')
-                            //    img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
-                            //    span Отменить
+                            button(class='change-form__cancel')
+                                img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
+                                span Отменить
                             button(class='settings-form__submit' id='send_mess')
                                 span Изменить
                                 img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')
