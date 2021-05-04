@@ -66,6 +66,11 @@ self.addEventListener('activate', async (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+    if (event.request.cache === 'only-if-cached' &&
+        event.request.mode !== 'same-origin') {
+        return;
+    }
+
     const {request} = event;
 
     if (request.method !== 'GET') {
