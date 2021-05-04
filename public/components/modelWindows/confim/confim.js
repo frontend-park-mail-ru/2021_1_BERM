@@ -1,4 +1,4 @@
-import conf from '@/components/modelWindows/confim/confirm.pug';
+import conf from '@/components/modelWindows/confim/confim.pug';
 
 export const confim = (callbackYes) => {
     const body = document.getElementsByTagName('body')[0];

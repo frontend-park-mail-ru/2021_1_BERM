@@ -113,6 +113,9 @@ export class OrderPageView extends View {
                 confim(
                     (event) => {
                         event.preventDefault();
+                        const elem = document
+                            .getElementById('confim_window');
+                        elem.parentNode.removeChild(elem);
                         this._feedback();
                     });
             }));
