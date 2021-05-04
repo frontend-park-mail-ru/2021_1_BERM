@@ -5,10 +5,7 @@ mixin makeRate
             div(class='orderPage__set-rate_input')
                 div(class='custom-form__input')
                     input(class='orderPage__set-rate_input_in form-control' type='text' name='rate' placeholder='Сумма' maxlength="9")
-                div(class=" error")
+                div(class="error error-rate")
                     div(class="error__message")
                     div(class="error__main")
-                        div(class="error__box")
-                            ul(class="error__list")
-                        div(class="error__arrow")
             button(class='orderPage__set-rate_button' id='send_mess') Поставить

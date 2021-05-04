@@ -11,6 +11,7 @@ import {
 import ordersTemplate from '@/components/pages/orders.pug';
 import {notification} from '@/components/notification/notification';
 import feedback from '@/components/modelWindows/feedback.pug';
+import {Validator} from '@/views/validation/validator';
 
 /** View страницы всех заказов */
 export class OrdersView extends View {
@@ -120,6 +121,12 @@ export class OrdersView extends View {
         });
 
         const form = document.getElementById('specForm');
+        const validator = new Validator(
+            'specForm',
+            '.form-control',
+            'send_mess',
+        );
+        validator.validate();
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
@@ -129,6 +136,10 @@ export class OrdersView extends View {
                 to_user: to,
                 order_id: order,
             };
+
+            if (data.score === 6) {
+                data.score = 1;
+            }
 
             elem.parentNode.removeChild(elem);
             body.classList.remove('scroll_hidden');
