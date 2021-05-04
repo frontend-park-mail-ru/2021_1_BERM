@@ -54,7 +54,7 @@ export class Validator {
             let invalid = false;
 
             Object.keys(formVal).forEach((property) => {
-                if (property === 'submit') return;
+                if (property === 'submit' || property === 'rating') return;
                 error = handler.getError(formVal, property);
 
                 const elem = document.querySelector(`[name=\'${property}\']`);

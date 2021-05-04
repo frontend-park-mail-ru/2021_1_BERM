@@ -177,6 +177,12 @@ export class OrderPageView extends View {
         });
 
         const form = document.getElementById('specForm');
+        const validator = new Validator(
+            'specForm',
+            '.form-control',
+            'send_mess',
+        );
+        validator.validate();
         form.addEventListener('submit', (event) => {
             body.classList.remove('scroll_hidden');
             event.preventDefault();
@@ -185,6 +191,10 @@ export class OrderPageView extends View {
                 score: 6 - Number(event.target.rating.value),
                 text: event.target.description.value,
             };
+
+            if (data.score === 6) {
+                data.score = 1;
+            }
 
             eventBus.emit(ORDER_PAGE_SEND_FEEDBACK, data);
         });

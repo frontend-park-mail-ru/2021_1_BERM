@@ -83,6 +83,8 @@ export class ValidHandler {
                     return this.errors[6];
                 }
             },
+            rating: () => {
+            },
             nameSurname: () => {
                 if (formVal.nameSurname.length > 50 ||
                     formVal.nameSurname.length === 0) {
