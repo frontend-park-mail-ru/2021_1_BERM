@@ -291,18 +291,25 @@ export class OrderPageController extends Controller {
      *
      * @param {Object} data - содержание отзыва
      */
-    _sendFeedback(data) {
+    async _sendFeedback(data) {
         if (data.skip) {
             router.go(getProfilePath(user.id));
+            return;
         }
 
-        // Todo Реализовать тут получить id кому и id от кого
-        auth.sendFeedback(data)
+        const select = order.getSelectResponse(
+            order.currentOrderId,
+            order.ordersMap.get(order.currentOrderId).selectExecutor);
+
+        data.user = user.id;
+        data.to_user = select.creatorId;
+        data.order_id = order.currentOrderId;
+
+        await auth.sendFeedback(data)
             .then((res) => {
                 if (!res.ok) {
                     eventBus.emit(ORDER_PAGE_ERROR,
                         'Не удалось оставить отклик');
-                    return;
                 }
                 router.go(getProfilePath(user.id));
             });

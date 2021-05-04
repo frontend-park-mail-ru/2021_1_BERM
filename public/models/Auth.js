@@ -74,12 +74,15 @@ export default class Auth {
     /**
      * Отправка результата
      *
-     * @param {string} src - код изображения на отправку
+     * @param {string} data - код изображения на отправку
      */
-    static sendImage(src) {
-        sendRequest('PUT', '/profile/avatar', {img: src})
+    static sendImage(data) {
+        sendRequest('PATCH', '/profile/avatar', data)
             .then((res) => {
-                eventBus.emit(PROFILE_IMG_GET, {res, src});
+                eventBus.emit(PROFILE_IMG_GET, {
+                    res: res,
+                    src: data.img,
+                });
             });
     }
 
@@ -97,7 +100,7 @@ export default class Auth {
      * @param {Object} data - данные на отправку
      */
     static updateSettings(data) {
-        sendRequest('PUT', `/profile/${User.id}`, data)
+        sendRequest('PATCH', `/profile/${User.id}`, data)
             .then((res) => {
                 eventBus.emit(SETTING_GET, res);
             });
@@ -180,7 +183,7 @@ export default class Auth {
      * @param {number} id - уникальный номер заказа
      */
     static changeResponse(data, id) {
-        sendRequest('PUT', `/order/${id}/response`, data)
+        sendRequest('PATCH', `/order/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(ORDER_GET_RATE, res);
             });
@@ -247,14 +250,14 @@ export default class Auth {
     }
 
     static vacancyChangeResponse(data, id) {
-        sendRequest('PUT', `/vacancy/${id}/response`, data)
+        sendRequest('PATCH', `/vacancy/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(VACANCY_GET_RATE, res);
             });
     }
 
     static vacancySetExecutor(id, data) {
-        sendRequest('PUT', `/vacancy/${id}/select`, data)
+        sendRequest('PATCH', `/vacancy/${id}/select`, data)
             .then((res) => {
                 console.log(res);
                 eventBus.emit(VACANCY_GET_EXECUTOR, res);
@@ -301,7 +304,7 @@ export default class Auth {
      * @param {Object} data - данные на отправку
      */
     static setOrderExecutor(id, data) {
-        sendRequest('PUT', `/order/${id}/select`, data)
+        sendRequest('POST', `/order/${id}/select`, data)
             .then((res) => {
                 eventBus.emit(ORDER_GET_EXECUTOR, res);
             });
@@ -322,7 +325,6 @@ export default class Auth {
     static getVacancies() {
         sendRequest('GET', '/vacancy')
             .then((res) => {
-                console.log(res);
                 eventBus.emit(SEND_RESULT_RENDER_VACANCIES, res);
             });
     }
@@ -335,8 +337,7 @@ export default class Auth {
      * @return {Promise} - ответ от сервера
      */
     static endOrder(id) {
-        // ToDo Запрос на удаление заказа
-        return Promise.resolve({ok: true});
+        return sendRequest('DELETE', `/order/${id}/close`);
     }
 
     /**
@@ -347,26 +348,22 @@ export default class Auth {
      * @return {Promise} - ответ от сервера
      */
     static deleteOrder(id) {
-        // ToDo Запрос на удаление заказа
-        return Promise.resolve({ok: false});
+        return sendRequest('DELETE', `/order/${id}`);
     }
 
     static sendFeedback(data) {
-        // ToDo Запрос на сохранение фидбека
-
-        return Promise.resolve({ok: false});
+        return sendRequest('POST', '/profile/review', data);
     }
 
     static getArchiveOrders(id) {
-        // ToDo Запрос на архив заказов
-
-        eventBus.emit(SEND_RESULT_RENDER, {ok: false});
+        return sendRequest('GET', `/order/profile/${id}/archive`)
+            .then((res) => {
+                eventBus.emit(SEND_RESULT_RENDER, res);
+            });
     }
 
     static getReviews(id) {
-        // Todo Запрос на отзывы
-
-        return Promise.resolve({ok: true});
+        return sendRequest('GET', `/profile/${id}/review`);
     }
 
     /**
@@ -391,5 +388,9 @@ export default class Auth {
     static deleteVacancy(id) {
         // ToDo Запрос на удаление вакансии
         return Promise.resolve({ok: false});
+    }
+
+    static search(data) {
+        return sendRequest('PATCH', `/order/search`, data);
     }
 }

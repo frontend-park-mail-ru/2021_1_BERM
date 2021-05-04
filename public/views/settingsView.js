@@ -3,7 +3,7 @@ import {Validator} from './validator.js';
 import eventBus from '@/modules/eventBus.js';
 import {
     GET_USER_DATA,
-    NO_SET_UP,
+    NO_SET_UP, SETTING_INVALID_PASSWORD,
     SETTING_SEND_DATA,
     SETTING_SUBMIT,
 } from '@/modules/utils/actions.js';
@@ -23,6 +23,7 @@ export class SettingsView extends View {
         super.setListeners([
             [GET_USER_DATA, this._renderData],
             [NO_SET_UP, this._onNoSetUp],
+            [SETTING_INVALID_PASSWORD, this._invalidPassword],
         ]);
         eventBus.emit(SETTING_SEND_DATA);
     }
@@ -67,6 +68,11 @@ export class SettingsView extends View {
      */
     _onNoSetUp() {
         notification('Ошибка сервера. Не удалось сохранить изменения');
+    }
+
+    _invalidPassword() {
+        // Todo Рисовать ошибку по другому
+        notification('Ошибка! Неверный текущий пароль');
     }
 }
 

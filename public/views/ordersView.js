@@ -4,7 +4,7 @@ import {
     SEND_SERVICES,
     ORDERS_RENDER,
     GO_TO_ORDER,
-    SERVER_ERROR,
+    SERVER_ERROR, ORDER_PAGE_SEARCH,
 } from '@/modules/utils/actions';
 import ordersTemplate from '@/components/pages/orders.pug';
 import {notification} from '@/components/notification/notification';
@@ -47,6 +47,19 @@ export class OrdersView extends View {
                 isArchive: dataForRender.isArchive,
             }),
         );
+
+        if (!dataForRender.isMyOrders && !dataForRender.isArchive) {
+            const form = document.getElementById('search__form');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const data = {
+                    keyword: event.target.search.value,
+                };
+
+                eventBus.emit(ORDER_PAGE_SEARCH, data);
+            });
+        }
 
         // const allId = document.querySelectorAll('#id');
         const allRef = document.querySelectorAll('.orders__order_link');

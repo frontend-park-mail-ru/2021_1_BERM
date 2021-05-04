@@ -5,6 +5,7 @@ import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
 import auth from '@/models/Auth.js';
 import order from '@/models/Order.js';
+import user from '@/models/User.js';
 import {
     NO_ORDER,
     ORDER_CREATE_GET,
@@ -62,6 +63,7 @@ export class OrderCreateController extends Controller {
      * @param {Object} info - данные на отправку
      */
     _orderSubmit(info) {
+        info.customer_id = user.id;
         auth.createOrder(info);
     }
 
