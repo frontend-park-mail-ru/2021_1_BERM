@@ -137,6 +137,11 @@ class Vacancy {
         console.log('SELECT ', select);
         return select;
     }
+
+    clear() {
+        this.currentVacancyId = -1;
+        this.vacancysMap = new Map([]);
+    }
 }
 
 export default new Vacancy();

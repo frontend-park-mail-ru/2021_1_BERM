@@ -15,16 +15,17 @@ import {
     VACANCY_PAGE_DELETE,
     VACANCY_PAGE_END,
     SERVER_ERROR,
-    VACANCY_PAGE_FEEDBACK,
     CHANGE_VACANCY,
-    CHANGE_VACANCY_RENDER, VACANCY_SUBMIT,
+    CHANGE_VACANCY_RENDER,
+    VACANCY_SUBMIT,
     NOTIF_CHANGE_VALID,
+    CHANGE_VACANCY_RENDER,
 } from '@/modules/constants/actions.js';
 import {notification} from '@/components/notification/notification';
-import feedback from '@/components/pages/feedback.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import {Validator} from '@/views/validation/validator';
+import {confim} from '@/components/modelWindows/confim/confim';
 
 /** View страницы вакансии */
 
@@ -43,7 +44,6 @@ export class VacancyPageView extends View {
         super.setListeners([
             [VACANCY_PAGE_RENDER, this._vacancyPageRender.bind(this)],
             [SERVER_ERROR, this._error.bind(this)],
-            [VACANCY_PAGE_FEEDBACK, this._feedback.bind(this)],
             [CHANGE_VACANCY_RENDER, this._changeVacancyRender],
             [NOTIF_CHANGE_VALID, this._notifChangeValid],
         ]);
@@ -141,16 +141,22 @@ export class VacancyPageView extends View {
                     .querySelector('.orderPage__order_end');
 
                 endBtn.addEventListener('click', (() => {
-                    // Todo Добавить подтверждение действия
-                    eventBus.emit(VACANCY_PAGE_END);
+                    confim(
+                        (event) => {
+                            event.preventDefault();
+                            eventBus.emit(VACANCY_PAGE_END);
+                        });
                 }));
             } else {
                 const deleteBtn = document
                     .querySelector('.orderPage__order_delete');
 
                 deleteBtn.addEventListener('click', (() => {
-                    // Todo Добавить подтверждение действия
-                    eventBus.emit(VACANCY_PAGE_DELETE);
+                    confim(
+                        (event) => {
+                            event.preventDefault();
+                            eventBus.emit(VACANCY_PAGE_DELETE);
+                        });
                 }));
 
                 const selectButtons = document

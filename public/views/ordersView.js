@@ -4,10 +4,13 @@ import {
     SEND_SERVICES,
     ORDERS_RENDER,
     GO_TO_ORDER,
-    SERVER_ERROR, ORDER_PAGE_SEARCH,
+    SERVER_ERROR,
+    ORDERS_PAGE_SEARCH,
+    ORDERS_SEND_FEEDBACK,
 } from '@/modules/constants/actions';
 import ordersTemplate from '@/components/pages/orders.pug';
 import {notification} from '@/components/notification/notification';
+import feedback from '@/components/modelWindows/feedback.pug';
 
 /** View страницы всех заказов */
 export class OrdersView extends View {
@@ -19,8 +22,8 @@ export class OrdersView extends View {
      */
     render(isAuthorized, isExecutor) {
         super.setListeners([
-            [ORDERS_RENDER, this._renderData],
-            [SERVER_ERROR, this._error],
+            [ORDERS_RENDER, this._renderData.bind(this)],
+            [SERVER_ERROR, this._error.bind(this)],
         ]);
         eventBus.emit(SEND_SERVICES);
     }
@@ -45,8 +48,26 @@ export class OrdersView extends View {
                 isI: dataForRender.isI,
                 isMyOrders: dataForRender.isMyOrders,
                 isArchive: dataForRender.isArchive,
+                isExecutor: dataForRender.isExecutor,
             }),
         );
+
+        if (dataForRender.isArchive) {
+            const feedback = document
+                .querySelectorAll('.orders__feedback');
+            feedback.forEach((e) => {
+                e.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    const to = Number(
+                        event.target.getAttribute('data-creator'));
+                    const order = Number(
+                        event.target.getAttribute('data-order'));
+
+                    this._feedback(to, order);
+                });
+            });
+        }
 
         if (!dataForRender.isMyOrders && !dataForRender.isArchive) {
             const form = document.getElementById('search__form');
@@ -57,7 +78,7 @@ export class OrdersView extends View {
                     keyword: event.target.search.value,
                 };
 
-                eventBus.emit(ORDER_PAGE_SEARCH, data);
+                eventBus.emit(ORDERS_PAGE_SEARCH, data);
             });
         }
 
@@ -80,5 +101,38 @@ export class OrdersView extends View {
 
     _error(str) {
         notification(`Ошибка сервера! ${str}`);
+    }
+
+    _feedback(to, order) {
+        const body = document.getElementsByTagName('body')[0];
+        body.classList.add('scroll_hidden');
+
+        const root = document.getElementById('root');
+        root.insertAdjacentHTML('beforeend', feedback());
+
+        const elem = document.getElementById('confim_window');
+
+        const skip = document.querySelector('.orderPage__feedback_skip');
+        skip.addEventListener('click', (event) => {
+            event.preventDefault();
+            elem.parentNode.removeChild(elem);
+            body.classList.remove('scroll_hidden');
+        });
+
+        const form = document.getElementById('specForm');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const data = {
+                score: 6 - Number(event.target.rating.value),
+                text: event.target.description.value,
+                to_user: to,
+                order_id: order,
+            };
+
+            elem.parentNode.removeChild(elem);
+            body.classList.remove('scroll_hidden');
+            eventBus.emit(ORDERS_SEND_FEEDBACK, data);
+        });
     }
 }

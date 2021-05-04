@@ -11,17 +11,19 @@ import {
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
     ORDER_PAGE_FEEDBACK,
-    ORDER_PAGE_SEND_FEEDBACK, VACANCY_PAGE_GET_RES, CHANGE_ORDER,
+    ORDER_PAGE_SEND_FEEDBACK,
+    CHANGE_ORDER,
 } from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/orderPage.pug';
-import feedback from '@/components/pages/feedback.pug';
+import feedback from '@/components/modelWindows/feedback.pug';
 import {Validator} from './validation/validator';
 import {notification} from '@/components/notification/notification.js';
 import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import PriceHandler from '@/modules/utils/priceHandler';
+import {confim} from '@/components/modelWindows/confim/confim';
 
 /** View страницы заказа */
 export class OrderPageView extends View {
@@ -109,8 +111,11 @@ export class OrderPageView extends View {
                 .querySelector('.orderPage__order_end');
 
             endBtn.addEventListener('click', (() => {
-                // Todo Добавить подтверждение действия
-                eventBus.emit(ORDER_PAGE_END);
+                confim(
+                    (event) => {
+                        event.preventDefault();
+                        eventBus.emit(ORDER_PAGE_END);
+                    });
             }));
 
             const deleteButton = document
@@ -124,8 +129,11 @@ export class OrderPageView extends View {
                 .querySelector('.orderPage__order_delete');
 
             deleteBtn.addEventListener('click', (() => {
-                // Todo Добавить подтверждение действия
-                eventBus.emit(ORDER_PAGE_DELETE);
+                confim(
+                    (event) => {
+                        event.preventDefault();
+                        eventBus.emit(ORDER_PAGE_DELETE);
+                    });
             }));
 
             const selectButtons = document
@@ -161,17 +169,6 @@ export class OrderPageView extends View {
         const root = document.getElementById('root');
         root.insertAdjacentHTML('beforeend', feedback());
 
-        // ToDo Не знаю, нужно это или нет
-        // const bg = document.querySelector('.orderPage__feedback_bg');
-        // bg.addEventListener('click', (event) => {
-        //     bg.remove();
-        // });
-        //
-        // const window = document.querySelector('.orderPage__feedback_window');
-        // window.addEventListener('click', (event) => {
-        //     event.stopPropagation();
-        // });
-
         const skip = document.querySelector('.orderPage__feedback_skip');
         skip.addEventListener('click', (event) => {
             event.preventDefault();
@@ -203,6 +200,7 @@ export class OrderPageView extends View {
             isChange: isChange,
             creator: info.creator,
         };
+
         form.innerHTML = createOrderOrVacancy(chInfo);
         new Select(
             '#select', {

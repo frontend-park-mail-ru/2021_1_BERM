@@ -10,6 +10,11 @@ include ../vacancies/vacancyInVacanciesPage
         div(class='orders__title') Актуальные вакансии
     div(class='orders__content')
         div(class='orders__list')
+            div(class='search')
+                if !isArchive && !isMyOrders
+                    form#search__form
+                        input(class='search__form_input' placeholder='Введите поисковой запрос' name='search')
+                        button(class='search__form_submit') Найти
             each vacancy in vacancies
                 +vacancyInVacanciesPage(vacancy.avatar?vacancy.avatar:require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id)
             if vacancies.length !== 0
