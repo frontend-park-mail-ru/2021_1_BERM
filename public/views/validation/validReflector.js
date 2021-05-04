@@ -1,4 +1,5 @@
 import {optionsValid} from '@/views/validation/validOptions';
+
 /** Класс, отвечающий за отображение валидации на странице */
 export class ValidReflector {
     /**
@@ -18,6 +19,7 @@ export class ValidReflector {
 
         this.pasRepValid = false;
         this.textAr = document.getElementById('textAr');
+        this.textArVac = document.getElementById('textArVac');
 
         this._setUp();
     }
@@ -32,6 +34,11 @@ export class ValidReflector {
         if (this.textAr) {
             this.textAr.style.transform = 'translateY(-275px)';
             this.textAr.childNodes[1].style.transform = 'translateX(-135px)';
+        }
+
+        if (this.textArVac) {
+            this.textArVac.style.transform = 'translateY(-244px)';
+            this.textArVac.childNodes[1].style.transform = 'translateX(-390px)';
         }
     }
 
@@ -59,8 +66,13 @@ export class ValidReflector {
         }
 
         if ((property === optionsValid.about ||
-            property === optionsValid.description) && error) {
+                property === optionsValid.description) && this.textAr) {
             this.textAr.style.transform = 'translateY(-290px)';
+        }
+
+        if (property === optionsValid.rateExecutor &&
+                error && this.textArVac) {
+            this.textArVac.style.transform = 'translateY(-260px)';
         }
 
         if (type) {
@@ -69,7 +81,7 @@ export class ValidReflector {
 
         if (options === this.pasRep) {
             if (errorBox.classList.contains(this.active) ||
-            type === this.valid) {
+                type === this.valid) {
                 return;
             }
             if (!this.pasRepValid) {

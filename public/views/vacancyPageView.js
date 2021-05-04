@@ -18,6 +18,7 @@ import {
     VACANCY_PAGE_FEEDBACK,
     CHANGE_VACANCY,
     CHANGE_VACANCY_RENDER, VACANCY_SUBMIT,
+    NOTIF_CHANGE_VALID,
 } from '@/modules/constants/actions.js';
 import {notification} from '@/components/notification/notification';
 import feedback from '@/components/pages/feedback.pug';
@@ -44,6 +45,7 @@ export class VacancyPageView extends View {
             [SERVER_ERROR, this._error.bind(this)],
             [VACANCY_PAGE_FEEDBACK, this._feedback.bind(this)],
             [CHANGE_VACANCY_RENDER, this._changeVacancyRender],
+            [NOTIF_CHANGE_VALID, this._notifChangeValid],
         ]);
 
         eventBus.emit(VACANCY_PAGE_GET_RES);
@@ -62,17 +64,23 @@ export class VacancyPageView extends View {
             'Страница вакансии',
             vacancyPageTemplate(info),
         );
-        console.log('INFO ', info);
 
         const form = document.getElementById('Vacancy_form');
         if (info.isExecutor) {
-            // const valid = new Validator()
+            const val = new Validator(
+                'Vacancy_form',
+                '.form-control',
+                'send_mess');
+            const element = document.querySelector('.form-control');
+            const prevValue = element.value;
+            val.validate();
             if (info.userRate === 0) {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();
                     const data = {
-                        text: event.target.rate.value,
+                        text: event.target.rateExecutor.value,
                     };
+
                     eventBus.emit(VACANCY_SET_RATE, data);
                 });
             } else {
@@ -87,10 +95,15 @@ export class VacancyPageView extends View {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();
                     const data = {
-                        text: event.target.rate.value,
+                        text: event.target.rateExecutor.value,
                     };
-
-                    eventBus.emit(VACANCY_CHANGE_RATE, data);
+                    if (prevValue !== data.text) {
+                        eventBus.emit(VACANCY_CHANGE_RATE, data);
+                    } else {
+                        this._errorChange();
+                        document.querySelector('.orderPage__comments').classList
+                            .remove('form-control_valid');
+                    }
                 });
                 return;
             }
@@ -111,8 +124,6 @@ export class VacancyPageView extends View {
             revButton.forEach((but) => {
                 but.addEventListener('click', (e) => {
                     e.preventDefault();
-                    console.log(but
-                        .getAttribute('data-id-user'), ' But');
                     eventBus.emit(GO_TO_USER, but
                         .getAttribute('data-id-user'));
                 });
@@ -165,6 +176,15 @@ export class VacancyPageView extends View {
         notification(`Ошибка сервера. ${error}`);
     }
 
+    _errorChange() {
+        notification(`Измените, пожалуйста, данные`);
+    }
+
+    _notifChangeValid() {
+        const validColor = true;
+        notification(`Изменения приняты`, validColor);
+    }
+
     /**
      * Всплывающее окно отзыва
      */
@@ -208,7 +228,6 @@ export class VacancyPageView extends View {
     _changeVacancyRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
-        console.log(info.creator);
         const chInfo = {
             isChange: isChange,
             creator: info.creator,

@@ -72,6 +72,17 @@ export class ValidHandler {
                     return this.errors[6];
                 }
             },
+            rateExecutor: () => {
+                if (formVal.rateExecutor.length > 500 ||
+                    formVal.rateExecutor.length < 40) {
+                    return this.errors[18];
+                }
+                if (this.patterns
+                    .get('spam')
+                    .test(formVal.rateExecutor) === false) {
+                    return this.errors[6];
+                }
+            },
             nameSurname: () => {
                 if (formVal.nameSurname.length > 50 ||
                     formVal.nameSurname.length === 0) {

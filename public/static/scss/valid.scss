@@ -129,6 +129,10 @@
 	border:solid 1.5px $secondary_color;
 }
 
+.orderPage__comments.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+
 //.form-control_error > img {
 //	border:solid 1.5px $secondary_color;
 //}
@@ -158,6 +162,10 @@
 }
 
 .about-form__input.form-control_valid {
+	border:solid 1.5px $primary_color;
+}
+
+.orderPage__comments.form-control_valid {
 	border:solid 1.5px $primary_color;
 }
 

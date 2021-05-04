@@ -3,5 +3,6 @@ export const optionsValid = {
     passwordRepeat: 'passwordRepeat',
     about: 'about',
     description: 'description',
+    rateExecutor: 'rateExecutor',
 
 };

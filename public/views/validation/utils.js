@@ -32,7 +32,7 @@ export default {
             // eslint-disable-next-line max-len
             ['mail', /^[A-Za-z0-9](([_.-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([.-]?[a-zA-Z0-9]+)*)\.([A-Za-z])+$/],
             // eslint-disable-next-line max-len
-            ['spam', /^[a-zA-ZА-ЯЁа-яё0-9-_.()\s]+$/], ['user_name', /^[a-zA-Z0-9]{0,19}$/],
+            ['spam', /^[a-zA-ZА-ЯЁа-яё0-9-_.,!()\s]+$/], ['user_name', /^[a-zA-Z0-9]{0,19}$/],
             // eslint-disable-next-line max-len
             ['password', /([a-z]+[A-Z]+[0-9]+|[a-z]+[0-9]+[A-Z]+|[A-Z]+[a-z]+[0-9]+|[A-Z]+[0-9]+[a-z]+|[0-9]+[a-z]+[A-Z]+|[0-9]+[A-Z]+[a-z]+)/],
             ['price', /^[0-9]+$/],

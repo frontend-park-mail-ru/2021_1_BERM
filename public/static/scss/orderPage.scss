@@ -296,6 +296,7 @@
         width: 1030px;
         margin-top: 44px;
         @include form_dis_2($row, $s_b);
+        border: 1.5px solid transparent;
         //display: flex;
         //flex-direction: row;
         //justify-content: space-between;
