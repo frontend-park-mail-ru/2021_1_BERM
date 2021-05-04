@@ -66,6 +66,7 @@ export class VacancyPageView extends View {
 
         const form = document.getElementById('Vacancy_form');
         if (info.isExecutor) {
+            // const valid = new Validator()
             if (info.userRate === 0) {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();

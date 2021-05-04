@@ -21,6 +21,7 @@ import {notification} from '@/components/notification/notification.js';
 import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
+import PriceHandler from '@/modules/utils/priceHandler';
 
 /** View страницы заказа */
 export class OrderPageView extends View {
@@ -60,6 +61,8 @@ export class OrderPageView extends View {
                 'send_mess',
             );
             val.validate();
+            const prHandler = new PriceHandler('rate');
+            prHandler.start();
 
             const form = document
                 .getElementsByClassName('orderPage__set-rate_form')[0];

@@ -20,7 +20,8 @@ include ../responses/responseVacancyCustomer
                 div(class='orderPage__order_stat' )
                     img(class='orderPage__order_stat-img' src=require('@/static/img/card.svg').default)
                     div(class='orderPage__order_stat-data')= creator.salary
-                button(class='vacancyPage__customer-button_change') Изменить
+                if !isExecutor
+                    button(class='vacancyPage__customer-button_change') Изменить
     if isExecutor
         form.custom-form(id="Vacancy_form")
             div(class='orderPage__comments')

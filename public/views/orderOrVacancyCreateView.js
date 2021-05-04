@@ -14,6 +14,7 @@ import DateHandler from '@/modules/utils/dateHandler.js';
 import Select from '@/modules/utils/customSelect.js';
 import {listOfServices} from '@/modules/utils/templatesForSelect.js';
 import {notification} from '@/components/notification/notification.js';
+import PriceHandler from '@/modules/utils/priceHandler';
 
 /** View создания заказа */
 export class OrderOrVacancyCreateView extends View {
@@ -49,6 +50,8 @@ export class OrderOrVacancyCreateView extends View {
                 isOrder: data.isOrder,
             }));
 
+        const nameField = 'budget';
+
         if (data.isOrder) {
             const date = new DateHandler();
             date.createDate();
@@ -66,6 +69,9 @@ export class OrderOrVacancyCreateView extends View {
             'send_mess',
         );
         val.validate();
+
+        const prHandler = new PriceHandler(nameField);
+        prHandler.start();
 
         const form = document.getElementById('order-create_form');
         form.addEventListener('submit', (event) => {
