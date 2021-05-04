@@ -21,7 +21,6 @@ export class VacanciesView extends View {
         for (const item of dataMap.map.values()) {
             map.push(item);
         }
-        console.log(map);
 
         super.renderHtml(
             dataMap.isAuthorized,

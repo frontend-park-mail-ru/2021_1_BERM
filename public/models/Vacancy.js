@@ -123,7 +123,6 @@ class Vacancy {
     }
 
     getSelectResponse(vacancy, id) {
-        console.log(vacancy, id);
         if (!id || !vacancy) {
             return null;
         }
@@ -134,7 +133,6 @@ class Vacancy {
                 select = item;
             }
         });
-        console.log('SELECT ', select);
         return select;
     }
 

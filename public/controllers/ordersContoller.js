@@ -36,7 +36,6 @@ export class OrdersController extends Controller {
      * @param {number} id - id из url, если он там был
      */
     run(id) {
-        console.log(id);
         if (id) {
             const path = '/' + window.location.pathname
                 .slice(1);
