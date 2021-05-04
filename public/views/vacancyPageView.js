@@ -16,8 +16,6 @@ import {
     VACANCY_PAGE_END,
     SERVER_ERROR,
     CHANGE_VACANCY,
-    CHANGE_VACANCY_RENDER,
-    VACANCY_SUBMIT,
     NOTIF_CHANGE_VALID,
     CHANGE_VACANCY_RENDER,
 } from '@/modules/constants/actions.js';

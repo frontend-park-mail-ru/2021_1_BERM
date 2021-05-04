@@ -81,7 +81,7 @@ export class ProfileController extends Controller {
                     email: res.email,
                     ordersCount: res.orders_count,
                     reviewsCount: res.reviews_count,
-                    rating: res.rating ? res.rating : 0,
+                    rating: res.rating ? Number(res.rating.toFixed(2)) : 0,
                 };
 
                 if (this.id === user.id) {

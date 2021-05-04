@@ -1,5 +1,5 @@
-const staticCacheName = 's-app-v2';
-const dynamicCacheName = 'd-app-v2';
+const staticCacheName = 's-app-v7';
+const dynamicCacheName = 'd-app-v7';
 
 const assetUrls = [
     '/',
@@ -48,10 +48,10 @@ self.addEventListener('install', (event) => {
             }));
 });
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', (event) => {
     event.waitUntil(self.skipWaiting());
 });
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', (event) => {
     event.waitUntil(self.clients.claim());
 });
 
