@@ -206,7 +206,6 @@ export class OrderPageView extends View {
     _changeOrderRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
-        console.log(info.creator);
         const chInfo = {
             isOrder: true,
             isChange: isChange,

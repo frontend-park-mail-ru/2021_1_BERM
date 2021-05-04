@@ -54,9 +54,15 @@ export class ValidReflector {
     show(type, property, error, event, options) {
         const formElement = this.form
             .querySelector('[name=' + property + ']').parentNode;
-        const errorBox = formElement.nextElementSibling.childNodes[1];
-        const errorMes = formElement.nextElementSibling.firstChild;
-        console.log(property);
+        const nextSibl = formElement.nextElementSibling;
+        let errorBox = formElement;
+        let errorMes = formElement;
+
+        if (nextSibl) {
+            errorBox = nextSibl.childNodes[1];
+            errorMes = nextSibl.firstChild;
+        }
+
         if (type === this.valid && property === optionsValid.passwordRepeat) {
             this.pasRepValid = true;
         }

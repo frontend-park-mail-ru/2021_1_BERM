@@ -225,7 +225,6 @@ export default class Auth {
     static getResponsesVacancy(id) {
         sendRequest('GET', `/vacancy/${id}/response`)
             .then((res) => {
-                console.log(res);
                 eventBus.emit(VACANCY_PAGE_RES, res);
             });
     }
@@ -395,7 +394,6 @@ export default class Auth {
     static changeVacancy(id, info) {
         sendRequest('PATCH', `/vacancy/${id}`, info)
             .then((res) => {
-                console.log(res);
                 eventBus.emit(VACANCY_PAGE_GET_VACANCY, res);
             });
     }
@@ -403,7 +401,6 @@ export default class Auth {
     static changeOrder(id, info) {
         sendRequest('PATCH', `/order/${id}`, info)
             .then((res) => {
-                console.log(res);
                 eventBus.emit(ORDER_PAGE_GET_RES, res);
             });
     }

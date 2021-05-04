@@ -54,7 +54,7 @@ export class ValidHandler {
                     formVal.about.length === 0) {
                     return this.errors[18];
                 }
-                console.log(formVal.about);
+
                 if (this.patterns
                     .get('spam')
                     .test(formVal.about) === false) {
