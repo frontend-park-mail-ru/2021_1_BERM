@@ -12,8 +12,8 @@ include ../inputes/customFormMiniInput
                         div(class="error__main")
                             div(class="error__box")
                                 ul(class="error__list")
-                                    li(class= "error__help") &#8226 Penis
-                                    li(class= "error__help") &#8226 Penis
+                                    li(class= "error__help") &#8226 Текст должен содержать английский алфавит
+                                    li(class= "error__help") &#8226 Запрещено использовать специальные символы
                             div(class="error__arrow")
                     +customFormInput(require('@/static/img/avatar.svg').default, 'Имя Фамилия', 'name', 'text', 'no-matter', name)
 
@@ -22,18 +22,13 @@ include ../inputes/customFormMiniInput
                         div(class="error__main")
                             div(class="error__box")
                                 ul(class="error__list")
-                                    li(class= "error__help") &#8226 Penis
-                                    li(class= "error__help") &#8226 Penis
+                                    li(class= "error__help") &#8226 Текст должен состоять из кириллицы
+                                    li(class= "error__help") &#8226 Запрещено использовать специальные символы
                             div(class="error__arrow")
                     +customFormInput(require('@/static/img/block.svg').default, 'Текущий пароль *', 'oldPassword', 'password')
                     div(class=" error")
                         div(class="error__message")
                         div(class="error__main")
-                            div(class="error__box")
-                                ul(class="error__list")
-                                    li(class= "error__help") &#8226 Penis
-                                    li(class= "error__help") &#8226 Penis
-                            div(class="error__arrow")
                     +customFormMiniInputs(require('@/static/img/block.svg').default, 'Пароль', require('@/static/img/block.svg').default, 'Подтвердите', 'password', 'passwordRepeat', 'no-matter')
 
                 div(class='settings__column_right')
@@ -45,8 +40,7 @@ include ../inputes/customFormMiniInput
                         div(class="error__main" id="textAr")
                             div(class="error__box")
                                 ul(class="error__list")
-                                    li(class= "error__help") &#8226 Penis
-                                    li(class= "error__help") &#8226 Penis
+                                    li(class= "error__help") &#8226 Текст не должен содержать специальных символов
                             div(class="error__arrow")
                     div(class='settings-form__submit__container')
                         button(class='settings-form__submit' id='send_mess')
