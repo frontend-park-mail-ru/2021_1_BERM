@@ -59,7 +59,7 @@ import {Page404Controller} from '@/controllers/page404Controller.js';
 import {ReviewsController} from '@/controllers/reviewsController';
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/sw.js')
         .then((registration) => {
             console.log('sw registration on scope:', registration.scope);
         })
