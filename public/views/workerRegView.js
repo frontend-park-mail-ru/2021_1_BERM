@@ -1,11 +1,11 @@
 import {View} from './view.js';
 import eventBus from '@/modules/eventBus.js';
-import {Validator} from './validator.js';
+import {Validator} from './validation/validator.js';
 import {
     NO_REG,
     REGISTRATION_SUBMIT,
     SERVER_ERROR,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 import regTemplate from '@/components/pages/registration.pug';
 import {notification} from '@/components/notification/notification.js';

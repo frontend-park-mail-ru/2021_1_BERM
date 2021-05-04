@@ -11,11 +11,11 @@ import {
     SEND_SERVICES,
     SEND_RESULT_RENDER,
     ORDERS_RENDER, SERVER_ERROR, ORDER_PAGE_SEARCH,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
-import {getNotFoundPath, getOrderPath} from '@/modules/utils/goPath.js';
-import {ARCHIVE} from '@/modules/utils/pageNames.js';
+import {getNotFoundPath, getOrderPath} from '@/modules/constants/goPath.js';
+import {ARCHIVE} from '@/modules/constants/pageNames.js';
 
 /** Контроллер страницы заказов */
 export class OrdersController extends Controller {
@@ -45,7 +45,7 @@ export class OrdersController extends Controller {
             this.isI = this.isMyOrders === user.id;
         }
 
-        if (!user.isExecutor && !this.isMyOrders) {
+        if (!user.isExecutor && !this.isI) {
             router.go(getNotFoundPath);
         }
         super.run(

@@ -1,5 +1,5 @@
-import {ValidReflector} from './utils/validReflector.js';
-import {ValidHandler} from '@/modules/utils/validHandler.js';
+import {ValidReflector} from './validReflector.js';
+import {ValidHandler} from '@/views/validation/validHandler.js';
 
 /** Класс, отвечающий за валидацию форм */
 export class Validator {
@@ -53,7 +53,10 @@ export class Validator {
             let isError = false;
             let invalid = false;
 
+            debugger;
+
             Object.keys(formVal).forEach((property) => {
+                debugger;
                 if (property === 'submit') return;
                 error = handler.getError(formVal, property);
 
@@ -175,7 +178,6 @@ export class Validator {
                                 }
 
                                 reflector.clear(reflector.helper, item);
-
                             }
                         });
                     } else {

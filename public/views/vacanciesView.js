@@ -4,7 +4,7 @@ import {
     SEND_SERVICES_VACANCIES,
     VACANCIES_RENDER,
     GO_TO_VACANCY,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 import ordersTemplate from '@/components/pages/vacancies.pug';
 
 export class VacanciesView extends View {

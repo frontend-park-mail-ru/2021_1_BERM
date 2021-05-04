@@ -6,8 +6,8 @@ import eventBus from '@/modules/eventBus.js';
 import {
     NOT_SET_CATEGORY,
     SELECT_SPEC_SELECTED,
-} from '@/modules/utils/actions.js';
-import {Validator} from './validator';
+} from '@/modules/constants/actions.js';
+import {Validator} from './validation/validator';
 
 /** View страницы выбора специализации */
 export class SelectSpecView extends View {

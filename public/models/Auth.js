@@ -24,7 +24,7 @@ import {
     VACANCY_GET_EXECUTOR,
     VACANCY_GET_DELETE_EXECUTOR,
     ORDER_PAGE_GET_RES,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 
 /** Singleton класс, который делает запрос на сервер и отдает
@@ -406,7 +406,8 @@ export default class Auth {
                 console.log(res);
                 eventBus.emit(ORDER_PAGE_GET_RES, res);
             });
-      
+    }
+
     static search(data) {
         return sendRequest('PATCH', `/order/search`, data);
     }

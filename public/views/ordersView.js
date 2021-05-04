@@ -5,7 +5,7 @@ import {
     ORDERS_RENDER,
     GO_TO_ORDER,
     SERVER_ERROR, ORDER_PAGE_SEARCH,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 import ordersTemplate from '@/components/pages/orders.pug';
 import {notification} from '@/components/notification/notification';
 

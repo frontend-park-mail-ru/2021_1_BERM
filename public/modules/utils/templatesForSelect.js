@@ -21,10 +21,21 @@ export const getTemplate = (data = [], placeholder, selectedId, selectorId) => {
       <input 
       data-type="value" 
       class="select__form form-control" 
-      name="category" disabled value="${text}" style="width: 80px"/>
+      name="category" disabled value="${text}" style="width: 100px"/>
       <img src=${arrowDown} class="settings__arrow" data-type="arrow" alt="">
     </div>
-    <div class="error"></div>
+    <div class=" error">
+        <div class="error__message"></div>
+        <div class="error__main">
+            <div class="error__box">
+                <ul class="error__list">
+                    <li class="error__help"></li> Ошибка
+                    <li class="error__help"></li> Ошибка
+                </ul>
+            </div>
+            <div class="error__arrow"></div>
+        </div>
+    </div>
     <div class="select__dropdown">
       <ul class="select__list">
         ${items.join('')}

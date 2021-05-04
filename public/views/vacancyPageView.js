@@ -18,12 +18,12 @@ import {
     VACANCY_PAGE_FEEDBACK,
     CHANGE_VACANCY,
     CHANGE_VACANCY_RENDER, VACANCY_SUBMIT,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 import {notification} from '@/components/notification/notification';
 import feedback from '@/components/pages/feedback.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
-import {Validator} from '@/views/validator';
+import {Validator} from '@/views/validation/validator';
 
 /** View страницы вакансии */
 

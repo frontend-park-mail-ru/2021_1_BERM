@@ -7,9 +7,9 @@ import {
     NOT_SET_CATEGORY,
     SELECT_SPEC_SELECTED,
     SELECT_SPEC_SET,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 import eventBus from '@/modules/eventBus.js';
-import {getProfilePath, getWorkerRegPath} from '@/modules/utils/goPath.js';
+import {getProfilePath, getWorkerRegPath} from '@/modules/constants/goPath.js';
 
 /** Страница выбора специализации */
 export class SelectSpecController extends Controller {

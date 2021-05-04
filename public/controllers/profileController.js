@@ -15,9 +15,9 @@ import {
     PROFILE_DELETE_SPEC_GET,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
-} from '@/modules/utils/actions.js';
-import {getIndexPath, getNotFoundPath} from '@/modules/utils/goPath.js';
-import {imgUrl} from '@/modules/utils/constants';
+} from '@/modules/constants/actions.js';
+import {getIndexPath, getNotFoundPath} from '@/modules/constants/goPath.js';
+import {imgUrl} from '@/modules/constants/constants';
 
 /** Контроллер регистрации клиента */
 export class ProfileController extends Controller {

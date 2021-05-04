@@ -4,7 +4,7 @@ import eventBus from '@/modules/eventBus.js';
 import {
     LOGIN_SUBMIT,
     NO_LOGIN,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 import loginTemplate from '@/components/pages/login.pug';
 

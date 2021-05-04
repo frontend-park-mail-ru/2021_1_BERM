@@ -4,12 +4,12 @@ import {
     REVIEWS_GET_DATA,
     REVIEWS_GO_ORDER,
     REVIEWS_RENDER,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 import auth from '@/models/Auth';
 import eventBus from '@/modules/eventBus';
 import user from '@/models/User';
 import router from '@/modules/router';
-import {getOrderPath} from '@/modules/utils/goPath';
+import {getOrderPath} from '@/modules/constants/goPath';
 import {ReviewsView} from '@/views/reviewsView';
 
 export class ReviewsController extends Controller {

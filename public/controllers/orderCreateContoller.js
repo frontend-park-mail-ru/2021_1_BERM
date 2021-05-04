@@ -1,6 +1,6 @@
 import {Controller} from './controller.js';
 import {OrderOrVacancyCreateView} from '@/views/orderOrVacancyCreateView';
-import {getOrderPath} from '@/modules/utils/goPath.js';
+import {getOrderPath} from '@/modules/constants/goPath.js';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
 import auth from '@/models/Auth.js';
@@ -12,7 +12,7 @@ import {
     ORDER_CREATE_SUBMIT,
     ORDER_CREATE_OR_VACANCY,
     ORDER_CREATE_GO_RENDER,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 
 /** Контроллер создания заказа */
 export class OrderCreateController extends Controller {

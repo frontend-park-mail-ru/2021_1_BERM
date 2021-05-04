@@ -1,6 +1,6 @@
 import user from '../models/User.js';
-import utils from './utils/utils.js';
-import {getNotFoundPath} from '@/modules/utils/goPath.js';
+import utils from '../views/validation/utils.js';
+import {getNotFoundPath} from '@/modules/constants/goPath.js';
 
 /** Роутер, который осуществляет переход между страницами приложения */
 class Router {

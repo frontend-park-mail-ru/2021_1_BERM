@@ -25,11 +25,11 @@ import {
     SERVER_ERROR,
     VACANCY_PAGE_FEEDBACK,
     CHANGE_VACANCY,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
 
-import {getNotFoundPath, getProfilePath} from '@/modules/utils/goPath.js';
+import {getNotFoundPath, getProfilePath} from '@/modules/constants/goPath.js';
 import order from '@/models/Order';
 
 export class VacancyPageController extends Controller {

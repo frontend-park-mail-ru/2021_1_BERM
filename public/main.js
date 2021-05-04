@@ -50,20 +50,22 @@ import {
     MY_ORDERS,
     VACANCIES_PAGE,
     NOT_FOUND,
-    ARCHIVE, REVIEWS,
-} from './modules/utils/pageNames.js';
+    ARCHIVE,
+    REVIEWS,
+    MY_VACANCIES,
+} from './modules/constants/pageNames.js';
 import {Page404Controller} from '@/controllers/page404Controller.js';
 import {ReviewsController} from '@/controllers/reviewsController';
 
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('/service-worker.js')
-//         .then((registration) => {
-//             console.log('sw registration on scope:', registration.scope);
-//         })
-//         .catch((err) => {
-//             console.error(err);
-//         });
-// }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+        .then((registration) => {
+            console.log('sw registration on scope:', registration.scope);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+}
 
 const controllers = new Set([
     [MAIN_PAGE, MainPageController],
@@ -79,6 +81,7 @@ const controllers = new Set([
     [VACANCY_PAGE, VacancyPageController],
     [SELECT_SPEC, SelectSpecController],
     [MY_ORDERS, OrdersController],
+    [MY_VACANCIES, VacanciesController],
     [VACANCIES_PAGE, VacanciesController],
     [ARCHIVE, OrdersController],
     [REVIEWS, ReviewsController],

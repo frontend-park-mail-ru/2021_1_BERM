@@ -9,8 +9,8 @@ import user from '@/models/User.js';
 import {
     REGISTRATION_SUBMIT,
     REGISTRATION_GET, NO_REG, SERVER_ERROR,
-} from '@/modules/utils/actions.js';
-import {getProfilePath} from '@/modules/utils/goPath.js';
+} from '@/modules/constants/actions.js';
+import {getProfilePath} from '@/modules/constants/goPath.js';
 
 /** Контроллер создания заказа */
 export class WorkerRegController extends Controller {

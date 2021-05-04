@@ -12,11 +12,11 @@ import {
     ORDER_PAGE_ERROR,
     ORDER_PAGE_FEEDBACK,
     ORDER_PAGE_SEND_FEEDBACK, VACANCY_PAGE_GET_RES, CHANGE_ORDER,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/orderPage.pug';
 import feedback from '@/components/pages/feedback.pug';
-import {Validator} from './validator';
+import {Validator} from './validation/validator';
 import {notification} from '@/components/notification/notification.js';
 import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
 import Select from '@/modules/utils/customSelect';

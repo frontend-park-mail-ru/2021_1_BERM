@@ -1,4 +1,4 @@
-import {optionsValid} from '@/modules/utils/validOptions';
+import {optionsValid} from '@/views/validation/validOptions';
 /** Класс, отвечающий за отображение валидации на странице */
 export class ValidReflector {
     /**
@@ -49,7 +49,7 @@ export class ValidReflector {
             .querySelector('[name=' + property + ']').parentNode;
         const errorBox = formElement.nextElementSibling.childNodes[1];
         const errorMes = formElement.nextElementSibling.firstChild;
-        console.log(property, optionsValid.passwordRepeat);
+        console.log(property);
         if (type === this.valid && property === optionsValid.passwordRepeat) {
             this.pasRepValid = true;
         }
@@ -100,14 +100,10 @@ export class ValidReflector {
 
         if (event === this.click) {
             if (error) {
-                console.log(error);
                 errorMes.innerHTML = error;
             }
             return;
         }
-
-
-        // formElement.classList.add(type);
 
         if (error) {
             errorMes.innerHTML = error;
@@ -144,8 +140,5 @@ export class ValidReflector {
             errorMes.innerHTML = ' ';
             errorBox.classList.remove(this.active);
         }
-
-        // errorBox.style.marginBottom = '0';
-        // errorBox.style.marginTop = '0';
     }
 }

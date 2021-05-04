@@ -1,5 +1,5 @@
 import {View} from './view.js';
-import {Validator} from './validator.js';
+import {Validator} from './validation/validator.js';
 import eventBus from '@/modules/eventBus.js';
 import {
     NO_ORDER,
@@ -7,7 +7,7 @@ import {
     ORDER_CREATE_GO_RENDER,
     ORDER_CREATE_OR_VACANCY,
     VACANCY_SUBMIT,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 import createOrderTemplate from '@/components/pages/createOrderOrVacancy.pug';
 import DateHandler from '@/modules/utils/dateHandler.js';

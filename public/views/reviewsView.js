@@ -3,7 +3,7 @@ import {
     REVIEWS_ERROR,
     REVIEWS_GET_DATA,
     REVIEWS_RENDER,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 import {notification} from '@/components/notification/notification';
 
 import reviewsTemplate from '@/components/pages/reviews.pug';

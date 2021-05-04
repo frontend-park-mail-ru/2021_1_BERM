@@ -10,9 +10,9 @@ import {
     REGISTRATION_SUBMIT,
     NO_REG,
     SERVER_ERROR,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 import user from '@/models/User.js';
-import {getProfilePath} from '@/modules/utils/goPath.js';
+import {getProfilePath} from '@/modules/constants/goPath.js';
 
 /** Контроллер регистрации клиента */
 export class ClientRegController extends Controller {

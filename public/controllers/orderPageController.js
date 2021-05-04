@@ -21,10 +21,10 @@ import {
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
     ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK, CHANGE_VACANCY, CHANGE_ORDER,
-} from '@/modules/utils/actions';
+} from '@/modules/constants/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
-import {getNotFoundPath, getProfilePath} from '@/modules/utils/goPath.js';
+import {getNotFoundPath, getProfilePath} from '@/modules/constants/goPath.js';
 
 /** Контроллер страницы заказа */
 export class OrderPageController extends Controller {

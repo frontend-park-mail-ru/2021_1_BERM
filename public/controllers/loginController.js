@@ -4,9 +4,9 @@ import {LoginView} from '@/views/loginView';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
 import auth from '@/models/Auth.js';
-import {LOGIN_GET, LOGIN_SUBMIT, NO_LOGIN} from '@/modules/utils/actions';
+import {LOGIN_GET, LOGIN_SUBMIT, NO_LOGIN} from '@/modules/constants/actions';
 import user from '@/models/User.js';
-import {getProfilePath} from '@/modules/utils/goPath.js';
+import {getProfilePath} from '@/modules/constants/goPath.js';
 
 /** Контроллер регистрации клиента */
 export class LoginController extends Controller {

@@ -6,12 +6,12 @@ import {
     ORDER_CREATE_OR_VACANCY,
     ORDER_CREATE_GO_RENDER,
     NO_ORDER,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import auth from '@/models/Auth.js';
 import vacancy from '@/models/Vacancy.js';
 import router from '@/modules/router.js';
-import {getVacancyPath} from '@/modules/utils/goPath.js';
+import {getVacancyPath} from '@/modules/constants/goPath.js';
 
 /** Контроллер создания вакансии */
 export class VacancyCreateController extends Controller {

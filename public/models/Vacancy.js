@@ -1,4 +1,4 @@
-import {imgUrl} from '@/modules/utils/constants';
+import {imgUrl} from '@/modules/constants/constants';
 
 /** Класс для хранения откликов */
 class Vacancy {

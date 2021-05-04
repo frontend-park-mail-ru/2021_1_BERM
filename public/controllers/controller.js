@@ -1,7 +1,7 @@
 import {BaseMVC} from '@/modules/baseMVC';
 import user from '@/models/User.js';
 import router from '@/modules/router.js';
-import {getLoginPath, getProfilePath} from '@/modules/utils/goPath.js';
+import {getLoginPath, getProfilePath} from '@/modules/constants/goPath.js';
 
 /** Родительский класс, от которого наследуются остальные контроллеры.
  * Осуществляет взаимодействие между моделями и view  */

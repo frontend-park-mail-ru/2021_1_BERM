@@ -9,7 +9,7 @@ import {
     PROFILE_DELETE_SPEC,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
-} from '@/modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 import profileTemplate from '@/components/pages/profile.pug';
 

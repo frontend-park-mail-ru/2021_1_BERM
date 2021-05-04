@@ -1,19 +1,20 @@
 import {Controller} from './controller.js';
 import {VacanciesView} from '@/views/vacanciesView';
 
-import auth from '../models/Auth.js';
-import vacancy from '../models/Vacancy.js';
+import auth from '@/models/Auth.js';
+import vacancy from '@/models/Vacancy.js';
 import eventBus from '@/modules/eventBus';
-import user from '../models/User.js';
+import user from '@/models/User.js';
 
 import {
     GO_TO_VACANCY,
     SEND_SERVICES_VACANCIES,
     SEND_RESULT_RENDER_VACANCIES,
     VACANCIES_RENDER,
-} from '../modules/utils/actions.js';
+} from '@/modules/constants/actions';
 
 import router from '@/modules/router';
+import {getNotFoundPath, getVacancyPath} from '@/modules/constants/goPath';
 
 
 export class VacanciesController extends Controller {
@@ -32,9 +33,10 @@ export class VacanciesController extends Controller {
             this.isI = this.isMyVacancies === user.id;
         }
 
-        if (!user.isExecutor && !this.isMyVacancies) {
-            window.location.href = '/404/';
+        if (!user.isExecutor && !this.isI) {
+            router.go(getNotFoundPath);
         }
+
         super.run(
             [
                 [GO_TO_VACANCY, this._goToVacancy.bind(this)],
@@ -46,7 +48,7 @@ export class VacanciesController extends Controller {
     }
 
     _goToVacancy(id) {
-        router.go(`/vacancy/${id}`);
+        router.go(getVacancyPath(id));
     }
 
 
@@ -77,7 +79,6 @@ export class VacanciesController extends Controller {
     }
 
     _sendResultsRender(result) {
-        debugger;
         if (result.ok) {
             result.json().then((result) => {
                 vacancy.setVacancys(result);

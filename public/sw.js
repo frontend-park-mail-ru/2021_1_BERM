@@ -4,7 +4,7 @@ const dynamicCacheName = 'd-app-v1.3';
 const assetUrls = [
     '/',
     '/bundle.js',
-    '/service-worker.js
+    '/service-worker.js',
     '/index.html',
     '/bundle.css',
     '/0cd1bbbd2362acf8e1c16d358d696df0.svg',

@@ -12,8 +12,8 @@ import {
     SETTING_SUBMIT,
     SETTING_GET,
     SETTING_INVALID_PASSWORD,
-} from '@/modules/utils/actions.js';
-import {getProfilePath} from '@/modules/utils/goPath.js';
+} from '@/modules/constants/actions.js';
+import {getProfilePath} from '@/modules/constants/goPath.js';
 
 /** Контроллер создания заказа */
 export class SettingsController extends Controller {
