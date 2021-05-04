@@ -51,30 +51,14 @@ export class ReviewsController extends Controller {
                     return;
                 }
 
-                // res.json((r) => { // Todo Раскомментить
-                eventBus.emit(REVIEWS_RENDER, {
-                    name: 'Имя Пользователя',
-                    login: 'Логин',
-                    reviews: [{
-                        title: 'Нужно сделать децентрализованный интернет',
-                        stars: 3,
-                        sender: 'piedpipper',
-                        comment: 'Все бы ничего, но этот дурак, взял и сломал систему тем, что добавил в базу данных картинки. ЗАЧЕМ?',
-                    },
-                    {
-                        title: 'Нужно сделать децентрализованный интернет',
-                        stars: 1,
-                        sender: 'piedpipper',
-                        comment: 'Все бы ничего, но этот дурак, взял и сломал систему тем, что добавил в базу данных картинки. ЗАЧЕМ?',
-                    },
-                    {
-                        title: 'Нужно сделать децентрализованный интернет',
-                        stars: 5,
-                        sender: 'piedpipper',
-                        comment: 'Все бы ничего, но этот дурак, взял и сломал систему тем, что добавил в базу данных картинки. ЗАЧЕМ?',
-                    }], // Todo Подставить ответ запроса
-                });
-                // });
+                res.json()
+                    .then((r) => {
+                        eventBus.emit(REVIEWS_RENDER, {
+                            name: r.name_surname,
+                            login: r.login,
+                            reviews: r.reviews,
+                        });
+                    });
             });
     }
 

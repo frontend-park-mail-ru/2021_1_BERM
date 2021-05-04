@@ -33,7 +33,7 @@ mixin specialize(specName, isMyProfile)
                     .reviews-stat
                         div
                             img(src=require('@/static/img/star.svg').default alt='')
-                        div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/reviews`) Отзывы: #{reviews}
+                        div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/reviews`) Отзывы: #{reviewsCount}
                     if !isExecutor
                         .reviews-stat
                             div

@@ -24,6 +24,7 @@ export const SETTING_SEND_DATA = 'send-user-data';
 export const ORDER_PAGE_DELETE = 'order_page_delete';
 export const ORDER_PAGE_END = 'order_page_end';
 export const ORDER_PAGE_SEND_FEEDBACK = 'order_page_send_feedback';
+export const ORDER_PAGE_SEARCH = 'order_page_search';
 
 export const VACANCY_PAGE_DELETE = 'vacancy_page_delete';
 export const VACANCY_PAGE_END = 'vacancy_page_end';
@@ -80,6 +81,8 @@ export const VACANCY_PAGE_FEEDBACK = 'order_page_feedback';
 
 export const REVIEWS_ERROR = 'reviews_error';
 export const REVIEWS_RENDER = 'reviews_render';
+
+export const SETTING_INVALID_PASSWORD = 'setting_invalid_password';
 
 export const NO_LOGIN = 'no-login';
 export const NO_ORDER = 'no-order';

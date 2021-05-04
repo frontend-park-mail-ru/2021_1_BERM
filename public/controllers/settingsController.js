@@ -11,6 +11,7 @@ import {
     SETTING_SEND_DATA,
     SETTING_SUBMIT,
     SETTING_GET,
+    SETTING_INVALID_PASSWORD,
 } from '@/modules/utils/actions.js';
 import {getProfilePath} from '@/modules/utils/goPath.js';
 
@@ -60,7 +61,16 @@ export class SettingsController extends Controller {
                     router.go(getProfilePath(user.id));
                 });
         } else {
-            eventBus.emit(NO_SET_UP);
+            if (res.status === 400) {
+                res.json()
+                    .then((res) => {
+                        if (res.message === 'Invalid password.') {
+                            eventBus.emit(SETTING_INVALID_PASSWORD);
+                            return;
+                        }
+                        eventBus.emit(NO_SET_UP);
+                    });
+            }
         }
     }
 

@@ -245,7 +245,9 @@ export class VacancyPageController extends Controller {
                         'Не удалось завершить вакансию');
                     return;
                 }
-                eventBus.emit(VACANCY_PAGE_FEEDBACK);
+                // Todo Переход на все вакансии или в архив
+                router.go(getProfilePath(user.id));
+                // eventBus.emit(VACANCY_PAGE_FEEDBACK);
             });
     }
 
@@ -274,7 +276,14 @@ export class VacancyPageController extends Controller {
             router.go(getProfilePath(user.id));
         }
 
-        // Todo Реализовать тут получить id кому и id от кого
+        // const select = order.getSelectResponse(
+        //     order.currentOrderId,
+        //     order.ordersMap.get(order.currentOrderId).selectExecutor);
+        //
+        // data.user = user.id;
+        // data.to_user = select.creatorId;
+        // data.order_id = order.currentOrderId;
+
         auth.sendFeedback(data)
             .then((res) => {
                 if (!res.ok) {
