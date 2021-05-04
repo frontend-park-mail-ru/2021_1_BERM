@@ -1,6 +1,7 @@
 import {View} from './view.js';
 import eventBus from '@/modules/eventBus.js';
 import vacancyPageTemplate from '@/components/pages/vacancyPage.pug';
+import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
 import {
     VACANCY_PAGE_RENDER,
 
@@ -13,10 +14,16 @@ import {
     GO_TO_USER,
     VACANCY_PAGE_DELETE,
     VACANCY_PAGE_END,
-    SERVER_ERROR, VACANCY_PAGE_FEEDBACK,
+    SERVER_ERROR,
+    VACANCY_PAGE_FEEDBACK,
+    CHANGE_VACANCY,
+    CHANGE_VACANCY_RENDER, VACANCY_SUBMIT,
 } from '@/modules/utils/actions.js';
 import {notification} from '@/components/notification/notification';
 import feedback from '@/components/pages/feedback.pug';
+import Select from '@/modules/utils/customSelect';
+import {listOfServices} from '@/modules/utils/templatesForSelect';
+import {Validator} from '@/views/validator';
 
 /** View страницы вакансии */
 
@@ -36,6 +43,7 @@ export class VacancyPageView extends View {
             [VACANCY_PAGE_RENDER, this._vacancyPageRender.bind(this)],
             [SERVER_ERROR, this._error.bind(this)],
             [VACANCY_PAGE_FEEDBACK, this._feedback.bind(this)],
+            [CHANGE_VACANCY_RENDER, this._changeVacancyRender],
         ]);
 
         eventBus.emit(VACANCY_PAGE_GET_RES);
@@ -54,6 +62,7 @@ export class VacancyPageView extends View {
             'Страница вакансии',
             vacancyPageTemplate(info),
         );
+        console.log(info);
 
         const form = document.getElementById('Vacancy_form');
         if (info.isExecutor) {
@@ -87,6 +96,14 @@ export class VacancyPageView extends View {
         }
 
         if (!info.isExecutor) {
+            const changeButton = document.
+                querySelector('.vacancyPage__customer-button_change');
+
+            changeButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this._changeVacancyRender(info);
+            });
+
             const revButton = document.
                 querySelectorAll('.vacancyPage__comment-button_info');
 
@@ -184,6 +201,52 @@ export class VacancyPageView extends View {
             };
 
             eventBus.emit(VACANCY_PAGE_SEND_FEEDBACK, data);
+        });
+    }
+
+    _changeVacancyRender(info) {
+        const form = document.querySelector(' .orderPage');
+        const isChange = true;
+        console.log(info.creator);
+        const chInfo = {
+            isChange: isChange,
+            creator: info.creator,
+        };
+        form.innerHTML = createOrderOrVacancy(chInfo);
+        new Select(
+            '#select', {
+                placeholder: 'Категория',
+                data: listOfServices,
+            }, 'dynamic-style');
+        const category = document.querySelector('[data-type="value"]');
+        category.value = info.creator.category;
+        category.style.width = category.scrollWidth + 'px';
+        const val = new Validator(
+            'order-create_form',
+            '.form-control',
+            'send_mess',
+        );
+        val.validate();
+
+        const cancelButton = document.
+            querySelector('.change-form__cancel');
+        cancelButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            eventBus.emit(VACANCY_PAGE_GET_RES);
+        });
+
+        const changeForm = document.
+            getElementById('order-create_form');
+
+        changeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const sendInfo = {
+                category: e.target.category.value,
+                description: e.target.description.value,
+            };
+            sendInfo.salary = Number(e.target.budget.value);
+            sendInfo.vacancy_name = e.target.order_name.value;
+            sendInfo.emit(CHANGE_VACANCY, sendInfo);
         });
     }
 }

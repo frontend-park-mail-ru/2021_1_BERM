@@ -17,9 +17,10 @@ include ../responses/responseVacancyCustomer
                 button(class='orderPage__order_category-button')= creator.category
             div(class='orderPage__order_definition')= creator.definition
             div(class='orderPage__order_stats')
-                div(class='orderPage__order_stat')
+                div(class='orderPage__order_stat' )
                     img(class='orderPage__order_stat-img' src=require('@/static/img/card.svg').default)
                     div(class='orderPage__order_stat-data')= creator.salary
+                button(class='vacancyPage__customer-button_change') Изменить
     if isExecutor
         form.custom-form(id="Vacancy_form")
             div(class='orderPage__comments')

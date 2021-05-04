@@ -21,7 +21,7 @@ export const getTemplate = (data = [], placeholder, selectedId, selectorId) => {
       <input 
       data-type="value" 
       class="select__form form-control" 
-      name="category" disabled value="${text}"/>
+      name="category" disabled value="${text}" style="width: 80px"/>
       <img src=${arrowDown} class="settings__arrow" data-type="arrow" alt="">
     </div>
     <div class="error"></div>

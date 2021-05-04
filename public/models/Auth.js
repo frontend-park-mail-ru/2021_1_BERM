@@ -221,6 +221,7 @@ export default class Auth {
     static getResponsesVacancy(id) {
         sendRequest('GET', `/vacancy/${id}/response`)
             .then((res) => {
+                console.log(res);
                 eventBus.emit(VACANCY_PAGE_RES, res);
             });
     }

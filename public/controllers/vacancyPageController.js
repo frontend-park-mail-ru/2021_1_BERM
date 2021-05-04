@@ -24,6 +24,7 @@ import {
     VACANCY_PAGE_SEND_FEEDBACK,
     SERVER_ERROR,
     VACANCY_PAGE_FEEDBACK,
+    CHANGE_VACANCY,
 } from '@/modules/utils/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
@@ -69,6 +70,7 @@ export class VacancyPageController extends Controller {
                 [VACANCY_PAGE_END, this._endVacancy.bind(this)],
                 [VACANCY_PAGE_DELETE, this._deleteVacancy.bind(this)],
                 [VACANCY_PAGE_SEND_FEEDBACK, this._sendFeedback.bind(this)],
+                [CHANGE_VACANCY, this._changeVacancy.bind(this)],
             ],
             true,
         );
@@ -291,5 +293,10 @@ export class VacancyPageController extends Controller {
                 }
                 router.go(getProfilePath(user.id));
             });
+    }
+
+    _changeVacancy(info) {
+
+
     }
 }
