@@ -15,6 +15,7 @@ import './static/scss/vacancy.scss';
 import './static/scss/notti.scss';
 import './static/scss/reviews.scss';
 import './static/scss/search.scss';
+import './static/scss/confim.scss';
 import './static/scss/page404.scss';
 
 import {LoginController} from './controllers/loginController.js';
