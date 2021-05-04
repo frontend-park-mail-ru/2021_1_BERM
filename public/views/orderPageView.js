@@ -7,7 +7,6 @@ import {
     ORDER_CHANGE_RATE,
     ORDER_SET_EXECUTOR,
     ORDER_DELETE_EXECUTOR,
-    ORDER_PAGE_END,
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
     ORDER_PAGE_FEEDBACK,
@@ -114,7 +113,7 @@ export class OrderPageView extends View {
                 confim(
                     (event) => {
                         event.preventDefault();
-                        eventBus.emit(ORDER_PAGE_END);
+                        this._feedback();
                     });
             }));
 

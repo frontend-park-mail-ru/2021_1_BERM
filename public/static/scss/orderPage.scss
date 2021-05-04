@@ -15,7 +15,7 @@
             background: rgba(102, 102, 102, 0.5);
             width: 100%;
             height: 100%;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
         }
@@ -30,9 +30,9 @@
         }
 
         &_window {
-            width: 520px;
-            padding: 20px;
-            position: absolute;
+            width: 560px;
+            padding: 40px;
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -58,39 +58,33 @@
             display: flex;
             flex-direction: row-reverse;
             justify-content: center;
-            margin: 0 auto;
+            height: 40px;
+            margin-bottom: 15px;
         }
         &_rating-area:not(:checked) > input {
             display: none;
         }
         &_rating-area:not(:checked) > label {
             float: left;
-            width: 42px;
             padding: 0;
             cursor: pointer;
-            font-size: 32px;
-            line-height: 32px;
-            color: lightgrey;
-            text-shadow: 1px 1px #bbb;
         }
         &_rating-area:not(:checked) > label:before {
-            content: '★';
+            content: url("../img/starEmpty.svg");
         }
         &_rating-area > input:checked ~ label {
-            color: gold;
-            text-shadow: 1px 1px #c60;
+            content: url("../img/star.svg");
         }
         &_rating-area:not(:checked) > label:hover,
         &_rating-area:not(:checked) > label:hover ~ label {
-            color: gold;
+            content: url("../img/star.svg");
         }
         &_rating-area > input:checked + label:hover,
         &_rating-area > input:checked + label:hover ~ label,
         &_rating-area > input:checked ~ label:hover,
         &_rating-area > input:checked ~ label:hover ~ label,
         &_rating-area > label:hover ~ input:checked ~ label {
-            color: gold;
-            text-shadow: 1px 1px goldenrod;
+            content: url("../img/star.svg");
         }
         &_rate-area > label:active {
             position: relative;

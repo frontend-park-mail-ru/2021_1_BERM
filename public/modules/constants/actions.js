@@ -22,7 +22,6 @@ export const SETTING_SUBMIT = 'settings-submit';
 export const SETTING_SEND_DATA = 'send-user-data';
 
 export const ORDER_PAGE_DELETE = 'order_page_delete';
-export const ORDER_PAGE_END = 'order_page_end';
 export const ORDER_PAGE_SEND_FEEDBACK = 'order_page_send_feedback';
 
 export const ORDERS_SEND_FEEDBACK = 'orders_send_feedback';
@@ -81,8 +80,6 @@ export const NO_REG = 'no-registration';
 
 export const ORDER_PAGE_FEEDBACK = 'order_page_feedback';
 
-export const VACANCY_PAGE_FEEDBACK = 'order_page_feedback';
-
 export const REVIEWS_ERROR = 'reviews_error';
 export const REVIEWS_RENDER = 'reviews_render';
 
@@ -103,6 +100,5 @@ export const ORDERS_RENDER = 'orders-render';
 export const VACANCIES_RENDER = 'vacancies-render';
 export const ORDER_PAGE_ERROR = 'order_page_error';
 export const CHANGE_VACANCY_RENDER = 'change-vacancy-render';
-export const CHANGE_ORDER_RENDER = 'change-order-render';
 export const NOTIF_CHANGE_VALID = 'notif-change-valid';
 

@@ -17,10 +17,10 @@ import {
     ORDER_GET_EXECUTOR,
     ORDER_DELETE_EXECUTOR,
     ORDER_GET_DELETE_EXECUTOR,
-    ORDER_PAGE_END,
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
-    ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK, CHANGE_VACANCY, CHANGE_ORDER,
+    ORDER_PAGE_SEND_FEEDBACK,
+    CHANGE_ORDER,
 } from '@/modules/constants/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
@@ -58,7 +58,6 @@ export class OrderPageController extends Controller {
                 [ORDER_DELETE_EXECUTOR, this._deleteExecutor.bind(this)],
                 [ORDER_GET_DELETE_EXECUTOR, this._getDeleteExecutor.bind(this)],
 
-                [ORDER_PAGE_END, this._endOrder.bind(this)],
                 [ORDER_PAGE_DELETE, this._deleteOrder.bind(this)],
                 [ORDER_PAGE_SEND_FEEDBACK, this._sendFeedback.bind(this)],
                 [CHANGE_ORDER, this._changeOrder.bind(this)],
@@ -267,8 +266,7 @@ export class OrderPageController extends Controller {
                         'Не удалось завершить заказ');
                     return;
                 }
-                eventBus.emit(ORDER_PAGE_FEEDBACK);
-                // router.go(getProfilePath(user.id));
+                router.go(getProfilePath(user.id));
             });
     }
 
@@ -311,8 +309,9 @@ export class OrderPageController extends Controller {
                 if (!res.ok) {
                     eventBus.emit(ORDER_PAGE_ERROR,
                         'Не удалось оставить отклик');
+                    return;
                 }
-                router.go(getProfilePath(user.id));
+                this._endOrder();
             });
     }
 
