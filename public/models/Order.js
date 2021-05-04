@@ -1,3 +1,5 @@
+import {imgUrl} from '@/modules/utils/constants';
+
 /** Класс для хранения заказов */
 class Order {
     /**
@@ -57,7 +59,7 @@ class Order {
         return {
             id: item.id,
             creatorId: item.user_id,
-            avatar: item.user_img,
+            avatar: item.user_img ? imgUrl + item.user_img : undefined,
             login: item.user_login,
             rate: item.rate,
             date: this.getDate(item.time),
@@ -108,7 +110,7 @@ class Order {
         data.forEach((res) => {
             this.setAttributes({
                 id: res.id,
-                avatar: res.img,
+                avatar: res.user_img ? imgUrl + res.user_img : undefined,
                 login: res.login,
                 name: res.order_name,
                 customerId: res.customer_id,

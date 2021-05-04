@@ -121,7 +121,6 @@ export class OrderPageView extends View {
             selectButtons.forEach((item) => {
                 item.addEventListener('click', (event) => {
                     const id = event.target.getAttribute('data-id');
-                    debugger;
 
                     eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
                 });
@@ -161,7 +160,9 @@ export class OrderPageView extends View {
         // });
 
         const skip = document.querySelector('.orderPage__feedback_skip');
-        skip.addEventListener('click', () => {
+        skip.addEventListener('click', (event) => {
+            event.preventDefault();
+
             body.classList.remove('scroll_hidden');
             eventBus.emit(ORDER_PAGE_SEND_FEEDBACK, {skip: true});
         });
@@ -170,9 +171,10 @@ export class OrderPageView extends View {
         form.addEventListener('submit', (event) => {
             body.classList.remove('scroll_hidden');
             event.preventDefault();
+
             const data = {
-                rating: event.target.rating.value,
-                comment: event.target.description.value,
+                score: 6 - Number(event.target.rating.value),
+                text: event.target.description.value,
             };
 
             eventBus.emit(ORDER_PAGE_SEND_FEEDBACK, data);

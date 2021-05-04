@@ -1,6 +1,5 @@
-// const origin = '/api';
-
-const origin = 'http://localhost:8080';
+const origin = '/api';
+// const origin = 'http://localhost:8080';
 // const origin = 'https://findfreelancer.ru:8080';
 
 let token;

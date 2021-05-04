@@ -47,7 +47,7 @@ export class SelectSpecController extends Controller {
             user.spec = spec;
             router.go(getWorkerRegPath);
         } else {
-            auth.setSpec(user.id, {specialize: spec});
+            auth.setSpec(user.id, {name: spec});
         }
     }
 

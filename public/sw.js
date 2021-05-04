@@ -1,5 +1,5 @@
-const staticCacheName = 's-app-v1.2';
-const dynamicCacheName = 'd-app-v1.2';
+const staticCacheName = 's-app-v1.3';
+const dynamicCacheName = 'd-app-v1.3';
 
 const assetUrls = [
     '/',
@@ -63,7 +63,7 @@ self.addEventListener('fetch', (event) => {
     }
 
     const url = new URL(request.url);
-    if (!url.toString().includes(':8080')) {
+    if (!url.toString().includes('/api')) {
         event.respondWith(cacheFirst(request));
     } else {
         event.respondWith(networkFirst(request));

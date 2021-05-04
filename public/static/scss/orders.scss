@@ -146,16 +146,15 @@
     flex-direction: column;
 
     width: 408px;
-    height: 425px;
     flex: 0 0 auto;
 
     background: #FFFFFF;
     /* shadow/01 */
 
-    box-shadow: 0px 0px 64px rgba(13, 17, 38, 0.05);
+    box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
     border-radius: 8px;
     margin-left: 88px;
-    margin-top: 49px;
+    margin-top: 50px;
 
     &__title {
         @include font(600, 24px, 22px, -0.4px, $black);
@@ -201,7 +200,7 @@
     }
 
     &__submit {
-        margin: 0 0 19px 44px;
+        margin: 20px 0 19px 44px;
         width: 168px;
         height: 50px;
 

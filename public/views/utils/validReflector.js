@@ -49,15 +49,21 @@ export class ValidReflector {
             .querySelector('[name=' + property + ']').parentNode;
         const errorBox = formElement.nextElementSibling.childNodes[1];
         const errorMes = formElement.nextElementSibling.firstChild;
-        if (type === this.valid && property === options.passwordRepeat) {
+        if (type === this.valid &&
+            options &&
+            property === options.passwordRepeat) {
             this.pasRepValid = true;
         }
 
-        if (type === this.invalid && property === options.passwordRepeat) {
+        if (type === this.invalid &&
+            options &&
+            property === options.passwordRepeat) {
             this.pasRepValid = false;
         }
 
-        if ((property === options.about || property === options.des) && error) {
+        if (options &&
+            (property === options.about || property === options.des) &&
+            error) {
             this.textAr.style.transform = 'translateY(-290px)';
         }
 
