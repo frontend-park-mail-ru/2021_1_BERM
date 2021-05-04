@@ -24,11 +24,13 @@ export const SETTING_SEND_DATA = 'send-user-data';
 export const ORDER_PAGE_DELETE = 'order_page_delete';
 export const ORDER_PAGE_END = 'order_page_end';
 export const ORDER_PAGE_SEND_FEEDBACK = 'order_page_send_feedback';
-export const ORDER_PAGE_SEARCH = 'order_page_search';
+
+export const ORDERS_PAGE_SEARCH = 'order_page_search';
 
 export const VACANCY_PAGE_DELETE = 'vacancy_page_delete';
 export const VACANCY_PAGE_END = 'vacancy_page_end';
-export const VACANCY_PAGE_SEND_FEEDBACK = 'vacancy_page_send_feedback';
+
+export const VACANCIES_PAGE_SEARCH = 'vacancies_page_search';
 
 export const REVIEWS_GET_DATA = 'reviews_get_data';
 export const REVIEWS_GO_ORDER = 'reviews_go_order';

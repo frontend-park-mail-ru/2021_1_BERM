@@ -54,27 +54,7 @@ export class ProfileController extends Controller {
      * Проверка наличия данных пользователя
      */
     _profile() {
-        if (!user.isGetAttr || this.id !== user.id) {
-            if (this.id === user.id) {
-                user.isGetAttr = true;
-            }
-            auth.getProfile(this.id);
-        } else {
-            eventBus.emit(RENDER_PROFILE, {
-                id: user.id,
-                isMyProfile: this.id === user.id,
-                isAuthorized: user.isAuthorized,
-                name: user.nameSurname,
-                login: user.login,
-                isExecutor: user.isExecutor,
-                specializes: user.specializes,
-                about: user.about,
-                img: user.img,
-                rating: user.rating,
-                reviewsCount: user.reviewsCount,
-                ordersCount: user.ordersCount,
-            });
-        }
+        auth.getProfile(this.id);
     }
 
     /**
@@ -95,7 +75,7 @@ export class ProfileController extends Controller {
                     nameSurname: res.name_surname,
                     login: res.login,
                     isExecutor: res.executor,
-                    specializes: res.specializes?res.specializes:[],
+                    specializes: res.specializes ? res.specializes : [],
                     about: res.about,
                     img: res.img ? imgUrl + res.img : undefined,
                     email: res.email,

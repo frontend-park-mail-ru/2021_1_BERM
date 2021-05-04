@@ -8,7 +8,6 @@ class Order {
     constructor() {
         this.currentOrderId = -1;
         this.ordersMap = new Map([]);
-        this.getOrders = false;
     }
 
     /**
@@ -202,7 +201,6 @@ class Order {
     clear() {
         this.currentOrderId = -1;
         this.ordersMap = new Map([]);
-        this.getOrders = false;
     }
 }
 

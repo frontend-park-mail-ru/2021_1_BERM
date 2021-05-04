@@ -10,7 +10,7 @@ import {
     GO_TO_ORDER,
     SEND_SERVICES,
     SEND_RESULT_RENDER,
-    ORDERS_RENDER, SERVER_ERROR, ORDER_PAGE_SEARCH,
+    ORDERS_RENDER, SERVER_ERROR, ORDERS_PAGE_SEARCH,
 } from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
@@ -53,7 +53,7 @@ export class OrdersController extends Controller {
                 [GO_TO_ORDER, this._goToOrder.bind(this)],
                 [SEND_SERVICES, this._sendServices.bind(this)],
                 [SEND_RESULT_RENDER, this._sendResultsRender.bind(this)],
-                [ORDER_PAGE_SEARCH, this._search.bind(this)],
+                [ORDERS_PAGE_SEARCH, this._search.bind(this)],
             ],
             true);
     }
@@ -119,7 +119,7 @@ export class OrdersController extends Controller {
     }
 
     _search(data) {
-        auth.search(data)
+        auth.searchOrders(data)
             .then((res) => {
                 this._sendResultsRender(res);
             });

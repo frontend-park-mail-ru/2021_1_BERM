@@ -14,4 +14,5 @@ export const getLoginPath = '/login';
 export const getNotFoundPath = '/404';
 export const getIndexPath = '/';
 export const getWorkerRegPath = '/worker-reg';
+export const getVacanciesPage = '/vacancies';
 

@@ -4,7 +4,7 @@ import {
     SEND_SERVICES,
     ORDERS_RENDER,
     GO_TO_ORDER,
-    SERVER_ERROR, ORDER_PAGE_SEARCH,
+    SERVER_ERROR, ORDERS_PAGE_SEARCH,
 } from '@/modules/constants/actions';
 import ordersTemplate from '@/components/pages/orders.pug';
 import {notification} from '@/components/notification/notification';
@@ -57,7 +57,7 @@ export class OrdersView extends View {
                     keyword: event.target.search.value,
                 };
 
-                eventBus.emit(ORDER_PAGE_SEARCH, data);
+                eventBus.emit(ORDERS_PAGE_SEARCH, data);
             });
         }
 

@@ -11,6 +11,7 @@ import {
     SEND_SERVICES_VACANCIES,
     SEND_RESULT_RENDER_VACANCIES,
     VACANCIES_RENDER,
+    VACANCIES_PAGE_SEARCH,
 } from '@/modules/constants/actions';
 
 import router from '@/modules/router';
@@ -43,6 +44,7 @@ export class VacanciesController extends Controller {
                 [SEND_SERVICES_VACANCIES, this._sendServices.bind(this)],
                 [SEND_RESULT_RENDER_VACANCIES,
                     this._sendResultsRender.bind(this)],
+                [VACANCIES_PAGE_SEARCH, this._search.bind(this)],
             ],
             true);
     }
@@ -53,34 +55,18 @@ export class VacanciesController extends Controller {
 
 
     _sendServices() {
-        if (this.getVacancies) {
-            eventBus.emit(VACANCIES_RENDER, {
-                isI: this.isI,
-                isMyOrders: !!this.isMyOrders,
-                isAuthorized: user.isAuthorized,
-                isExecutor: user.isExecutor,
-                map: vacancy.vacancysMap,
-            });
-            return;
-        }
         if (this.isMyVacancies) {
             auth.getVacancies(this.isMyVacancies);
-        } else {
-            auth.getVacancies();
-
-            eventBus.emit(VACANCIES_RENDER, {
-                isI: this.isI,
-                isMyVacancies: !!this.isMyVacancies,
-                isAuthorized: user.isAuthorized,
-                isExecutor: user.isExecutor,
-                map: vacancy.vacancysMap,
-            });
+            return;
         }
+
+        auth.getVacancies();
     }
 
     _sendResultsRender(result) {
         if (result.ok) {
             result.json().then((result) => {
+                vacancy.clear();
                 vacancy.setVacancys(result);
 
                 eventBus.emit(VACANCIES_RENDER, {
@@ -92,5 +78,12 @@ export class VacanciesController extends Controller {
                 });
             });
         }
+    }
+
+    _search(data) {
+        auth.searchVacancies(data)
+            .then((res) => {
+                this._sendResultsRender(res);
+            });
     }
 }

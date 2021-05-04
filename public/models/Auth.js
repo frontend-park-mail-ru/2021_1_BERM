@@ -376,8 +376,7 @@ export default class Auth {
      * @return {Promise} - ответ от сервера
      */
     static endVacancy(id) {
-        // ToDo Запрос на удаление вакансии
-        return Promise.resolve({ok: true});
+        return sendRequest('DELETE', `/vacancy/${id}/close`);
     }
 
     /**
@@ -388,8 +387,7 @@ export default class Auth {
      * @return {Promise} - ответ от сервера
      */
     static deleteVacancy(id) {
-        // ToDo Запрос на удаление вакансии
-        return Promise.resolve({ok: false});
+        return sendRequest('DELETE', `/vacancy/${id}`);
     }
 
     static changeVacancy(id, info) {
@@ -408,7 +406,11 @@ export default class Auth {
             });
     }
 
-    static search(data) {
+    static searchOrders(data) {
         return sendRequest('PATCH', `/order/search`, data);
+    }
+
+    static searchVacancies(data) {
+        return sendRequest('PATCH', `/vacancy/search`, data);
     }
 }
