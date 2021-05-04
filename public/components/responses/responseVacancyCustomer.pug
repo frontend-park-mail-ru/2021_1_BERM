@@ -15,7 +15,8 @@ mixin responseVacancy(avatar, login, text, id, selectExecutor, isMy)
                         button(class='vacancyPage__comment-button_info' data-id-user=id) Информация об исполнителе
                         button(class='vacancyPage__comment-button_reviews') Отзывы об исполнителе
                         button(class='vacancyPage__comment-button_cancel') Отказать
-                    else if selectExecutor.id === id
+                    else if selectExecutor.creatorId === id
+                        button(class='vacancyPage__comment-button_select' data-id=id) Связаться
                         button(class='vacancyPage__comment-button_info' data-id-user=id) Информация об исполнителе
                         button(class='vacancyPage__comment-button_reviews') Отзывы об исполнителе
                         button(class='vacancyPage__comment-button_cancel') Отказать

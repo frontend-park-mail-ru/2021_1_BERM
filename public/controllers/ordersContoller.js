@@ -10,7 +10,7 @@ import {
     GO_TO_ORDER,
     SEND_SERVICES,
     SEND_RESULT_RENDER,
-    ORDERS_RENDER, SERVER_ERROR,
+    ORDERS_RENDER, SERVER_ERROR, ORDER_PAGE_SEARCH,
 } from '@/modules/utils/actions.js';
 
 import router from '@/modules/router.js';
@@ -33,6 +33,7 @@ export class OrdersController extends Controller {
      * @param {number} id - id из url, если он там был
      */
     run(id) {
+        console.log(id);
         if (id) {
             const path = '/' + window.location.pathname
                 .slice(1);
@@ -52,6 +53,7 @@ export class OrdersController extends Controller {
                 [GO_TO_ORDER, this._goToOrder.bind(this)],
                 [SEND_SERVICES, this._sendServices.bind(this)],
                 [SEND_RESULT_RENDER, this._sendResultsRender.bind(this)],
+                [ORDER_PAGE_SEARCH, this._search.bind(this)],
             ],
             true);
     }
@@ -114,5 +116,12 @@ export class OrdersController extends Controller {
                 map: order.ordersMap,
             });
         });
+    }
+
+    _search(data) {
+        auth.search(data)
+            .then((res) => {
+                this._sendResultsRender(res);
+            });
     }
 }

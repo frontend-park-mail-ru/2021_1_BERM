@@ -5,15 +5,22 @@ include ../responses/responseVacancyCustomer
             img(class='orderPage__order_img' src=creator.avatar?creator.avatar:require('@/static/img/profileAvatar.svg').default)
             div(class='orderPage__order_name')= creator.name
         div(class='orderPage__order_text')
-            div(class='orderPage__order_title')= creator.title
+            .orderPage__order_up-box
+                div(class='orderPage__order_title')= creator.title
+                if !isExecutor
+                    if selectExecutor
+                        button.orderPage__order_end Завершить заказ
+                    else
+                        img.orderPage__order_delete(src=require('@/static/img/delete.svg').default)
             div(class='orderPage__order_category')
                 div(class='orderPage__order_category-text') Категория:
                 button(class='orderPage__order_category-button')= creator.category
             div(class='orderPage__order_definition')= creator.definition
             div(class='orderPage__order_stats')
-                div(class='orderPage__order_stat')
+                div(class='orderPage__order_stat' )
                     img(class='orderPage__order_stat-img' src=require('@/static/img/card.svg').default)
                     div(class='orderPage__order_stat-data')= creator.salary
+                button(class='vacancyPage__customer-button_change') Изменить
     if isExecutor
         form.custom-form(id="Vacancy_form")
             div(class='orderPage__comments')
@@ -32,7 +39,7 @@ include ../responses/responseVacancyCustomer
                     span(class='vacancyPage__comments_title') Отклики
                     each response in responses
                         -var flag = 1
-                        +responseVacancy(response.avatar, response.login, response.text, response.id, selectExecutor, isMy)
+                        +responseVacancy(response.avatar, response.login, response.text, response.creatorId, selectExecutor, isMy)
                 if flag
                     div(class="orderPage__no-comments") Пока никто не оставил отклик
 

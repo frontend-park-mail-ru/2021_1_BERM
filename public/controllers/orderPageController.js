@@ -20,7 +20,7 @@ import {
     ORDER_PAGE_END,
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
-    ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK,
+    ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK, CHANGE_VACANCY, CHANGE_ORDER,
 } from '@/modules/utils/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
@@ -61,6 +61,7 @@ export class OrderPageController extends Controller {
                 [ORDER_PAGE_END, this._endOrder.bind(this)],
                 [ORDER_PAGE_DELETE, this._deleteOrder.bind(this)],
                 [ORDER_PAGE_SEND_FEEDBACK, this._sendFeedback.bind(this)],
+                [CHANGE_ORDER, this._changeOrder.bind(this)],
             ],
             true);
     }
@@ -291,20 +292,31 @@ export class OrderPageController extends Controller {
      *
      * @param {Object} data - содержание отзыва
      */
-    _sendFeedback(data) {
+    async _sendFeedback(data) {
         if (data.skip) {
             router.go(getProfilePath(user.id));
+            return;
         }
 
-        // Todo Реализовать тут получить id кому и id от кого
-        auth.sendFeedback(data)
+        const select = order.getSelectResponse(
+            order.currentOrderId,
+            order.ordersMap.get(order.currentOrderId).selectExecutor);
+
+        data.user = user.id;
+        data.to_user = select.creatorId;
+        data.order_id = order.currentOrderId;
+
+        await auth.sendFeedback(data)
             .then((res) => {
                 if (!res.ok) {
                     eventBus.emit(ORDER_PAGE_ERROR,
                         'Не удалось оставить отклик');
-                    return;
                 }
                 router.go(getProfilePath(user.id));
             });
+    }
+
+    _changeOrder(info) {
+        auth.changeOrder(order.currentOrderId, info);
     }
 }

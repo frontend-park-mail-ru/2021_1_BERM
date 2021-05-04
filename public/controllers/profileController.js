@@ -17,6 +17,7 @@ import {
     SUCCESS_LOAD_IMG,
 } from '@/modules/utils/actions.js';
 import {getIndexPath, getNotFoundPath} from '@/modules/utils/goPath.js';
+import {imgUrl} from '@/modules/utils/constants';
 
 /** Контроллер регистрации клиента */
 export class ProfileController extends Controller {
@@ -69,8 +70,8 @@ export class ProfileController extends Controller {
                 specializes: user.specializes,
                 about: user.about,
                 img: user.img,
-                rating: 0,
-                reviews: 0,
+                rating: user.rating,
+                reviewsCount: user.reviewsCount,
                 ordersCount: user.ordersCount,
             });
         }
@@ -96,9 +97,11 @@ export class ProfileController extends Controller {
                     isExecutor: res.executor,
                     specializes: res.specializes?res.specializes:[],
                     about: res.about,
-                    img: res.img,
+                    img: res.img ? imgUrl + res.img : undefined,
                     email: res.email,
                     ordersCount: res.orders_count,
+                    reviewsCount: res.reviews_count,
+                    rating: res.rating ? res.rating : 0,
                 };
 
                 if (this.id === user.id) {
@@ -115,8 +118,8 @@ export class ProfileController extends Controller {
                     specializes: data.specializes,
                     about: data.about,
                     img: data.img,
-                    rating: 0,
-                    reviews: 0,
+                    rating: data.rating,
+                    reviewsCount: data.reviewsCount,
                     ordersCount: data.ordersCount,
                 });
             });
@@ -129,7 +132,11 @@ export class ProfileController extends Controller {
      */
     _changeImage(src) {
         eventBus.emit(SUCCESS_LOAD_IMG, src);
-        auth.sendImage(src);
+        const delStr = src.split(',')[0];
+        auth.sendImage({
+            id: user.id,
+            img: src.slice(delStr.length + 1),
+        });
     }
 
     /**
@@ -171,7 +178,7 @@ export class ProfileController extends Controller {
      */
     _sendDeleteSpec(data) {
         this.deleteSpec = data;
-        auth.deleteSpec(user.id, {specialize: data});
+        auth.deleteSpec(user.id, {name: data});
     }
 
     /**

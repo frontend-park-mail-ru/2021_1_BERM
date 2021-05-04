@@ -4,4 +4,4 @@ include ../reviews/templateReview
     .reviews__title Отзывы о пользователе #{name}    #{login}
     .reviews__row
         each r in reviews
-            + review(r.title, r.stars, r.sender, r.comment)
+            + review(r.order_name, r.score, r.user_login, r.text)

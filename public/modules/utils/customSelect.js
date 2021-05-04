@@ -31,6 +31,8 @@ export default class Select {
         this.$el.addEventListener('click', this.clickHandler);
         this.$arrow = this.$el.querySelector('[data-type="arrow"]');
         this.$value = this.$el.querySelector('[data-type="value"]');
+
+        this.$value.style.width = this.$value.scrollWidth + 'px';
     }
 
     clickHandler(event) {

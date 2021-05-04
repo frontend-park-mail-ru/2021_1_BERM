@@ -10,6 +10,15 @@
 
 .vacancyPage {
 
+  &__customer-button_change {
+    @include font(600, 16px, 19px, -0.4px, $white);
+    @include uniq_form($primary_color);
+    width: 110px;
+    max-width: 300px;
+    height: 29px;
+    box-sizing: border-box;
+  }
+
   &__otz {
     margin-left: 30px;
   }

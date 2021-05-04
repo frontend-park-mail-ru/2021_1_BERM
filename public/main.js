@@ -14,6 +14,7 @@ import './static/scss/orderPage.scss';
 import './static/scss/vacancy.scss';
 import './static/scss/notti.scss';
 import './static/scss/reviews.scss';
+import './static/scss/search.scss';
 import './static/scss/page404.scss';
 
 import {LoginController} from './controllers/loginController.js';
@@ -54,15 +55,15 @@ import {
 import {Page404Controller} from '@/controllers/page404Controller.js';
 import {ReviewsController} from '@/controllers/reviewsController';
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-        .then((registration) => {
-            console.log('sw registration on scope:', registration.scope);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/service-worker.js')
+//         .then((registration) => {
+//             console.log('sw registration on scope:', registration.scope);
+//         })
+//         .catch((err) => {
+//             console.error(err);
+//         });
+// }
 
 const controllers = new Set([
     [MAIN_PAGE, MainPageController],
