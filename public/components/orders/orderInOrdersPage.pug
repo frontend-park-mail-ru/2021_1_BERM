@@ -1,4 +1,4 @@
-mixin orderInOrdersPage(avatar, login, title, category, definition, date, budget, id, creatorId)
+mixin orderInOrdersPage(avatar, login, title, category, definition, date, budget, id, creatorId, isArchive, isExecutor)
     div(class='orders__order')
         div(class='orders__order_img-bg')
             img(class='orders__order_img' href=`/profile/${creatorId}` src=avatar)
@@ -22,3 +22,6 @@ mixin orderInOrdersPage(avatar, login, title, category, definition, date, budget
                 div(class='orders__order_stat')
                     img(class='orders__order_stat-img' src=require("@/static/img/card.svg").default)
                     div(class='orders__order_stat-data')= budget
+                if isArchive && isExecutor
+                    div(class='orders__order_stat')
+                        a(class='orders__order_stat-data orders__feedback' data-order=id data-creator=creatorId) Оставить отзыв

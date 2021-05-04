@@ -25,6 +25,8 @@ export const ORDER_PAGE_DELETE = 'order_page_delete';
 export const ORDER_PAGE_END = 'order_page_end';
 export const ORDER_PAGE_SEND_FEEDBACK = 'order_page_send_feedback';
 
+export const ORDERS_SEND_FEEDBACK = 'orders_send_feedback';
+
 export const ORDERS_PAGE_SEARCH = 'order_page_search';
 
 export const VACANCY_PAGE_DELETE = 'vacancy_page_delete';

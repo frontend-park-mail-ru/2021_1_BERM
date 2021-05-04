@@ -10,11 +10,14 @@ import {
     GO_TO_ORDER,
     SEND_SERVICES,
     SEND_RESULT_RENDER,
-    ORDERS_RENDER, SERVER_ERROR, ORDERS_PAGE_SEARCH,
+    ORDERS_RENDER,
+    SERVER_ERROR,
+    ORDERS_PAGE_SEARCH,
+    ORDERS_SEND_FEEDBACK,
 } from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
-import {getNotFoundPath, getOrderPath} from '@/modules/constants/goPath.js';
+import {getNotFoundPath, getOrderPath, getProfilePath} from '@/modules/constants/goPath.js';
 import {ARCHIVE} from '@/modules/constants/pageNames.js';
 
 /** Контроллер страницы заказов */
@@ -54,6 +57,7 @@ export class OrdersController extends Controller {
                 [SEND_SERVICES, this._sendServices.bind(this)],
                 [SEND_RESULT_RENDER, this._sendResultsRender.bind(this)],
                 [ORDERS_PAGE_SEARCH, this._search.bind(this)],
+                [ORDERS_SEND_FEEDBACK, this._sendFeedback.bind(this)],
             ],
             true);
     }
@@ -122,6 +126,18 @@ export class OrdersController extends Controller {
         auth.searchOrders(data)
             .then((res) => {
                 this._sendResultsRender(res);
+            });
+    }
+
+    _sendFeedback(data) {
+        data.user = user.id;
+
+        auth.sendFeedback(data)
+            .then((res) => {
+                if (!res.ok) {
+                    eventBus.emit(SERVER_ERROR,
+                        'Не удалось оставить отклик');
+                }
             });
     }
 }
