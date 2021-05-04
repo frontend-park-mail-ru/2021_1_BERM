@@ -4,10 +4,10 @@
     position: sticky;
     top: 0;
 
-    z-index: 100;
+    z-index: 10000;
     height: 64px;
     background: $primary_color;
-    
+
     &__img {
         cursor: pointer;
     }

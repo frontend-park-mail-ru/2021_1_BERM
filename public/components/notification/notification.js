@@ -1,6 +1,9 @@
-export const notification = (data) => {
+export const notification = (data, color) => {
     const not = document.createElement('not');
     not.id = 'notification';
+    if (color) {
+        not.style.background = '#345DEE';
+    }
 
     const move = () => {
         not.style.transitionDuration = '500ms';

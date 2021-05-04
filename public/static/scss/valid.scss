@@ -103,12 +103,70 @@
 //}
 
 .form-control_error {
-	border:solid 1.5px $secondary_color !important;
-
+	//border:solid 1.5px $secondary_color !important;
 }
 
+.custom-form__input.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+.custom-form__input-mini.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+
+.settings-form__input.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+
+.settings-form__input-mini_bg.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+
+.select__input.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+
+.about-form__input.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+
+.orderPage__comments.form-control_error {
+	border:solid 1.5px $secondary_color;
+}
+
+//.form-control_error > img {
+//	border:solid 1.5px $secondary_color;
+//}
+
 .form-control_valid {
-	border:solid 1.5px $primary_color !important;
+	//border:solid 1.5px $primary_color !important;
+}
+
+.custom-form__input.form-control_valid {
+	border:solid 1.5px $primary_color;
+}
+
+.custom-form__input-mini.form-control_valid {
+	border:solid 1.5px $primary_color;
+}
+
+.settings-form__input.form-control_valid  {
+	border:solid 1.5px $primary_color;
+}
+
+.settings-form__input-mini_bg.form-control_valid {
+	border:solid 1.5px $primary_color;
+}
+
+.select__input.form-control_valid {
+	border:solid 1.5px $primary_color;
+}
+
+.about-form__input.form-control_valid {
+	border:solid 1.5px $primary_color;
+}
+
+.orderPage__comments.form-control_valid {
+	border:solid 1.5px $primary_color;
 }
 
 .label-reg {
@@ -117,6 +175,7 @@
 
 .error-rate {
 	color: $white;
+	transform: translateY(-15px);
 }
 
 //.penis {

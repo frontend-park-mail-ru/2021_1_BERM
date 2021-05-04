@@ -24,6 +24,7 @@ import {
     VACANCY_GET_EXECUTOR,
     VACANCY_GET_DELETE_EXECUTOR,
     ORDER_PAGE_GET_RES,
+    NOTIF_CHANGE_VALID,
 } from '@/modules/constants/actions.js';
 
 
@@ -256,6 +257,7 @@ export default class Auth {
         sendRequest('PATCH', `/vacancy/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(VACANCY_GET_RATE, res);
+                eventBus.emit(NOTIF_CHANGE_VALID, res);
             });
     }
 

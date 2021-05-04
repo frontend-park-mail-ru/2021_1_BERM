@@ -94,14 +94,14 @@ export const PROGRAM_OBESPECH = {id: '21',
 export const INF_SEC = {id: '22',
     value: 'Информационная безопасность', type: 'item'};
 export const NETWORK_SYST_ADMIN = {id: '23',
-    value: 'Сетевое и системное администрирование', type: 'item'};
+    value: 'Сетевое администрирование', type: 'item'};
 
 // Веб-разработка,
 // мобильные устройства и программное обеспечение (Web, Mobile & Software Dev)
 export const CAT___WMSD = {id: '24',
     value: 'Программная разработка', type: 'category'};
 export const DEV_PROGR_OBECPECH = {id: '25',
-    value: 'Разработка программного обеспечения ПК', type: 'item'};
+    value: 'Разработка программного обеспечения', type: 'item'};
 export const ELECTR_COMMERCH = {id: '26',
     value: 'Развитие электронной коммерции', type: 'item'};
 export const GAME_DEV = {id: '27',

@@ -20,17 +20,26 @@ include ../responses/responseVacancyCustomer
                 div(class='orderPage__order_stat' )
                     img(class='orderPage__order_stat-img' src=require('@/static/img/card.svg').default)
                     div(class='orderPage__order_stat-data')= creator.salary
-                button(class='vacancyPage__customer-button_change') Изменить
+                if !isExecutor
+                    button(class='vacancyPage__customer-button_change') Изменить
     if isExecutor
         form.custom-form(id="Vacancy_form")
             div(class='orderPage__comments')
-                textarea(class='vacancy-executor' placeholder='Ваш отклик' name='rate')= userText
+                textarea(class='vacancy-executor form-control' placeholder='Ваш отклик' name='rateExecutor')= userText
+            div(class=" error")
+                div(class="error__message")
+                div(class="error__main" id="textArVac")
+                    div(class="error__box")
+                        ul(class="error__list")
+                            li(class= "error__help") &#8226 Текст должен содержать не менее 40 символов
+                            li(class= "error__help") &#8226 Запрещено использовать специальные символы
+                    div(class="error__arrow")
             div(class="vacancy-executor__row")
                 if userRate === 0
-                    button(class='vacancy-executor__button_change') Создать
+                    button(class='vacancy-executor__button_change' id='send_mess') Создать
 
                 else
-                    button(class='vacancy-executor__button_change') Изменить
+                    button(class='vacancy-executor__button_change' id='send_mess') Изменить
                     button(class='vacancy-executor__button_delete') Удалить
     else
         div(class='orderPage__comments')

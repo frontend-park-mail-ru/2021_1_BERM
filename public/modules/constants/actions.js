@@ -104,4 +104,5 @@ export const VACANCIES_RENDER = 'vacancies-render';
 export const ORDER_PAGE_ERROR = 'order_page_error';
 export const CHANGE_VACANCY_RENDER = 'change-vacancy-render';
 export const CHANGE_ORDER_RENDER = 'change-order-render';
+export const NOTIF_CHANGE_VALID = 'notif-change-valid';
 
