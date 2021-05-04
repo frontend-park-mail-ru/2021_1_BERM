@@ -62,7 +62,7 @@ export class VacancyPageView extends View {
             'Страница вакансии',
             vacancyPageTemplate(info),
         );
-        console.log(info);
+        console.log('INFO ', info);
 
         const form = document.getElementById('Vacancy_form');
         if (info.isExecutor) {
@@ -246,7 +246,7 @@ export class VacancyPageView extends View {
             };
             sendInfo.salary = Number(e.target.budget.value);
             sendInfo.vacancy_name = e.target.order_name.value;
-            sendInfo.emit(CHANGE_VACANCY, sendInfo);
+            eventBus.emit(CHANGE_VACANCY, sendInfo);
         });
     }
 }

@@ -11,13 +11,16 @@ import {
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
     ORDER_PAGE_FEEDBACK,
-    ORDER_PAGE_SEND_FEEDBACK,
+    ORDER_PAGE_SEND_FEEDBACK, VACANCY_PAGE_GET_RES, CHANGE_ORDER,
 } from '@/modules/utils/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/orderPage.pug';
 import feedback from '@/components/pages/feedback.pug';
 import {Validator} from './validator';
 import {notification} from '@/components/notification/notification.js';
+import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
+import Select from '@/modules/utils/customSelect';
+import {listOfServices} from '@/modules/utils/templatesForSelect';
 
 /** View страницы заказа */
 export class OrderPageView extends View {
@@ -90,6 +93,13 @@ export class OrderPageView extends View {
             return;
         }
 
+        const changeButton = document.
+            querySelector('.vacancyPage__customer-button_change');
+
+        changeButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            this._changeOrderRender(dataForRender);
+        });
 
         if (dataForRender.selectExecutor) {
             const endBtn = document
@@ -178,6 +188,53 @@ export class OrderPageView extends View {
             };
 
             eventBus.emit(ORDER_PAGE_SEND_FEEDBACK, data);
+        });
+    }
+
+    _changeOrderRender(info) {
+        const form = document.querySelector(' .orderPage');
+        const isChange = true;
+        console.log(info.creator);
+        const chInfo = {
+            isOrder: true,
+            isChange: isChange,
+            creator: info.creator,
+        };
+        form.innerHTML = createOrderOrVacancy(chInfo);
+        new Select(
+            '#select', {
+                placeholder: 'Категория',
+                data: listOfServices,
+            }, 'dynamic-style');
+        const category = document.querySelector('[data-type="value"]');
+        category.value = info.creator.category;
+        category.style.width = category.scrollWidth + 'px';
+        const val = new Validator(
+            'order-create_form',
+            '.form-control',
+            'send_mess',
+        );
+        val.validate();
+
+        const cancelButton = document.
+            querySelector('.change-form__cancel');
+        cancelButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            eventBus.emit(ORDER_PAGE_GET_RES);
+        });
+
+        const changeForm = document.
+            getElementById('order-create_form');
+
+        changeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const sendInfo = {
+                category: e.target.category.value,
+                description: e.target.description.value,
+            };
+            sendInfo.budget = Number(e.target.budget.value);
+            sendInfo.vacancy_name = e.target.order_name.value;
+            eventBus.emit(CHANGE_ORDER, sendInfo);
         });
     }
 }

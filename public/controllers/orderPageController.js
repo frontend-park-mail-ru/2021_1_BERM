@@ -20,7 +20,7 @@ import {
     ORDER_PAGE_END,
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
-    ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK,
+    ORDER_PAGE_FEEDBACK, ORDER_PAGE_SEND_FEEDBACK, CHANGE_VACANCY, CHANGE_ORDER,
 } from '@/modules/utils/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
@@ -61,6 +61,7 @@ export class OrderPageController extends Controller {
                 [ORDER_PAGE_END, this._endOrder.bind(this)],
                 [ORDER_PAGE_DELETE, this._deleteOrder.bind(this)],
                 [ORDER_PAGE_SEND_FEEDBACK, this._sendFeedback.bind(this)],
+                [CHANGE_ORDER, this._changeOrder.bind(this)],
             ],
             true);
     }
@@ -313,5 +314,9 @@ export class OrderPageController extends Controller {
                 }
                 router.go(getProfilePath(user.id));
             });
+    }
+
+    _changeOrder(info) {
+        auth.changeOrder(order.currentOrderId, info);
     }
 }

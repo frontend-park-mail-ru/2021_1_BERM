@@ -39,7 +39,7 @@ include ../responses/responseVacancyCustomer
                     span(class='vacancyPage__comments_title') Отклики
                     each response in responses
                         -var flag = 1
-                        +responseVacancy(response.avatar, response.login, response.text, response.id, selectExecutor, isMy)
+                        +responseVacancy(response.avatar, response.login, response.text, response.creatorId, selectExecutor, isMy)
                 if flag
                     div(class="orderPage__no-comments") Пока никто не оставил отклик
 

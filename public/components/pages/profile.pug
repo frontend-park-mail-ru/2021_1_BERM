@@ -43,6 +43,14 @@ mixin specialize(specName, isMyProfile)
                                 div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
                             else
                                 div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
+                        .reviews-stat
+                            div
+                                img(src=require('@/static/img/vacancies.svg').default style="cursor:pointer;" alt='')
+                            if isMyProfile
+
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) Мои вакансии
+                            else
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) вакансии
                     .reviews-stat
                         div
                             img(src=require('@/static/img/document.svg').default style="cursor:pointer;" alt='')
