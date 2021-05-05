@@ -58,6 +58,8 @@ import {
 import {Page404Controller} from '@/controllers/page404Controller.js';
 import {ReviewsController} from '@/controllers/reviewsController';
 
+console.log('sd');
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
         .then((registration) => {
