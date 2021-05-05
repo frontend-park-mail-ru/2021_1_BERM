@@ -1,4 +1,4 @@
-.navbar
+div(class='navbar' id='myTopnav')
     a(class='navbar__title' href='/') FindFreelancer.ru
     div(class='navbar__navigate')
         .row
@@ -10,3 +10,9 @@
             div(class='row__item')
                 a()
                     img(src=require("@/static/img/search.svg").default alt='')
+    div.navbar__surfacing
+        img(class='navbar__surfacing_item' src=require("@/static/img/Arrow_down.svg").default)
+        div(class='navbar__surfacing_content')
+            a(href='/vacancy-create') Разместить вакансию
+            a(href='/order-create') Разместить заказ
+            a(href='/profile') Профиль
