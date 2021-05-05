@@ -1,0 +1,11 @@
+@media screen and (max-width: 720px) {
+  body {
+    background: black;
+  }
+
+  .profile {
+    &__border {
+      padding: 0 50px 50px 50px;
+    }
+  }
+}

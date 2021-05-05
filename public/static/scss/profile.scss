@@ -4,8 +4,13 @@
     flex: 1 0 auto;
 
     &__border {
-        width: 1142px;
-        height: 663px;
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: max-content;
+        height: 60%;
+
         display: flex;
         justify-content: center;
         margin: 86px 0 0 0;

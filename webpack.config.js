@@ -10,7 +10,7 @@ module.exports = {
     mode: 'development',
     entry: ['@babel/polyfill', './main.js'],
     output: {
-        filename: 'bundle.js',
+        filename: '[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
