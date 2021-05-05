@@ -19,6 +19,7 @@ import './static/scss/confim.scss';
 import './static/scss/page404.scss';
 
 import './static/mediaSccs/rootMedia.scss';
+import './static/mediaSccs/settingsMedia.scss';
 import './static/mediaSccs/registrationMedia.scss';
 import './static/mediaSccs/profileMedia.scss';
 

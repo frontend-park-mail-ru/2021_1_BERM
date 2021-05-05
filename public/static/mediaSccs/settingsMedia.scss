@@ -1,0 +1,20 @@
+.settings {
+  flex-wrap: wrap;
+
+  &__bg-form {
+    width: auto;
+  }
+
+  &__form {
+    flex-wrap: wrap;
+  }
+
+  &__column_right {
+    margin-top: 25px;
+    margin-left: 0;
+  }
+}
+
+.settings-container {
+  flex-wrap: wrap;
+}
