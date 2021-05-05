@@ -24,7 +24,7 @@ import './static/mediaSccs/settingsMedia.scss';
 import './static/mediaSccs/registrationMedia.scss';
 import './static/mediaSccs/profileMedia.scss';
 import './static/mediaSccs/ordersMedia.scss';
-
+import './static/mediaSccs/navbarMedia.scss';
 
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';

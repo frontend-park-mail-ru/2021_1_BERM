@@ -8,6 +8,11 @@
     height: 64px;
     background: $primary_color;
 
+
+    &__surfacing {
+        display: none;
+    }
+
     &__img {
         cursor: pointer;
     }
