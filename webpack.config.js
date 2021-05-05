@@ -14,6 +14,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },
+    performance: {
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000,
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'public'),
