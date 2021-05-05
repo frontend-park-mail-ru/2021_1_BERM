@@ -2,15 +2,21 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'public'),
     mode: 'development',
     entry: ['@babel/polyfill', './main.js'],
     output: {
-        filename: 'bundle.js',
+        filename: '[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
+    },
+    performance: {
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000,
     },
     resolve: {
         alias: {
@@ -27,6 +33,15 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
+        new FaviconsWebpackPlugin('./static/img/favicon.svg'),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: 'sw.js',
+                    to: '',
+                },
+            ],
+        }),
     ],
     module: {
         rules: [

@@ -26,23 +26,35 @@ mixin specialize(specName, isMyProfile)
                             img(src=require('@/static/img/dog.svg').default alt='')
                         div(class='nickname__text')= login
                 div(class='top__item')
-                    .rating
+                    .rating-stat
                         div
                             img(src=require('@/static/img/stats.svg').default alt='')
-                        div(class='rating__text') Рейтинг: #{rating}
-                    .reviews
+                        div(class='rating-stat__text') Рейтинг: #{rating}
+                    .reviews-stat
                         div
-                            img(src=require('@/static/img/star.svg').default alt='')
-                        div(class='reviews__text') Отзывы: #{reviews}
+                            img(src=require('@/static/img/star1.svg').default alt='')
+                        div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/reviews`) Отзывы: #{reviewsCount}
                     if !isExecutor
-                        .reviews
+                        .reviews-stat
                             div
-                                img(src=require('@/static/img/carousel.svg').default alt='')
+                                img(src=require('@/static/img/carousel.svg').default style="cursor:pointer;" alt='')
                             if isMyProfile
-                                div(class='reviews__text' href=`/profile/${id}/orders`) Мои заказы
+
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
                             else
-                                div(class='reviews__text' href=`/profile/${id}/orders`) Заказы
-                            //: #{ordersCount}
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
+                        .reviews-stat
+                            div
+                                img(src=require('@/static/img/vacancy.svg').default style="cursor:pointer;" alt='')
+                            if isMyProfile
+
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) Мои вакансии
+                            else
+                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) Вакансии
+                    .reviews-stat
+                        div
+                            img(src=require('@/static/img/document.svg').default style="cursor:pointer;" alt='')
+                        div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/archive`) Архив
                 div(class='top__item')
                     if isMyProfile
                         .settings-buttons
@@ -63,5 +75,5 @@ mixin specialize(specName, isMyProfile)
                                 +specialize(specName, isMyProfile)
                         if isMyProfile
                             .add-spec
-                                img(src=require('@/static/img/plus.svg').default href='/add-spec' alt='')
+                                img(src=require('@/static/img/plus.svg').default href='/add-spec' class='spec_button_add' alt='')
                                 div(class='add-spec__text') Добавить

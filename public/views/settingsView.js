@@ -1,14 +1,15 @@
 import {View} from './view.js';
-import {Validator} from './validator.js';
-import eventBus from '../modules/eventBus.js';
+import {Validator} from './validation/validator.js';
+import eventBus from '@/modules/eventBus.js';
 import {
     GET_USER_DATA,
-    NO_SET_UP,
-    SEND_USER_DATA,
+    NO_SET_UP, SETTING_INVALID_PASSWORD,
+    SETTING_SEND_DATA,
     SETTING_SUBMIT,
-} from '../modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 import settingsTemplate from '@/components/pages/settings.pug';
+import {notification} from '@/components/notification/notification.js';
 
 /** Контроллер регистрации клиента */
 export class SettingsView extends View {
@@ -22,8 +23,9 @@ export class SettingsView extends View {
         super.setListeners([
             [GET_USER_DATA, this._renderData],
             [NO_SET_UP, this._onNoSetUp],
+            [SETTING_INVALID_PASSWORD, this._invalidPassword],
         ]);
-        eventBus.emit(SEND_USER_DATA);
+        eventBus.emit(SETTING_SEND_DATA);
     }
 
     /**
@@ -65,8 +67,12 @@ export class SettingsView extends View {
      * Обработка в случае провала
      */
     _onNoSetUp() {
-        // ToDo настройки не удалось сохранить
-        console.log('настройки не удалось сохранить');
+        notification('Ошибка сервера. Не удалось сохранить изменения');
+    }
+
+    _invalidPassword() {
+        // Todo Рисовать ошибку по другому
+        notification('Ошибка! Неверный текущий пароль');
     }
 }
 

@@ -1,0 +1,7 @@
+include ../reviews/templateReview
+
+.reviews
+    .reviews__title Отзывы о пользователе #{name}    #{login}
+    .reviews__row
+        each r in reviews
+            + review(r.order_name, r.score, r.user_login, r.text)

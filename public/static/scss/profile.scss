@@ -4,8 +4,13 @@
     flex: 1 0 auto;
 
     &__border {
-        width: 1142px;
-        height: 663px;
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: max-content;
+        height: 60%;
+
         display: flex;
         justify-content: center;
         margin: 86px 0 0 0;
@@ -75,7 +80,7 @@
     }
 }
 
-.rating {
+.rating-stat {
     display: flex;
     align-items: center;
 
@@ -85,7 +90,7 @@
         margin-left: 7px;
     }
 }
-.reviews {
+.reviews-stat {
     display: flex;
     align-items: center;
     margin-top: 19px;
@@ -174,6 +179,7 @@
 }
 .specializes__close {
     margin: 2px 0px 0px 14px;
+    cursor: pointer;
 }
 .add-spec {
     display: flex;
@@ -185,4 +191,16 @@
 
 input[type="file"] {
     display: none;
+}
+
+.spec {
+    &_button {
+        &_add {
+            cursor: pointer;
+        }
+
+        &_delete {
+            cursor: pointer;
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import {Controller} from './controller.js';
-import {MainPageView} from '../views/mainPageView.js';
+import {MainPageView} from '@/views/mainPageView';
 
 /** Контроллер регистрации клиента */
 export class MainPageController extends Controller {
@@ -12,12 +12,13 @@ export class MainPageController extends Controller {
     }
 
     /**
-     * Запуск контроллера главной страницы
+     * Запуск контроллера регистрации клиента
+     *
+     * @param {number} id - id из url, если он там был
      */
     run(id) {
         super.run(
             [],
-            false,
-            true);
+            false);
     }
 }

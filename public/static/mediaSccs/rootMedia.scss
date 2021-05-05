@@ -1,0 +1,50 @@
+@media screen and (max-width: 768px) {
+  //.custom-form__label {
+  //  font-size: 40px;
+  //  margin-top: 200px;
+  //  transform: translateY(-250%);
+  //}
+
+  .custom-form__input {
+    width: 280px;
+  }
+
+  .custom-form__img {
+    width: 40px;
+  }
+
+  .custom-form__input_in {
+    width: 240px;
+  }
+
+  .custom-form__input-mini_bg {
+    flex: 1 1 auto;
+    justify-content: normal;
+    margin-top: 0;
+  }
+
+  //.custom-form__input-mini {
+  //  font-size: 32px;
+  //}
+
+  .custom-form__submit {
+    width: 75%;
+  }
+
+  .custom-form__input-mini_flex {
+    margin-top: 30px;
+  }
+
+  .custom-form__input-mini {
+    width: 300px;
+  }
+
+  .custom-form__input-mini_in {
+    width: 170px;
+  }
+
+  .settings__about__textarea {
+    width: 300px;
+  }
+
+}

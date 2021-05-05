@@ -1,0 +1,24 @@
+.orderPage__feedback_bg#confim_window
+    .orderPage__feedback_window
+        form#specForm
+            div(class='orderPage__feedback_title') Пожалуйста, оставьте отзыв
+            .orderPage__feedback_rating-area
+                input#star-1(type='radio' name='rating' value='1')
+                label(for='star-1' title='Оценка «1»')
+                input#star-2(type='radio' name='rating' value='2')
+                label(for='star-2' title='Оценка «2»')
+                input#star-3(type='radio' name='rating' value='3')
+                label(for='star-3' title='Оценка «3»')
+                input#star-4(type='radio' name='rating' value='4')
+                label(for='star-4' title='Оценка «4»')
+                input#star-5(type='radio' name='rating' value='5')
+                label(for='star-5' title='Оценка «5»')
+            div(class='about-form__input')
+                textarea(class='settings__about__textarea form-control' placeholder='Комментарий' name='description')
+            div(class="error error-response")
+                div(class="error__message")
+                div(class="error__main")
+            //.orderPage__feedback_buttons
+            button(class='custom-form__submit' id='send_mess') Отправить
+            button(class='orderPage__feedback_skip') Пропустить
+            //div(id="err_place")

@@ -18,7 +18,11 @@ export default class Select {
     render() {
         const {placeholder, data} = this.options;
         this.$el.classList.add('select');
-        this.$el.innerHTML = getTemplate(data, placeholder, this.selectedId, this.idSelector);
+        this.$el.innerHTML = getTemplate(
+            data,
+            placeholder,
+            this.selectedId,
+            this.idSelector);
         this.$idSelectorDoc = document.getElementById(this.idSelector);
     }
 
@@ -27,6 +31,8 @@ export default class Select {
         this.$el.addEventListener('click', this.clickHandler);
         this.$arrow = this.$el.querySelector('[data-type="arrow"]');
         this.$value = this.$el.querySelector('[data-type="value"]');
+
+        this.$value.style.width = this.$value.scrollWidth + 'px';
     }
 
     clickHandler(event) {

@@ -1,0 +1,23 @@
+@media screen and (max-width: 720px) {
+  .registration {
+    position: fixed;
+
+
+    &__input-other_in {
+      width: 160px;
+    }
+
+    &__input-other {
+      width: 170px;
+      margin-right: 21px;
+
+      &_img {
+        margin-left: 7px;
+      }
+    }
+
+    &__other_text {
+      justify-content: normal;
+    }
+  }
+}

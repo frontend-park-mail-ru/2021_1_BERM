@@ -45,6 +45,7 @@
     &-form__input {
         @include form_dis($cntr, $cntr);
         @include uniq_form($placeholder);
+        border: 1.5px solid transparent;
 
         margin-top: 32px;
     }
@@ -111,11 +112,34 @@
         margin-left: 13px;
     }
 
+
+
+}
+
+.change-form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+
+    &__cancel {
+        @include form_dis($cntr, $cntr);
+        @include uniq_form($secondary_color);
+        @include font(600, 18px, 22px, -0.4px, $white);
+
+        width: 168px;
+        height: 50px;
+
+        &_arrow {
+            transform: rotate(180deg);
+            margin-right: 13px;
+        }
+    }
 }
 
 .about-form__input {
     @include form_dis($left, $cntr);
     @include uniq_form($placeholder);
+    border: 1.5px solid transparent;
 
     margin-top: 10px;
 }

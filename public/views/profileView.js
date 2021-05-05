@@ -1,14 +1,15 @@
 import {View} from './view.js';
-import eventBus from '../modules/eventBus.js';
+import eventBus from '@/modules/eventBus.js';
+import {notification} from '@/components/notification/notification.js';
 import {
-    EXIT,
+    PROFILE_EXIT,
     FAIL_LOAD_IMG,
-    IMG_CHANGE,
-    PROFILE,
+    PROFILE_IMG_CHANGE,
+    PROFILE_GO,
     PROFILE_DELETE_SPEC,
     RENDER_PROFILE,
     SUCCESS_LOAD_IMG,
-} from '../modules/utils/actions.js';
+} from '@/modules/constants/actions.js';
 
 import profileTemplate from '@/components/pages/profile.pug';
 
@@ -30,7 +31,7 @@ export class ProfileView extends View {
             [FAIL_LOAD_IMG, this._failLoadImage.bind(this)],
         ]);
 
-        eventBus.emit(PROFILE);
+        eventBus.emit(PROFILE_GO);
     }
 
     /**
@@ -52,14 +53,14 @@ export class ProfileView extends View {
                 const file = ev.target.files[0];
                 const fReader = new FileReader();
                 fReader.onload = () => {
-                    eventBus.emit(IMG_CHANGE, fReader.result);
+                    eventBus.emit(PROFILE_IMG_CHANGE, fReader.result);
                 };
                 await fReader.readAsDataURL(file);
             };
 
             const exitLink = document.querySelector('.exit-buttion__text');
             exitLink.addEventListener('click', () => {
-                eventBus.emit(EXIT);
+                eventBus.emit(PROFILE_EXIT);
             });
         }
 
@@ -91,7 +92,6 @@ export class ProfileView extends View {
      * Отображение неуспешной загрузки картинки
      */
     _failLoadImage() {
-        // ToDo: Отобразить. Не удалось загрузить изображение
-        console.log('Не удалось загрузить изображение');
+        notification('Ошибка сервера. Картинка не загружена');
     }
 }

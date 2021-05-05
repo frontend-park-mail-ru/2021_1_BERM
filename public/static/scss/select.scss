@@ -17,8 +17,9 @@
     &__input {
         background-color: $placeholder;
         border: 1px, solid $placeholder;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        //border-top-left-radius: 8px;
+        //border-top-right-radius: 8px;
+        border-radius: 8px;
         -webkit-appearance: none;
         margin: 0;
         width: 480px;

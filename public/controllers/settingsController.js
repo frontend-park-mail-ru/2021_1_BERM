@@ -1,17 +1,19 @@
 import {Controller} from './controller.js';
-import {SettingsView} from '../views/settingsView.js';
+import {SettingsView} from '@/views/settingsView';
 
-import eventBus from '../modules/eventBus.js';
-import router from '../modules/router.js';
-import auth from '../models/Auth.js';
-import user from '../models/User.js';
+import eventBus from '@/modules/eventBus.js';
+import router from '@/modules/router.js';
+import auth from '@/models/Auth.js';
+import user from '@/models/User.js';
 import {
     GET_USER_DATA,
     NO_SET_UP,
-    SEND_USER_DATA,
+    SETTING_SEND_DATA,
     SETTING_SUBMIT,
-    SETTING_UPD,
-} from '../modules/utils/actions.js';
+    SETTING_GET,
+    SETTING_INVALID_PASSWORD,
+} from '@/modules/constants/actions.js';
+import {getProfilePath} from '@/modules/constants/goPath.js';
 
 /** Контроллер создания заказа */
 export class SettingsController extends Controller {
@@ -25,13 +27,15 @@ export class SettingsController extends Controller {
 
     /**
      * Запуск контроллера настроек
+     *
+     * @param {number} id - id из url, если он там был
      */
     run(id) {
         super.run(
             [
-                [SETTING_UPD, this._onUpdate],
+                [SETTING_GET, this._onUpdate],
                 [SETTING_SUBMIT, this._submit],
-                [SEND_USER_DATA, this._sendUserData],
+                [SETTING_SEND_DATA, this._sendUserData],
             ],
             true);
     }
@@ -54,10 +58,19 @@ export class SettingsController extends Controller {
                     };
 
                     user.setAttributes(data);
-                    router.go(`/profile/${user.id}`);
+                    router.go(getProfilePath(user.id));
                 });
         } else {
-            eventBus.emit(NO_SET_UP);
+            if (res.status === 400) {
+                res.json()
+                    .then((res) => {
+                        if (res.message === 'Invalid password.') {
+                            eventBus.emit(SETTING_INVALID_PASSWORD);
+                            return;
+                        }
+                        eventBus.emit(NO_SET_UP);
+                    });
+            }
         }
     }
 
@@ -79,7 +92,7 @@ export class SettingsController extends Controller {
             isExecutor: user.isExecutor,
             login: user.login,
             name: user.nameSurname,
-            email: user.email,
+            about: user.about,
         });
     }
 }

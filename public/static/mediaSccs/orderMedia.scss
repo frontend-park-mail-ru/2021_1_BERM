@@ -1,0 +1,66 @@
+@media screen and (max-width: 720px) {
+  .orderPage {
+    flex-wrap: wrap;
+
+    &__set-rate {
+      flex-wrap: wrap;
+      width: 1000px;
+
+      &_title-customer {
+        font-size: 20px;
+      }
+    }
+
+    &__comments {
+      flex-wrap: wrap;
+      margin-top: 300px;
+    }
+
+    &__responses {
+      width: 300px;
+
+      &_stats {
+
+      }
+    }
+
+    &__order {
+      flex-wrap: wrap;
+    }
+
+    &__order_text {
+      flex-wrap: wrap;
+    }
+
+  }
+
+  .vacancyPage__customer-button_change {
+    transform: translateX(-40px);
+  }
+
+  .min-rate {
+    width: 350px;
+    margin-left: 0;
+  }
+
+  .orderPage__select-executor_text {
+    margin-left: 12px;
+  }
+
+  .orderPage__select-executor_data {
+    margin-left: -22px;
+  }
+
+  .orderPage__set-rate_button {
+    width: 140px;
+  }
+
+  .orderPage__set-rate_button-exit {
+    margin-left: 15px;
+    width: 140px;
+  }
+
+  .orderPage__rate {
+    margin-left: 0;
+  }
+}
