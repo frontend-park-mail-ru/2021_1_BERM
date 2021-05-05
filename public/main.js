@@ -20,6 +20,7 @@ import './static/scss/page404.scss';
 
 import './static/mediaSccs/registrationMedia.scss';
 import './static/mediaSccs/profileMedia.scss';
+import './static/mediaSccs/navbarMedia.scss';
 
 
 import {LoginController} from './controllers/loginController.js';
