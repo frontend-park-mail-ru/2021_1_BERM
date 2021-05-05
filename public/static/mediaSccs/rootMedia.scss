@@ -1,0 +1,37 @@
+@media screen and (max-width: 768px) {
+  .custom-form__label {
+    font-size: 40px;
+    margin-top: 200px;
+    transform: translateY(-250%);
+  }
+
+  .custom-form__input {
+    height: 120px;
+  }
+
+  .custom-form__img {
+    width: 40px;
+  }
+
+  .custom-form__input_in {
+    font-size: 32px;
+  }
+
+  .custom-form__input-mini {
+    justify-content: start;
+    align-items: start;
+    height: 120px;
+    display: flex;
+    width: 400px;
+  }
+
+  .custom-form__input-mini {
+    font-size: 32px;
+  }
+
+  .custom-form__submit {
+    height: 100px;
+    width: 100%;
+  }
+
+}

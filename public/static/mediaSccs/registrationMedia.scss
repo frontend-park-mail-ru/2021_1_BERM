@@ -1,0 +1,33 @@
+@media screen and (max-width: 720px) {
+  body {
+    background: black!important;
+  }
+  .registration {
+    position: fixed !important;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+
+    &__input-other_in {
+      font-size: 28px;
+    }
+
+    &__input-other {
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40%;
+
+      &_img {
+        width: 50px;
+        margin-left: 40px;
+      }
+    }
+
+    &__other_text {
+      font-size: 30px;
+    }
+  }
+}
