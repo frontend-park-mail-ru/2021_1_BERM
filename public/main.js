@@ -22,6 +22,7 @@ import './static/mediaSccs/rootMedia.scss';
 import './static/mediaSccs/settingsMedia.scss';
 import './static/mediaSccs/registrationMedia.scss';
 import './static/mediaSccs/profileMedia.scss';
+import './static/mediaSccs/orderMedia.scss';
 
 
 import {LoginController} from './controllers/loginController.js';
