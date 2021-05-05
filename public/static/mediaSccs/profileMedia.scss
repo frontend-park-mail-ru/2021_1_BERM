@@ -1,5 +1,9 @@
 @media screen and (max-width: 720px) {
   .profile {
+    &__content {
+      margin: 66px -20px auto 160px;
+    }
+
     &__border {
       position: absolute;
       top: 40px;
