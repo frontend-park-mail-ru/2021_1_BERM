@@ -18,6 +18,8 @@ import './static/scss/search.scss';
 import './static/scss/confim.scss';
 import './static/scss/page404.scss';
 
+import './static/mediaSccs/registrationMedia.scss';
+
 import {LoginController} from './controllers/loginController.js';
 import {ClientRegController} from './controllers/clientRegController.js';
 import {WorkerRegController} from './controllers/workerRegContoller.js';
