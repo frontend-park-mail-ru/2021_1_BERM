@@ -1,0 +1,42 @@
+@media screen and (max-width: 720px) {
+  .filters {
+    flex-wrap: wrap;
+    margin-top: 150px;
+    margin-left: 20px;
+  }
+
+  .orders__order_text {
+    flex-wrap: wrap;
+    width: 1000px;
+  }
+
+  .orders {
+    &__order {
+      flex-wrap: wrap;
+    }
+
+    &__list {
+      flex-wrap: wrap;
+    }
+
+    &__content {
+      flex-wrap: wrap;
+    }
+  }
+
+  #search__form {
+    flex-wrap: wrap;
+    width: 310px;
+    margin-left: 10px;
+  }
+  .search__form_input {
+      width: 310px;
+      margin-left: 10px;
+    }
+
+  .search__form_submit {
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+}

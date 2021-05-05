@@ -1,42 +1,66 @@
 @media screen and (max-width: 720px) {
-  .filters {
+  .orderPage {
     flex-wrap: wrap;
-    margin-top: 150px;
-    margin-left: 20px;
-  }
 
-  .orders__order_text {
-    flex-wrap: wrap;
-    width: 1000px;
-  }
+    &__set-rate {
+      flex-wrap: wrap;
+      width: 1000px;
 
-  .orders {
+      &_title-customer {
+        font-size: 20px;
+      }
+    }
+
+    &__comments {
+      flex-wrap: wrap;
+      margin-top: 300px;
+    }
+
+    &__responses {
+      width: 300px;
+
+      &_stats {
+
+      }
+    }
+
     &__order {
       flex-wrap: wrap;
     }
 
-    &__list {
+    &__order_text {
       flex-wrap: wrap;
     }
 
-    &__content {
-      flex-wrap: wrap;
-    }
   }
 
-  #search__form {
-    flex-wrap: wrap;
-    width: 310px;
-    margin-left: 10px;
+  .vacancyPage__customer-button_change {
+    transform: translateX(-40px);
   }
-  .search__form_input {
-      width: 310px;
-      margin-left: 10px;
-    }
 
-  .search__form_submit {
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+  .min-rate {
+    width: 350px;
+    margin-left: 0;
+  }
 
+  .orderPage__select-executor_text {
+    margin-left: 12px;
+  }
+
+  .orderPage__select-executor_data {
+    margin-left: -22px;
+  }
+
+  .orderPage__set-rate_button {
+    width: 140px;
+  }
+
+  .orderPage__set-rate_button-exit {
+    margin-left: 15px;
+    width: 140px;
+  }
+
+  .orderPage__rate {
+    margin-left: 0;
+  }
 }

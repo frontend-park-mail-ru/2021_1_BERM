@@ -18,11 +18,12 @@ import './static/scss/search.scss';
 import './static/scss/confim.scss';
 import './static/scss/page404.scss';
 
+import './static/mediaSccs/orderMedia.scss';
 import './static/mediaSccs/rootMedia.scss';
 import './static/mediaSccs/settingsMedia.scss';
 import './static/mediaSccs/registrationMedia.scss';
 import './static/mediaSccs/profileMedia.scss';
-import './static/mediaSccs/orderMedia.scss';
+import './static/mediaSccs/ordersMedia.scss';
 
 
 import {LoginController} from './controllers/loginController.js';
