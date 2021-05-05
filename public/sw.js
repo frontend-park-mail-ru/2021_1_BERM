@@ -1,5 +1,5 @@
-const staticCacheName = 's-app-v7';
-const dynamicCacheName = 'd-app-v7';
+const staticCacheName = 's-app-v11';
+const dynamicCacheName = 'd-app-v11';
 
 const assetUrls = [
     '/',
@@ -51,9 +51,6 @@ self.addEventListener('install', (event) => {
 self.addEventListener('install', (event) => {
     event.waitUntil(self.skipWaiting());
 });
-self.addEventListener('activate', (event) => {
-    event.waitUntil(self.clients.claim());
-});
 
 self.addEventListener('activate', async (event) => {
     const cacheNames = await caches.keys();
@@ -66,6 +63,11 @@ self.addEventListener('activate', async (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+    if (event.request.cache === 'only-if-cached' &&
+        event.request.mode !== 'same-origin') {
+        return;
+    }
+
     const {request} = event;
 
     if (request.method !== 'GET') {
