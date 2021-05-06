@@ -23,6 +23,7 @@ import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import PriceHandler from '@/modules/utils/priceHandler';
 import {confim} from '@/components/modelWindows/confim/confim';
+import DateHandler from '@/modules/utils/dateHandler';
 
 /** View страницы заказа */
 export class OrderPageView extends View {
@@ -227,6 +228,8 @@ export class OrderPageView extends View {
             'send_mess',
         );
         val.validate();
+        const date = new DateHandler();
+        date.createDate();
 
         const cancelButton = document.
             querySelector('.change-form__cancel');
@@ -244,8 +247,12 @@ export class OrderPageView extends View {
                 category: e.target.category.value,
                 description: e.target.description.value,
             };
+            debugger;
             sendInfo.budget = Number(e.target.budget.value);
-            sendInfo.vacancy_name = e.target.order_name.value;
+            sendInfo.order_name = e.target.order_name.value;
+            const date = e.target.date.value.split('.');
+            sendInfo.deadline =
+                new Date(date[2], date[1] - 1, date[0]).getTime();
             eventBus.emit(CHANGE_ORDER, sendInfo);
         });
     }
