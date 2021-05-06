@@ -36,7 +36,9 @@ export default {
             // eslint-disable-next-line max-len
             ['password', /([a-z]+[A-Z]+[0-9]+|[a-z]+[0-9]+[A-Z]+|[A-Z]+[a-z]+[0-9]+|[A-Z]+[0-9]+[a-z]+|[0-9]+[a-z]+[A-Z]+|[0-9]+[A-Z]+[a-z]+)/],
             ['price', /^[0-9]+$/],
-            ['date', /^(\d{2}|\d)([./-])(0[1-9]|1[1-2])([./-])\d{4}$/]]);
+            // eslint-disable-next-line max-len
+            ['date', /^(0?[1-9]|[12][0-9]|3[01])[.](0?[1-9]|1[012])[.]\d{4}$/],
+        ]);
     },
 
     /**
