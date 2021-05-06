@@ -247,7 +247,6 @@ export class OrderPageView extends View {
                 category: e.target.category.value,
                 description: e.target.description.value,
             };
-            debugger;
             sendInfo.budget = Number(e.target.budget.value);
             sendInfo.order_name = e.target.order_name.value;
             const date = e.target.date.value.split('.');
