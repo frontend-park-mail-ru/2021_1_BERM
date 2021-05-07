@@ -204,6 +204,11 @@ export class OrderPageView extends View {
         });
     }
 
+    /**
+     * Отображение страницы
+     *
+     * @param {Object} info - исходная информация для отрисовски
+     */
     _changeOrderRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
@@ -250,8 +255,10 @@ export class OrderPageView extends View {
             sendInfo.budget = Number(e.target.budget.value);
             sendInfo.order_name = e.target.order_name.value;
             const date = e.target.date.value.split('.');
+            console.log(date);
             sendInfo.deadline =
                 new Date(date[2], date[1] - 1, date[0]).getTime();
+            console.log(sendInfo.deadline);
             eventBus.emit(CHANGE_ORDER, sendInfo);
         });
     }

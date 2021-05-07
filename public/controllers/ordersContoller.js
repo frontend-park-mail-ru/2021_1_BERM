@@ -17,7 +17,7 @@ import {
 } from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
-import {getNotFoundPath, getOrderPath, getProfilePath} from '@/modules/constants/goPath.js';
+import {getNotFoundPath, getOrderPath} from '@/modules/constants/goPath.js';
 import {ARCHIVE} from '@/modules/constants/pageNames.js';
 
 /** Контроллер страницы заказов */
@@ -121,6 +121,11 @@ export class OrdersController extends Controller {
         });
     }
 
+    /**
+     * Ищем совпадения
+     *
+     * @param {Response} data - поиск
+     */
     _search(data) {
         auth.searchOrders(data)
             .then((res) => {
@@ -128,6 +133,11 @@ export class OrdersController extends Controller {
             });
     }
 
+    /**
+     * Оставляем отзывы
+     *
+     * @param {Response} data - данные
+     */
     _sendFeedback(data) {
         data.user = user.id;
 

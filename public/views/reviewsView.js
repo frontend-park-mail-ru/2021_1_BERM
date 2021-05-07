@@ -9,6 +9,7 @@ import {notification} from '@/components/notification/notification';
 import reviewsTemplate from '@/components/pages/reviews.pug';
 import eventBus from '@/modules/eventBus';
 
+/** Класс отображения страницы отзывов */
 export class ReviewsView extends View {
     /**
      * Установка обработчиков

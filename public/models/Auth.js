@@ -241,18 +241,37 @@ export default class Auth {
             });
     }
 
-    static vacancySetResponse(data, id) {
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {number} id вакансии
+     * @param {Object} data - данные
+     */
+    static vacancySetResponse(id, data) {
         sendRequest('POST', `/vacancy/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(VACANCY_GET_RATE, res);
             });
     }
 
+    /**
+     * Запрос на удаление ставки
+     *
+     * @param {number} id вакансии
+     *
+     * @return {Promise}
+     */
     static vacancyDeleteRate(id) {
         return sendRequest('DELETE', `/vacancy/${id}/response`);
     }
 
-    static vacancyChangeResponse(data, id) {
+    /**
+     * Изменяем ставку.
+     *
+     * @param {number} id вакансии
+     * @param {Object} data - данные
+     */
+    static vacancyChangeResponse(id, data) {
         sendRequest('PATCH', `/vacancy/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(VACANCY_GET_RATE, res);
@@ -260,6 +279,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Выбираем исполнителя.
+     *
+     * @param {number} id вакансии
+     * @param {Object} data - данные
+     */
     static vacancySetExecutor(id, data) {
         sendRequest('POST', `/vacancy/${id}/select`, data)
             .then((res) => {
@@ -267,6 +292,10 @@ export default class Auth {
             });
     }
 
+    /**
+     * Отменяем ислонителя
+     * @param {number} id вакансии
+     */
     static vacancyDeleteExecutor(id) {
         sendRequest('DELETE', `/vacancy/${id}/select`)
             .then((res) => {
@@ -325,6 +354,9 @@ export default class Auth {
             });
     }
 
+    /**
+     * Получаем информацию о вакансиях
+     */
     static getVacancies() {
         sendRequest('GET', '/vacancy')
             .then((res) => {
@@ -354,10 +386,24 @@ export default class Auth {
         return sendRequest('DELETE', `/order/${id}`);
     }
 
+    /**
+     * Отправка данных отзыва на сервер
+     *
+     * @param {Object} data - содержание отзыва
+     *
+     * @return {Promise} - ответ от сервера
+     */
     static sendFeedback(data) {
         return sendRequest('POST', '/profile/review', data);
     }
 
+    /**
+     * Получения архива заказов
+     *
+     * @param {number} id профиля
+     *
+     * @return {Promise} - ответ от сервера
+     */
     static getArchiveOrders(id) {
         return sendRequest('GET', `/order/profile/${id}/archive`)
             .then((res) => {
@@ -365,6 +411,13 @@ export default class Auth {
             });
     }
 
+    /**
+     * Получение отзывов
+     *
+     * @param {number} id профиля
+     *
+     * @return {Promise} - ответ от сервера
+     */
     static getReviews(id) {
         return sendRequest('GET', `/profile/${id}/review`);
     }
@@ -391,6 +444,12 @@ export default class Auth {
         return sendRequest('DELETE', `/vacancy/${id}`);
     }
 
+    /**
+     * Изменение вакансии
+     *
+     * @param {number} id вакансии
+     * @param {Object} info - данные на отправку
+     */
     static changeVacancy(id, info) {
         sendRequest('PATCH', `/vacancy/${id}`, info)
             .then((res) => {
@@ -398,6 +457,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Изменение вакансии
+     *
+     * @param {number} id заказа
+     * @param {Object} info - данные на отправку
+     */
     static changeOrder(id, info) {
         sendRequest('PATCH', `/order/${id}`, info)
             .then((res) => {
@@ -405,10 +470,22 @@ export default class Auth {
             });
     }
 
+    /**
+     * Поиск по заказам
+     *
+     * @param {Object} data - данные на отправку
+     * @return {Promise} - ответ от сервера
+     */
     static searchOrders(data) {
         return sendRequest('PATCH', `/order/search`, data);
     }
 
+    /**
+     * Поиск по вакансиям
+     *
+     * @param {Object} data - данные на отправку
+     * @return {Promise} - ответ от сервера
+     */
     static searchVacancies(data) {
         return sendRequest('PATCH', `/vacancy/search`, data);
     }

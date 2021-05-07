@@ -17,7 +17,7 @@ import {
 import router from '@/modules/router';
 import {getNotFoundPath, getVacancyPath} from '@/modules/constants/goPath';
 
-
+/** Контроллер страницы вакансий */
 export class VacanciesController extends Controller {
     /**
      * Конструктор
@@ -28,6 +28,11 @@ export class VacanciesController extends Controller {
         this.getVacancies = false;
     }
 
+    /**
+     * Запуск контроллера страницы вакансий
+     *
+     * @param {number} id - id из url, если он там был
+     */
     run(id) {
         if (id) {
             this.isMyVacancies = Number(id);
@@ -49,11 +54,18 @@ export class VacanciesController extends Controller {
             true);
     }
 
+    /**
+     * Переход к конкретной вакансии
+     *
+     * @param {number} id - id вакансии
+     */
     _goToVacancy(id) {
         router.go(getVacancyPath(id));
     }
 
-
+    /**
+     * Получаем информацию о вакансии, если ее нет
+     */
     _sendServices() {
         if (this.isMyVacancies) {
             auth.getVacancies(this.isMyVacancies);
@@ -63,6 +75,11 @@ export class VacanciesController extends Controller {
         auth.getVacancies();
     }
 
+    /**
+     * Отправляем данные для рендеринга
+     *
+     * @param {Response} result - результат запроса
+     */
     _sendResultsRender(result) {
         if (result.ok) {
             result.json().then((result) => {
@@ -80,6 +97,11 @@ export class VacanciesController extends Controller {
         }
     }
 
+    /**
+     * Ищем совпадения
+     *
+     * @param {Response} data - поиск
+     */
     _search(data) {
         auth.searchVacancies(data)
             .then((res) => {
