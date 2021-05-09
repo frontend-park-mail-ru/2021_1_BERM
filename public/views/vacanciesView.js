@@ -6,7 +6,7 @@ import {
     GO_TO_VACANCY,
     VACANCIES_PAGE_SEARCH,
 } from '@/modules/constants/actions';
-import ordersTemplate from '@/components/pages/vacancies.pug';
+import ordersTemplate from '@/components/pages/vacancies /vacancies.pug';
 
 export class VacanciesView extends View {
     render(isAuthorized, isExecutor) {

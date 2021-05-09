@@ -1,4 +1,4 @@
-@import "main.scss";
+@import "public/static/scss/main";
 .orders {
     display: flex;
     flex-direction: column;
@@ -129,16 +129,18 @@
     margin-top: 49px;
     border: 2px solid #DFE4EA;
     box-sizing: border-box;
-    border-radius: 8px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    //border-radius: 8px;
+    //font-style: normal;
+    //font-weight: 600;
+    //font-size: 16px;
+    //line-height: 19px;
     text-align: center;
-    letter-spacing: -0.4px;
-    background-color: $white;
+    //letter-spacing: -0.4px;
+    //background-color: $white;
+    @include uniq_form($white);
+    @include font(600, 16px, 19px, 0.4px, $dark)
 
-    color: #18214D;
+    //color: #18214D;
 }
 .filters {
     display: flex;
@@ -216,4 +218,4 @@
 .orders__order_link:hover {
     color: #EE3465;
 }
-  
+

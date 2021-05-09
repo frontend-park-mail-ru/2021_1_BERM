@@ -6,7 +6,7 @@ import {
 } from '@/modules/constants/actions';
 import {notification} from '@/components/notification/notification';
 
-import reviewsTemplate from '@/components/pages/reviews.pug';
+import reviewsTemplate from '@/components/pages/reviews/reviews.pug';
 import eventBus from '@/modules/eventBus';
 
 /** Класс отображения страницы отзывов */
@@ -28,6 +28,11 @@ export class ReviewsView extends View {
         eventBus.emit(REVIEWS_GET_DATA);
     }
 
+    /**
+     * Отрисовка данных
+     *
+     * @param {Object} dataForRender - данные для отрисовки
+     */
     _renderData(dataForRender) {
         super.renderHtml(
             this.isAuthorized,
@@ -36,7 +41,11 @@ export class ReviewsView extends View {
             reviewsTemplate(dataForRender),
         );
     }
-
+    /**
+     * Ошибочка
+     *
+     * @param {string} str - текст ошибки
+     */
     _error(str) {
         notification(`Ошибка сервера! ${str}`);
     }

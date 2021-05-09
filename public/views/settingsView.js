@@ -8,7 +8,7 @@ import {
     SETTING_SUBMIT,
 } from '@/modules/constants/actions.js';
 
-import settingsTemplate from '@/components/pages/settings.pug';
+import settingsTemplate from '@/components/pages/settings/settings.pug';
 import {notification} from '@/components/notification/notification.js';
 
 /** Контроллер регистрации клиента */

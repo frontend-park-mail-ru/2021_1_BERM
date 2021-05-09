@@ -1,4 +1,4 @@
-@import "main.scss";
+@import "public/static/scss/main";
 
 .vacancyPage__responses {
   width: 1030px;
@@ -163,5 +163,47 @@
 
     margin: 0 26px 8px 14px;
     flex: 1 0 auto;
+  }
+}
+
+.vacancy-executor {
+  padding: 23px;
+  height: 305px;
+  width: 1044px;
+
+  @include uniq_form($placeholder);
+  @include font(normal, 20px, 28px, -0.4px, $black);
+
+  resize: none;
+
+  &__button_change {
+    @include uniq_form($primary_color);
+    @include font(600, 20px, 28px, -0.5px, $white);
+
+    text-align: center;
+    width: 198px;
+    height: 43px;
+
+    margin-top: 36px;
+
+  }
+
+  &__button_delete {
+    @include uniq_form($secondary_color);
+    @include font(600, 20px, 28px, -0.5px, $white);
+
+    text-align: center;
+    width: 198px;
+    height: 43px;
+
+    margin-top: 36px;
+
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 }

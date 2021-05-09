@@ -14,11 +14,11 @@ import {
     CHANGE_ORDER,
 } from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
-import orderPageTemplate from '@/components/pages/orderPage.pug';
+import orderPageTemplate from '@/components/pages/order/orderPage.pug';
 import feedback from '@/components/modelWindows/feedback.pug';
 import {Validator} from './validation/validator';
 import {notification} from '@/components/notification/notification.js';
-import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
+import createOrderOrVacancy from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import PriceHandler from '@/modules/utils/priceHandler';

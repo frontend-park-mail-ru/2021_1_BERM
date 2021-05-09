@@ -1,4 +1,4 @@
-@import "main.scss";
+@import "public/static/scss/main";
 .navbar {
     @include form_dis($s_b, $cntr);
     position: sticky;

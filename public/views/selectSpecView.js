@@ -1,4 +1,4 @@
-import selectSpec from '@/components/pages/selectSpec.pug';
+import selectSpec from '@/components/pages/selectSpec/selectSpec.pug';
 import {View} from './view.js';
 import Select from '@/modules/utils/customSelect.js';
 import {listOfServices} from '@/modules/utils/templatesForSelect.js';

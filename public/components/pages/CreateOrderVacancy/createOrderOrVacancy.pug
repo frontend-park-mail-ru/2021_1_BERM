@@ -1,4 +1,4 @@
-include ../inputes/settingsInput
+include ../../inputes/settingsInput
 
 .settings
     div(class='settings__bg-form')
@@ -42,8 +42,7 @@ include ../inputes/settingsInput
                             div(class="error__main")
                                 div(class="error__box")
                                     ul(class="error__list")
-                                        li(class= "error__help") &#8226 Текст должен состоять из кириллицы
-                                        li(class= "error__help") &#8226 Запрещено использовать специальные символы
+                                        li(class= "error__help") &#8226 Дата должна быть следующего формата: ДД.ММ.ГГГГ
                                 div(class="error__arrow")
                         div.settings-form__input-mini_bg
                             div#select
@@ -85,9 +84,9 @@ include ../inputes/settingsInput
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
                         if !isChange
-                            textarea(class='settings__about__textarea form-control' placeholder='Описание' name='description')
+                            textarea(class='settings__about-textarea form-control' placeholder='Описание' name='description')
                         else
-                            textarea(class='settings__about__textarea form-control' placeholder='Описание' name='description')=creator.definition
+                            textarea(class='settings__about-textarea form-control' placeholder='Описание' name='description')=creator.definition
                     div(class=" error")
                         div(class="error__message")
                         div(class="error__main" id="textAr")

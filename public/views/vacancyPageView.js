@@ -1,7 +1,7 @@
 import {View} from './view.js';
 import eventBus from '@/modules/eventBus.js';
-import vacancyPageTemplate from '@/components/pages/vacancyPage.pug';
-import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
+import vacancyPageTemplate from '@/components/pages/vacancy/vacancyPage.pug';
+import createOrderOrVacancy from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
 import {
     VACANCY_PAGE_RENDER,
 

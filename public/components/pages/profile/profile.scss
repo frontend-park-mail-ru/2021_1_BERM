@@ -1,4 +1,4 @@
-@import "main.scss";
+@import "public/static/scss/main";
 .profile {
     @include form_dis($cntr, $cntr);
     flex: 1 0 auto;
@@ -48,10 +48,10 @@
 
 .edit {
     margin: -173px 0 0 -12px;
+}
 
-    &-button {
-        border-radius: 50%;
-    }
+.edit-button {
+    border-radius: 50%;
 }
 
 .user-name {
@@ -186,7 +186,7 @@
     margin-top: 7px;
 }
 .add-spec__text {
-    margin: 5px 0px 0px 7px 
+    margin: 5px 0px 0px 7px
 }
 
 input[type="file"] {
