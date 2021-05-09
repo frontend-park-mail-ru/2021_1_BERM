@@ -87,20 +87,42 @@ class Vacancy {
         };
     }
 
+    /**
+     * Устанавливаем один отклик
+     *
+     * @param {number} id - уникальный номер заказа
+     * @param {Object} item - информация отклика
+     */
     push(id, item) {
         this.vacancysMap.get(id).responses.push(this.pushResponse(id, item));
     }
 
-    findRate(id, creatorId) {
-        let rate = 0;
-        this.vacancysMap.get(id).responses.forEach((item) => {
-            if (item.creatorId === creatorId) {
-                rate = item.rate;
-            }
-        });
-        return rate;
-    }
+    // /**
+    //  * Ищем ставку по уникальным номерам
+    //  *
+    //  * @param {number} id - уникальный номер вакансии
+    //  * @param {Object} creatorId - уникальный номер автора отклика
+    //  *
+    //  * @return {Object} rate - найденная ставка
+    //  */
+    // findRate(id, creatorId) {
+    //     let rate = 0;
+    //     this.vacancysMap.get(id).responses.forEach((item) => {
+    //         if (item.creatorId === creatorId) {
+    //             rate = item.rate;
+    //         }
+    //     });
+    //     return rate;
+    // }
 
+    /**
+     * Ищем ставку по уникальным номерам
+     *
+     * @param {number} id - уникальный номер вакансии
+     * @param {Object} creatorId - уникальный номер автора отклика
+     *
+     * @return {Object} text - найденная ставка
+     */
     findTextRate(id, creatorId) {
         let text = '';
         this.vacancysMap.get(id).responses.forEach((item) => {
@@ -111,6 +133,12 @@ class Vacancy {
         return text;
     }
 
+    /**
+     * Удаляем ставку
+     *
+     * @param {number} id - уникальный номер вакансии
+     * @param {Object} creatorId - уникальный номер автора отклика
+     */
     deleteResponse(id, creatorId) {
         let pos;
         this.vacancysMap.get(id).responses.forEach((item, index) => {
@@ -122,6 +150,14 @@ class Vacancy {
         this.vacancysMap.get(id).responses.splice(pos, 1);
     }
 
+    /**
+     * Ищем отклик
+     *
+     * @param {Object} vacancy - уникальный номер вакансии
+     * @param {number} id - уникальный номер отклика
+     *
+     * @return {Object} select - информацию по отклику
+     */
     getSelectResponse(vacancy, id) {
         if (!id || !vacancy) {
             return null;
@@ -136,6 +172,7 @@ class Vacancy {
         return select;
     }
 
+    /** Обнуляем вакансии */
     clear() {
         this.currentVacancyId = -1;
         this.vacancysMap = new Map([]);

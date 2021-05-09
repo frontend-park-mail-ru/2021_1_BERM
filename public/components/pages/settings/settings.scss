@@ -1,4 +1,4 @@
-@import "main.scss";
+@import "public/static/scss/main";
 .settings {
     @include main-block(0);
     background-color: $white;
@@ -29,17 +29,6 @@
 
         background-color: $white;
         color: $dark;
-    }
-
-    &__about__textarea {
-        padding: 23px;
-        height: 337px;
-        width: 532px;
-
-        @include uniq_form($placeholder);
-        @include font(normal, 20px, 28px, -0.4px, $black);
-
-        resize: none;
     }
 
     &-form__input {
@@ -112,8 +101,28 @@
         margin-left: 13px;
     }
 
+    &__about-textarea {
+        padding: 23px;
+        height: 337px;
+        width: 532px;
+
+        @include uniq_form($placeholder);
+        @include font(normal, 20px, 28px, -0.4px, $black);
+
+        resize: none;
+    }
 
 
+
+}
+
+.about-form-label {
+    margin-top: 25px;
+    height: 30px;
+    @include font(600, 20px, 30px, -0.55px, $dark);
+
+    background-color: $white;
+    color: $dark;
 }
 
 .change-form {

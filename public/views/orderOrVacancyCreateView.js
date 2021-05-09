@@ -9,7 +9,7 @@ import {
     VACANCY_SUBMIT,
 } from '@/modules/constants/actions.js';
 
-import createOrderTemplate from '@/components/pages/createOrderOrVacancy.pug';
+import createOrderTemplate from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
 import DateHandler from '@/modules/utils/dateHandler.js';
 import Select from '@/modules/utils/customSelect.js';
 import {listOfServices} from '@/modules/utils/templatesForSelect.js';

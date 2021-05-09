@@ -1,14 +1,9 @@
-@import "main.scss";
+@import "public/static/scss/main";
 
 .orderPage {
     @include form_dis($cntr, $cntr);
     flex-direction: column;
     margin-bottom: 50px;
-
-    &__select-executor {
-        display: flex;
-        margin-top: 22px;
-    }
 
     &__feedback {
         &_bg {
@@ -70,53 +65,57 @@
             cursor: pointer;
         }
         &_rating-area:not(:checked) > label:before {
-            content: url("../img/starEmpty.svg");
+            content: url("../../../static/img/starEmpty.svg");
         }
         &_rating-area > input:checked ~ label {
-            content: url("../img/star.svg");
+            content: url("../../../static/img/star.svg");
         }
         &_rating-area:not(:checked) > label:hover,
         &_rating-area:not(:checked) > label:hover ~ label {
-            content: url("../img/star.svg");
+            content: url("../../../static/img/star.svg");
         }
         &_rating-area > input:checked + label:hover,
         &_rating-area > input:checked + label:hover ~ label,
         &_rating-area > input:checked ~ label:hover,
         &_rating-area > input:checked ~ label:hover ~ label,
         &_rating-area > label:hover ~ input:checked ~ label {
-            content: url("../img/star.svg");
+            content: url("../../../static/img/star.svg");
         }
         &_rate-area > label:active {
             position: relative;
         }
     }
 
-    &__select-executor_text {
+    &__select-executor {
         display: flex;
-        flex-direction: column;
-        margin-left: 30px;
-        margin-top: -24px;
+        margin-top: 22px;
+
+        &_text {
+            display: flex;
+            flex-direction: column;
+            margin-left: 30px;
+            margin-top: -24px;
+        }
+
+        &_text-column {
+            @include font(600, 18px, 22px, -0.4px, $white);
+
+            padding-top: 24px;
+        }
+
+        &_data {
+            display: flex;
+            flex-direction: column;
+            margin-top: -24px;
+        }
+
+        &_data-column {
+            @include font(600, 18px, 22px, -0.4px, $white);
+
+            margin-left: 20px;
+            padding-top: 24px;
+        }
     }
-
-    &__select-executor_text-column {
-        @include font(600, 18px, 22px, -0.4px, $white);
-
-        padding-top: 24px;
-    }
-    //
-    &__select-executor_data {
-        display: flex;
-        flex-direction: column;
-        margin-top: -24px;
-    }
-
-    &__select-executor_data-column {
-        @include font(600, 18px, 22px, -0.4px, $white);
-
-        margin-left: 20px;
-        padding-top: 24px;
-    }
-
 
 
     &__order {
@@ -171,9 +170,6 @@
         &_text {
             width: 720px;
             height: 206px;
-            //display: flex;
-            //flex-direction: column;
-            //justify-content: space-between;
             @include form_dis_2($col, $s_b);
 
             margin: 32px 64px 32px 32px;
@@ -181,30 +177,13 @@
 
         &_title {
             @include font(600, 36px, 44px, -1.5px, $dark);
-            //font-style: normal;
-            //font-weight: 600;
-            //font-size: 36px;
-            //line-height: 44px;
-            ///* identical to box height, or 122% */
-            //color: var(--dark);
-            //letter-spacing: -1.5px;
         }
 
         &_category {
             margin-top: 12px;
-            //display: flex;
-            //flex-direction: row;
-            //justify-content: left;
+
             @include form_dis_2($row, $left);
             @include font(600, 16px, 22px, -0.4px, $black);
-
-            //font-style: normal;
-            //font-weight: 600;
-            //font-size: 16px;
-            //line-height: 22px;
-            ///* identical to box height, or 137% */
-            //
-            //letter-spacing: -0.4px;
         }
 
         &_category-text {
@@ -214,45 +193,21 @@
         &_category-button {
             padding: 0 8px;
             margin-left: 16px;
-            //background: var(--secondary_color);
-            //border-radius: 4px;
             @include uniq_form($secondary_color);
             @include font(normal, 14px, 20px, normal, $white);
 
-            //font-weight: normal;
-            //font-size: 14px;
-            //line-height: 20px;
-            /* identical to box height, or 143% */
-
             text-align: center;
-
-            /* White */
-
-            //color: var(--white);
         }
 
         &_definition {
             width: 720px;
             margin-top: 12px;
             @include font(normal, 18px, 26px, -0.3px, $paragraph);
-            //font-style: normal;
-            //font-weight: normal;
-            //font-size: 18px;
-            //line-height: 26px;
-            ///* or 144% */
-            //
-            //letter-spacing: -0.3px;
-            //
-            ///* Paragraph */
-            //color: var(--paragraph);
         }
 
         &_stats {
             margin-top: 12px;
             @include form_dis_2($row, $left);
-            //display: flex;
-            //flex-direction: row;
-            //justify-content: left;
         }
 
         &_stat {
@@ -271,16 +226,7 @@
 
             &-data {
                 @include font(500, 16px, 26px, -0.2px, $primary_color);
-                //font-style: normal;
-                //font-weight: 500;
-                //font-size: 16px;
-                //line-height: 26px;
-                ///* identical to box height, or 162% */
-                //
-                //letter-spacing: -0.2px;
-
                 margin-left: 8px;
-                //color: var(--primary_color);
             }
         }
 
@@ -291,41 +237,25 @@
         margin-top: 44px;
         @include form_dis_2($row, $s_b);
         border: 1.5px solid transparent;
-        //display: flex;
-        //flex-direction: row;
-        //justify-content: space-between;
     }
 
     &_responses {
         @include form_dis_2($col, $s_b);
-        //display: flex;
-        //flex-direction: column;
-        //justify-content: space-between;
         width: 458px;
     }
 
     &__comments_title {
         @include font(600, 22px, 30px, normal, $black);
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 22px;
-        //line-height: 30px;
     }
 
     &__response {
         box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
         border-radius: 8px;
         @include form_dis_2($row, $left);
-        //display: flex;
-        //flex-direction: row;
-        //justify-content: left;
         margin-top: 20px;
 
         &_img-bg {
             @include form_dis_2($col, $left);
-            //display: flex;
-            //flex-direction: column;
-            //justify-content: left;
             margin: 20px;
             align-items: center;
             width: 100px;
@@ -358,18 +288,12 @@
 
         &_stats {
             @include form_dis_2($col, $s_b);
-            //display: flex;
-            //flex-direction: column;
-            //justify-content: space-between;
             margin: 10px;
             width: 350px;
         }
 
         &_stat {
             @include form_dis_2($row, $left);
-            //display: flex;
-            //flex-direction: row;
-            //justify-content: left;
 
             &-img {
                 width: 24px;
@@ -395,19 +319,11 @@
         border: 2px solid #DFE4EA;
         box-sizing: border-box;
         width: 458px;
-        //border-radius: 8px;
-        //background-color: var(--white);
         @include uniq_form($white);
 
         @include font(600, 16px, 19px, -0.4px, $dark);
 
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 16px;
-        //line-height: 19px;
         text-align: center;
-        //letter-spacing: -0.4px;
-        //color: var(--dark);
     }
 
     &__rate {
@@ -419,42 +335,22 @@
     &__set-rate {
         margin-top: 20px;
         @include form_dis_2($col, $left);
-        //display: flex;
-        //flex-direction: column;
-        //justify-content: left;
         width: 508px;
 
         @include uniq_form($primary_color);
-        //background-color: var(--primary_color);
-        //border-radius: 8px;
 
         &_title-customer {
             @include font(600, 36px, 44px, -1.5px, $white);
-            //font-style: normal;
-            //font-weight: 600;
-            //font-size: 36px;
-            //line-height: 44px;
-            //
-            //color: var(--white);
 
             margin-top: 20px;
-            //letter-spacing: -1.5px;
             margin-left: 30px;
         }
 
         &_button-exit {
             @include uniq_form($secondary_color);
             @include font(600, 20px, 28px, -0.5px, $white);
-            //color: $white;
-            //
-            //font-style: normal;
-            //font-weight: 600;
-            //font-size: 20px;
-            //line-height: 28px;
-            /* or 140% */
 
             text-align: center;
-            //letter-spacing: -0.5px;
             width: 180px;
             height: 50px;
 
@@ -463,13 +359,6 @@
 
         &_title {
             @include font(600, 36px, 44px, normal, $white);
-            //font-style: normal;
-            //font-weight: 600;
-            //font-size: 36px;
-            //line-height: 44px;
-            //
-            //color: var(--white);
-
             margin-top: 20px;
             margin-left: 30px;
         }
@@ -480,14 +369,6 @@
             margin-top: 10px;
 
             @include font(normal, 24px, 44px, -0.5px, $black);
-
-            //font-style: normal;
-            //font-weight: normal;
-            //font-size: 24px;
-            //line-height: 44px;
-            ///* identical to box height, or 183% */
-            //
-            //letter-spacing: -0.5px;
         }
 
         &_button-del {
@@ -508,20 +389,11 @@
         }
 
         &_button {
-            //background: var(--white);
-            //border-radius: 8px;
             @include uniq_form($white);
 
             @include font(600, 20px, 28px, -0.5px, $black);
 
-            //font-style: normal;
-            //font-weight: 600;
-            //font-size: 20px;
-            //line-height: 28px;
-            /* or 140% */
-
             text-align: center;
-            //letter-spacing: -0.5px;
             width: 180px;
             height: 50px;
 
@@ -535,13 +407,6 @@
             height: 60px;
             padding: 0 17px;
             @include font(normal, 24px, 44px, -0.5px, $black);
-            //font-style: normal;
-            //font-weight: normal;
-            //font-size: 24px;
-            //line-height: 44px;
-            ///* identical to box height, or 183% */
-            //
-            //letter-spacing: -0.5px;
         }
 
         &_buttons {
@@ -552,38 +417,23 @@
 
     &__order_name {
         @include font(600, 18px, 22px, -0.4px, $black);
-        //font-style: normal;
-        //font-weight: 600;
-        //font-size: 18px;
-        //line-height: 22px;
         text-align: center;
-        //letter-spacing: -0.4px;
         margin-top: 9px;
     }
 
     &__no-comments {
         @include font(300, 20px, 22px, -0.4px, $black);
-        //font-style: normal;
-        //font-weight: 300;
-        //font-size: 20px;
-        //line-height: 22px;
-        //letter-spacing: -0.4px;
         margin-top: 20px;
     }
 
     &__select-executor-avatar {
         @include form_dis_3($col, $cntr);
         @include uniq_form($white);
-        //display: flex;
-        //flex-direction: column;
-        //align-items: center;
         justify-content: center;
         width: auto;
         min-width: 120px;
         padding: 10px 10px;
         height: 120px;
-        //background-color: var(--white);
-        //border-radius: 8px;
         margin-left: 30px;
 
         &_img {
@@ -594,12 +444,6 @@
         &_text {
             @include font(600, 18px, 22px, -0.4px, $black);
             margin-top: 4px;
-            //font-style: normal;
-            //font-weight: 600;
-            //font-size: 18px;
-            //line-height: 22px;
-            ///* identical to box height, or 122% */
-            //letter-spacing: -0.4px;
         }
     }
 
@@ -609,46 +453,4 @@
     border: 2px solid #345DEE;
 }
 
-.vacancy-executor {
-    padding: 23px;
-    height: 305px;
-    width: 1044px;
 
-    @include uniq_form($placeholder);
-    @include font(normal, 20px, 28px, -0.4px, $black);
-
-    resize: none;
-
-    &__button_change {
-        @include uniq_form($primary_color);
-        @include font(600, 20px, 28px, -0.5px, $white);
-
-        text-align: center;
-        width: 198px;
-        height: 43px;
-
-        margin-top: 36px;
-
-    }
-
-    &__button_delete {
-        @include uniq_form($secondary_color);
-        @include font(600, 20px, 28px, -0.5px, $white);
-
-        text-align: center;
-        width: 198px;
-        height: 43px;
-
-        margin-top: 36px;
-
-    }
-
-    &__row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        //margin: 0 -32px;
-
-    }
-}

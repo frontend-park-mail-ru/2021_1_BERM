@@ -8,7 +8,7 @@ import {
     ORDERS_PAGE_SEARCH,
     ORDERS_SEND_FEEDBACK,
 } from '@/modules/constants/actions';
-import ordersTemplate from '@/components/pages/orders.pug';
+import ordersTemplate from '@/components/pages/orders/orders.pug';
 import {notification} from '@/components/notification/notification';
 import feedback from '@/components/modelWindows/feedback.pug';
 import {Validator} from '@/views/validation/validator';

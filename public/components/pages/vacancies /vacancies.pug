@@ -1,16 +1,13 @@
-include ../orders/orderInOrdersPage
+include ../../vacancies/vacancyInVacanciesPage
 
 .orders
-    if isArchive === true
-        div(class='orders__title') Архив заказов
-    else
-        if isMyOrders === true
-            if isI === true
-                div(class='orders__title') Мои заказы
-            else
-                div(class='orders__title') Заказы пользователя
+    if isMyVacancies === true
+        if isI === true
+            div(class='orders__title') Мои вакансии
         else
-            div(class='orders__title') Актуальные заказы
+            div(class='orders__title') Вакансии пользователя
+    else
+        div(class='orders__title') Актуальные вакансии
     div(class='orders__content')
         div(class='orders__list')
             div(class='search')
@@ -18,12 +15,12 @@ include ../orders/orderInOrdersPage
                     form#search__form
                         input(class='search__form_input' placeholder='Введите поисковой запрос' name='search')
                         button(class='search__form_submit') Найти
-            each order in orders
-                +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId, isArchive, isExecutor)
-            if orders.length !== 0
+            each vacancy in vacancies
+                +vacancyInVacanciesPage(vacancy.avatar?vacancy.avatar:require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id)
+            if vacancies.length !== 0
                 //button.show-more-button Показать еще
             else
-                div(class="orderPage__no-comments") Заказов пока нет
+                div(class="orderPage__no-comments") Вакансий пока нет
         form.filters
             div(class='filters__title') Фильтры
             div(class='filters__budget')

@@ -1,11 +1,11 @@
 include ../orders/orderInOrderPageExecutor
-include ../rates/changeRate.pug
-include ../rates/makeRate.pug
-include ../rates/rateCustomer.pug
-include ../responses/responseOrderExecutor.pug
-include ../responses/responseOrderCustomer.pug
-include ../responses/responseMinOrderExecutor.pug
-include ../responses/responseMinOrderCustomer.pug
+include rates/changeRate
+include rates/makeRate
+include rates/rateCustomer
+include responses/responseOrderExecutor
+include responses/responseOrderCustomer
+include responses/responseMinOrderExecutor
+include responses/responseMinOrderCustomer
 
 .orderPage
     +orderInOrderPageExecutor(creator.avatar?creator.avatar:require('@/static/img/profileAvatar.svg').default, creator.title, creator.category, creator.definition, creator.date, creator.budget, creator.name, creator.customerId, isExecutor, selectExecutor)

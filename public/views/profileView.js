@@ -11,7 +11,7 @@ import {
     SUCCESS_LOAD_IMG,
 } from '@/modules/constants/actions.js';
 
-import profileTemplate from '@/components/pages/profile.pug';
+import profileTemplate from '@/components/pages/profile/profile.pug';
 
 /** View профиля */
 export class ProfileView extends View {

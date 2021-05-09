@@ -7,11 +7,13 @@ import {
 } from '@/modules/constants/actions';
 import auth from '@/models/Auth';
 import eventBus from '@/modules/eventBus';
-import user from '@/models/User';
 import router from '@/modules/router';
 import {getOrderPath} from '@/modules/constants/goPath';
 import {ReviewsView} from '@/views/reviewsView';
 
+/**
+ * Отзывы
+ */
 export class ReviewsController extends Controller {
     /**
      * Конструктор
@@ -37,6 +39,10 @@ export class ReviewsController extends Controller {
             true);
     }
 
+    /**
+     * Получение данных
+     *
+     */
     _getData() {
         auth.getReviews(this.currentId)
             .then((res) => {
@@ -62,6 +68,11 @@ export class ReviewsController extends Controller {
             });
     }
 
+    /**
+     * Переход на страницу заказа по id
+     *
+     * @param {number} id заказа
+     */
     _goOrder(id) {
         router.go(getOrderPath(id));
     }

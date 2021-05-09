@@ -71,7 +71,7 @@ class Order {
      * @param {number} id - уникальный номер заказа
      * @param {Object} creatorId - уникальный номер автора отклика
      *
-     * @return {Object} rate - найденную ставку
+     * @return {Object} rate - найденная ставку
      */
     findRate(id, creatorId) {
         let rate = 0;
