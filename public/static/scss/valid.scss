@@ -10,7 +10,6 @@
 	position: relative;
 	top: 5px;
 	height: 0px;
-	//display: none;
 
 	&__main {
 		display: none;
@@ -26,17 +25,10 @@
 		}
 	}
 
-	&__message {
-		//font-size: 16px;
-		//display: block !important;
-	}
-
 	&__box {
 		position: absolute;
 		@include uniq_form($paragraph);
 		width: 300px;
-		//height: 80px;
-		//background-color: black;
 		bottom: 80px;
 		color: white;
 		overflow: hidden;
@@ -45,14 +37,10 @@
 	}
 
 	&__list {
-		//width: 300px;
-		//display: none;
 		margin: 5px 0 10px 0;
 	}
 
 	&__help {
-		//margin-top: 5px;
-		//width: 100px;
 		padding: 6px 10px 2px 6px;
 	}
 
@@ -84,26 +72,6 @@
 		margin-right: 125px;
 	}
 
-	//&__message {
-	//	@include font(300, 20px, 22px, -0.4px, red);
-	//
-	//	margin-top: 10px;
-	//}
-}
-
-//.error:before {
-//	box-sizing: content-box;
-//	width: 0;
-//	height: 0;
-//	content: '';
-//	position: absolute;
-//	border-right: 8px solid transparent;
-//	border-left: 8px solid transparent;
-//
-//}
-
-.form-control_error {
-	//border:solid 1.5px $secondary_color !important;
 }
 
 .custom-form__input.form-control_error {
@@ -131,14 +99,6 @@
 
 .orderPage__comments.form-control_error {
 	border:solid 1.5px $secondary_color;
-}
-
-//.form-control_error > img {
-//	border:solid 1.5px $secondary_color;
-//}
-
-.form-control_valid {
-	//border:solid 1.5px $primary_color !important;
 }
 
 .custom-form__input.form-control_valid {
@@ -181,10 +141,6 @@
 .error-response {
 	transform: translateY(-5px);
 }
-
-//.penis {
-//	display: none;
-//}
 
 .error > .error__main_active {
 	animation: tooltip .7s ease forwards;

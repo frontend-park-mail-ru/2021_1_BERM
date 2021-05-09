@@ -1,7 +1,8 @@
 import {View} from './view.js';
 import eventBus from '@/modules/eventBus.js';
 import vacancyPageTemplate from '@/components/pages/vacancy/vacancyPage.pug';
-import createOrderOrVacancy from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
+import createOrderOrVacancy
+    from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
 import {
     VACANCY_PAGE_RENDER,
 
@@ -26,7 +27,6 @@ import {Validator} from '@/views/validation/validator';
 import {confim} from '@/components/modelWindows/confim/confim';
 
 /** View страницы вакансии */
-
 export class VacancyPageView extends View {
     /**
      * Установка обработчиков
@@ -180,10 +180,16 @@ export class VacancyPageView extends View {
         notification(`Ошибка сервера. ${error}`);
     }
 
+    /**
+     * Ошибка на изменение данных
+     */
     _errorChange() {
         notification(`Измените, пожалуйста, данные`);
     }
 
+    /**
+     *  Изменения приняты
+     */
     _notifChangeValid() {
         const validColor = true;
         notification(`Изменения приняты`, validColor);
@@ -229,6 +235,11 @@ export class VacancyPageView extends View {
         });
     }
 
+    /**
+     * Рендер изменения вакансии
+     *
+     * @param {Object} info
+     */
     _changeVacancyRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;

@@ -21,27 +21,13 @@
 
    @include font(normal, 18px, 22px, normal, $white);
 
-   //font-style: normal;
-   //font-weight: normal;
-   //font-size: 18px;
-   //line-height: 22px;
-   //color: var(--white);
-
-
-
-
    &__item {
       padding: 0 32px
    }
 
 }
-//
-//.row__item {
-//   padding: 0 32px
-//}
 
 /* FORM */
-
 .custom-form {
    padding: 20px 30px;
 
@@ -51,16 +37,8 @@
 
 
       @include font(600, 22px, 30px, -0.55px, $dark);
-      //font-style: normal;
-      //font-weight: 600;
-      //font-size: 22px;
-      //line-height: 30px;
-      ///* identical to box height, or 136% */
-      //
-      //letter-spacing: -0.55px;
 
       background-color: $white;
-      //color: var(--dark);
    }
 
    &__img {
@@ -78,13 +56,6 @@
 
       @include font(normal, 20px, 28px, -0.4px, $black);
 
-      //font-style: normal;
-      //font-weight: normal;
-      //font-size: 20px;
-      //line-height: 28px;
-      /* identical to box height, or 140% */
-      //
-      //letter-spacing: -0.4px;
       padding: 0 7px;
    }
 
@@ -97,23 +68,12 @@
 
       @include font(normal, 20px, 28px, -0.4px, $black);
 
-      //font-style: normal;
-      //font-weight: normal;
-      //font-size: 20px;
-      //line-height: 28px;
-      /* identical to box height, or 140% */
-
-      //letter-spacing: -0.4px;
       padding: 0 7px;
    }
 
    &__input {
       @include form_dis($left, $cntr);
       border: 1.5px solid transparent;
-      //display: flex;
-      //
-      //justify-content: left;
-      //align-items: center;
 
       background-color: $placeholder;
       border-radius: 8px;
@@ -136,9 +96,6 @@
 
    &__input-mini_bg {
       @include form_dis_2($row, $s_b);
-      //display: flex;
-      //justify-content: space-between;
-      //flex-direction: row;
       align-items: center;
       margin-top: 32px;
       flex-wrap: wrap;

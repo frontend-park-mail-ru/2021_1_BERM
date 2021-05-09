@@ -72,7 +72,7 @@ export default class Select {
      *
      * @return {boolean}
      */
-    isOpen() {
+    get isOpen() {
         return this.$el.classList.contains('open');
     }
 
@@ -81,7 +81,7 @@ export default class Select {
      *
      * @return {string}
      */
-    current() {
+    get current() {
         return this.options.data.find((item) => item.id === this.selectedId);
     }
 

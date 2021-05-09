@@ -83,7 +83,6 @@ export class OrdersView extends View {
             });
         }
 
-        // const allId = document.querySelectorAll('#id');
         const allRef = document.querySelectorAll('.orders__order_link');
         allRef.forEach((ref) => {
             ref.addEventListener('click', (e) => {
@@ -100,10 +99,21 @@ export class OrdersView extends View {
         });
     }
 
+    /**
+     * Вывод ошибка
+     *
+     * @param {String} str
+     */
     _error(str) {
         notification(`Ошибка сервера! ${str}`);
     }
 
+    /**
+     * Показ окна отзыва
+     *
+     * @param {number} to
+     * @param {number} order
+     */
     _feedback(to, order) {
         const body = document.getElementsByTagName('body')[0];
         body.classList.add('scroll_hidden');

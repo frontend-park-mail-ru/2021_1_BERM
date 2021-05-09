@@ -18,7 +18,8 @@ import orderPageTemplate from '@/components/pages/order/orderPage.pug';
 import feedback from '@/components/modelWindows/feedback.pug';
 import {Validator} from './validation/validator';
 import {notification} from '@/components/notification/notification.js';
-import createOrderOrVacancy from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
+import createOrderOrVacancy
+    from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import PriceHandler from '@/modules/utils/priceHandler';
@@ -255,10 +256,8 @@ export class OrderPageView extends View {
             sendInfo.budget = Number(e.target.budget.value);
             sendInfo.order_name = e.target.order_name.value;
             const date = e.target.date.value.split('.');
-            console.log(date);
             sendInfo.deadline =
                 new Date(date[2], date[1] - 1, date[0]).getTime();
-            console.log(sendInfo.deadline);
             eventBus.emit(CHANGE_ORDER, sendInfo);
         });
     }
