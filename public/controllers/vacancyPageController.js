@@ -218,11 +218,11 @@ export class VacancyPageController extends Controller {
         vacancy.deleteResponse(vacancy.currentVacancyId, user.id);
 
         const date = new Date();
-        auth.vacancyChangeResponse({
+        auth.vacancyChangeResponse(vacancy.currentVacancyId, {
             user_id: user.id,
             text: text,
             time: date.getTime(),
-        }, vacancy.currentVacancyId);
+        });
     }
 
     /**
