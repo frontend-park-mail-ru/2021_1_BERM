@@ -72,7 +72,7 @@ export class VacancyPageView extends View {
             const element = document.querySelector('.form-control');
             const prevValue = element.value;
             val.validate();
-            if (!info.selectExecutor) {
+            if (info.userRate === 0) {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();
                     const data = {

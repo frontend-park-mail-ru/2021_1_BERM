@@ -154,6 +154,7 @@ export class VacancyPageController extends Controller {
                 definition: creator.definition,
                 salary: creator.salary,
             },
+            userRate: vacancy.findRate(vacancy.currentVacancyId, user.id),
             userText: vacancy.findTextRate(vacancy.currentVacancyId, user.id),
             selectExecutor: vacancy.getSelectResponse(
                 vacancy.currentVacancyId,
