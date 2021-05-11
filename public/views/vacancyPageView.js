@@ -2,7 +2,7 @@ import {View} from './view.js';
 import eventBus from '@/modules/eventBus.js';
 import vacancyPageTemplate from '@/components/pages/vacancy/vacancyPage.pug';
 import createOrderOrVacancy
-    from '@/components/pages/CreateOrderVacancy/createOrderOrVacancy.pug';
+    from '@/components/pages/createOrderVacancy/createOrderOrVacancy.pug';
 import {
     VACANCY_PAGE_RENDER,
 
@@ -72,7 +72,7 @@ export class VacancyPageView extends View {
             const element = document.querySelector('.form-control');
             const prevValue = element.value;
             val.validate();
-            if (info.userRate === 0) {
+            if (!info.selectExecutor) {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();
                     const data = {

@@ -14,20 +14,21 @@ $cntr: center;
 $left: left;
 $col: column;
 $row: row;
-  // variables
+// variables
 
 
-@mixin main-block($flex_1){
+@mixin main-block($flex_1) {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex: $flex_1 0 auto;
 
-  background-color:$white;
+  background-color: $white;
 
   margin: 94px 0 0 0;
 }
+
 @mixin bg-form($width) {
   width: $width;
 
@@ -68,6 +69,3 @@ $row: row;
   flex-direction: $flex-dir;
   align-items: $align-it;
 }
-
-
-

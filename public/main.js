@@ -1,4 +1,4 @@
-import '@/static/scss/main_page.scss';
+import '@/components/pages/index/main_page.scss';
 import '@/components/pages/login/login.scss';
 import '@/static/scss/valid.scss';
 import '@/components/pages/orders/orders.scss';
@@ -14,7 +14,7 @@ import '@/components/pages/order/orderPage.scss';
 import '@/components/pages/vacancy/vacancy.scss';
 import '@/components/notification/notti.scss';
 import '@/components/pages/reviews/reviews.scss';
-import '@/static/scss/search.scss';
+import '@/components/pages/orders/search.scss';
 import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
 

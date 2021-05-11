@@ -1,60 +1,61 @@
 @import "../../../static/scss/main";
 
 .registration {
-    @include main-block(0);
+  @include main-block(0);
 
-    &__bg-form {
-        width: 542px;
+  &__bg-form {
+    width: 542px;
 
-        filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
-        @include uniq_form($white);
-    }
+    filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
+    @include uniq_form($white);
+  }
 
-    &__other_text {
-        @include form_dis(center, center);
-        @include font(normal, 14px, 20px, -0.4px, $black);
+  &__other_text {
+    @include form_dis(center, center);
+    @include font(normal, 14px, 20px, -0.4px, $black);
 
-        background-color: $white;
-        margin-top: 30px;
+    background-color: $white;
+    margin-top: 30px;
 
-        text-align: center;
-    }
+    text-align: center;
+  }
 
-    &__input-other {
-        @include uniq_form($white);
+  &__input-other {
+    @include uniq_form($white);
 
-        width: 236px;
-        height: 62px;
+    width: 236px;
+    height: 62px;
 
-        display: flex;
-        border: 2px solid $primary_color;
-    }
+    display: flex;
+    border: 2px solid $primary_color;
+  }
 
-    &__input-other_in {
-        @include form_dis(center, center);
-        @include font(normal, 20px, 20px, -0.4px, $black);
+  &__input-other_in {
+    @include form_dis(center, center);
+    @include font(normal, 20px, 20px, -0.4px, $black);
 
-        width: 160px;
-        height: 60px;
+    width: 160px;
+    height: 60px;
 
-        border-left: 2px solid $primary_color;
-        padding: 0 7px;
-    }
-    &__input-other:hover {
-        background-color: $neutral_color;
-    }
+    border-left: 2px solid $primary_color;
+    padding: 0 7px;
+  }
 
-    &__input-other_img {
-        max-width: 33px;
-        max-height: 33px;
-        margin: 14px;
-    }
+  &__input-other:hover {
+    background-color: $neutral_color;
+  }
 
-    &__plug {
-        opacity: 0;
-        margin-bottom: -21px;
-        margin-top: 2px;
-    }
+  &__input-other_img {
+    max-width: 33px;
+    max-height: 33px;
+    margin: 14px;
+  }
+
+  &__plug {
+    opacity: 0;
+    margin-bottom: -21px;
+    margin-top: 2px;
+  }
 }
 
 

@@ -68,7 +68,7 @@ export class VacanciesController extends Controller {
      */
     _sendServices() {
         if (this.isMyVacancies) {
-            auth.getVacancies(this.isMyVacancies);
+            auth.getMyVacancies(this.isMyVacancies);
             return;
         }
 

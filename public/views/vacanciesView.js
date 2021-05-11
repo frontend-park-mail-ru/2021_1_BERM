@@ -4,7 +4,6 @@ import {
     SEND_SERVICES_VACANCIES,
     VACANCIES_RENDER,
     GO_TO_VACANCY,
-    VACANCIES_PAGE_SEARCH,
 } from '@/modules/constants/actions';
 import ordersTemplate from '@/components/pages/vacancies /vacancies.pug';
 
@@ -45,18 +44,18 @@ export class VacanciesView extends View {
             }),
         );
 
-        if (!dataMap.isMyOrders && !dataMap.isArchive) {
-            const form = document.getElementById('search__form');
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-                const data = {
-                    keyword: event.target.search.value,
-                };
-
-                eventBus.emit(VACANCIES_PAGE_SEARCH, data);
-            });
-        }
+        // if (!dataMap.isMyVacancies && !dataMap.isArchive) {
+        //     const form = document.getElementById('search__form');
+        //     form.addEventListener('submit', (event) => {
+        //         event.preventDefault();
+        //
+        //         const data = {
+        //             keyword: event.target.search.value,
+        //         };
+        //
+        //         eventBus.emit(VACANCIES_PAGE_SEARCH, data);
+        //     });
+        // }
 
         const allRef = document.querySelectorAll('.orders__order_link');
         allRef.forEach((ref) => {

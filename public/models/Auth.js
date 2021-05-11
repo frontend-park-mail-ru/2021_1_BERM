@@ -157,6 +157,18 @@ export default class Auth {
     }
 
     /**
+     * Запрос на вакансии пользователя
+     *
+     * @param {number} id - уникальный номер пользователя
+     */
+    static getMyVacancies(id) {
+        sendRequest('GET', `/vacancy/profile/${id}`)
+            .then((res) => {
+                eventBus.emit(SEND_RESULT_RENDER_VACANCIES, res);
+            });
+    }
+
+    /**
      * Устанавливаем отклик
      *
      * @param {Object} data - данные на отправку
@@ -244,10 +256,10 @@ export default class Auth {
     /**
      * Устанавливаем новую ставку.
      *
-     * @param {number} id вакансии
-     * @param {Object} data - данные
+     * @param {Object} data
+     * @param {number} id
      */
-    static vacancySetResponse(id, data) {
+    static vacancySetResponse(data, id) {
         sendRequest('POST', `/vacancy/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(VACANCY_GET_RATE, res);
