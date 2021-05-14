@@ -25,6 +25,7 @@ import '@/static/mediaSccs/registrationMedia.scss';
 import '@/static/mediaSccs/profileMedia.scss';
 import '@/static/mediaSccs/ordersMedia.scss';
 import '@/static/mediaSccs/navbarMedia.scss';
+import '@/static/mediaSccs/mainMedia.scss';
 
 import {
     LoginController,
