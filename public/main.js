@@ -19,6 +19,7 @@ import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
 
 import '@/static/mediaSccs/orderMedia.scss';
+import '@/static/mediaSccs/vacancyMedia.scss';
 import '@/static/mediaSccs/rootMedia.scss';
 import '@/static/mediaSccs/settingsMedia.scss';
 import '@/static/mediaSccs/registrationMedia.scss';
