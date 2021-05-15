@@ -88,7 +88,7 @@ import {
     NOT_FOUND,
     ARCHIVE,
     REVIEWS,
-    MY_VACANCIES,
+    MY_VACANCIES, SEARCH_PAGE,
 } from '@/modules/constants/pageNames.js';
 import {
     Page404Controller,
@@ -96,6 +96,7 @@ import {
 import {
     ReviewsController,
 } from '@/controllers/reviewsController';
+import {SearchController} from '@/controllers/searchController';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
@@ -126,6 +127,7 @@ const controllers = new Set([
     [ARCHIVE, OrdersController],
     [REVIEWS, ReviewsController],
     [NOT_FOUND, Page404Controller],
+    [SEARCH_PAGE, SearchController],
     // Здесь добавляем странички
 ]);
 
