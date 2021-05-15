@@ -15,6 +15,7 @@ import '@/components/pages/vacancy/vacancy.scss';
 import '@/components/notification/notti.scss';
 import '@/components/pages/reviews/reviews.scss';
 import '@/components/pages/orders/search.scss';
+import '@/components/pages/search/search.scss';
 import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
 
