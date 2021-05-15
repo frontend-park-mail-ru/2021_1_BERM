@@ -1,0 +1,14 @@
+@media screen and (max-width: 720px) {
+  .orderPage {
+    &__feedback {
+      &_window {
+        margin-top: 33px;
+        width: 100%;
+      }
+
+      &_skip {
+        width: 75%;
+      }
+    }
+  }
+}
