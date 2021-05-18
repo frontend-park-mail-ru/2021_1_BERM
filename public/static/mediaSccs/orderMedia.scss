@@ -1,66 +1,151 @@
-@media screen and (max-width: 720px) {
+@import 'rootMedia.scss';
+@media screen and (max-width: $width-adapt) {
   .orderPage {
     flex-wrap: wrap;
+    align-items: normal;
 
-    &__set-rate {
-      flex-wrap: wrap;
-      width: 1000px;
-
-      &_title-customer {
-        font-size: 20px;
-      }
+    &__rate {
+      margin-left: 0;
+      width: 100%;
     }
 
     &__comments {
+      flex-flow: column-reverse;
       flex-wrap: wrap;
-      margin-top: 300px;
+      margin-top: 0;
+      width: 100%;
     }
 
     &__responses {
-      width: 300px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    &__response {
+      flex-direction: column;
+
+      &_btn {
+        margin-bottom: 10px;
+      }
+
+      &_img-bg {
+        flex-direction: row;
+        height: auto;
+        width: auto;
+        align-items: normal;
+      }
+
+      &_name {
+        width: 230px;
+        word-break: break-word;
+        margin-left: 15px;
+      }
 
       &_stats {
-
+        margin: 0;
       }
     }
 
     &__order {
       flex-wrap: wrap;
+      width: 100%;
+      margin-top: 0;
+
+      &_category {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      &_img-bg {
+        margin: 50px 0 0 10px;
+      }
+
+      &_delete {
+        margin-left: 50px;
+      }
+
+      &_end {
+        margin-top: 10px;
+      }
+
+      &_up-box {
+        width: 100%;
+        justify-content: left;
+      }
+
+      &_text {
+        width: 100%;
+        padding: 15px;
+        margin: 32px 0 32px 0;
+        flex-wrap: wrap;
+      }
+
+      &_definition {
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      &_stats {
+        width: 100%;
+      }
     }
 
-    &__order_text {
+    &__select-executor {
+      &_text {
+        margin-left: 12px;
+      }
+
+      &_data {
+        margin-left: -22px;
+      }
+    }
+
+    &__set-rate {
+      width: 98%;
       flex-wrap: wrap;
+
+      &_title {
+        width: 80%;
+      }
+
+      &_input {
+        width: auto;
+      }
+
+      &_input > .custom-form__input {
+          width: 310px;
+      }
+
+      &_title-customer {
+        font-size: 20px;
+      }
+
+      &_button-del {
+        width: 140px;
+      }
+
+      &_button {
+        width: 140px;
+      }
+
+      &_button-exit {
+        margin-left: 15px;
+        width: 140px;
+      }
+
+      &_input_in {
+        width: 310px;
+      }
     }
-
-  }
-
-  .vacancyPage__customer-button_change {
-    transform: translateX(-40px);
   }
 
   .min-rate {
+    flex-direction: column;
     width: 350px;
-    margin-left: 0;
-  }
-
-  .orderPage__select-executor_text {
     margin-left: 12px;
   }
 
-  .orderPage__select-executor_data {
-    margin-left: -22px;
-  }
-
-  .orderPage__set-rate_button {
-    width: 140px;
-  }
-
-  .orderPage__set-rate_button-exit {
-    margin-left: 15px;
-    width: 140px;
-  }
-
-  .orderPage__rate {
-    margin-left: 0;
+  .orderPage .vacancyPage__customer-button_change {
+    transform: translateX(0);
   }
 }

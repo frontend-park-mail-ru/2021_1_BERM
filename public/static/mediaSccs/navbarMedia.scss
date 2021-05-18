@@ -1,24 +1,32 @@
 @import "../scss/main.scss";
+@import 'rootMedia.scss';
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
   .navbar {
     &__navigate {
       display: none;
     }
 
+    &__title {
+      margin-left: 25px;
+    }
+
     &__surfacing {
       display: flex;
-      height: 50px;
-      width: 50px;
+      height: 30px;
+      width: 30px;
       align-items: center;
+      margin-right: 25px;
 
       &_item {
         cursor: pointer;
+        width: 25px;
+        height: 22px;
       }
 
       &_content {
-        margin-left: -152px;
-        margin-top: 180px;
+        margin-left: -130px;
+        margin-top: 177px;
         display: none;
         position: absolute;
         background-color: $placeholder;

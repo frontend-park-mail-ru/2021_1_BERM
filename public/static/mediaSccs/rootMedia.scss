@@ -1,6 +1,12 @@
-@media screen and (max-width: 768px) {
+$width-adapt: 720px;
+$width-adapt-ipad: 1024px;
+@media screen and (max-width: $width-adapt) {
   .custom-form__input {
     width: 280px;
+  }
+
+  .custom-form {
+    height: 700px;
   }
 
   .custom-form__img {
@@ -8,17 +14,18 @@
   }
 
   .custom-form__input_in {
-    width: 240px;
+    width: 238px;
   }
+
 
   .custom-form__input-mini_bg {
     flex: 1 1 auto;
-    justify-content: normal;
+    justify-content: space-between;
     margin-top: 0;
   }
 
   .custom-form__submit {
-    width: 75%;
+    width: 300px;
   }
 
   .custom-form__input-mini_flex {

@@ -1,0 +1,14 @@
+@import "../../../static/scss/main.scss";
+
+.filters__elem {
+  margin: 30px 0 20px 50px;
+  @include font(300, 22px, 22px, -0.4px, $black);
+
+  & label {
+    margin-right: 20px;
+  }
+
+  & select {
+    font-size: 20px;
+  }
+}

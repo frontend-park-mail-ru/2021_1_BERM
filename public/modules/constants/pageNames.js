@@ -14,6 +14,7 @@ export const SELECT_SPEC = /^\/add-spec$/;
 export const MY_ORDERS = /^\/profile\/\d+\/orders$/;
 export const MY_VACANCIES = /^\/profile\/\d+\/vacancies$/;
 export const VACANCIES_PAGE = /^\/vacancies$/;
+export const SEARCH_PAGE = /^\/search$/;
 export const ARCHIVE = /^\/profile\/\d+\/archive$/;
 export const REVIEWS = /^\/profile\/\d+\/reviews$/;
 

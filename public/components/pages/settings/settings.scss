@@ -94,8 +94,11 @@
   }
 
   &__arrow {
+    position: absolute;
     float: right;
     margin-top: 10px;
+    padding-top: 15px;
+    padding-left: 25px;
   }
 
   &__submit__img {
@@ -103,14 +106,15 @@
   }
 
   &__about-textarea {
-    padding: 23px;
-    height: 337px;
-    width: 532px;
-
-    @include uniq_form($placeholder);
-    @include font(normal, 20px, 28px, -0.4px, $black);
-
-    resize: none;
+    //padding: 23px;
+    //height: 337px;
+    //width: 532px;
+    //
+    //@include uniq_form($placeholder);
+    //@include font(normal, 20px, 28px, -0.4px, $black);
+    //
+    //resize: none;
+    @include about_textarea(345px);
   }
 
 

@@ -1,0 +1,44 @@
+include ../orders/orderInOrdersPage
+
+.orders
+    div(class='orders__title') Поиск
+    div(class='orders__content')
+        div(class='orders__list')
+            div(class='search')
+                    form#search__form
+                        input(class='search__form_input' placeholder='Введите поисковой запрос' name='search')
+                        button(class='search__form_submit') Найти
+            if orders
+                each order in orders
+                    +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId, isArchive, isExecutor)
+
+                if orders.length === 0
+                    div(class="orderPage__no-comments") Ничего не найдено
+
+        form.filters
+            div(class='filters__title') Фильтры
+            div(class='filters__elem')
+                label(for='filters__select') Искать
+                select#filters__select(name='filters__select')
+                    option(value='all') Всё
+                    option(value='vacancy') Только вакансии
+                    option(value='orders') Только заказы
+                    option(value='users') Только пользователей
+            div(class='filters__budget')
+                div(class='filters__budget_title') Ставка
+                div(class='filters__form')
+                    input(type='text' placeholder='От' class='filters__form_input' name='salary')
+                    input(type='text' placeholder='До' class='filters__form_input' name='salary')
+            div(class='filters__elem')
+                label(for='filters__select_one') Сортировать по
+                select#filters__select_one(name='filters__select')
+                    option(value='all') Заголовку
+                    option(value='vacancy') Заработной плате
+            div(class='filters__elem')
+                label(for='filters__select_one')
+                select#filters__select_two(name='filters__select')
+                    option(value='all') Уменьшению
+                    option(value='vacancy') Возрастанию
+            div.settings-form__input-mini_bg
+                div#select
+

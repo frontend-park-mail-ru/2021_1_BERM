@@ -15,16 +15,23 @@ import '@/components/pages/vacancy/vacancy.scss';
 import '@/components/notification/notti.scss';
 import '@/components/pages/reviews/reviews.scss';
 import '@/components/pages/orders/search.scss';
+import '@/components/pages/search/search.scss';
 import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
+import '@/components/pages/createOrderVacancy/createOrderOrVacancy.scss';
 
+import '@/static/mediaSccs/selectMedia.scss';
 import '@/static/mediaSccs/orderMedia.scss';
+import '@/static/mediaSccs/vacancyMedia.scss';
 import '@/static/mediaSccs/rootMedia.scss';
 import '@/static/mediaSccs/settingsMedia.scss';
 import '@/static/mediaSccs/registrationMedia.scss';
 import '@/static/mediaSccs/profileMedia.scss';
 import '@/static/mediaSccs/ordersMedia.scss';
 import '@/static/mediaSccs/navbarMedia.scss';
+import '@/static/mediaSccs/mainMedia.scss';
+import '@/static/mediaSccs/feedbackMedia.scss';
+import '@/static/mediaSccs/createOrderOrVacancyMedia.scss';
 
 import {
     LoginController,
@@ -85,7 +92,7 @@ import {
     NOT_FOUND,
     ARCHIVE,
     REVIEWS,
-    MY_VACANCIES,
+    MY_VACANCIES, SEARCH_PAGE,
 } from '@/modules/constants/pageNames.js';
 import {
     Page404Controller,
@@ -93,16 +100,17 @@ import {
 import {
     ReviewsController,
 } from '@/controllers/reviewsController';
+import {SearchController} from '@/controllers/searchController';
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-            console.log('sw registration on scope:', registration.scope);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/sw.js')
+//         .then((registration) => {
+//             console.log('sw registration on scope:', registration.scope);
+//         })
+//         .catch((err) => {
+//             console.error(err);
+//         });
+// }
 
 const controllers = new Set([
     [MAIN_PAGE, MainPageController],
@@ -123,6 +131,7 @@ const controllers = new Set([
     [ARCHIVE, OrdersController],
     [REVIEWS, ReviewsController],
     [NOT_FOUND, Page404Controller],
+    [SEARCH_PAGE, SearchController],
     // Здесь добавляем странички
 ]);
 
