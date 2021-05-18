@@ -63,6 +63,8 @@
   }
 
   &__form {
+    transform: translateY(1px);
+    height: 56px;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
@@ -71,7 +73,7 @@
     width: 410px;
     overflow: hidden;
     padding-top: 15px;
-    padding-left: 27px;
+    padding-left: 19px;
     padding-bottom: 10px;
   }
 

@@ -7,7 +7,7 @@
     &__bg-form {
       width: 340px;
       height: 1050px;
-      margin-right: 5px;
+      //margin-right: 5px;
     }
 
     &__form {
@@ -20,9 +20,10 @@
     }
 
     &__arrow {
-      float: right;
-      position: relative;
+      //float: right;
+      //position: relative;
       margin-top: 10px;
+      padding-left: 0;
     }
   }
 
@@ -70,9 +71,10 @@
     }
 
     &__arrow {
-      float: right;
-      position: relative;
+      //float: right;
+      //position: relative;
       margin-top: 10px;
+      padding-left: 0;
     }
 
     &__about-textarea {

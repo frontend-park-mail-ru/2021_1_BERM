@@ -69,3 +69,14 @@ $row: row;
   flex-direction: $flex-dir;
   align-items: $align-it;
 }
+
+@mixin about_textarea($height) {
+  padding: 23px;
+  height: $height;
+  width: 532px;
+
+  @include uniq_form($placeholder);
+  @include font(normal, 20px, 28px, -0.4px, $black);
+
+  resize: none;
+}

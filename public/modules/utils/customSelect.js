@@ -123,8 +123,8 @@ export default class Select {
         console.log(this.$value.offsetHeight);
         console.log('_______________________AAAA');
         const scrollHeight = this.$value.scrollHeight;
-        this.$value.style.height = scrollHeight + 'px';
-        this.selectInput.style.height = this.$value.style.height;
+        this.$value.style.height = scrollHeight - 4 + 'px';
+        this.selectInput.style.height = scrollHeight + 2 + 'px';
 
         console.log( this.$value.scrollHeight);
         this.$el.querySelectorAll('[data-type="item"]').forEach((el) => {

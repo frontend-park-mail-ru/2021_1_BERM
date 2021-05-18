@@ -1,0 +1,15 @@
+@import "public/static/scss/main";
+.create {
+  &__about-textarea {
+    @include about_textarea(343px);
+  }
+
+  &__bg-form {
+    width: 1150px;
+    flex: 0 0 auto;
+
+    filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
+    @include uniq_form($white);
+  }
+}
+

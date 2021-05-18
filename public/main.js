@@ -17,6 +17,7 @@ import '@/components/pages/reviews/reviews.scss';
 import '@/components/pages/orders/search.scss';
 import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
+import '@/components/pages/createOrderVacancy/createOrderOrVacancy.scss';
 
 import '@/static/mediaSccs/selectMedia.scss';
 import '@/static/mediaSccs/orderMedia.scss';
@@ -26,6 +27,7 @@ import '@/static/mediaSccs/registrationMedia.scss';
 import '@/static/mediaSccs/profileMedia.scss';
 import '@/static/mediaSccs/ordersMedia.scss';
 import '@/static/mediaSccs/navbarMedia.scss';
+import '@/static/mediaSccs/createOrderOrVacancyMedia.scss';
 
 import {
     LoginController,
