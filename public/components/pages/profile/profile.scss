@@ -5,6 +5,7 @@
   flex: 1 0 auto;
 
   &__border {
+    padding: 50px;
     position: fixed;
     top: 40%;
     left: 50%;
@@ -21,7 +22,6 @@
   }
 
   &__content {
-    margin: 66px -20px auto 66px;
   }
 
 }
@@ -141,6 +141,7 @@
 
 .bottom {
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   margin: 68px -48px 0px -48px;
 
@@ -159,7 +160,6 @@
 .about-text {
   @include font(normal, 14px, 22px, -0.4px, $black);
   margin-top: 25px;
-  width: 500px;
 }
 
 .specialize-title {

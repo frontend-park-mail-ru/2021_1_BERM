@@ -9,8 +9,8 @@ div(class='navbar' id='myTopnav')
             div(class='row__item')
                 img(src=require("@/static/img/user.svg").default class='navbar__img' href='/profile')
             div(class='row__item')
-                a
-                    img(src=require("@/static/img/search.svg").default alt='')
+                a(href='/search')
+                    img(src=require("@/static/img/search.svg").default alt='' href='/search')
     div.navbar__surfacing
         img(class='navbar__surfacing_item' src=require("@/static/img/Arrow_down.svg").default)
         div(class='navbar__surfacing_content')

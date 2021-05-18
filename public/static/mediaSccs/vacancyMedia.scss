@@ -1,0 +1,76 @@
+@import "../scss/main.scss";
+
+@media screen and (max-width: 720px) {
+  .vacancyPage {
+    &__customer-button_change {
+      transform: translateX(-40px);
+    }
+
+    &__responses {
+      width: 100%;
+    }
+
+    &__comment-buttons {
+      flex-wrap: wrap;
+      margin: 0 0 10px 0;
+
+      &_reviews {
+        margin-top: 10px;
+      }
+
+      &_cancel {
+        margin-top: 10px;
+      }
+    }
+
+    &__comment-button {
+      &_reviews {
+        margin-top: 10px;
+      }
+
+      &_cancel {
+        margin-top: 10px;
+      }
+    }
+
+    &__textArea {
+      height: 100px;
+      width: calc(100% - 10px);
+    }
+
+    &__response {
+      margin: 20px 0 0 0;
+      flex-wrap: wrap;
+
+      &_img {
+        width: 80px;
+        height: 80px;
+        margin: 0;
+      }
+    }
+
+    &__content {
+      width: calc(100% - 20px);
+    }
+
+    &__supportImage {
+      margin-top: 0;
+    }
+  }
+
+  .custom-form {
+    padding: 0;
+  }
+
+  .vacancy-executor {
+    width: 100%;
+
+    &__button_delete {
+      width: 150px;
+    }
+
+    &__button_change {
+      width: 150px;
+    }
+  }
+}
