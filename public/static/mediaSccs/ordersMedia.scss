@@ -12,8 +12,22 @@
   }
 
   .orders {
+    width: 375px;
+
+
+    &__list {
+      width: 375px;
+    }
+
     &__order {
       flex-wrap: wrap;
+      height: auto;
+      width: 375px;
+      margin-top: 0;
+    }
+
+    &__title {
+      margin-left: 15px;
     }
 
     &__list {
@@ -38,6 +52,15 @@
   .search__form_submit {
     flex-wrap: wrap;
     margin-top: 20px;
+  }
+
+  .search {
+    margin-top: 0;
+  }
+
+  .filters {
+    margin-top: 0;
+    width: 375px;
   }
 
 }
