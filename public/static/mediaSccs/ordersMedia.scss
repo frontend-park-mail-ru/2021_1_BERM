@@ -29,14 +29,19 @@
     width: 310px;
     margin-left: 10px;
   }
-  .search__form_input {
-    width: 310px;
-    margin-left: 10px;
-  }
 
-  .search__form_submit {
-    flex-wrap: wrap;
-    margin-top: 20px;
+  .search {
+    &__form {
+      &_input {
+        width: 310px;
+        margin-left: 10px;
+      }
+
+      &_submit {
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+    }
   }
 
 }

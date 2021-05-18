@@ -17,10 +17,28 @@ include ../orders/orderInOrdersPage
 
         form.filters
             div(class='filters__title') Фильтры
-            div(class='filters__select')
+            div(class='filters__elem')
                 label(for='filters__select') Искать
                 select#filters__select(name='filters__select')
                     option(value='all') Всё
                     option(value='vacancy') Только вакансии
                     option(value='orders') Только заказы
                     option(value='users') Только пользователей
+            div(class='filters__budget')
+                div(class='filters__budget_title') Ставка
+                div(class='filters__form')
+                    input(type='text' placeholder='От' class='filters__form_input' name='salary')
+                    input(type='text' placeholder='До' class='filters__form_input' name='salary')
+            div(class='filters__elem')
+                label(for='filters__select_one') Сортировать по
+                select#filters__select_one(name='filters__select')
+                    option(value='all') Заголовку
+                    option(value='vacancy') Заработной плате
+            div(class='filters__elem')
+                label(for='filters__select_one')
+                select#filters__select_two(name='filters__select')
+                    option(value='all') Уменьшению
+                    option(value='vacancy') Возрастанию
+            div.settings-form__input-mini_bg
+                div#select
+
