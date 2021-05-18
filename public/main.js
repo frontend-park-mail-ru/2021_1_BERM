@@ -18,7 +18,9 @@ import '@/components/pages/orders/search.scss';
 import '@/components/pages/search/search.scss';
 import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
+import '@/components/pages/createOrderVacancy/createOrderOrVacancy.scss';
 
+import '@/static/mediaSccs/selectMedia.scss';
 import '@/static/mediaSccs/orderMedia.scss';
 import '@/static/mediaSccs/vacancyMedia.scss';
 import '@/static/mediaSccs/rootMedia.scss';
@@ -29,6 +31,7 @@ import '@/static/mediaSccs/ordersMedia.scss';
 import '@/static/mediaSccs/navbarMedia.scss';
 import '@/static/mediaSccs/mainMedia.scss';
 import '@/static/mediaSccs/feedbackMedia.scss';
+import '@/static/mediaSccs/createOrderOrVacancyMedia.scss';
 
 import {
     LoginController,
@@ -99,15 +102,15 @@ import {
 } from '@/controllers/reviewsController';
 import {SearchController} from '@/controllers/searchController';
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-            console.log('sw registration on scope:', registration.scope);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/sw.js')
+//         .then((registration) => {
+//             console.log('sw registration on scope:', registration.scope);
+//         })
+//         .catch((err) => {
+//             console.error(err);
+//         });
+// }
 
 const controllers = new Set([
     [MAIN_PAGE, MainPageController],

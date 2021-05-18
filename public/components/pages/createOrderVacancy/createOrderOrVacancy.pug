@@ -1,7 +1,7 @@
 include ../../inputes/settingsInput
 
 .settings
-    div(class='settings__bg-form')
+    div(class='create__bg-form')
         form.settings-container(action='' id='order-create_form')
             div(class='settings__form')
                 div(class='settings__column_left')
@@ -84,9 +84,9 @@ include ../../inputes/settingsInput
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
                         if !isChange
-                            textarea(class='settings__about-textarea form-control' placeholder='Описание' name='description')
+                            textarea(class='create__about-textarea form-control' placeholder='Описание' name='description')
                         else
-                            textarea(class='settings__about-textarea form-control' placeholder='Описание' name='description')=creator.definition
+                            textarea(class='create__about-textarea form-control' placeholder='Описание' name='description')=creator.definition
                     div(class=" error")
                         div(class="error__message")
                         div(class="error__main" id="textAr")

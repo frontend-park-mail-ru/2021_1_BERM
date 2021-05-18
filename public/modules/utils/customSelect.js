@@ -19,6 +19,14 @@ export default class Select {
         this.$idSelectorDoc = null;
         this.idSelector = idSelector;
 
+        this.prevStateHeight = 0;
+        this.currentStateHeight = 0;
+        this.geomKoef = 4;
+        this.selectInput = null;
+        console.log(this.selectInput);
+        // this.selectInput.style.height =
+
+
         this.render();
         this.setup();
     }
@@ -46,7 +54,12 @@ export default class Select {
         this.$arrow = this.$el.querySelector('[data-type="arrow"]');
         this.$value = this.$el.querySelector('[data-type="value"]');
 
-        this.$value.style.width = this.$value.scrollWidth + 'px';
+        // this.$value.style.width = this.$value.scrollWidth + 'px';
+
+        this.prevStateHeight = this.$value.scrollHeight;
+        this.currentStateHeight = this.$value.scrollHeight;
+        this.selectInput = document.querySelector('.select__input');
+        console.log(this.selectInput);
     }
 
     /**
@@ -57,7 +70,7 @@ export default class Select {
     clickHandler(event) {
         const {type} = event.target.dataset;
 
-        if (type === 'input' || type === 'arrow') {
+        if (type === 'input' || type === 'arrow' || type === 'value') {
             this.toggle();
         } else if (type === 'item') {
             const id = event.target.dataset.id;
@@ -91,11 +104,29 @@ export default class Select {
      * @param {number} id
      */
     select(id) {
-        this.selectedId = id;
-        this.$value.style.width = '0';
-        this.$value.value = this.current.value;
-        this.$value.style.width = this.$value.scrollWidth + 'px';
+        // const selectInput = this.$value.parentNode;
 
+        console.log(this.currentStateHeight, this.prevStateHeight);
+        // console.log( this.$value.scrollHeight);
+        // console.log('_______________________AAAA');
+        // console.log(this.$value.scrollHeight);
+        // console.log(this.$value.clientHeight);
+        // console.log(this.$value.offsetHeight);
+        // console.log('_______________________AAAA');
+
+        this.selectedId = id;
+        this.$value.style.height = '60px';
+        this.$value.value = this.current.value;
+        // console.log('_______________________AAAA');
+        // console.log(this.$value.scrollHeight);
+        // console.log(this.$value.clientHeight);
+        // console.log(this.$value.offsetHeight);
+        // console.log('_______________________AAAA');
+        const scrollHeight = this.$value.scrollHeight;
+        this.$value.style.height = scrollHeight - 4 + 'px';
+        this.selectInput.style.height = scrollHeight + 2 + 'px';
+
+        console.log( this.$value.scrollHeight);
         this.$el.querySelectorAll('[data-type="item"]').forEach((el) => {
             el.classList.remove('selected');
         });
