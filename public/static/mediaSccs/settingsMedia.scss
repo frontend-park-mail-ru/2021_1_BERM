@@ -4,6 +4,10 @@
     flex-wrap: wrap;
     margin: 0;
 
+    &__label {
+      transform: translateY(-10px);
+    }
+
     &__bg-form {
       width: 340px;
       height: 1050px;
@@ -33,7 +37,7 @@
 
   .settings-form__input {
     justify-content: normal;
-    width: 280px;
+    width: 300px;
 
   }
 
@@ -53,6 +57,10 @@
   .settings {
     flex-wrap: wrap;
     margin: 0;
+
+    &__label {
+      transform: translateY(-10px);
+    }
 
     &__bg-form {
       width: 640px;
@@ -88,7 +96,7 @@
 
   .settings-form__input {
     justify-content: normal;
-    width: 280px;
+    width: 300px;
 
   }
 

@@ -108,20 +108,20 @@ export default class Select {
 
         console.log(this.currentStateHeight, this.prevStateHeight);
         // console.log( this.$value.scrollHeight);
-        console.log('_______________________AAAA');
-        console.log(this.$value.scrollHeight);
-        console.log(this.$value.clientHeight);
-        console.log(this.$value.offsetHeight);
-        console.log('_______________________AAAA');
+        // console.log('_______________________AAAA');
+        // console.log(this.$value.scrollHeight);
+        // console.log(this.$value.clientHeight);
+        // console.log(this.$value.offsetHeight);
+        // console.log('_______________________AAAA');
 
         this.selectedId = id;
         this.$value.style.height = '60px';
         this.$value.value = this.current.value;
-        console.log('_______________________AAAA');
-        console.log(this.$value.scrollHeight);
-        console.log(this.$value.clientHeight);
-        console.log(this.$value.offsetHeight);
-        console.log('_______________________AAAA');
+        // console.log('_______________________AAAA');
+        // console.log(this.$value.scrollHeight);
+        // console.log(this.$value.clientHeight);
+        // console.log(this.$value.offsetHeight);
+        // console.log('_______________________AAAA');
         const scrollHeight = this.$value.scrollHeight;
         this.$value.style.height = scrollHeight - 4 + 'px';
         this.selectInput.style.height = scrollHeight + 2 + 'px';
