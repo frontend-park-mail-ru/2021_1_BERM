@@ -17,16 +17,17 @@
 
   &__input {
     background-color: $placeholder;
-    border: 1px, solid $placeholder;
+    border: 1.5px solid transparent;
     border-radius: 8px;
     -webkit-appearance: none;
     margin: 0;
     width: 480px;
     height: 60px;
 
+
     @include font(normal, 20px, 28px, -0.4px, $black);
 
-    padding: 15px 27px;
+    //padding: 15px 27px;
   }
 
   &__dropdown {
@@ -66,6 +67,12 @@
     font-weight: normal;
     font-size: 20px;
     background-color: $placeholder;
+    resize: none;
+    width: 410px;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-left: 27px;
+    padding-bottom: 10px;
   }
 
   &__dropdown::-webkit-scrollbar {

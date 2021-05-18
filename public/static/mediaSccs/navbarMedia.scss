@@ -1,5 +1,5 @@
 @import "../scss/main.scss";
-
+@import 'rootMedia.scss';
 @media screen and (max-width: 600px) {
   .navbar {
     &__navigate {

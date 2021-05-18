@@ -1,9 +1,13 @@
-@media screen and (max-width: 720px) {
+@import 'rootMedia.scss';
+@media screen and (max-width: $width-adapt) {
   .settings {
     flex-wrap: wrap;
+    margin: 0;
 
     &__bg-form {
-      width: auto;
+      width: 340px;
+      height: 1050px;
+      margin-right: 5px;
     }
 
     &__form {
@@ -13,6 +17,12 @@
     &__column_right {
       margin-top: 25px;
       margin-left: 0;
+    }
+
+    &__arrow {
+      float: right;
+      position: relative;
+      margin-top: 10px;
     }
   }
 
@@ -26,9 +36,72 @@
 
   }
 
-  .select__input {
-    width: 300px;
+  //.select {
+  //  &__input {
+  //    width: 300px;
+  //  }
+  //
+  //  &__dropdown {
+  //    width: 300px;
+  //  }
+  //}
+
+}
+
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)){
+  .settings {
+    flex-wrap: wrap;
+    margin: 0;
+
+    &__bg-form {
+      width: 640px;
+      //height: 1050px;
+      margin-right: 0;
+      //margin-left: 24px;
+    }
+
+    &__form {
+      flex-wrap: wrap;
+    }
+
+    &__column_right {
+      margin-top: 25px;
+      margin-left: 0;
+    }
+
+    &__arrow {
+      float: right;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    &__about-textarea {
+      width: 485px;
+    }
   }
+
+  .settings-container {
+    flex-wrap: wrap;
+  }
+
+  .settings-form__input {
+    justify-content: normal;
+    width: 280px;
+
+  }
+
+
+
+  //.select {
+  //  &__input {
+  //    width: 300px;
+  //  }
+  //
+  //  &__dropdown {
+  //    width: 300px;
+  //  }
+  //}
+
 }
 
 

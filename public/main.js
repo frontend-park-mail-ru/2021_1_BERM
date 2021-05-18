@@ -18,6 +18,7 @@ import '@/components/pages/orders/search.scss';
 import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
 
+import '@/static/mediaSccs/selectMedia.scss';
 import '@/static/mediaSccs/orderMedia.scss';
 import '@/static/mediaSccs/rootMedia.scss';
 import '@/static/mediaSccs/settingsMedia.scss';
@@ -94,15 +95,15 @@ import {
     ReviewsController,
 } from '@/controllers/reviewsController';
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-            console.log('sw registration on scope:', registration.scope);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/sw.js')
+//         .then((registration) => {
+//             console.log('sw registration on scope:', registration.scope);
+//         })
+//         .catch((err) => {
+//             console.error(err);
+//         });
+// }
 
 const controllers = new Set([
     [MAIN_PAGE, MainPageController],

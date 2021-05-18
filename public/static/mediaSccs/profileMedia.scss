@@ -1,4 +1,5 @@
-@media screen and (max-width: 720px) {
+@import 'rootMedia.scss';
+@media screen and (max-width: $width-adapt) {
   .profile {
     &__content {
       margin: 66px -20px auto 160px;

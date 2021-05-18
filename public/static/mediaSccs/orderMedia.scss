@@ -1,4 +1,5 @@
-@media screen and (max-width: 720px) {
+@import 'rootMedia.scss';
+@media screen and (max-width: $width-adapt) {
   .orderPage {
     flex-wrap: wrap;
 
