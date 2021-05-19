@@ -1,14 +1,59 @@
 @import "../../../static/scss/main.scss";
 
-.filters__elem {
-  margin: 30px 0 20px 50px;
-  @include font(300, 22px, 22px, -0.4px, $black);
+.filters {
+  padding-bottom: 22px;
 
-  & label {
-    margin-right: 20px;
+  &__elem {
+    margin-top: 20px;
+    margin-left: 50px;
+    @include font(300, 20px, 22px, -0.4px, $black);
+
+    & label {
+      margin-right: 20px;
+    }
+
+    & select {
+      font-size: 20px;
+    }
   }
 
-  & select {
-    font-size: 20px;
+  &__budget {
+    &_no-margin {
+      margin-top: 20px;
+      margin-left: 50px;
+      display: flex;
+      flex-direction: row;
+      flex: 0 0 auto;
+
+      &  > .filters__budget_title {
+        font-size: 20px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  & {
+    .select {
+      &__input {
+        width: 313px;
+      }
+
+      &__dropdown {
+        width: 313px;
+        z-index: 10;
+      }
+
+      &__form {
+        width: 240px;
+      }
+    }
+
+    .settings-form {
+      &__input {
+        &-mini_bg {
+          margin-top: 10px;
+        }
+      }
+    }
   }
 }

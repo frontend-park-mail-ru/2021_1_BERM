@@ -23,8 +23,6 @@ export default class Select {
         this.currentStateHeight = 0;
         this.geomKoef = 4;
         this.selectInput = null;
-        console.log(this.selectInput);
-        // this.selectInput.style.height =
 
 
         this.render();
@@ -117,6 +115,12 @@ export default class Select {
         this.selectedId = id;
         this.$value.style.height = '60px';
         this.$value.value = this.current.value;
+        this.$value.textContent = this.current.value;
+
+        const event = document.createEvent('HTMLEvents');
+        event.initEvent('select', true, true);
+        event.eventName = 'select';
+        this.$value.dispatchEvent(event);
         // console.log('_______________________AAAA');
         // console.log(this.$value.scrollHeight);
         // console.log(this.$value.clientHeight);
