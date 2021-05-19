@@ -20,9 +20,9 @@ export class SearchView extends View {
             [],
         );
 
-        const budget = `
+        const budget = (title) => `
             <div class="filters__budget_no-margin">
-                <div class="filters__budget_title">Ставка</div>
+                <div class="filters__budget_title">${title}</div>
                 <div class="filters__form">
                 <input class="filters__form_input" type="text" 
                         placeholder="От" name="salary" />
@@ -55,46 +55,45 @@ export class SearchView extends View {
 
         const filters = document.querySelector('.filters__content');
 
-        debugger;
+        filters.innerHTML = budget('Ставка') + sort + category;
 
-        filters.innerHTML = budget + sort + category;
-
-        this.selectConfig();
+        this.selectCategory();
+        this.selectSort();
+        this.selectWhat();
 
         const textarea = document.querySelector('.select__form');
         textarea.addEventListener('select', (event) => {
             const val = event.target.value;
-            debugger;
-            if (val === 'Только заказы') {
-                filters.innerHTML = budget + sort + category;
+            if (val === 'Только заказы' || val === 'Только вакансии') {
+                filters.innerHTML = budget('Ставка') + sort + category;
+                this.selectSort();
             }
-            if (val === 'Только вакансии') {
-                filters.innerHTML = category;
-            }
+
             if (val === 'Только пользователей') {
-                filters.innerHTML = sort;
+                filters.innerHTML = budget('Рейтинг') + sort + category;
+                this.selectSort([
+                    {id: '51', value: 'Рейтингу', type: 'item'},
+                    {id: '52', value: 'Имени', type: 'item'},
+                ]);
             }
+
+            this.selectCategory();
         });
     }
 
 
-    selectConfig() {
+    selectCategory() {
         new Select(
             '#select', {
                 placeholder: 'Категория',
                 data: listOfServices,
             }, 'dynamic-style');
+    }
 
-        new Select(
-            '#select__what', {
-                placeholder: 'Только заказы',
-                data: [
-                    {id: '41', value: 'Только заказы', type: 'item'},
-                    {id: '42', value: 'Только вакансии', type: 'item'},
-                    {id: '43', value: 'Только пользователей', type: 'item'},
-                ],
-            }, 'dynamic-style');
-
+    selectSort(list = [
+        {id: '61', value: 'Заголовку', type: 'item'},
+        {id: '62', value: 'Заработной плате', type: 'item'},
+    ]) {
         new Select(
             '#select__sort_duration', {
                 placeholder: 'Уменьшению',
@@ -106,10 +105,19 @@ export class SearchView extends View {
 
         new Select(
             '#select__sort', {
-                placeholder: 'Заголовку',
+                placeholder: list[0].value,
+                data: list,
+            }, 'dynamic-style');
+    }
+
+    selectWhat() {
+        new Select(
+            '#select__what', {
+                placeholder: 'Только заказы',
                 data: [
-                    {id: '61', value: 'Заголовку', type: 'item'},
-                    {id: '62', value: 'Заработной плате', type: 'item'},
+                    {id: '41', value: 'Только заказы', type: 'item'},
+                    {id: '42', value: 'Только вакансии', type: 'item'},
+                    {id: '43', value: 'Только пользователей', type: 'item'},
                 ],
             }, 'dynamic-style');
     }
