@@ -1,4 +1,4 @@
-@import 'rootMedia.scss';
+@import 'templatesMedia';
 @media screen and (max-width: $width-adapt) {
   .create{
     &__about-textarea {
@@ -6,8 +6,8 @@
     }
 
     &__bg-form {
-      height: 860px;
-      width: 340px;
+      width: 96%;
+      height: 100%;
     }
   }
 }
