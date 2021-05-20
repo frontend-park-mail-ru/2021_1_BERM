@@ -11,3 +11,25 @@
     }
   }
 }
+
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)){
+  .settings__column_left.create {
+    width: 100%;
+  }
+
+  .settings__column_right.create {
+    width: 100%;
+  }
+
+  .create__bg-form {
+    width: 100%;
+  }
+
+  .settings__arrow {
+    transform: translateX(-290%);
+  }
+
+  .create >.settings-form__input {
+    width: 100%;
+  }
+}

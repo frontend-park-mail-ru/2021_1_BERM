@@ -4,7 +4,7 @@ include ../../inputes/settingsInput
     div(class='create__bg-form')
         form.settings-container(action='' id='order-create_form')
             div(class='settings__form')
-                div(class='settings__column_left')
+                div(class='settings__column_left create')
                     if isOrder
                         if !isChange
                             div(class='settings__label') Создать заказ
@@ -80,7 +80,7 @@ include ../../inputes/settingsInput
                                 div(class="error__arrow")
                         div.settings-form__input-mini_bg
                             div#select
-                div(class='settings__column_right')
+                div(class='settings__column_right create')
                     //TODO: Тоже сделать шаблоном
                     div(class='about-form__input')
                         if !isChange
