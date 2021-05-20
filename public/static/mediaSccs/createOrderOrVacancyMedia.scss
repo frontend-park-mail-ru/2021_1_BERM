@@ -10,6 +10,23 @@
       height: 100%;
     }
   }
+
+  .settings-container.create {
+    padding: 49px;
+    width: 100%;
+  }
+
+  .create__about-textarea {
+    width: 300px;
+  }
+
+  .settings__column_right.create {
+    width: auto;
+  }
+
+  .about-form__input.create {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)){
@@ -27,6 +44,15 @@
 
   .settings__arrow {
     transform: translateX(-290%);
+  }
+
+  .create__about-textarea {
+    width: 100%;
+  }
+
+  .settings-container.create {
+    padding: 49px;
+    width: 100%;
   }
 
   .create >.settings-form__input {

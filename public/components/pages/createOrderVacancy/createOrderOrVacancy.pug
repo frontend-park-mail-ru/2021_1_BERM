@@ -2,7 +2,7 @@ include ../../inputes/settingsInput
 
 .settings
     div(class='create__bg-form')
-        form.settings-container(action='' id='order-create_form')
+        form.settings-container(action='' id='order-create_form' class="create")
             div(class='settings__form')
                 div(class='settings__column_left create')
                     if isOrder
@@ -82,7 +82,7 @@ include ../../inputes/settingsInput
                             div#select
                 div(class='settings__column_right create')
                     //TODO: Тоже сделать шаблоном
-                    div(class='about-form__input')
+                    div(class='about-form__input create')
                         if !isChange
                             textarea(class='create__about-textarea form-control' placeholder='Описание' name='description')
                         else
