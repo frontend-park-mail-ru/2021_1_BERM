@@ -65,6 +65,6 @@ jobs:
           host: 95.163.212.121
           username: ubuntu
           key: ${{ secrets.KEY }}
-          source: "build/*"
+          source: "dist/*"
           target: "/var/www/findfreelancer.ru/2021_1_BERM"
           strip_components: 1
