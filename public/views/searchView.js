@@ -81,7 +81,9 @@ export class SearchView extends View {
         });
     }
 
-
+    /**
+     * Настройка кастомного селекта категорий
+     */
     selectCategory() {
         new Select(
             '#select', {
@@ -90,6 +92,11 @@ export class SearchView extends View {
             }, 'dynamic-style');
     }
 
+    /**
+     * Настройка кастомного селекта сортировки
+     *
+     * @param {array} list
+     */
     selectSort(list = [
         {id: '61', value: 'Заголовку', type: 'item'},
         {id: '62', value: 'Заработной плате', type: 'item'},
@@ -110,6 +117,9 @@ export class SearchView extends View {
             }, 'dynamic-style');
     }
 
+    /**
+     * Настройка кастомного селекта выбора области поиска
+     */
     selectWhat() {
         new Select(
             '#select__what', {
