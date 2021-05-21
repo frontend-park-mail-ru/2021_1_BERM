@@ -60,7 +60,7 @@ jobs:
         with:
           name: dist
       - name: Transfer build files to server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@v0.0.10
         with:
           host: 95.163.212.121
           username: ubuntu
