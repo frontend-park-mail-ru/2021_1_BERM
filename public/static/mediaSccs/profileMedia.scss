@@ -1,5 +1,5 @@
 @import 'rootMedia.scss';
-@media screen and (max-width: $width-adapt) {
+@media screen and (max-width: 420px) {
   .profile {
     &__content {
       width: 100%;
@@ -31,7 +31,17 @@
 
   .specializes {
     &__name {
+      width: 50%;
+      word-break: break-all;
       flex: 0 0 auto;
+    }
+
+    &__title {
+      margin: 50px 0 0 0;
+    }
+
+    & li {
+      width: 100%;
     }
   }
 
@@ -71,5 +81,88 @@
     &__text {
       margin: 10px 0 0 0;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 421px) {
+  .profile {
+    &__content {
+    }
+
+    &__border {
+      width: 100%;
+      height: max-content;
+    }
+
+    .bottom {
+      flex-wrap: wrap;
+      &__item {
+        width: max-content;
+      }
+    }
+  }
+
+  .specializes {
+    &__title {
+      margin: 50px 0 0 0;
+    }
+  }
+
+  .top {
+    flex-wrap: wrap;
+
+    &__avatar {
+      margin-bottom: 100px;
+      margin-right: 40px;
+      width: max-content;
+      height: max-content;
+
+      & > img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    &__item {
+      flex: 0 0 auto;
+      padding: 0;
+      margin-right: 40px;
+    }
+  }
+
+  .user-name {
+    width: max-content;
+
+    &__text {
+      margin: 0;
+    }
+  }
+
+  .nickname {
+    width: max-content;
+
+    &__icon {
+      margin: 0;
+    }
+  }
+
+  .reviews-stat {
+  }
+
+  .settings-buttion {
+    &__text {
+      margin: 0;
+      width: 150px;
+    }
+  }
+
+  .exit-buttion {
+    &__text {
+      margin: 10px 0 0 0;
+      width: 150px;
+    }
+  }
+
+  .edit {
+    margin: -114px 0 0 -12px;
   }
 }

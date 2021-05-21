@@ -1,5 +1,6 @@
-$width-adapt: 720px;
+$width-adapt: 420px;
 $width-adapt-ipad: 1024px;
+
 @media screen and (max-width: $width-adapt) {
   .custom-form__input {
     width: 280px;

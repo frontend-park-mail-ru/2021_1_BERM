@@ -1,6 +1,7 @@
 @import "../scss/main.scss";
+@import 'rootMedia.scss';
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: $width-adapt) {
   .vacancyPage {
     &__customer-button_change {
       transform: translateX(-40px);
