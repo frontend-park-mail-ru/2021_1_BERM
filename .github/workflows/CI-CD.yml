@@ -66,5 +66,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.KEY }}
           source: "dist/*"
-          target: "/var/www/findfreelancer.ru/2021_1_BERM"
+          target: "/var/www/findfreelancer.ru/2021_1_BERM/dist"
           strip_components: 1
