@@ -1,3 +1,52 @@
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 500px) {
+  .reviews {
+    width: 100%;
+    margin-left: 0;
 
+    &__title {
+      font-size: 20px;
+      width: 100%;
+    }
+
+    &__row {
+      width: auto;
+      flex-direction: column;
+    }
+
+    &__title {
+      margin-left: 0;
+    }
+
+    &__element {
+      width: 100%;
+      margin: 30px 0 0 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 501px) {
+  .reviews {
+    width: 100%;
+    margin-left: 0;
+
+    &__title {
+      font-size: 20px;
+      width: 100%;
+    }
+
+    &__row {
+      width: auto;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__title {
+      margin-left: 0;
+    }
+
+    &__element {
+      width: 48%;
+      margin: 30px 0 0 0;
+    }
+  }
 }

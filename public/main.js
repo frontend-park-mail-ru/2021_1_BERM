@@ -21,6 +21,7 @@ import '@/components/pages/404/page404.scss';
 import '@/components/pages/createOrderVacancy/createOrderOrVacancy.scss';
 
 import '@/static/mediaSccs/selectMedia.scss';
+import '@/static/mediaSccs/reviewsMedia.scss';
 import '@/static/mediaSccs/orderMedia.scss';
 import '@/static/mediaSccs/vacancyMedia.scss';
 import '@/static/mediaSccs/rootMedia.scss';

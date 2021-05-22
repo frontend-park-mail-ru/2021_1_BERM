@@ -1,5 +1,5 @@
 @import 'rootMedia.scss';
-@media screen and (max-width: $width-adapt) {
+@media screen and (max-width: 1024px) {
   .orderPage {
     flex-wrap: wrap;
     align-items: normal;
@@ -36,7 +36,6 @@
       }
 
       &_name {
-        width: 230px;
         word-break: break-word;
         margin-left: 15px;
       }
@@ -69,12 +68,14 @@
       }
 
       &_up-box {
+        display: flex;
+        flex-wrap: wrap;
         width: 100%;
         justify-content: left;
       }
 
       &_text {
-        width: 100%;
+        width: max-content;
         padding: 15px;
         margin: 32px 0 32px 0;
         flex-wrap: wrap;

@@ -1,7 +1,7 @@
 @import "../scss/main.scss";
 @import 'rootMedia.scss';
 
-@media screen and (max-width: $width-adapt) {
+@media screen and (max-width: 1024px) {
   .vacancyPage {
     &__customer-button_change {
       transform: translateX(-40px);
@@ -24,12 +24,8 @@
       }
     }
 
-    &__comment-button {
-      &_reviews {
-        margin-top: 10px;
-      }
-
-      &_cancel {
+    &__comment-buttons {
+      & > button {
         margin-top: 10px;
       }
     }
