@@ -1,6 +1,7 @@
 @import "public/static/scss/main";
 
 .settings {
+  width: 100%;
   @include main-block(0);
   background-color: $white;
 
@@ -74,7 +75,8 @@
     @include uniq_form($primary_color);
     @include font(600, 18px, 22px, -0.4px, $white);
 
-    width: 168px;
+    max-width: 168px;
+    width: 48%;
     height: 50px;
   }
 
@@ -139,7 +141,8 @@
     @include uniq_form($secondary_color);
     @include font(600, 18px, 22px, -0.4px, $white);
 
-    width: 168px;
+    max-width: 168px;
+    width: 48%;
     height: 50px;
 
     &_arrow {

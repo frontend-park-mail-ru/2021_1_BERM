@@ -24,7 +24,7 @@ import '@/static/mediaSccs/selectMedia.scss';
 import '@/static/mediaSccs/reviewsMedia.scss';
 import '@/static/mediaSccs/orderMedia.scss';
 import '@/static/mediaSccs/vacancyMedia.scss';
-import '@/static/mediaSccs/rootMedia.scss';
+import '@/static/mediaSccs/templatesMedia.scss';
 import '@/static/mediaSccs/settingsMedia.scss';
 import '@/static/mediaSccs/registrationMedia.scss';
 import '@/static/mediaSccs/profileMedia.scss';
@@ -33,6 +33,8 @@ import '@/static/mediaSccs/navbarMedia.scss';
 import '@/static/mediaSccs/mainMedia.scss';
 import '@/static/mediaSccs/feedbackMedia.scss';
 import '@/static/mediaSccs/createOrderOrVacancyMedia.scss';
+import '@/static/mediaSccs/rootMedia.scss';
+import '@/static/mediaSccs/loginMedia.scss';
 
 import {
     LoginController,

@@ -254,8 +254,11 @@ export class VacancyPageView extends View {
                 data: listOfServices,
             }, 'dynamic-style');
         const category = document.querySelector('[data-type="value"]');
+        const selectInput = document.querySelector('.select__input');
         category.value = info.creator.category;
-        category.style.width = category.scrollWidth + 'px';
+        const scrollHeight = category.scrollHeight;
+        category.style.height = scrollHeight - 4 + 'px';
+        selectInput.style.height = scrollHeight + 2 + 'px';
         const val = new Validator(
             'order-create_form',
             '.form-control',

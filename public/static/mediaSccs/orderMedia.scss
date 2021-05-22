@@ -1,5 +1,6 @@
-@import 'rootMedia.scss';
-@media screen and (max-width: 1024px) {
+@import 'templatesMedia';
+@media screen and (max-width: $width-adapt1) {
+
   .orderPage {
     flex-wrap: wrap;
     align-items: normal;

@@ -1,6 +1,10 @@
-@import 'rootMedia.scss';
 
-@media screen and (max-width: 420px) {
+
+// @media screen and (max-width: 420px) {
+
+@import 'templatesMedia';
+@media screen and (max-width: $width-adapt1) {
+
   .profile {
     &__content {
       width: 100%;

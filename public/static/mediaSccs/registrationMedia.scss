@@ -1,18 +1,20 @@
-@import 'rootMedia.scss';
-@media screen and (max-width: $width-adapt) {
+@import 'templatesMedia';
+@media screen and (max-width: $width-adapt1) {
   .registration {
     //position: fixed;
-    width: 300px;
+    //width: 300px;
     margin-left: 30px;
     margin-top: 10px;
 
     &__other_reg {
       justify-content: space-between;
+      width: 100%;
     }
 
     &__bg-form {
-      width: 360px;
-      margin-left: 15px;
+      width: 100%;
+      //margin-left: 15px;
+      margin-right: 8%;
     }
 
     &__input-other_in {
@@ -24,12 +26,13 @@
     }
 
     &__input-other {
-      width: 120px;
+      width: 45%;
       //margin-right: 21px;
       //opacity: 0;
 
       &_img {
-        margin-left: 38px;
+        //margin-left: 38px;
+        margin-left: 35%;
         margin-top: 10px;
         width: 40px;
         max-width: 100px;
@@ -42,5 +45,64 @@
       margin-top: 15px;
       margin-bottom: 15px;
     }
+  }
+
+  .custom-form > .custom-form__label {
+    transform: translateY(-40%);
+  }
+}
+
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)) {
+  .registration {
+    //position: fixed;
+    //width: 300px;
+    margin-left: 30px;
+    margin-top: 10px;
+
+    &__other_reg {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &__bg-form {
+      width: 100%;
+      //margin-left: 15px;
+      margin-right: 3%;
+      margin-top: 16%;
+    }
+
+    //&__input-other_in {
+    //  width: 0;
+    //  font-size: 0;
+    //  margin: 0;
+    //  padding: 0;
+    //  opacity: 0;
+    //}
+
+    &__input-other {
+      width: 45%;
+      //margin-right: 21px;
+      //opacity: 0;
+
+      &_img {
+        //margin-left: 38px;
+        margin-left: 35%;
+        margin-top: 10px;
+        width: 40px;
+        max-width: 100px;
+        max-height: 100px;
+        transform: translateX(-125%);
+      }
+    }
+
+    &__other_text {
+      justify-content: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .custom-form > .custom-form__label {
+    transform: translateY(-40%);
   }
 }
