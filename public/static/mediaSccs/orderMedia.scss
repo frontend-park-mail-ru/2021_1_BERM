@@ -87,7 +87,13 @@
       }
 
       &_stats {
+        display: flex;
+        flex-wrap: wrap;
         width: 100%;
+      }
+
+      &_stat {
+        width: auto;
       }
     }
 
