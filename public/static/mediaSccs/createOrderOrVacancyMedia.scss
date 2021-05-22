@@ -1,5 +1,5 @@
 @import 'templatesMedia';
-@media screen and (max-width: $width-adapt) {
+@media screen and (max-width: $width-adapt1) {
   .create{
     &__about-textarea {
       width: 300px;
@@ -29,7 +29,7 @@
   }
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)){
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)){
   .settings__column_left.create {
     width: 100%;
   }

@@ -33,6 +33,7 @@ import '@/static/mediaSccs/mainMedia.scss';
 import '@/static/mediaSccs/feedbackMedia.scss';
 import '@/static/mediaSccs/createOrderOrVacancyMedia.scss';
 import '@/static/mediaSccs/rootMedia.scss';
+import '@/static/mediaSccs/loginMedia.scss';
 
 import {
     LoginController,

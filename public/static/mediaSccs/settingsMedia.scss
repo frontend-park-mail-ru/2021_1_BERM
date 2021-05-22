@@ -1,5 +1,5 @@
 @import 'templatesMedia';
-@media screen and (max-width: $width-adapt) {
+@media screen and (max-width: $width-adapt1) {
   .settings {
     flex-wrap: wrap;
     margin: 0;
@@ -68,7 +68,7 @@
 
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)){
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)){
   #root > .settings {
     overflow: hidden;
   }
@@ -145,7 +145,7 @@
 
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)) and (max-height: 1024px) and (max-height: $height-adapt-ipad){
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)) and (max-height: 1024px) and (max-height: $height-adapt-ipad){
   #root {
     overflow-x: hidden;
     height: auto;
@@ -174,7 +174,7 @@
   }
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)) and (max-height: 1024px) and (max-height: $height-adapt-ipad){
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)) and (max-height: 1024px) and (max-height: $height-adapt-ipad){
   #root {
     overflow-x: hidden;
     height: auto;

@@ -44,7 +44,7 @@
 
 }
 
-@media screen and (max-width: $width-adapt) and (min-width: calc(#{$pixel} + 1px)) {
+@media screen and (max-width: $width-adapt1) and (min-width: calc(#{$pixel} + 1px)) {
   .custom-form__input {
     width: 105%;
   }
@@ -88,7 +88,7 @@
   }
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)) {
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)) {
   .custom-form{
     &__input_in {
     width: 68%;

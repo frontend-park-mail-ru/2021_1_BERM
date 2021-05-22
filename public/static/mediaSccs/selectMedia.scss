@@ -1,5 +1,5 @@
 @import 'templatesMedia';
-@media screen and (max-width: $width-adapt) {
+@media screen and (max-width: $width-adapt1) {
 .select {
   &__input {
     width: 300px;
@@ -19,7 +19,7 @@
 }
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)){
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)){
   .select {
     width: 100%;
 
