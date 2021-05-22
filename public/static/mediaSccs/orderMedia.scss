@@ -102,7 +102,7 @@
     }
 
     &__set-rate {
-      width: 98%;
+      width: 100%;
       flex-wrap: wrap;
 
       &_title {
@@ -142,11 +142,24 @@
 
   .min-rate {
     flex-direction: column;
-    width: 350px;
-    margin-left: 12px;
   }
 
   .orderPage .vacancyPage__customer-button_change {
     transform: translateX(0);
   }
 }
+
+@media screen and (max-width: 1024px) and (min-width: 721px) {
+  .orderPage {
+    &__comments {
+      flex-flow: nowrap;
+      flex-wrap: nowrap;
+    }
+
+    &__responses {
+      margin-top: 0;
+    }
+  }
+
+}
+
