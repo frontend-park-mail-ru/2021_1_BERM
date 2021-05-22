@@ -23,8 +23,6 @@ export default class Select {
         this.currentStateHeight = 0;
         this.geomKoef = 4;
         this.selectInput = null;
-        console.log(this.selectInput);
-        // this.selectInput.style.height =
 
 
         this.render();
@@ -59,7 +57,6 @@ export default class Select {
         this.prevStateHeight = this.$value.scrollHeight;
         this.currentStateHeight = this.$value.scrollHeight;
         this.selectInput = document.querySelector('.select__input');
-        console.log(this.selectInput);
     }
 
     /**
@@ -104,29 +101,19 @@ export default class Select {
      * @param {number} id
      */
     select(id) {
-        // const selectInput = this.$value.parentNode;
-
-        console.log(this.currentStateHeight, this.prevStateHeight);
-        // console.log( this.$value.scrollHeight);
-        // console.log('_______________________AAAA');
-        // console.log(this.$value.scrollHeight);
-        // console.log(this.$value.clientHeight);
-        // console.log(this.$value.offsetHeight);
-        // console.log('_______________________AAAA');
-
         this.selectedId = id;
         this.$value.style.height = '60px';
         this.$value.value = this.current.value;
-        // console.log('_______________________AAAA');
-        // console.log(this.$value.scrollHeight);
-        // console.log(this.$value.clientHeight);
-        // console.log(this.$value.offsetHeight);
-        // console.log('_______________________AAAA');
+        this.$value.textContent = this.current.value;
+
+        const event = document.createEvent('HTMLEvents');
+        event.initEvent('select', true, true);
+        event.eventName = 'select';
+        this.$value.dispatchEvent(event);
         const scrollHeight = this.$value.scrollHeight;
         this.$value.style.height = scrollHeight - 4 + 'px';
         this.selectInput.style.height = scrollHeight + 2 + 'px';
-
-        console.log( this.$value.scrollHeight);
+      
         this.$el.querySelectorAll('[data-type="item"]').forEach((el) => {
             el.classList.remove('selected');
         });
