@@ -18,8 +18,9 @@ include orderInOrdersPage
                     form#search__form
                         input(class='search__form_input' placeholder='Введите поисковой запрос' name='search')
                         button(class='search__form_submit') Найти
-            each order in orders
-                +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId, isArchive, isExecutor)
+            div(class='content')
+            // each order in orders
+            //     +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId, isArchive, isExecutor)
             if orders.length !== 0
                 //button.show-more-button Показать еще
             else
@@ -33,3 +34,6 @@ include orderInOrdersPage
                     input(type='text' placeholder='До' class='filters__form_input')
             button(class='filters__submit')
                 | Применить
+    div(class='pagination')
+        ul(class='content')
+

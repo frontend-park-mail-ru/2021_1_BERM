@@ -110,7 +110,7 @@ class Order {
             this.setAttributes({
                 id: res.id,
                 avatar: res.user_img ? imgUrl + res.user_img : undefined,
-                login: res.login,
+                login: res.user_login,
                 name: res.order_name,
                 customerId: res.customer_id,
                 category: res.category,

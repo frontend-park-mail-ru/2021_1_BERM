@@ -89,7 +89,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 421px) {
+@media screen and (max-width: $height-adapt-ipad-pro) and (min-width: 421px) {
   .profile {
     &__content {
     }

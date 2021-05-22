@@ -19,6 +19,7 @@ import '@/components/pages/search/search.scss';
 import '@/components/modelWindows/confim/confim.scss';
 import '@/components/pages/404/page404.scss';
 import '@/components/pages/createOrderVacancy/createOrderOrVacancy.scss';
+import '@/static/scss/paginator.scss';
 
 import '@/static/mediaSccs/selectMedia.scss';
 import '@/static/mediaSccs/reviewsMedia.scss';

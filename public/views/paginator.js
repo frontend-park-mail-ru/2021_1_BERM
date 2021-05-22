@@ -2,9 +2,11 @@
 // const element = document.querySelector('.pagination ul');
 // let totalPages = 20;
 // const page = 1;
+import orderTemplate from '@/components/pages/orders/orderInOrders.pug';
 
 export class Paginator {
-    constructor(data, count, itemsPerPage, contentSelect) {
+    constructor(data, count, itemsPerPage, contentSelect, options) {
+        this.options = options;
         this.orders = data;
         this.count = count;
         this.itemPerPage = itemsPerPage;
@@ -85,6 +87,10 @@ export class Paginator {
         } else if (page === this.countOfPages - 1) {
             beforePage = beforePage - 1;
         }
+
+        if (beforePage < 0) {
+            beforePage = 0;
+        }
         // console.log(beforePage);
         // // how many pages or li show after the current li
         // console.log(afterPage);
@@ -117,7 +123,7 @@ export class Paginator {
             // if(page < totalPages - 2){ //if page value is less than totalPage value by -2 then add this (...) before the last li or page
             //   liTag += `<li class="dots"><span>...</span></li>`;
             // }
-            liCurrent = `<li data-type="end" class="last numb" ><img src="3-rightArrow.svg" alt=""></li>`;
+            liCurrent = `<li data-type="end" class="last numb" ><img src=require("@/static/img/card.svg").default alt=""></li>`;
             this.paginationPages.push(liCurrent);
             liTag += liCurrent;
         }
@@ -128,7 +134,7 @@ export class Paginator {
             liTag += liCurrent;
         }
         this.element.innerHTML = liTag; // add li tag inside ul tag
-        const wtf = element.querySelectorAll('li');
+        // const wtf = element.querySelectorAll('li');
         // console.log(wtf)
         // element.innerHTML = liTag;
 
@@ -199,7 +205,13 @@ export class Paginator {
         for (let i = ((page - 1) * this.itemPerPage); i < (page * this.itemPerPage); i++) {
             const content = document.createElement('div');
             console.log(this.orders[i]);
-            content.innerHTML = this.orders[i].name + ' ' + this.orders[i].surname + ' ' + this.orders[i].age;
+            content.innerHTML = orderTemplate({
+                order: this.orders[i],
+                isI: this.options.isI,
+                isMyOrders: this.options.isMyOrders,
+                isArchive: this.options.isArchive,
+                isExecutor: this.options.isExecutor,
+            });
             mainDiv.appendChild(content);
         }
     }

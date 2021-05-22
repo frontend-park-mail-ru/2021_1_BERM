@@ -1,0 +1,34 @@
+/*#orders__list  {*/
+/*  padding: 10px;*/
+/*  border: 1px solid black;*/
+/*}*/
+
+.pagination {
+  display: flex;
+  padding: 0;
+  list-style-type: none;
+}
+.pagination li {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: 2px solid #808080;
+  border-radius: 8px;
+  display: block;
+
+}
+.pagination li:hover, #pagination li.active {
+  cursor: pointer;
+  border: 2px solid #345DEE;
+}
+
+.right-arrows {
+  transform: rotateY(213deg);
+}
+
+.pagination li.active,
+.pagination ul li.numb:hover,
+.pagination ul li:first-child:hover,
+.pagination ul li:last-child:hover{
+  color: #fff;
+  background: #20B2AA;
+}

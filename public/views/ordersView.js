@@ -12,6 +12,7 @@ import ordersTemplate from '@/components/pages/orders/orders.pug';
 import {notification} from '@/components/notification/notification';
 import feedback from '@/components/modelWindows/feedback.pug';
 import {Validator} from '@/views/validation/validator';
+import {Paginator} from '@/views/paginator';
 
 /** View страницы всех заказов */
 export class OrdersView extends View {
@@ -39,6 +40,8 @@ export class OrdersView extends View {
         for (const item of dataForRender.map.values()) {
             map.push(item);
         }
+        console.log(map);
+        console.log(dataForRender);
 
         super.renderHtml(
             dataForRender.isAuthorized,
@@ -52,6 +55,14 @@ export class OrdersView extends View {
                 isExecutor: dataForRender.isExecutor,
             }),
         );
+
+        const paginator = new Paginator(map, map.length, 1, '.pagination',
+            {isI: dataForRender.isI,
+                isMyOrders: dataForRender.isMyOrders,
+                isArchive: dataForRender.isArchive,
+                isExecutor: dataForRender.isExecutor,
+            });
+        paginator.createPagination(1);
 
         if (dataForRender.isArchive) {
             const feedback = document
