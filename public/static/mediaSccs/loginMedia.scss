@@ -1,0 +1,17 @@
+@import 'templatesMedia';
+@media screen and (max-width: $pixel) {
+  #specForm {
+    display: contents;
+  }
+
+  #specForm > .custom-form__submit {
+    width: 100%;
+  }
+
+  .specMainContent {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+
+}
