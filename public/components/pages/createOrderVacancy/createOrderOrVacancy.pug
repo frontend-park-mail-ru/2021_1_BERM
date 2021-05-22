@@ -47,10 +47,10 @@ include ../../inputes/settingsInput
                         div.settings-form__input-mini_bg
                             div#select
                         if isChange
-                            div(class='change-form')
-                                button(class='change-form__cancel')
-                                    img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
-                                    span Отменить
+                            //div(class='change-form')
+                            //    button(class='change-form__cancel')
+                            //        img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
+                            //        span Отменить
                     else
                         if !isChange
                             div(class='settings__label') Создать вакансию
@@ -102,10 +102,13 @@ include ../../inputes/settingsInput
                                 img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')
                     if isChange
                         div(class='change-form')
-                            if !isOrder
-                                button(class='change-form__cancel')
-                                    img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
-                                    span Отменить
+                            //if !isOrder
+                            //    button(class='change-form__cancel')
+                            //        img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
+                            //        span Отменить
+                            button(class='change-form__cancel')
+                                img(class='change-form__cancel_arrow' src=require("@/static/img/arrow.svg").default alt='')
+                                span Отменить
                             button(class='settings-form__submit' id='send_mess')
                                 span Изменить
                                 img(class='settings__submit__img' src=require("@/static/img/arrow.svg").default alt='')

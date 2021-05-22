@@ -1,5 +1,5 @@
 @import 'templatesMedia';
-@media screen and (max-width: $width-adapt) {
+@media screen and (max-width: $pixel) {
   .custom-form__input {
     width: 105%;
   }
@@ -31,6 +31,7 @@
 
   .custom-form__input-mini_flex {
     margin-top: 30px;
+    width: 100%;
   }
 
   .custom-form__input-mini {
@@ -38,7 +39,72 @@
   }
 
   .custom-form__input-mini_in {
-    width: 74%;
+    //width: 90%;
   }
 
+}
+
+@media screen and (max-width: $width-adapt) and (min-width: calc(#{$pixel} + 1px)) {
+  .custom-form__input {
+    width: 105%;
+  }
+
+  .custom-form {
+    height: auto;
+    //padding: 15px 30px;
+    padding: 4% 8% 4% 4%;
+  }
+
+  .custom-form__img {
+    width: 40px;
+  }
+
+  .custom-form__input_in {
+    width: 100%;
+  }
+
+
+  .custom-form__input-mini_bg {
+    flex: 1 1 auto;
+    justify-content: space-between;
+    margin-top: 0;
+  }
+
+  .custom-form__submit {
+    width: 105%;
+  }
+
+  .custom-form__input-mini_flex {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .custom-form__input-mini {
+    width: 105%;
+  }
+
+  .custom-form__input-mini_in {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt} + 1px)) {
+  .custom-form{
+    &__input_in {
+    width: 68%;
+  }
+    &__input-mini_flex {
+      width: 47%;
+    }
+
+    &__input-mini {
+      width: 100%;
+    }
+
+    &__input-mini_in {
+      width: 74%;
+    }
+
+
+  }
 }
