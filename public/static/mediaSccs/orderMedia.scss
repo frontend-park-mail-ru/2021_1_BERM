@@ -1,5 +1,5 @@
 @import 'templatesMedia';
-@media screen and (max-width: $width-adapt1) {
+@media screen and (max-width: 1024px) {
 
   .orderPage {
     flex-wrap: wrap;
@@ -121,7 +121,7 @@
       }
 
       &_input > .custom-form__input {
-          width: 310px;
+          width: 90%;
       }
 
       &_title-customer {
@@ -142,7 +142,7 @@
       }
 
       &_input_in {
-        width: 310px;
+        width: 90%;
       }
     }
   }

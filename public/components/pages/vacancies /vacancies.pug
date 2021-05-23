@@ -13,7 +13,7 @@ include ../../vacancies/vacancyInVacanciesPage
             div(class='search')
                 if !isArchive && !isMyVacancies
                     form#search__form
-                        input(class='search__form_input' placeholder='Введите поисковой запрос' name='search')
+                        input(class='search__form_input' placeholder='Введите запрос' name='search')
                         button(class='search__form_submit') Найти
             each vacancy in vacancies
                 +vacancyInVacanciesPage(vacancy.avatar?vacancy.avatar:require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id)
@@ -28,5 +28,3 @@ include ../../vacancies/vacancyInVacanciesPage
                 div(class='filters__form')
                     input(type='text' placeholder='От' class='filters__form_input')
                     input(type='text' placeholder='До' class='filters__form_input')
-            button(class='filters__submit')
-                | Применить

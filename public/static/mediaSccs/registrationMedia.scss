@@ -1,10 +1,8 @@
 @import 'templatesMedia';
 @media screen and (max-width: $width-adapt1) {
   .registration {
-    //position: fixed;
-    //width: 300px;
-    margin-left: 30px;
-    margin-top: 10px;
+    padding: 4%;
+    margin-top: 0;
 
     &__other_reg {
       justify-content: space-between;
@@ -13,8 +11,6 @@
 
     &__bg-form {
       width: 100%;
-      //margin-left: 15px;
-      margin-right: 8%;
     }
 
     &__input-other_in {
@@ -54,10 +50,7 @@
 
 @media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)) {
   .registration {
-    //position: fixed;
-    //width: 300px;
-    margin-left: 30px;
-    margin-top: 10px;
+    padding: 4%;
 
     &__other_reg {
       justify-content: space-between;
@@ -66,9 +59,6 @@
 
     &__bg-form {
       width: 100%;
-      //margin-left: 15px;
-      margin-right: 3%;
-      margin-top: 16%;
     }
 
     //&__input-other_in {
