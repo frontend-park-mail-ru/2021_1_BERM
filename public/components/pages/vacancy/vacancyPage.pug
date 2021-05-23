@@ -7,11 +7,14 @@ include responses/responseVacancyCustomer
         div(class='orderPage__order_text')
             .orderPage__order_up-box
                 div(class='orderPage__order_title')= creator.title
-                if !isExecutor
-                    if selectExecutor
-                        button.orderPage__order_end Завершить заказ
-                    else
-                        img.orderPage__order_delete(src=require('@/static/img/delete.svg').default)
+                if isArchived
+                    button.orderPage__order_end В архиве
+                else
+                    if !isExecutor
+                        if selectExecutor
+                            button.orderPage__order_end Завершить заказ
+                        else
+                            img.orderPage__order_delete(src=require('@/static/img/delete.svg').default)
             div(class='orderPage__order_category')
                 div(class='orderPage__order_category-text') Категория:
                 button(class='orderPage__order_category-button')= creator.category
@@ -23,24 +26,26 @@ include responses/responseVacancyCustomer
                 if !isExecutor
                     button(class='vacancyPage__customer-button_change') Изменить
     if isExecutor
+        if !isArchived || userText
         form.custom-form(id="Vacancy_form")
             div(class='orderPage__comments')
                 textarea(class='vacancy-executor form-control' placeholder='Ваш отклик' name='rateExecutor')= userText
-            div(class=" error")
-                div(class="error__message")
-                div(class="error__main" id="textArVac")
-                    div(class="error__box")
-                        ul(class="error__list")
-                            li(class= "error__help") &#8226 Текст должен содержать не менее 40 символов
-                            li(class= "error__help") &#8226 Запрещено использовать специальные символы
-                    div(class="error__arrow")
-            div(class="vacancy-executor__row")
-                if userText === ''
-                    button(class='vacancy-executor__button_change' id='send_mess') Создать
+            if !isArchived
+                div(class=" error")
+                    div(class="error__message")
+                    div(class="error__main" id="textArVac")
+                        div(class="error__box")
+                            ul(class="error__list")
+                                li(class= "error__help") &#8226 Текст должен содержать не менее 40 символов
+                                li(class= "error__help") &#8226 Запрещено использовать специальные символы
+                        div(class="error__arrow")
+                div(class="vacancy-executor__row")
+                    if userText === ''
+                        button(class='vacancy-executor__button_change' id='send_mess') Создать
 
-                else
-                    button(class='vacancy-executor__button_change' id='send_mess') Изменить
-                    button(class='vacancy-executor__button_delete') Удалить
+                    else
+                        button(class='vacancy-executor__button_change' id='send_mess') Изменить
+                        button(class='vacancy-executor__button_delete') Удалить
     else
         div(class='orderPage__comments')
             div(class='vacancyPage__responses')
@@ -48,7 +53,7 @@ include responses/responseVacancyCustomer
                     span(class='vacancyPage__comments_title') Отклики
                     each response in responses
                         -var flag = 1
-                        +responseVacancy(response.avatar, response.login, response.text, response.creatorId, selectExecutor, isMy)
+                        +responseVacancy(response.avatar, response.login, response.text, response.creatorId, selectExecutor, isMy, isArchived)
                 if flag
                     div(class="orderPage__no-comments") Пока никто не оставил отклик
 

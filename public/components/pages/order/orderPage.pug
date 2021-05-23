@@ -8,7 +8,7 @@ include responses/responseMinOrderExecutor
 include responses/responseMinOrderCustomer
 
 .orderPage
-    +orderInOrderPageExecutor(creator.avatar?creator.avatar:require('@/static/img/profileAvatar.svg').default, creator.title, creator.category, creator.definition, creator.date, creator.budget, creator.name, creator.customerId, isExecutor, selectExecutor)
+    +orderInOrderPageExecutor(creator.avatar?creator.avatar:require('@/static/img/profileAvatar.svg').default, creator.title, creator.category, creator.definition, creator.date, creator.budget, creator.name, creator.customerId, isExecutor, selectExecutor, isArchived)
     div(class='orderPage__comments')
         div(class='orderPage__responses')
             div(class='orderPage__comments_title') Отклики
@@ -18,11 +18,11 @@ include responses/responseMinOrderCustomer
                         if isExecutor
                             +responseOrderExecutor(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId)
                         else
-                            +responseOrderCustomer(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId, isMy, selectExecutor)
+                            +responseOrderCustomer(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId, isMy, selectExecutor, isArchived)
 
                 //button(class='orderPage__comments_others') Показать ещё
             else
-                div(class="orderPage__no-comments") Пока никто не оставил отклик
+                div(class="orderPage__no-comments") Никто не оставил отклик
         div(class='orderPage__rate')
             if minResponse.rate !== -1
                 div(class='orderPage__comments_title') Минимальная ставка
@@ -32,9 +32,9 @@ include responses/responseMinOrderCustomer
                     +responseMinOrderCustomer(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId, isMy, selectExecutor)
             if isExecutor && !selectExecutor
                 if userRate === 0
-                    +makeRate
+                    +makeRate(isArchived)
                 else
-                    +changeRate(userRate)
+                    +changeRate(userRate, isArchived)
             else
                 if selectExecutor
-                    +rateCustomer(selectExecutor.avatar?selectExecutor.avatar:require('@/static/img/profileAvatar.svg').default, selectExecutor.login, selectExecutor.rate, selectExecutor.date, isMy, selectMe)
+                    +rateCustomer(selectExecutor.avatar?selectExecutor.avatar:require('@/static/img/profileAvatar.svg').default, selectExecutor.login, selectExecutor.rate, selectExecutor.date, isMy, selectMe, isArchived)

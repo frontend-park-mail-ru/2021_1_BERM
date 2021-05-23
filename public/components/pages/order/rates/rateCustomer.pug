@@ -1,4 +1,4 @@
-mixin rateCustomer(avatar, login, rate, date, isMy, selectMe)
+mixin rateCustomer(avatar, login, rate, date, isMy, selectMe, isArchived)
     div(class='orderPage__set-rate')
         if !selectMe
             div(class='orderPage__set-rate_title-customer') Выбранный исполнитель
@@ -15,6 +15,6 @@ mixin rateCustomer(avatar, login, rate, date, isMy, selectMe)
                 div(class='orderPage__select-executor_data-column')= rate
                 div(class='orderPage__select-executor_data-column')= date
         div(class='orderPage__set-rate_buttons')
-            if isMy || selectMe
+            if (isMy || selectMe) && !isArchived
                 button(class='orderPage__set-rate_button') Связаться
                 button(class='orderPage__set-rate_button-exit') Отказаться
