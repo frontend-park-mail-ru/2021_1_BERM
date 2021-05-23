@@ -6,7 +6,7 @@ include ../orders/orderInOrdersPage
         div(class='orders__list')
             div(class='search')
                     form#search__form
-                        input(class='search__form_input' placeholder='Введите поисковой запрос' name='search')
+                        input(class='search__form_input' placeholder='Введите запрос' name='search')
                         button(class='search__form_submit') Найти
             if orders
                 each order in orders

@@ -1,12 +1,6 @@
 @import 'templatesMedia';
-@media screen and (max-width: $width-adapt1) {
-  .filters {
-    width: calc(100% - 40px);
-    flex-wrap: wrap;
-    margin-top: 150px;
-    margin-left: 20px;
-  }
 
+@media screen and (max-width: $width-adapt1) {
   .orders__order_text {
     flex-wrap: wrap;
     width: 1000px;
@@ -42,21 +36,23 @@
   }
 
   #search__form {
+    display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    margin-left: 10px;
+    justify-content: space-between;
+    width: calc(100% - 40px);
+    margin-left: 20px;
   }
 
   .search {
     &__form {
       &_input {
-        width: 95%;
-        margin-left: 10px;
+        width: 78%;
       }
 
       &_submit {
         flex-wrap: wrap;
-        margin-top: 20px;
+        margin: 0;
+        width: 20%;
       }
     }
   }
@@ -66,21 +62,23 @@
   }
 
   .filters {
+    width: calc(100% - 40px);
+    flex-wrap: wrap;
+    margin-left: 20px;
     margin-top: 0;
-    width: 84%;
 
     &__form {
       width: 100%;
       margin-right: 17%;
 
       &_input {
-        width: 130%;
+        width: 100%;
         margin-bottom: 11px;
       }
     }
 
     &__budget {
-      width: 100%;
+      width: calc(100% - 25px);
 
       &_title {
         width: 100%;
@@ -91,19 +89,38 @@
 
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)) {
-  .orders {
+@media screen and (max-width: 1158px) and (min-width: calc(#{$width-adapt1} + 1px)) {
+  #search__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
 
+  .search {
+    &__form {
+      &_input {
+        width: 78%;
+      }
+
+      &_submit {
+        flex-wrap: wrap;
+        margin: 0;
+        width: 20%;
+      }
+    }
+  }
+
+  .orders {
     margin: 0;
 
-
-
     &__order {
-      width: 81%;
+      width: 99%;
     }
 
     &__list {
       width: 66%;
+      margin-right: 30px;
     }
 
     &__title {
@@ -111,6 +128,7 @@
     }
 
     &__content {
+      padding: 2%;
       flex-wrap: wrap;
       width: 100%;
     }
