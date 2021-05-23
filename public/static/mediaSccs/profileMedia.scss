@@ -1,9 +1,5 @@
-
-
-// @media screen and (max-width: 420px) {
-
 @import 'templatesMedia';
-@media screen and (max-width: $width-adapt1) {
+@media screen and (max-width: 420px) {
 
   .profile {
     &__content {

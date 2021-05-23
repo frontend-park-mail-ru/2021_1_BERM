@@ -1,6 +1,7 @@
 @import 'templatesMedia';
 @media screen and (max-width: $width-adapt1) {
   .filters {
+    width: calc(100% - 40px);
     flex-wrap: wrap;
     margin-top: 150px;
     margin-left: 20px;
@@ -36,19 +37,20 @@
 
     &__content {
       flex-wrap: wrap;
+      flex-direction: column-reverse;
     }
   }
 
   #search__form {
     flex-wrap: wrap;
-    width: 310px;
+    width: 100%;
     margin-left: 10px;
   }
 
   .search {
     &__form {
       &_input {
-        width: 310px;
+        width: 95%;
         margin-left: 10px;
       }
 
@@ -123,7 +125,7 @@
       width: 100%;
 
       &_input {
-        width: 110%;
+        width: 90%;
         margin-right: 0;
       }
     }
