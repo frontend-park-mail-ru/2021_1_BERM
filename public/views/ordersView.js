@@ -56,7 +56,8 @@ export class OrdersView extends View {
             }),
         );
 
-        const paginator = new Paginator(map, map.length, 1, '.pagination',
+        const paginator = new Paginator(map, map.length, 1,
+            '.contentPagination',
             {isI: dataForRender.isI,
                 isMyOrders: dataForRender.isMyOrders,
                 isArchive: dataForRender.isArchive,

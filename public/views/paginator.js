@@ -3,6 +3,10 @@
 // let totalPages = 20;
 // const page = 1;
 import orderTemplate from '@/components/pages/orders/orderInOrders.pug';
+import arrowRight from '@/static/img/rightArrow.svg';
+import arrowRight3 from '@/static/img/3-rightArrow.svg';
+import arrowLeft from '@/static/img/leftArrow.svg';
+import arrowLeft3 from '@/static/img/3-leftArrow.svg';
 
 export class Paginator {
     constructor(data, count, itemsPerPage, contentSelect, options) {
@@ -26,6 +30,7 @@ export class Paginator {
     }
 
     _setUp() {
+        console.log(this.element);
         this.element.addEventListener('click', (event) => {
             console.log(event.target);
             if (event.target.tagName !== 'UL') {
@@ -48,6 +53,8 @@ export class Paginator {
         let active;
         let beforePage = page - 2;
         let afterPage = page + 2;
+        let prevActive = 'disactivePrev';
+        let nextActive = 'disactiveNext';
 
         if (!this.notStart) {
             // this.paginationPages.forEach((item) => {
@@ -61,24 +68,26 @@ export class Paginator {
         }
 
         console.log(page);
-
         if (page > 1) {
-            // show the next button if the page value is greater than 1
-            liCurrent =
-                `<li data-type="prev" data-value="${page - 1}" class="btn prev">
-                    <img src="Icons-Chevron%20Left.svg" alt=""></li>`;
-            this.paginationPages.push(liCurrent);
-            liTag += liCurrent;
+            prevActive = 'activePrev';
         }
 
-        if (page > 1) { // if page value is less than 2 then add 1 after the previous button
-            liCurrent = `<li data-type="start" class="first numb"><img src="Component%203.svg" alt=""></li>`;
-            this.paginationPages.push(liCurrent);
-            liTag += liCurrent;
-            // if(page > 3){ //if page value is greater than 3 then add this (...) after the first li or page
-            //   liTag += `<li class="dots"><span>...</span></li>`;
-            // }
-        }
+        // if page value is less than 2 then add 1 after the previous button
+        liCurrent = `<li data-type="start" class="first-numb ${prevActive}"><img src=${arrowLeft3} alt=""></li>`;
+        this.paginationPages.push(liCurrent);
+        liTag += liCurrent;
+        // if(page > 3){ //if page value is greater than 3 then add this (...) after the first li or page
+        //   liTag += `<li class="dots"><span>...</span></li>`;
+        // }
+
+        // if (page > 1) {
+        // show the next button if the page value is greater than 1
+        liCurrent =
+            `<li data-type="prev" data-value="${page - 1}" class="btn-prev ${prevActive}">
+                   <img src=${arrowLeft} alt=""></li>`;
+        this.paginationPages.push(liCurrent);
+        liTag += liCurrent;
+        // }
 
         // how many pages or li show before the current li
         // console.log(beforePage);
@@ -114,25 +123,29 @@ export class Paginator {
             } else { // else leave empty to the active variable
                 active = '';
             }
-            liCurrent = `<li data-value="${plength}" class="numb ${active}"><span>${plength}</span></li>`;
+            liCurrent = `<li data-value="${plength}" class="numb ${active}"><div class="numbSpan">${plength}</div></li>`;
             this.paginationPages.push(liCurrent);
             liTag += liCurrent;
         }
 
-        if (page < this.countOfPages) { // if page value is less than totalPage value by -1 then show the last li or page
-            // if(page < totalPages - 2){ //if page value is less than totalPage value by -2 then add this (...) before the last li or page
-            //   liTag += `<li class="dots"><span>...</span></li>`;
-            // }
-            liCurrent = `<li data-type="end" class="last numb" ><img src=require("@/static/img/card.svg").default alt=""></li>`;
-            this.paginationPages.push(liCurrent);
-            liTag += liCurrent;
+        if (page < this.countOfPages) {
+            nextActive = 'activeNext';
         }
 
-        if (page < this.countOfPages) { // show the next button if the page value is less than totalPage(20)
-            liCurrent = `<li data-type="next" data-value="${page + 1}" class="btn next"><img src="rightArrow.svg" alt=""></li>`;
-            this.paginationPages.push(liCurrent);
-            liTag += liCurrent;
-        }
+
+         // show the next button if the page value is less than totalPage(20)
+        liCurrent = `<li data-type="next" data-value="${page + 1}" class="btn-next ${nextActive}"><img class="right" src=${arrowLeft} alt=""></li>`;
+        this.paginationPages.push(liCurrent);
+        liTag += liCurrent;
+
+        // if page value is less than totalPage value by -1 then show the last li or page
+        // if(page < totalPages - 2){ //if page value is less than totalPage value by -2 then add this (...) before the last li or page
+        //   liTag += `<li class="dots"><span>...</span></li>`;
+        // }
+        liCurrent = `<li data-type="end" class="last-numb ${nextActive}" ><img src=${arrowRight3} alt=""></li>`;
+        this.paginationPages.push(liCurrent);
+        liTag += liCurrent;
+
         this.element.innerHTML = liTag; // add li tag inside ul tag
         // const wtf = element.querySelectorAll('li');
         // console.log(wtf)
@@ -196,14 +209,19 @@ export class Paginator {
     }
 
     _showContent(page) {
-        const mainDiv = document.querySelector('.content');
+        const mainDiv = document.querySelector('.orders__items');
         while (mainDiv.firstChild) {
+            // if (mainDiv.tagName === 'search') {
+            //     break;
+            // }
             mainDiv.removeChild(mainDiv.firstChild);
         }
         console.log((page - 1) * this.itemPerPage);
         console.log((page) * this.itemPerPage);
         for (let i = ((page - 1) * this.itemPerPage); i < (page * this.itemPerPage); i++) {
             const content = document.createElement('div');
+            // content.style.width = '100%';
+            content.classList.add('orders__order');
             console.log(this.orders[i]);
             content.innerHTML = orderTemplate({
                 order: this.orders[i],

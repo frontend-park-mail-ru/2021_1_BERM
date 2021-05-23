@@ -2,18 +2,31 @@
 /*  padding: 10px;*/
 /*  border: 1px solid black;*/
 /*}*/
-
+@import "main.scss";
 .pagination {
   display: flex;
   padding: 0;
   list-style-type: none;
 }
+
+.pagination ul{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  //background: #fff;
+  //padding: 8px;
+  //border-radius: 50px;
+  //box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+
 .pagination li {
   margin-right: 10px;
   padding: 5px 10px;
   border: 2px solid #808080;
   border-radius: 8px;
   display: block;
+  margin-top: 2%;
 
 }
 .pagination li:hover, #pagination li.active {
@@ -26,9 +39,23 @@
 }
 
 .pagination li.active,
-.pagination ul li.numb:hover,
-.pagination ul li:first-child:hover,
-.pagination ul li:last-child:hover{
-  color: #fff;
-  background: #20B2AA;
+.pagination ul li.numb:hover
+{
+  color: $white;
+  background: $primary_color;
+}
+
+.pagination li.disactivePrev,
+.pagination li.disactiveNext
+{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.right {
+  transform: rotate(180deg);
+}
+
+.numbSpan {
+  margin-top: 6px;
 }

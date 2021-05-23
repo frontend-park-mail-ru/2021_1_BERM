@@ -5,6 +5,10 @@
   flex-direction: column;
   margin: auto auto 49px;
 
+  &__items {
+    width: 100%;
+  }
+
   &__order {
     @include form_dis_2($row, $left);
     @include uniq_form($white);
