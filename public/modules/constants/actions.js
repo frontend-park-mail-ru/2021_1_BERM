@@ -38,6 +38,8 @@ export const REVIEWS_GO_ORDER = 'reviews_go_order';
 
 export const ARCHIVE_GET_VACANCIES = 'archive_get_orders';
 
+export const SEARCH_GO = 'search_go';
+
 export const ORDER_PAGE_GET_RES = 'order-page_get-res';
 export const ORDER_PAGE_RES = 'order-page_res';
 export const GO_TO_ORDER = 'go-to-order';

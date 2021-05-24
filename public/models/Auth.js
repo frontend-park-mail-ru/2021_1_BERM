@@ -507,4 +507,12 @@ export default class Auth {
     static searchVacancies(data) {
         return sendRequest('PATCH', `/vacancy/search`, data);
     }
+
+    static searchAllOrders(query) {
+        return sendRequest('GET', `/order${query}`);
+    }
+
+    static searchAllVacancies(query) {
+        return sendRequest('GET', `/vacancy${query}`);
+    }
 }

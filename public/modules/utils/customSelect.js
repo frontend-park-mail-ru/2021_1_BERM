@@ -11,13 +11,15 @@ export default class Select {
      * @param {string} selector - уникальный номер заказа
      * @param {Object} options - информация отклика
      * @param {string} idSelector
+     * @param {string} name
      */
-    constructor(selector, options, idSelector) {
+    constructor(selector, options, idSelector, name = 'category') {
         this.$el = document.querySelector(selector);
         this.options = options;
         this.selectedId = options.selectedId;
         this.$idSelectorDoc = null;
         this.idSelector = idSelector;
+        this.name = name;
 
         this.prevStateHeight = 0;
         this.currentStateHeight = 0;
@@ -39,7 +41,8 @@ export default class Select {
             data,
             placeholder,
             this.selectedId,
-            this.idSelector);
+            this.idSelector,
+            this.name);
         this.$idSelectorDoc = document.getElementById(this.idSelector);
     }
 

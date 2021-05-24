@@ -2,6 +2,8 @@ import {View} from '@/views/view';
 import searchTemplate from '@/components/pages/search/search.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
+import eventBus from '@/modules/eventBus';
+import {SEARCH_GO} from '@/modules/constants/actions';
 
 /** View страницы поиска */
 export class SearchView extends View {
@@ -25,9 +27,9 @@ export class SearchView extends View {
                 <div class="filters__budget_title">${title}</div>
                 <div class="filters__form">
                 <input class="filters__form_input" type="text" 
-                        placeholder="От" name="salary" />
+                        placeholder="От" name="salaryFrom" />
                 <input class="filters__form_input" type="text" 
-                        placeholder="До" name="salary" />
+                        placeholder="До" name="salaryTo" />
                 </div>
             </div>
         `;
@@ -79,6 +81,47 @@ export class SearchView extends View {
 
             this.selectCategory();
         });
+
+        const search = document.getElementById('search__form');
+
+        search.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const data = {
+                search_str: event.target.search.value,
+            };
+
+            const filters = document.getElementById('filters');
+            data.category = filters.category.value;
+            data.desc = filters.desc.value === 'Возрастанию';
+            const sort = filters.sort.value;
+            if (sort === 'Заголовку') {
+                data.sort = 'title';
+            }
+            if (sort === 'Заработной плате') {
+                data.sort = 'salary';
+            }
+            if (sort === 'Рейтингу') {
+                data.sort = 'rating';
+            }
+            if (sort === 'Имени') {
+                data.sort = 'name';
+            }
+            data.salary_from = filters.salaryFrom.value;
+            data.salary_to = filters.salaryTo.value;
+            data.what = filters.what.value;
+            //
+            // const filters = document.getElementById('filters');
+            // for (let i = 0, len = filters.elements.length; i < len; i++) {
+            //     const field = filters.elements[i];
+            //     if (field.name) {
+            //         data[field.name] = field.value;
+            //     }
+            // }
+
+            debugger;
+
+            eventBus.emit(SEARCH_GO, data);
+        });
     }
 
     /**
@@ -89,7 +132,8 @@ export class SearchView extends View {
             '#select', {
                 placeholder: 'Категория',
                 data: listOfServices,
-            }, 'dynamic-style');
+            }, 'dynamic-style',
+            'category');
     }
 
     /**
@@ -108,13 +152,15 @@ export class SearchView extends View {
                     {id: '51', value: 'Уменьшению', type: 'item'},
                     {id: '52', value: 'Возрастанию', type: 'item'},
                 ],
-            }, 'dynamic-style');
+            }, 'dynamic-style',
+            'desc');
 
         new Select(
             '#select__sort', {
                 placeholder: list[0].value,
                 data: list,
-            }, 'dynamic-style');
+            }, 'dynamic-style',
+            'sort');
     }
 
     /**
@@ -129,6 +175,7 @@ export class SearchView extends View {
                     {id: '42', value: 'Только вакансии', type: 'item'},
                     {id: '43', value: 'Только пользователей', type: 'item'},
                 ],
-            }, 'dynamic-style');
+            }, 'dynamic-style',
+            'what');
     }
 }
