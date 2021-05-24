@@ -24,7 +24,7 @@ import {
     VACANCY_GET_EXECUTOR,
     VACANCY_GET_DELETE_EXECUTOR,
     ORDER_PAGE_GET_RES,
-    NOTIF_CHANGE_VALID,
+    NOTIF_CHANGE_VALID, ARCHIVE_GET_VACANCIES,
 } from '@/modules/constants/actions.js';
 
 
@@ -414,12 +414,18 @@ export default class Auth {
      *
      * @param {number} id профиля
      *
-     * @return {Promise} - ответ от сервера
      */
     static getArchiveOrders(id) {
-        return sendRequest('GET', `/order/profile/${id}/archive`)
+        sendRequest('GET', `/order/profile/${id}/archive`)
             .then((res) => {
                 eventBus.emit(SEND_RESULT_RENDER, res);
+            });
+    }
+
+    static getArchiveVacancies(id) {
+        sendRequest('GET', `/vacancy/profile/${id}/archive`)
+            .then((res) => {
+                eventBus.emit(ARCHIVE_GET_VACANCIES, res);
             });
     }
 

@@ -12,6 +12,7 @@ import '@/components/pages/settings/settings.scss';
 import '@/components/pages/registration/registration.scss';
 import '@/components/pages/order/orderPage.scss';
 import '@/components/pages/vacancy/vacancy.scss';
+import '@/components/pages/vacancies/vacancies.scss';
 import '@/components/notification/notti.scss';
 import '@/components/pages/reviews/reviews.scss';
 import '@/components/pages/orders/search.scss';

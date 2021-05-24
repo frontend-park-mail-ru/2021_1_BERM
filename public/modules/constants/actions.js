@@ -36,6 +36,8 @@ export const VACANCIES_PAGE_SEARCH = 'vacancies_page_search';
 export const REVIEWS_GET_DATA = 'reviews_get_data';
 export const REVIEWS_GO_ORDER = 'reviews_go_order';
 
+export const ARCHIVE_GET_VACANCIES = 'archive_get_orders';
+
 export const ORDER_PAGE_GET_RES = 'order-page_get-res';
 export const ORDER_PAGE_RES = 'order-page_res';
 export const GO_TO_ORDER = 'go-to-order';

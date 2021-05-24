@@ -1,8 +1,9 @@
 include orderInOrdersPage
+include ../../vacancies/vacancyInVacanciesPage
 
 .orders
     if isArchive === true
-        div(class='orders__title') Архив заказов
+        div(class='orders__title') Архив
     else
         if isMyOrders === true
             if isI === true
@@ -20,6 +21,10 @@ include orderInOrdersPage
                         button(class='search__form_submit') Найти
             each order in orders
                 +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId, isArchive, isExecutor)
+            if isArchive
+                each vacancy in archiveVacancies
+                    +vacancyInVacanciesPage(vacancy.avatar ? vacancy.avatar : require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id, isArchive)
+
             if orders.length !== 0
                 //button.show-more-button Показать еще
             else

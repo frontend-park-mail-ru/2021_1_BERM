@@ -146,6 +146,9 @@ export class VacancyPageView extends View {
                     confim(
                         (event) => {
                             event.preventDefault();
+                            const elem = document
+                                .getElementById('confim_window');
+                            elem.parentNode.removeChild(elem);
                             eventBus.emit(VACANCY_PAGE_END);
                         });
                 }));

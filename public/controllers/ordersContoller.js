@@ -3,6 +3,7 @@ import {OrdersView} from '@/views/ordersView';
 
 import auth from '@/models/Auth.js';
 import order from '@/models/Order.js';
+import vacancy from '@/models/Vacancy.js';
 import eventBus from '@/modules/eventBus.js';
 import user from '@/models/User.js';
 
@@ -13,11 +14,11 @@ import {
     ORDERS_RENDER,
     SERVER_ERROR,
     ORDERS_PAGE_SEARCH,
-    ORDERS_SEND_FEEDBACK,
+    ORDERS_SEND_FEEDBACK, ARCHIVE_GET_VACANCIES, GO_TO_VACANCY,
 } from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
-import {getNotFoundPath, getOrderPath} from '@/modules/constants/goPath.js';
+import {getNotFoundPath, getOrderPath, getVacancyPath} from '@/modules/constants/goPath.js';
 import {ARCHIVE} from '@/modules/constants/pageNames.js';
 
 /** Контроллер страницы заказов */
@@ -49,14 +50,17 @@ export class OrdersController extends Controller {
 
         if (!user.isExecutor && !this.isI) {
             router.go(getNotFoundPath);
+            return;
         }
         super.run(
             [
                 [GO_TO_ORDER, this._goToOrder.bind(this)],
+                [GO_TO_VACANCY, this._goToVacancy.bind(this)],
                 [SEND_SERVICES, this._sendServices.bind(this)],
                 [SEND_RESULT_RENDER, this._sendResultsRender.bind(this)],
                 [ORDERS_PAGE_SEARCH, this._search.bind(this)],
                 [ORDERS_SEND_FEEDBACK, this._sendFeedback.bind(this)],
+                [ARCHIVE_GET_VACANCIES, this._getArchiveVacancies.bind(this)],
             ],
             true);
     }
@@ -70,12 +74,16 @@ export class OrdersController extends Controller {
         router.go(getOrderPath(id));
     }
 
+    _goToVacancy(id) {
+        router.go(getVacancyPath(id));
+    }
+
     /**
      * Получаем информацию о заказе, если ее нет
      */
     _sendServices() {
         if (this.isArchive) {
-            auth.getArchiveOrders(this.isMyOrders);
+            auth.getArchiveVacancies(this.isMyOrders);
             return;
         }
 
@@ -85,6 +93,27 @@ export class OrdersController extends Controller {
         }
 
         auth.getOrders();
+    }
+
+    _getArchiveVacancies(res) {
+        if (!res.ok) {
+            eventBus.emit(ORDERS_RENDER, {
+                isArchive: this.isArchive,
+                isI: this.isI,
+                isMyOrders: !!this.isMyOrders,
+                isAuthorized: user.isAuthorized,
+                isExecutor: user.isExecutor,
+                map: new Map([]),
+            });
+            eventBus.emit(SERVER_ERROR, 'Не удалось загрузить архив');
+            return;
+        }
+
+        res.json().then((res) => {
+            vacancy.clear();
+            vacancy.setVacancys(res);
+            auth.getArchiveOrders(this.isMyOrders);
+        });
     }
 
     /**
@@ -102,7 +131,7 @@ export class OrdersController extends Controller {
                 isExecutor: user.isExecutor,
                 map: new Map([]),
             });
-            eventBus.emit(SERVER_ERROR, 'Не удалось получить заказы');
+            eventBus.emit(SERVER_ERROR, 'Не удалось загрузить архив');
             return;
         }
 
@@ -117,6 +146,7 @@ export class OrdersController extends Controller {
                 isAuthorized: user.isAuthorized,
                 isExecutor: user.isExecutor,
                 map: order.ordersMap,
+                mapVacancies: this.isArchive ? vacancy.vacancysMap : false,
             });
         });
     }

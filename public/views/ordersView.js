@@ -6,7 +6,7 @@ import {
     GO_TO_ORDER,
     SERVER_ERROR,
     ORDERS_PAGE_SEARCH,
-    ORDERS_SEND_FEEDBACK,
+    ORDERS_SEND_FEEDBACK, GO_TO_VACANCY,
 } from '@/modules/constants/actions';
 import ordersTemplate from '@/components/pages/orders/orders.pug';
 import {notification} from '@/components/notification/notification';
@@ -40,12 +40,20 @@ export class OrdersView extends View {
             map.push(item);
         }
 
+        const archiveMap = [];
+        if (dataForRender.mapVacancies) {
+            for (const item of dataForRender.mapVacancies.values()) {
+                archiveMap.push(item);
+            }
+        }
+
         super.renderHtml(
             dataForRender.isAuthorized,
             dataForRender.isExecutor,
             'Все заказы',
             ordersTemplate({
                 orders: map,
+                archiveVacancies: archiveMap,
                 isI: dataForRender.isI,
                 isMyOrders: dataForRender.isMyOrders,
                 isArchive: dataForRender.isArchive,
@@ -66,6 +74,21 @@ export class OrdersView extends View {
                         event.target.getAttribute('data-order'));
 
                     this._feedback(to, order);
+                });
+            });
+
+            const allRef = document.querySelectorAll('.vacancies__order_link');
+            allRef.forEach((ref) => {
+                ref.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    eventBus.emit(GO_TO_VACANCY, ref.getAttribute('name'));
+                });
+            });
+
+            const allTit = document.querySelectorAll('.vacancies__order_title');
+            allTit.forEach((tit) => {
+                tit.addEventListener('click', () => {
+                    eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));
                 });
             });
         }
