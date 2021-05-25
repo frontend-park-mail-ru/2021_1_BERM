@@ -33,6 +33,10 @@ export class VacanciesView extends View {
             map.push(item);
         }
 
+        map.forEach((item) => {
+            item.salary += '₽';
+        });
+
         super.renderHtml(
             dataMap.isAuthorized,
             dataMap.isExecutor,

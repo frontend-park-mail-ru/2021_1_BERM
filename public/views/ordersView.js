@@ -40,6 +40,10 @@ export class OrdersView extends View {
             map.push(item);
         }
 
+        map.forEach((item) => {
+            item.budget += '₽';
+        });
+
         super.renderHtml(
             dataForRender.isAuthorized,
             dataForRender.isExecutor,

@@ -4,8 +4,8 @@ mixin makeRate
         form(class='orderPage__set-rate_form' id='rate-form')
             div(class='orderPage__set-rate_input')
                 div(class='custom-form__input')
-                    input(class='orderPage__set-rate_input_in form-control' type='text' name='rate' placeholder='Сумма' maxlength="9")
+                    input(class='orderPage__set-rate_input_in form-control' type='text' name='rate' placeholder='Сумма ₽' maxlength="9")
                 div(class="error error-rate")
                     div(class="error__message")
                     div(class="error__main")
-            button(class='orderPage__set-rate_button' id='send_mess') Поставить
+            button(class='orderPage__set-rate_button' id='send_mess' name='createRate') Поставить

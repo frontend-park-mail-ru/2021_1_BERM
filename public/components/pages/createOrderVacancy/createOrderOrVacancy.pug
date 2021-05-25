@@ -22,9 +22,9 @@ include ../../inputes/settingsInput
                                         li(class= "error__help") &#8226 Запрещено использовать специальные символы
                                 div(class="error__arrow")
                         if !isChange
-                            +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text')
+                            +settingsInput(require("@/static/img/card.svg").default, 'Бюджет ₽', 'budget', 'text')
                         else
-                            +settingsInput(require("@/static/img/card.svg").default, 'Бюджет', 'budget', 'text', '', creator.budget)
+                            +settingsInput(require("@/static/img/card.svg").default, 'Бюджет ₽', 'budget', 'text', '', creator.budget)
                         div(class=" error")
 
                             div(class="error__message")
