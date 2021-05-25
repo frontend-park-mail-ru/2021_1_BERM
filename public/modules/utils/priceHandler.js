@@ -14,7 +14,8 @@ export default class PriceHandler {
      */
     start() {
         const field = document.getElementsByName(this.selector)[0];
-        const regNumber =/(\D)/g;
+        const regNumber = /(\D)/g;
+        // const regNumber = /\d+?|\d+?\x20+(?:грн|руб|р.|\$)/;
         field.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(regNumber, '').
                 substr(0, 10);

@@ -222,7 +222,9 @@ export class Paginator {
             const content = document.createElement('div');
             // content.style.width = '100%';
             content.classList.add('orders__order');
+            // this.orders[i].budget += '₽';
             console.log(this.orders[i]);
+            console.log(this.orders[i].budget);
             content.innerHTML = orderTemplate({
                 order: this.orders[i],
                 isI: this.options.isI,
