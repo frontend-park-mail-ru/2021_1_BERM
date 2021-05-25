@@ -14,6 +14,8 @@ import {
     SERVER_ERROR,
     ORDERS_PAGE_SEARCH,
     ORDERS_SEND_FEEDBACK,
+    SEND_DATE_PAGINATE,
+    RENDER_PAGINATE,
 } from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
@@ -57,6 +59,7 @@ export class OrdersController extends Controller {
                 [SEND_RESULT_RENDER, this._sendResultsRender.bind(this)],
                 [ORDERS_PAGE_SEARCH, this._search.bind(this)],
                 [ORDERS_SEND_FEEDBACK, this._sendFeedback.bind(this)],
+                [SEND_DATE_PAGINATE, this._sendDatePaginate.bind(this)],
             ],
             true);
     }
@@ -148,5 +151,23 @@ export class OrdersController extends Controller {
                         'Не удалось оставить отклик');
                 }
             });
+    }
+
+    _sendDatePaginate(res) {
+        if (res.ok) {
+            res.json().then((result) => {
+                order.clear();
+                order.setOrders(result);
+
+                eventBus.emit(RENDER_PAGINATE, {
+                    isArchive: this.isArchive,
+                    isI: this.isI,
+                    isMyOrders: !!this.isMyOrders,
+                    isAuthorized: user.isAuthorized,
+                    isExecutor: user.isExecutor,
+                    map: order.ordersMap,
+                });
+            });
+        }
     }
 }

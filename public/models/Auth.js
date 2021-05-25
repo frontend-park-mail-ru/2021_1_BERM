@@ -25,6 +25,7 @@ import {
     VACANCY_GET_DELETE_EXECUTOR,
     ORDER_PAGE_GET_RES,
     NOTIF_CHANGE_VALID,
+    SEND_DATE_PAGINATE,
 } from '@/modules/constants/actions.js';
 
 
@@ -137,10 +138,20 @@ export default class Auth {
     /**
      * Запрос на все заказы
      */
-    static getOrders() {
-        sendRequest('GET', '/order')
+    static getOrders(queryString) {
+        sendRequest('GET', `/order`)
             .then((res) => {
                 eventBus.emit(SEND_RESULT_RENDER, res);
+            });
+    }
+
+    /**
+     * Запрос на все заказы
+     */
+    static getToPaginateOrders(queryString) {
+        sendRequest('GET', `/order${queryString}`)
+            .then((res) => {
+                eventBus.emit(SEND_DATE_PAGINATE, res);
             });
     }
 

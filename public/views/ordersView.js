@@ -7,6 +7,7 @@ import {
     SERVER_ERROR,
     ORDERS_PAGE_SEARCH,
     ORDERS_SEND_FEEDBACK,
+    RENDER_PAGINATE,
 } from '@/modules/constants/actions';
 import ordersTemplate from '@/components/pages/orders/orders.pug';
 import {notification} from '@/components/notification/notification';
@@ -16,6 +17,9 @@ import {Paginator} from '@/views/paginator';
 
 /** View страницы всех заказов */
 export class OrdersView extends View {
+    constructor() {
+        super();
+    }
     /**
      * Установка обработчиков
      *
@@ -26,6 +30,7 @@ export class OrdersView extends View {
         super.setListeners([
             [ORDERS_RENDER, this._renderData.bind(this)],
             [SERVER_ERROR, this._error.bind(this)],
+            [RENDER_PAGINATE, this._paginate],
         ]);
         eventBus.emit(SEND_SERVICES);
     }
@@ -167,5 +172,9 @@ export class OrdersView extends View {
             body.classList.remove('scroll_hidden');
             eventBus.emit(ORDERS_SEND_FEEDBACK, data);
         });
+    }
+
+    _paginate() {
+
     }
 }

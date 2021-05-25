@@ -71,6 +71,7 @@ export const SEND_SERVICES_VACANCIES = 'services-vacancies';
 export const SEND_RESULT_RENDER_VACANCIES = 'send-result-render-vacancies';
 export const GO_TO_USER = 'go-to-user';
 export const CHANGE_VACANCY = 'change-vacancy';
+export const SEND_DATE_PAGINATE = 'render-paginate';
 
 
 // Views actions
@@ -101,4 +102,5 @@ export const VACANCIES_RENDER = 'vacancies-render';
 export const ORDER_PAGE_ERROR = 'order_page_error';
 export const CHANGE_VACANCY_RENDER = 'change-vacancy-render';
 export const NOTIF_CHANGE_VALID = 'notif-change-valid';
+export const RENDER_PAGINATE = 'render-paginate';
 
