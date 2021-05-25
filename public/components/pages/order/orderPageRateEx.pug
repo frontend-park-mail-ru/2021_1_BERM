@@ -1,0 +1,15 @@
+div(class='orderPage__rate')
+    if minResponse.rate !== -1
+        div(class='orderPage__comments_title') Минимальная ставка
+        if isExecutor
+            +responseMinOrderExecutor(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId)
+        else
+            +responseMinOrderCustomer(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId, isMy, selectExecutor)
+    if isExecutor && !selectExecutor
+        if userRate === 0
+            +makeRate
+        else
+            +changeRate(userRate)
+    else
+        if selectExecutor
+            +rateCustomer(selectExecutor.avatar?selectExecutor.avatar:require('@/static/img/profileAvatar.svg').default, selectExecutor.login, selectExecutor.rate, selectExecutor.date, isMy, selectMe)

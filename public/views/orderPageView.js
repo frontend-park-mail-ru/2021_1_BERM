@@ -12,6 +12,7 @@ import {
     ORDER_PAGE_FEEDBACK,
     ORDER_PAGE_SEND_FEEDBACK,
     CHANGE_ORDER,
+    ORDER_CHANGE_RERENDER,
 } from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/order/orderPage.pug';
@@ -39,6 +40,7 @@ export class OrderPageView extends View {
             [ORDER_PAGE_RENDER, this._orderPageRender.bind(this)],
             [ORDER_PAGE_ERROR, this._error.bind(this)],
             [ORDER_PAGE_FEEDBACK, this._feedback.bind(this)],
+            [ORDER_CHANGE_RERENDER, this._orderChangeRerender],
         ]);
 
         eventBus.emit(ORDER_PAGE_GET_RES);
@@ -288,5 +290,9 @@ export class OrderPageView extends View {
                 new Date(date[2], date[1] - 1, date[0]).getTime();
             eventBus.emit(CHANGE_ORDER, sendInfo);
         });
+    }
+
+    _orderChangeRerender(dataForRerender) {
+
     }
 }

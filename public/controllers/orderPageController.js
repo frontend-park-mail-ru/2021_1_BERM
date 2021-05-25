@@ -21,6 +21,7 @@ import {
     ORDER_PAGE_ERROR,
     ORDER_PAGE_SEND_FEEDBACK,
     CHANGE_ORDER,
+    ORDER_CHANGE_RERENDER,
 } from '@/modules/constants/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
@@ -99,7 +100,7 @@ export class OrderPageController extends Controller {
             res.json().then((res) => {
                 order.setResponses(order.currentOrderId, res);
 
-                go();
+                go(ORDER_PAGE_RENDER);
             });
         } else {
             console.log('Запрос /order/id/responses - не сработал');
@@ -132,7 +133,7 @@ export class OrderPageController extends Controller {
             res.json().then((res) => {
                 order.push(order.currentOrderId, res);
 
-                go();
+                go(ORDER_CHANGE_RERENDER);
             });
         } else {
             console.log('Запрос не сработал');
@@ -143,7 +144,7 @@ export class OrderPageController extends Controller {
     /**
      * Отправляем данные view для отрисовки
      */
-    go() {
+    go(event) {
         const creator = order.getOrderById(order.currentOrderId);
 
         let isMy = true;
@@ -155,7 +156,7 @@ export class OrderPageController extends Controller {
             order.currentOrderId,
             order.ordersMap.get(order.currentOrderId).selectExecutor);
 
-        eventBus.emit(ORDER_PAGE_RENDER, {
+        eventBus.emit(event, {
             isMy: isMy,
             isAuthorized: user.isAuthorized,
             isExecutor: user.isExecutor,

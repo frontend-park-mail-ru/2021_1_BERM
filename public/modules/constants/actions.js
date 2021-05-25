@@ -94,6 +94,7 @@ export const GET_USER_DATA = 'get-user-data';
 export const NO_SET_UP = 'no-set-up';
 export const ORDER_PAGE_RENDER = 'order_page_render';
 export const ORDER_CREATE_GO_RENDER = 'order_create_go_render';
+export const ORDER_CHANGE_RERENDER = 'order-change-rerender';
 export const VACANCY_PAGE_RENDER = 'vacancy_page_render';
 export const NOT_SET_CATEGORY = 'not_set_category';
 export const ORDERS_RENDER = 'orders-render';
