@@ -1,5 +1,5 @@
 mixin responseOrderExecutor(userAvatar, userLogin, userRate, responseDate, id)
-    div(class='orderPage__response')
+    div(class='orderPage__response' id=`${id}`)
         div(class='orderPage__response_img-bg')
             img(class='orderPage__response_img' href=`/profile/${id}` src=userAvatar alt='')
             div(class='orderPage__response_name' href=`/profile/${id}`)= userLogin

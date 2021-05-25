@@ -26,6 +26,10 @@ import {listOfServices} from '@/modules/utils/templatesForSelect';
 import PriceHandler from '@/modules/utils/priceHandler';
 import {confim} from '@/components/modelWindows/confim/confim';
 import DateHandler from '@/modules/utils/dateHandler';
+import {Rerender} from './rerender.js';
+import orderPageRateEx from '@/components/pages/order/orderPageRateEx.pug';
+import orderPageRateCust from '@/components/pages/order/orderPageRateCust.pug';
+import responseTemplate from '@/components/pages/order/responseTemplate.pug';
 
 /** View страницы заказа */
 export class OrderPageView extends View {
@@ -40,7 +44,7 @@ export class OrderPageView extends View {
             [ORDER_PAGE_RENDER, this._orderPageRender.bind(this)],
             [ORDER_PAGE_ERROR, this._error.bind(this)],
             [ORDER_PAGE_FEEDBACK, this._feedback.bind(this)],
-            [ORDER_CHANGE_RERENDER, this._orderChangeRerender],
+            [ORDER_CHANGE_RERENDER, this._orderChangeRerender.bind(this)],
         ]);
 
         eventBus.emit(ORDER_PAGE_GET_RES);
@@ -60,7 +64,44 @@ export class OrderPageView extends View {
             'Страница заказа',
             orderPageTemplate(dataForRender),
         );
+        debugger;
+        this._orderHandler(dataForRender);
+    }
 
+    _orderChangeRerender(dataForRender) {
+        let rerender = null;
+        console.log(dataForRender);
+
+        if (dataForRender.isExecutor) {
+            let index = -1;
+            index = dataForRender.responses.findIndex((item) => {
+                console.log(item);
+                return item.creatorId === dataForRender.userId;
+            });
+            console.log(index);
+            rerender = new Rerender(orderPageRateEx);
+            rerender.update('.orderPage__rate', dataForRender);
+            rerender.deleteById(dataForRender.userId);
+            const data = {
+                avatar: dataForRender.responses[index].avatar,
+                login: dataForRender.responses[index].login,
+                rate: dataForRender.responses[index].rate,
+                date: dataForRender.responses[index].date,
+                creatorId: dataForRender.responses[index].creatorId,
+            };
+            if (dataForRender.addChange) {
+                rerender.addById(index, '.orderPage__responses_scroll',
+                    data, responseTemplate);
+            }
+        } else {
+            rerender = new Rerender(orderPageTemplate);
+            rerender.update('.orderPage', dataForRender);
+        }
+        console.log(dataForRender);
+        this._orderHandler(dataForRender);
+    }
+
+    _orderHandler(dataForRender) {
         if (dataForRender.isExecutor) {
             const val = new Validator(
                 'rate-form',
@@ -100,11 +141,11 @@ export class OrderPageView extends View {
                     eventBus.emit(ORDER_CHANGE_RATE, data);
                 });
             }
-            return;
+            return 0;
         }
 
         const changeButton = document.
-            querySelector('.vacancyPage__customer-button_change');
+        querySelector('.vacancyPage__customer-button_change');
 
         changeButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -155,6 +196,7 @@ export class OrderPageView extends View {
                 });
             });
         }
+        return 0;
     }
 
     /**
@@ -292,7 +334,5 @@ export class OrderPageView extends View {
         });
     }
 
-    _orderChangeRerender(dataForRerender) {
 
-    }
 }

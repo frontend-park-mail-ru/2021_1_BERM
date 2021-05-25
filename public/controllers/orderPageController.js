@@ -132,7 +132,7 @@ export class OrderPageController extends Controller {
         if (res.ok) {
             res.json().then((res) => {
                 order.push(order.currentOrderId, res);
-
+                order.add = true;
                 go(ORDER_CHANGE_RERENDER);
             });
         } else {
@@ -146,6 +146,7 @@ export class OrderPageController extends Controller {
      */
     go(event) {
         const creator = order.getOrderById(order.currentOrderId);
+        console.log(user.id);
 
         let isMy = true;
         if (creator.customerId !== user.id) {
@@ -157,6 +158,8 @@ export class OrderPageController extends Controller {
             order.ordersMap.get(order.currentOrderId).selectExecutor);
 
         eventBus.emit(event, {
+            addChange: order.add,
+            userId: user.id,
             isMy: isMy,
             isAuthorized: user.isAuthorized,
             isExecutor: user.isExecutor,
@@ -189,7 +192,8 @@ export class OrderPageController extends Controller {
                 console.log('Ошибка удаления');
             });
 
-        this.go();
+        order.add = false;
+        this.go(ORDER_CHANGE_RERENDER);
     }
 
     /**
@@ -199,6 +203,7 @@ export class OrderPageController extends Controller {
      */
     _orderChangeRate({rate}) {
         order.deleteResponse(order.currentOrderId, user.id);
+        order.add = true;
 
         const date = new Date();
         auth.changeResponse({
@@ -214,6 +219,7 @@ export class OrderPageController extends Controller {
      * @param {number} id - ставка заказа
      */
     _setExecutor(id) {
+        order.add = true;
         this.selectExecutorId = id;
         auth.setOrderExecutor(order.currentOrderId, {executor_id: id});
     }
@@ -225,10 +231,11 @@ export class OrderPageController extends Controller {
      */
     _getExecutor(res) {
         if (res.ok) {
+            order.add = true;
             order.ordersMap
                 .get(order.currentOrderId)
                 .selectExecutor = this.selectExecutorId;
-            this.go();
+            this.go(ORDER_CHANGE_RERENDER);
         } else {
             eventBus.emit(ORDER_PAGE_ERROR, 'Не удалось выбрать исполнителя');
         }
@@ -238,6 +245,7 @@ export class OrderPageController extends Controller {
      * Отменяем ислонителя
      */
     _deleteExecutor() {
+        order.add = false;
         auth.deleteOrderExecutor(order.currentOrderId);
     }
 
@@ -247,9 +255,10 @@ export class OrderPageController extends Controller {
      * @param {Response} res - результат запроса на отмену исполнителя
      */
     _getDeleteExecutor(res) {
+        order.add = false;
         if (res.ok) {
             order.ordersMap.get(order.currentOrderId).selectExecutor = null;
-            this.go();
+            this.go(ORDER_CHANGE_RERENDER);
         } else {
             eventBus.emit(ORDER_PAGE_ERROR,
                 'Не удалось отменить выбор исполнителя');

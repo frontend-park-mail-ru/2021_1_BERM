@@ -1,0 +1,7 @@
+include responses/responseOrderExecutor
+include responses/responseOrderCustomer
+
+    div(class='orderPage__responses_scroll')
+        if isExecutor
+            +responseOrderExecutor(avatar ? avatar : require('@/static/img/profileAvatar.svg').default, login, rate, date, creatorId)
+

@@ -1,17 +1,38 @@
-    div(class='orderPage__comments')
-        div(class='orderPage__responses')
-            div(class='orderPage__comments_title') Отклики
-            if minResponse.rate !== -1
-                div(class='orderPage__responses_scroll')
-                    each user in responses
-                        +responseOrderCustomer(user.avatar?user.avatar:require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId, isMy, selectExecutor)
+include ../orders/orderInOrderPageExecutor
+include rates/changeRate
+include rates/makeRate
+include rates/rateCustomer
+include responses/responseOrderExecutor
+include responses/responseOrderCustomer
+include responses/responseMinOrderExecutor
+include responses/responseMinOrderCustomer
 
-                //button(class='orderPage__comments_others') Показать ещё
+div(class='orderPage__comments')
+    div(class='orderPage__responses')
+        div(class='orderPage__comments_title') Отклики
+        if minResponse.rate !== -1
+            div(class='orderPage__responses_scroll')
+                each user in responses
+                    if isExecutor
+                        +responseOrderExecutor(user.avatar ? user.avatar : require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId)
+                    else
+                        +responseOrderCustomer(user.avatar ? user.avatar : require('@/static/img/profileAvatar.svg').default, user.login, user.rate, user.date, user.creatorId, isMy, selectExecutor)
+
+            //button(class='orderPage__comments_others') Показать ещё
+        else
+            div(class="orderPage__no-comments") Пока никто не оставил отклик
+    div(class='orderPage__rate')
+        if minResponse.rate !== -1
+            div(class='orderPage__comments_title') Минимальная ставка
+            if isExecutor
+                +responseMinOrderExecutor(minResponse.avatar ? minResponse.avatar : require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId)
             else
-                div(class="orderPage__no-comments") Пока никто не оставил отклик
-        div(class='orderPage__rate')
-            if minResponse.rate !== -1
-                div(class='orderPage__comments_title') Минимальная ставка
-                    +responseMinOrderCustomer(minResponse.avatar?minResponse.avatar:require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId, isMy, selectExecutor)
+                +responseMinOrderCustomer(minResponse.avatar ? minResponse.avatar : require('@/static/img/profileAvatar.svg').default, minResponse.login, minResponse.rate, minResponse.date, minResponse.creatorId, isMy, selectExecutor)
+        if isExecutor && !selectExecutor
+            if userRate === 0
+                +makeRate
+            else
+                +changeRate(userRate)
+        else
             if selectExecutor
-                +rateCustomer(selectExecutor.avatar?selectExecutor.avatar:require('@/static/img/profileAvatar.svg').default, selectExecutor.login, selectExecutor.rate, selectExecutor.date, isMy, selectMe)
+                +rateCustomer(selectExecutor.avatar ? selectExecutor.avatar : require('@/static/img/profileAvatar.svg').default, selectExecutor.login, selectExecutor.rate, selectExecutor.date, isMy, selectMe)

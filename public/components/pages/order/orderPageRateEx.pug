@@ -1,3 +1,11 @@
+include ../orders/orderInOrderPageExecutor
+include rates/changeRate
+include rates/makeRate
+include rates/rateCustomer
+include responses/responseOrderExecutor
+include responses/responseOrderCustomer
+include responses/responseMinOrderExecutor
+include responses/responseMinOrderCustomer
 div(class='orderPage__rate')
     if minResponse.rate !== -1
         div(class='orderPage__comments_title') Минимальная ставка
