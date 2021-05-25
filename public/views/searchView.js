@@ -121,7 +121,7 @@ export class SearchView extends View {
 
             const filters = document.getElementById('filters');
             data.category = filters.category.value;
-            data.desc = filters.desc.value === 'Возрастанию';
+            data.desc = filters.desc.value !== 'Возрастанию';
             const sort = filters.sort.value;
             if (sort === 'Заголовку') {
                 data.sort = 'title';

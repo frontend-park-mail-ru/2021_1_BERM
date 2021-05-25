@@ -515,4 +515,8 @@ export default class Auth {
     static searchAllVacancies(query) {
         return sendRequest('GET', `/vacancy${query}`);
     }
+
+    static searchAllUsers(query) {
+        return sendRequest('GET', `/profile/users${query}`);
+    }
 }

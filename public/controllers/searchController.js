@@ -56,7 +56,6 @@ export class SearchController extends Controller {
 
         data.what = '';
 
-        // Todo Ярик тащи с пагинацией я в тебя ВЕРЮ!
         data.limit = 10;
         data.offset = 0;
 
@@ -68,6 +67,8 @@ export class SearchController extends Controller {
             res = auth.searchAllOrders(query);
         } else if (flag === 2) {
             res = auth.searchAllVacancies(query);
+        } else {
+            res = auth.searchAllUsers(query);
         }
 
         res.then((res) => {
@@ -76,7 +77,7 @@ export class SearchController extends Controller {
             }
 
             res.json().then((res) => {
-                let data = [];
+                let data;
 
                 switch (flag) {
                 case 1:
@@ -91,6 +92,13 @@ export class SearchController extends Controller {
                     break;
                 case 3:
                     console.log(res);
+                    return;
+                    // const map = new Map();
+                    // res.forEach((item, index) => {
+                    //     map.set(index, item);
+                    // });
+                    // data = map;
+                    // break;
                 }
 
                 user.searchData = {key: flag, data: data};
