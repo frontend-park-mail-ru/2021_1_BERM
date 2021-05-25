@@ -16,6 +16,11 @@ import {notification} from '@/components/notification/notification';
 
 /** View страницы поиска */
 export class SearchView extends View {
+    constructor({key, data}) {
+        super();
+        this.key = key;
+        this.data = data;
+    }
     /**
      * Отображение страницы и получение с нее данных
      *
@@ -34,6 +39,10 @@ export class SearchView extends View {
                 [SEARCH_RENDER_CONTENT, this._renderContent.bind(this)],
             ],
         );
+
+        if (this.key) {
+            this._renderContent({key: this.key, data: this.data});
+        }
 
         const budget = (title) => `
             <div class="filters__budget_no-margin">
@@ -76,12 +85,18 @@ export class SearchView extends View {
         this.selectSort();
         this.selectWhat();
 
+        let prev;
         const textarea = document.querySelector('.select__form');
         textarea.addEventListener('select', (event) => {
             const val = event.target.value;
+            if (prev === val) return;
+
             if (val === 'Только заказы' || val === 'Только вакансии') {
-                filters.innerHTML = budget('Ставка') + sort + category;
-                this.selectSort();
+                if (prev === 'Только пользователей') {
+                    filters.innerHTML = budget('Ставка') + sort + category;
+                    this.selectSort();
+                    this.selectCategory();
+                }
             }
 
             if (val === 'Только пользователей') {
@@ -90,9 +105,10 @@ export class SearchView extends View {
                     {id: '51', value: 'Рейтингу', type: 'item'},
                     {id: '52', value: 'Имени', type: 'item'},
                 ]);
+                this.selectCategory();
             }
 
-            this.selectCategory();
+            prev = val;
         });
 
         const search = document.getElementById('search__form');

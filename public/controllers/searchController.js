@@ -12,6 +12,7 @@ import router from '@/modules/router';
 import {getOrderPath, getVacancyPath} from '@/modules/constants/goPath';
 import vacancy from '@/models/Vacancy';
 import order from '@/models/Order';
+import user from '@/models/User';
 
 /** Контроллер страницы поиска */
 export class SearchController extends Controller {
@@ -20,7 +21,13 @@ export class SearchController extends Controller {
      */
     constructor() {
         super();
-        this.view = new SearchView();
+        const data = {};
+        if (user.searchData) {
+            data.key = user.searchData.key;
+            data.data = user.searchData.data;
+        }
+
+        this.view = new SearchView(data);
     }
 
     /**
@@ -86,7 +93,8 @@ export class SearchController extends Controller {
                     console.log(res);
                 }
 
-                eventBus.emit(SEARCH_RENDER_CONTENT, {key: flag, data: data});
+                user.searchData = {key: flag, data: data};
+                eventBus.emit(SEARCH_RENDER_CONTENT, user.searchData);
             });
         });
     }
