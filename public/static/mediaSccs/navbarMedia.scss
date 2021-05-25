@@ -1,7 +1,7 @@
 @import "../scss/main.scss";
 @import 'templatesMedia';
 
-@media screen and (max-width: $width-adapt1) {
+@media screen and (max-width: 1024px) {
   .navbar {
     &__navigate {
       display: none;
@@ -55,7 +55,7 @@
   }
 }
 
-@media screen and (max-width: $width-adapt-ipad) and (min-width: $width-adapt1 + 1) {
+@media screen and (max-width: 1024px) and (min-width: 420px + 1) {
   .navbar {
     &__navigate {
       display: none;

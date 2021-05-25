@@ -113,7 +113,6 @@ export default class Select {
         const scrollHeight = this.$value.scrollHeight;
         this.$value.style.height = scrollHeight - 4 + 'px';
         this.selectInput.style.height = scrollHeight + 2 + 'px';
-      
         this.$el.querySelectorAll('[data-type="item"]').forEach((el) => {
             el.classList.remove('selected');
         });
