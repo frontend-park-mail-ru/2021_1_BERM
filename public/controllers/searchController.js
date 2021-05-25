@@ -1,8 +1,17 @@
 import {Controller} from '@/controllers/controller';
 import {SearchView} from '@/views/searchView';
-import {SEARCH_GO} from '@/modules/constants/actions';
-import user from '@/models/User';
+import {
+    GO_TO_ORDER,
+    GO_TO_VACANCY,
+    SEARCH_GO, SEARCH_RENDER_CONTENT,
+    SERVER_ERROR,
+} from '@/modules/constants/actions';
 import auth from '@/models/Auth';
+import eventBus from '@/modules/eventBus';
+import router from '@/modules/router';
+import {getOrderPath, getVacancyPath} from '@/modules/constants/goPath';
+import vacancy from '@/models/Vacancy';
+import order from '@/models/Order';
 
 /** Контроллер страницы поиска */
 export class SearchController extends Controller {
@@ -23,6 +32,8 @@ export class SearchController extends Controller {
         super.run(
             [
                 [SEARCH_GO, this._searchGo.bind(this)],
+                [GO_TO_ORDER, this._goToOrder.bind(this)],
+                [GO_TO_VACANCY, this._goToVacancy.bind(this)],
             ], true, true);
     }
 
@@ -37,6 +48,8 @@ export class SearchController extends Controller {
         }
 
         data.what = '';
+
+        // Todo Ярик тащи с пагинацией я в тебя ВЕРЮ!
         data.limit = 10;
         data.offset = 0;
 
@@ -52,34 +65,63 @@ export class SearchController extends Controller {
 
         res.then((res) => {
             if (!res.ok) {
-                alert('ПИЗДА');
+                eventBus.emit(SERVER_ERROR, 'Поиск не выполнен');
             }
 
-            res.json((res) => {
-                console.log(res);
+            res.json().then((res) => {
+                let data = [];
+
+                switch (flag) {
+                case 1:
+                    order.clear();
+                    order.setOrders(res);
+                    data = order.ordersMap;
+                    break;
+                case 2:
+                    vacancy.clear();
+                    vacancy.setVacancys(res);
+                    data = vacancy.vacancysMap;
+                    break;
+                case 3:
+                    console.log(res);
+                }
+
+                eventBus.emit(SEARCH_RENDER_CONTENT, {key: flag, data: data});
             });
         });
     }
 
     parseDataToQuery(data) {
-        debugger;
-
         let res = '?';
         Object.entries(data).forEach(([key, value]) => {
             if (value.toString().length !== 0) {
                 if (Array.isArray(value)) {
                     value.forEach((item) => {
-                        res = res.concat(`${key}=${item
+                        res = res.concat(`${key}=${item.toString()
                             .split(' ')
-                            .join('+')
-                            .toString()}`, `&`);
+                            .join('+')}`, `&`);
                     });
                 } else {
-                    res = res.concat(`${key}=${value.toString()}`, `&`);
+                    res = res.concat(`${key}=${value.toString()
+                        .split(' ')
+                        .join('+')}`, `&`);
                 }
             }
         });
 
         return res.slice(0, res.length - 1);
+    }
+
+    /**
+     * Переход к конкретному заказу
+     *
+     * @param {number} id - id заказа
+     */
+    _goToOrder(id) {
+        router.go(getOrderPath(id));
+    }
+
+    _goToVacancy(id) {
+        router.go(getVacancyPath(id));
     }
 }

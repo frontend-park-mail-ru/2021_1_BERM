@@ -89,6 +89,8 @@ export const REVIEWS_RENDER = 'reviews_render';
 
 export const SETTING_INVALID_PASSWORD = 'setting_invalid_password';
 
+export const SEARCH_RENDER_CONTENT = 'search_render_content';
+
 export const NO_LOGIN = 'no-login';
 export const NO_ORDER = 'no-order';
 export const RENDER_PROFILE = 'render-profile';

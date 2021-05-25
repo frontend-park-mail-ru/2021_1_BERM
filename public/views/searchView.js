@@ -1,9 +1,18 @@
 import {View} from '@/views/view';
 import searchTemplate from '@/components/pages/search/search.pug';
+import ordersTemplate from '@/components/pages/search/orders.pug';
+import vacanciesTemplate from '@/components/pages/search/vacancies.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import eventBus from '@/modules/eventBus';
-import {SEARCH_GO} from '@/modules/constants/actions';
+import {
+    GO_TO_ORDER,
+    GO_TO_VACANCY,
+    SEARCH_GO,
+    SEARCH_RENDER_CONTENT,
+    SERVER_ERROR,
+} from '@/modules/constants/actions';
+import {notification} from '@/components/notification/notification';
 
 /** View страницы поиска */
 export class SearchView extends View {
@@ -14,12 +23,16 @@ export class SearchView extends View {
      * @param {boolean} isExecutor - это исполнитель или нет
      */
     render(isAuthorized, isExecutor) {
+        this.isExecutor = isExecutor;
         super.renderHtml(
             isAuthorized,
             isExecutor,
             'Поиск',
             searchTemplate(),
-            [],
+            [
+                [SERVER_ERROR, this._error.bind(this)],
+                [SEARCH_RENDER_CONTENT, this._renderContent.bind(this)],
+            ],
         );
 
         const budget = (title) => `
@@ -106,19 +119,9 @@ export class SearchView extends View {
             if (sort === 'Имени') {
                 data.sort = 'name';
             }
-            data.salary_from = filters.salaryFrom.value;
-            data.salary_to = filters.salaryTo.value;
+            data.from = filters.salaryFrom.value;
+            data.to = filters.salaryTo.value;
             data.what = filters.what.value;
-            //
-            // const filters = document.getElementById('filters');
-            // for (let i = 0, len = filters.elements.length; i < len; i++) {
-            //     const field = filters.elements[i];
-            //     if (field.name) {
-            //         data[field.name] = field.value;
-            //     }
-            // }
-
-            debugger;
 
             eventBus.emit(SEARCH_GO, data);
         });
@@ -177,5 +180,67 @@ export class SearchView extends View {
                 ],
             }, 'dynamic-style',
             'what');
+    }
+
+    /**
+     * Вывод ошибка
+     *
+     * @param {String} str
+     */
+    _error(str) {
+        notification(`Ошибка сервера! ${str}`);
+    }
+
+    _renderContent({key, data}) {
+        const content = document.getElementById('content');
+        let allRef; let allTit;
+
+        const map = [];
+        for (const item of data.values()) {
+            map.push(item);
+        }
+
+        switch (key) {
+        case 1:
+            content.innerHTML = ordersTemplate({
+                orders: map,
+                isExecutor: this.isExecutor,
+            });
+            allRef = document.querySelectorAll('.orders__order_link');
+            allRef.forEach((ref) => {
+                ref.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    eventBus.emit(GO_TO_ORDER, ref.getAttribute('name'));
+                });
+            });
+
+            allTit = document.querySelectorAll('.orders__order_title');
+            allTit.forEach((tit) => {
+                tit.addEventListener('click', () => {
+                    eventBus.emit(GO_TO_ORDER, tit.getAttribute('name'));
+                });
+            });
+            break;
+        case 2:
+            content.innerHTML = vacanciesTemplate({
+                vacancies: map,
+                isExecutor: this.isExecutor,
+            });
+            allRef = document.querySelectorAll('.vacancies__order_link');
+            allRef.forEach((ref) => {
+                ref.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    eventBus.emit(GO_TO_VACANCY, ref.getAttribute('name'));
+                });
+            });
+
+            allTit = document.querySelectorAll('.vacancies__order_title');
+            allTit.forEach((tit) => {
+                tit.addEventListener('click', () => {
+                    eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));
+                });
+            });
+            break;
+        }
     }
 }

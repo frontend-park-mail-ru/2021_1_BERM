@@ -35,6 +35,7 @@
   & {
     .select {
       &__input {
+        height: max-content;
         width: 313px;
       }
 

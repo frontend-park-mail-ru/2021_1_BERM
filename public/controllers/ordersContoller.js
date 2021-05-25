@@ -18,7 +18,11 @@ import {
 } from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
-import {getNotFoundPath, getOrderPath, getVacancyPath} from '@/modules/constants/goPath.js';
+import {
+    getNotFoundPath,
+    getOrderPath,
+    getVacancyPath,
+} from '@/modules/constants/goPath.js';
 import {ARCHIVE} from '@/modules/constants/pageNames.js';
 
 /** Контроллер страницы заказов */
