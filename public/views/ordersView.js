@@ -47,6 +47,13 @@ export class OrdersView extends View {
             }
         }
 
+        map.forEach((item) => {
+            item.budget += '₽';
+        });
+        archiveMap.forEach((item) => {
+            item.budget += '₽';
+        });
+
         super.renderHtml(
             dataForRender.isAuthorized,
             dataForRender.isExecutor,

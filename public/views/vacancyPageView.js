@@ -25,6 +25,7 @@ import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import {Validator} from '@/views/validation/validator';
 import {confim} from '@/components/modelWindows/confim/confim';
+import PriceHandler from '@/modules/utils/priceHandler';
 
 /** View страницы вакансии */
 export class VacancyPageView extends View {
@@ -56,6 +57,8 @@ export class VacancyPageView extends View {
      * @param {Object} info
      */
     _vacancyPageRender(info) {
+        console.log(info);
+        this._conversionToCurrency(info);
         super.renderHtml(
             this.isAuthorized,
             this.isExecutor,
@@ -179,6 +182,28 @@ export class VacancyPageView extends View {
     }
 
     /**
+     * Преобразование числа в рубли
+     *
+     * @param {Object} dataForRender
+     */
+    _conversionToCurrency(dataForRender) {
+        debugger;
+        console.log(String(dataForRender.creator.salary).indexOf('₽'));
+        if (String(dataForRender.creator.salary).indexOf('₽') === -1) {
+            dataForRender.creator.salary += '₽';
+        }
+        dataForRender.responses.forEach((item) => {
+            item.rate += '₽';
+        });
+        if (dataForRender.userRate) {
+            dataForRender.userRate += '₽';
+        }
+        if (dataForRender.selectExecutor) {
+            dataForRender.selectExecutor.salary += '₽';
+        }
+    }
+
+    /**
      * Обработка ошибки
      *
      * @param {string} error - текст ошибки
@@ -210,6 +235,7 @@ export class VacancyPageView extends View {
     _changeVacancyRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
+        info.creator.salary = info.creator.salary.slice(0, -1);
         const chInfo = {
             isChange: isChange,
             creator: info.creator,
@@ -232,6 +258,8 @@ export class VacancyPageView extends View {
             'send_mess',
         );
         val.validate();
+        const prHandler = new PriceHandler('budget');
+        prHandler.start();
 
         const cancelButton = document.
             querySelector('.change-form__cancel');

@@ -50,6 +50,8 @@ export class OrderPageView extends View {
      * @param {Object} dataForRender
      */
     _orderPageRender(dataForRender) {
+        console.log(dataForRender);
+        this._conversionToCurrency(dataForRender);
         super.renderHtml(
             dataForRender.isAuthorized,
             dataForRender.isExecutor,
@@ -157,6 +159,25 @@ export class OrderPageView extends View {
         }
     }
 
+    /**
+     * Преобразование числа в рубли
+     *
+     * @param {Object} dataForRender
+     */
+    _conversionToCurrency(dataForRender) {
+        debugger;
+        dataForRender.creator.budget += '₽';
+        dataForRender.responses.forEach((item) => {
+            item.rate += '₽';
+        });
+        if (dataForRender.userRate) {
+            dataForRender.userRate += '₽';
+        }
+        if (dataForRender.selectExecutor) {
+            dataForRender.selectExecutor.budget += '₽';
+        }
+    }
+
 
     /**
      * Обработка ошибки
@@ -217,6 +238,7 @@ export class OrderPageView extends View {
     _changeOrderRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
+        info.creator.budget = info.creator.budget.slice(0, -1);
         const chInfo = {
             isOrder: true,
             isChange: isChange,
@@ -244,6 +266,8 @@ export class OrderPageView extends View {
         val.validate();
         const date = new DateHandler();
         date.createDate();
+        const prHandler = new PriceHandler('budget');
+        prHandler.start();
 
         const cancelButton = document.
             querySelector('.change-form__cancel');
