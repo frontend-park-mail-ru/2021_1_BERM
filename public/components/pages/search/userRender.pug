@@ -36,8 +36,8 @@ mixin user(avatar, login, title, specializes, definition, rating, reviews, id, i
                     img(class='orders__order_stat-img' src=require('@/static/img/stats.svg').default)
                     div(class='orders__order_stat-data')= rating
                 div(class='orders__order_stat')
-                    img(class='orders__order_stat-img' src=require('@/static/img/star1.svg').default)
-                    div(class='orders__order_stat-data')= reviews
+                    img(class='orders__order_stat-img' src=require('@/static/img/star1.svg').default href=`/profile/${id}/reviews`)
+                    div(class='orders__order_stat-data' href=`/profile/${id}/reviews`)= reviews
                 if isArchive && isExecutor
                     div(class='orders__order_stat')
                         a(class='orders__order_stat-data orders__feedback') Оставить отзыв

@@ -114,6 +114,7 @@ export class SearchView extends View {
                 this.selectSort([
                     {id: '51', value: 'Рейтингу', type: 'item'},
                     {id: '52', value: 'Имени', type: 'item'},
+                    {id: '53', value: 'Отзывам', type: 'item'},
                 ]);
                 this.selectCategory();
             }
@@ -146,6 +147,9 @@ export class SearchView extends View {
             }
             if (sort === 'Имени') {
                 data.sort = 'name';
+            }
+            if (sort === 'Отзывам') {
+                data.sort = 'reviews';
             }
             data.from = filters.salaryFrom.value;
             data.to = filters.salaryTo.value;
