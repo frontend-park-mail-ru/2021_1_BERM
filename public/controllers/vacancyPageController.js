@@ -30,7 +30,7 @@ import router from '@/modules/router.js';
 import {
     getNotFoundPath,
     getProfilePath,
-    getVacanciesPage, getVacancyPath,
+    getVacancyPath,
 } from '@/modules/constants/goPath.js';
 
 /** Контроллер страницы вакансии */
