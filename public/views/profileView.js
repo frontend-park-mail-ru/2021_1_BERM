@@ -102,6 +102,11 @@ export class ProfileView extends View {
      * @param {string}str
      */
     _notti(str) {
+        const elem = document.getElementById('notification');
+        if (elem) {
+            elem.parentNode.removeChild(elem);
+        }
+
         notification(str);
     }
 }
