@@ -13,6 +13,7 @@ import {getOrderPath, getVacancyPath} from '@/modules/constants/goPath';
 import vacancy from '@/models/Vacancy';
 import order from '@/models/Order';
 import user from '@/models/User';
+import {imgUrl} from '@/modules/constants/constants';
 
 /** Контроллер страницы поиска */
 export class SearchController extends Controller {
@@ -98,6 +99,7 @@ export class SearchController extends Controller {
                 case 3:
                     const map = new Map();
                     res.forEach((item, index) => {
+                        item.img = imgUrl + item.img;
                         map.set(index, item);
                     });
                     data = map;

@@ -108,15 +108,7 @@
   }
 
   &__about-textarea {
-    //padding: 23px;
-    //height: 337px;
-    //width: 532px;
-    //
-    //@include uniq_form($placeholder);
-    //@include font(normal, 20px, 28px, -0.4px, $black);
-    //
-    //resize: none;
-    @include about_textarea(345px);
+    @include about_textarea(170px);
   }
 
 

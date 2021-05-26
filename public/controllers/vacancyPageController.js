@@ -30,7 +30,7 @@ import router from '@/modules/router.js';
 import {
     getNotFoundPath,
     getProfilePath,
-    getVacanciesPage,
+    getVacanciesPage, getVacancyPath,
 } from '@/modules/constants/goPath.js';
 
 /** Контроллер страницы вакансии */
@@ -289,7 +289,7 @@ export class VacancyPageController extends Controller {
                     return;
                 }
 
-                router.go(getVacanciesPage);
+                router.go(getVacancyPath(vacancy.currentVacancyId));
             });
     }
 
