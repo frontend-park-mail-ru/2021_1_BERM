@@ -8,7 +8,7 @@ import {
     PROFILE_GO,
     PROFILE_DELETE_SPEC,
     RENDER_PROFILE,
-    SUCCESS_LOAD_IMG,
+    SUCCESS_LOAD_IMG, SERVER_ERROR,
 } from '@/modules/constants/actions.js';
 
 import profileTemplate from '@/components/pages/profile/profile.pug';
@@ -29,6 +29,7 @@ export class ProfileView extends View {
             [RENDER_PROFILE, this._renderProfile.bind(this)],
             [SUCCESS_LOAD_IMG, this._successLoadImage.bind(this)],
             [FAIL_LOAD_IMG, this._failLoadImage.bind(this)],
+            [SERVER_ERROR, this._notti.bind(this)],
         ]);
 
         eventBus.emit(PROFILE_GO);
@@ -93,5 +94,14 @@ export class ProfileView extends View {
      */
     _failLoadImage() {
         notification('Ошибка сервера. Картинка не загружена');
+    }
+
+    /**
+     * Отображение нотификаций
+     *
+     * @param {string}str
+     */
+    _notti(str) {
+        notification(str);
     }
 }

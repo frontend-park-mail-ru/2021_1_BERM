@@ -14,7 +14,7 @@ import {
     PROFILE_DELETE_SPEC,
     PROFILE_DELETE_SPEC_GET,
     RENDER_PROFILE,
-    SUCCESS_LOAD_IMG,
+    SUCCESS_LOAD_IMG, SERVER_ERROR,
 } from '@/modules/constants/actions.js';
 import {getIndexPath, getNotFoundPath} from '@/modules/constants/goPath.js';
 import {imgUrl} from '@/modules/constants/constants';
@@ -112,6 +112,7 @@ export class ProfileController extends Controller {
      */
     _changeImage(src) {
         eventBus.emit(SUCCESS_LOAD_IMG, src);
+        eventBus.emit(SERVER_ERROR, 'Загрузка');
         const delStr = src.split(',')[0];
         auth.sendImage({
             id: user.id,
@@ -127,6 +128,7 @@ export class ProfileController extends Controller {
      */
     _onLoadImage({res, src}) {
         if (res.ok) {
+            eventBus.emit(SERVER_ERROR, 'Изображение загружено');
             user.img = src;
         } else {
             eventBus.emit(FAIL_LOAD_IMG);
