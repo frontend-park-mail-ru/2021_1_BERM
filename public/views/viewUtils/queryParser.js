@@ -7,16 +7,15 @@ export class QueryParser {
                     value.forEach((item) => {
                         res = res.concat(`${key}=${item.toString()
                             .split(' ')
-                            .join('+')}, `&);
+                            .join('+')}`, `&`);
                     });
                 } else {
                     res = res.concat(`${key}=${value.toString()
                         .split(' ')
-                        .join('+')}, `&);
+                        .join('+')}`, `&`);
                 }
             }
         });
-
         return res.slice(0, res.length - 1);
     }
 }

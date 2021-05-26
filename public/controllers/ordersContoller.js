@@ -16,6 +16,7 @@ import {
     ORDERS_SEND_FEEDBACK,
     SEND_DATE_PAGINATE,
     RENDER_PAGINATE,
+    SEND_DATE_PAGINATE_TO_SERVER,
 } from '@/modules/constants/actions.js';
 
 import router from '@/modules/router.js';
@@ -60,6 +61,7 @@ export class OrdersController extends Controller {
                 [ORDERS_PAGE_SEARCH, this._search.bind(this)],
                 [ORDERS_SEND_FEEDBACK, this._sendFeedback.bind(this)],
                 [SEND_DATE_PAGINATE, this._sendDatePaginate.bind(this)],
+                [SEND_DATE_PAGINATE_TO_SERVER, this._sendPaginateServer],
             ],
             true);
     }
@@ -169,5 +171,10 @@ export class OrdersController extends Controller {
                 });
             });
         }
+    }
+
+    _sendPaginateServer(data) {
+        debugger;
+        auth.getToPaginateOrders(data);
     }
 }

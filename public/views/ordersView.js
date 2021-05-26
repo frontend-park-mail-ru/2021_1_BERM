@@ -19,7 +19,9 @@ import {Paginator} from '@/views/paginator';
 export class OrdersView extends View {
     constructor() {
         super();
+        this.paginator = new Paginator(1, 2 );
     }
+
     /**
      * Установка обработчиков
      *
@@ -30,7 +32,7 @@ export class OrdersView extends View {
         super.setListeners([
             [ORDERS_RENDER, this._renderData.bind(this)],
             [SERVER_ERROR, this._error.bind(this)],
-            [RENDER_PAGINATE, this._paginate],
+            [RENDER_PAGINATE, this._paginate.bind(this)],
         ]);
         eventBus.emit(SEND_SERVICES);
     }
@@ -61,14 +63,20 @@ export class OrdersView extends View {
             }),
         );
 
-        const paginator = new Paginator(map, map.length, 1,
-            '.contentPagination',
-            {isI: dataForRender.isI,
-                isMyOrders: dataForRender.isMyOrders,
-                isArchive: dataForRender.isArchive,
-                isExecutor: dataForRender.isExecutor,
-            });
-        paginator.createPagination(1);
+        // const paginator = new Paginator(map, map.length, 1,
+        //     '.contentPagination',
+        //     {isI: dataForRender.isI,
+        //         isMyOrders: dataForRender.isMyOrders,
+        //         isArchive: dataForRender.isArchive,
+        //         isExecutor: dataForRender.isExecutor,
+        //     });
+        this.paginator.setItems(map, {isI: dataForRender.isI,
+            isMyOrders: dataForRender.isMyOrders,
+            isArchive: dataForRender.isArchive,
+            isExecutor: dataForRender.isExecutor,
+        }, map.length);
+        this.paginator.setUp('.contentPagination');
+        this.paginator.createPagination(1);
 
         if (dataForRender.isArchive) {
             const feedback = document
@@ -174,7 +182,17 @@ export class OrdersView extends View {
         });
     }
 
-    _paginate() {
-
+    _paginate(dataForRender) {
+        const map = [];
+        for (const item of dataForRender.map.values()) {
+            map.push(item);
+        }
+        this.paginator.setItems(map, {isI: dataForRender.isI,
+            isMyOrders: dataForRender.isMyOrders,
+            isArchive: dataForRender.isArchive,
+            isExecutor: dataForRender.isExecutor,
+        }, map.length);
+        this.paginator.createPagination(this.paginator.currentPage);
+        this.paginator.showContent(this.paginator.currentPage);
     }
 }

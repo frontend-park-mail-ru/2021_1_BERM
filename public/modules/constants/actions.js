@@ -71,7 +71,8 @@ export const SEND_SERVICES_VACANCIES = 'services-vacancies';
 export const SEND_RESULT_RENDER_VACANCIES = 'send-result-render-vacancies';
 export const GO_TO_USER = 'go-to-user';
 export const CHANGE_VACANCY = 'change-vacancy';
-export const SEND_DATE_PAGINATE = 'render-paginate';
+export const SEND_DATE_PAGINATE = 'send-date-paginate';
+export const SEND_DATE_PAGINATE_TO_SERVER = 'send-date-paginate-to-server';
 
 
 // Views actions

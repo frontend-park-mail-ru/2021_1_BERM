@@ -1,35 +1,47 @@
-// selecting required element
-// const element = document.querySelector('.pagination ul');
-// let totalPages = 20;
-// const page = 1;
+import eventBus from '@/modules/eventBus.js';
 import orderTemplate from '@/components/pages/orders/orderInOrders.pug';
-import arrowRight from '@/static/img/rightArrow.svg';
 import arrowRight3 from '@/static/img/3-rightArrow.svg';
 import arrowLeft from '@/static/img/leftArrow.svg';
 import arrowLeft3 from '@/static/img/3-leftArrow.svg';
+import {QueryParser} from '@/views/viewUtils/queryParser';
+import {
+    GO_TO_ORDER,
+    SEND_DATE_PAGINATE_TO_SERVER,
+} from '@/modules/constants/actions';
+
 
 export class Paginator {
-    constructor(data, count, itemsPerPage, contentSelect, options) {
-        this.options = options;
-        this.orders = data;
-        this.count = count;
+    constructor(itemsPerPage, countObjInMemory) {
+        this.countObjInMemory = 5;
+        this.options = null;
+        this.orders = null;
+        this.count = 8;
         this.itemPerPage = itemsPerPage;
         this.paginationPages = [];
-        this.element = document.querySelector(contentSelect);
+        this.element = null;
+        this.countOfPages = 0;
+        this.begin = 0;
+        this.end = 0;
+        this.parser = new QueryParser();
 
-        this.countOfPages = Math.ceil(this.count / this.itemPerPage);
-        console.log();
-
-        this._setUp();
+        // this._setUp();
 
 
         this._prevPage = 0;
+        this.currentPage = 0;
 
         // createPagination(page)
         // _paginationHandler(item);
     }
 
-    _setUp() {
+    setItems(data, options, count) {
+        this.orders = data;
+        this.count = count;
+        this.options = options;
+    }
+
+    setUp(contentSelect) {
+        this.element = document.querySelector(contentSelect);
         console.log(this.element);
         this.element.addEventListener('click', (event) => {
             console.log(event.target);
@@ -42,8 +54,10 @@ export class Paginator {
                 this._paginationHandler(item);
             }
         });
-
-        this._showContent(1);
+        this.begin = 1;
+        this.end = this.countObjInMemory;
+        this.countOfPages = Math.ceil(this.count / this.itemPerPage);
+        this.showContent(1);
     }
 
     createPagination(page) {
@@ -179,36 +193,55 @@ export class Paginator {
         const pageNumber = Number(item.getAttribute('data-value'));
         if (item.getAttribute('data-type') === 'prev') {
             // const pageNumber = Number(item.getAttribute('data-value'));
+            this.currentPage = pageNumber;
             this.createPagination(pageNumber);
-            this._showContent(pageNumber);
+            this.showContent(pageNumber);
             return;
         }
 
         if (item.getAttribute('data-type') === 'end') {
             console.log('start');
+            this.currentPage = this.countOfPages;
             this.createPagination(this.countOfPages);
-            this._showContent(this.countOfPages);
+            this.showContent(this.countOfPages);
             return;
         }
 
         if (item.getAttribute('data-type') === 'next') {
             // const pageNumber = Number(item.getAttribute('data-value'));
+            this.currentPage = pageNumber;
             this.createPagination(pageNumber);
-            this._showContent(pageNumber);
+            this.showContent(pageNumber);
             return;
         }
 
         if (item.getAttribute('data-type') === 'start') {
+            this.currentPage = 1;
             this.createPagination(1);
-            this._showContent(1);
+            this.showContent(1);
             return;
         }
 
+        this.currentPage = pageNumber;
         this.createPagination(pageNumber);
-        this._showContent(pageNumber);
+        this.showContent(pageNumber);
     }
 
-    _showContent(page) {
+    showContent(page) {
+        console.log('COUNT: ',page * this.itemPerPage);
+        debugger;
+        if (page * this.itemPerPage < this.begin ||
+        page * this.itemPerPage > this.end) {
+            this.begin = page * this.itemPerPage;
+            this.end = page * this.itemPerPage + this.countObjInMemory;
+            const data = {
+                limit: this.end - this.begin + 1,
+                offset: this.begin,
+            };
+            const queryString = this.parser.parseDataToQuery(data);
+            eventBus.emit(SEND_DATE_PAGINATE_TO_SERVER, queryString);
+            return;
+        }
         const mainDiv = document.querySelector('.orders__items');
         while (mainDiv.firstChild) {
             // if (mainDiv.tagName === 'search') {
@@ -234,6 +267,21 @@ export class Paginator {
             });
             mainDiv.appendChild(content);
         }
+        debugger;
+        const allRef = document.querySelectorAll('.orders__order_link');
+        allRef.forEach((ref) => {
+            ref.addEventListener('click', (e) => {
+                e.preventDefault();
+                eventBus.emit(GO_TO_ORDER, ref.getAttribute('name'));
+            });
+        });
+
+        const allTit = document.querySelectorAll('.orders__order_title');
+        allTit.forEach((tit) => {
+            tit.addEventListener('click', () => {
+                eventBus.emit(GO_TO_ORDER, tit.getAttribute('name'));
+            });
+        });
     }
 }
 
