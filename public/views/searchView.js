@@ -154,6 +154,9 @@ export class SearchView extends View {
             data.from = filters.salaryFrom.value;
             data.to = filters.salaryTo.value;
             data.what = filters.what.value;
+            if (data.what === '') {
+                data.what = 'Только пользователей';
+            }
 
             eventBus.emit(SEARCH_GO, data);
         });
@@ -204,9 +207,7 @@ export class SearchView extends View {
     selectWhat() {
         new Select(
             '#select__what', {
-                placeholder: this.isExecutor ?
-                    'Только заказы':
-                    'Только пользователей',
+                placeholder: 'Только пользователей',
                 data: this.isExecutor ?
                     [
                         {id: '41', value: 'Только заказы', type: 'item'},
