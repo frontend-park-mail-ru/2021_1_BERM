@@ -57,6 +57,10 @@ export class OrderPageView extends View {
             orderPageTemplate(dataForRender),
         );
 
+        if (dataForRender.isArchived) {
+            return;
+        }
+
         if (dataForRender.isExecutor) {
             const val = new Validator(
                 'rate-form',

@@ -1,10 +1,36 @@
 import {View} from '@/views/view';
 import searchTemplate from '@/components/pages/search/search.pug';
+import ordersTemplate from '@/components/pages/search/orders.pug';
+import vacanciesTemplate from '@/components/pages/search/vacancies.pug';
+import usersTemplate from '@/components/pages/search/users.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
+import eventBus from '@/modules/eventBus';
+import {
+    GO_TO_ORDER,
+    GO_TO_VACANCY,
+    SEARCH_GO,
+    SEARCH_RENDER_CONTENT,
+    SERVER_ERROR,
+} from '@/modules/constants/actions';
+import {notification} from '@/components/notification/notification';
 
 /** View страницы поиска */
 export class SearchView extends View {
+    /**
+     * Установка начальных параметров
+     *
+     * @param {number} key - ключ:
+     * 1 - Только заказы
+     * 2 - Только вакансии
+     * 3 - Только пользователи
+     * @param {Object} data - результат
+     */
+    constructor({key, data}) {
+        super();
+        this.key = key;
+        this.data = data;
+    }
     /**
      * Отображение страницы и получение с нее данных
      *
@@ -12,22 +38,30 @@ export class SearchView extends View {
      * @param {boolean} isExecutor - это исполнитель или нет
      */
     render(isAuthorized, isExecutor) {
+        this.isExecutor = isExecutor;
         super.renderHtml(
             isAuthorized,
             isExecutor,
             'Поиск',
             searchTemplate(),
-            [],
+            [
+                [SERVER_ERROR, this._error.bind(this)],
+                [SEARCH_RENDER_CONTENT, this._renderContent.bind(this)],
+            ],
         );
+
+        if (this.key) {
+            this._renderContent({key: this.key, data: this.data});
+        }
 
         const budget = (title) => `
             <div class="filters__budget_no-margin">
                 <div class="filters__budget_title">${title}</div>
                 <div class="filters__form">
-                <input class="filters__form_input" type="text" 
-                        placeholder="От" name="salary" />
-                <input class="filters__form_input" type="text" 
-                        placeholder="До" name="salary" />
+                <input class="filters__form_input" type="number" 
+                        placeholder="От" name="salaryFrom" />
+                <input class="filters__form_input" type="number" 
+                        placeholder="До" name="salaryTo" />
                 </div>
             </div>
         `;
@@ -61,12 +95,18 @@ export class SearchView extends View {
         this.selectSort();
         this.selectWhat();
 
+        let prev;
         const textarea = document.querySelector('.select__form');
         textarea.addEventListener('select', (event) => {
             const val = event.target.value;
+            if (prev === val) return;
+
             if (val === 'Только заказы' || val === 'Только вакансии') {
-                filters.innerHTML = budget('Ставка') + sort + category;
-                this.selectSort();
+                if (prev === 'Только пользователей') {
+                    filters.innerHTML = budget('Ставка') + sort + category;
+                    this.selectSort();
+                    this.selectCategory();
+                }
             }
 
             if (val === 'Только пользователей') {
@@ -75,9 +115,43 @@ export class SearchView extends View {
                     {id: '51', value: 'Рейтингу', type: 'item'},
                     {id: '52', value: 'Имени', type: 'item'},
                 ]);
+                this.selectCategory();
             }
 
-            this.selectCategory();
+            prev = val;
+        });
+
+        const search = document.getElementById('search__form');
+
+        search.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const data = {
+                search_str: event.target.search.value,
+            };
+
+            const filters = document.getElementById('filters');
+            data.category = filters.category.value === 'Категория' ?
+                '' :
+                filters.category.value;
+            data.desc = filters.desc.value !== 'Возрастанию';
+            const sort = filters.sort.value;
+            if (sort === 'Заголовку') {
+                data.sort = 'title';
+            }
+            if (sort === 'Заработной плате') {
+                data.sort = 'salary';
+            }
+            if (sort === 'Рейтингу') {
+                data.sort = 'rating';
+            }
+            if (sort === 'Имени') {
+                data.sort = 'name';
+            }
+            data.from = filters.salaryFrom.value;
+            data.to = filters.salaryTo.value;
+            data.what = filters.what.value;
+
+            eventBus.emit(SEARCH_GO, data);
         });
     }
 
@@ -89,7 +163,8 @@ export class SearchView extends View {
             '#select', {
                 placeholder: 'Категория',
                 data: listOfServices,
-            }, 'dynamic-style');
+            }, 'dynamic-style',
+            'category');
     }
 
     /**
@@ -108,13 +183,15 @@ export class SearchView extends View {
                     {id: '51', value: 'Уменьшению', type: 'item'},
                     {id: '52', value: 'Возрастанию', type: 'item'},
                 ],
-            }, 'dynamic-style');
+            }, 'dynamic-style',
+            'desc');
 
         new Select(
             '#select__sort', {
                 placeholder: list[0].value,
                 data: list,
-            }, 'dynamic-style');
+            }, 'dynamic-style',
+            'sort');
     }
 
     /**
@@ -123,12 +200,94 @@ export class SearchView extends View {
     selectWhat() {
         new Select(
             '#select__what', {
-                placeholder: 'Только заказы',
-                data: [
-                    {id: '41', value: 'Только заказы', type: 'item'},
-                    {id: '42', value: 'Только вакансии', type: 'item'},
-                    {id: '43', value: 'Только пользователей', type: 'item'},
-                ],
-            }, 'dynamic-style');
+                placeholder: this.isExecutor ?
+                    'Только заказы':
+                    'Только пользователей',
+                data: this.isExecutor ?
+                    [
+                        {id: '41', value: 'Только заказы', type: 'item'},
+                        {id: '42', value: 'Только вакансии', type: 'item'},
+                        {id: '43', value: 'Только пользователей', type: 'item'},
+                    ] : [
+                        {id: '43', value: 'Только пользователей', type: 'item'},
+                    ],
+            }, 'dynamic-style',
+            'what');
+    }
+
+    /**
+     * Вывод ошибка
+     *
+     * @param {String} str
+     */
+    _error(str) {
+        notification(`Ошибка сервера! ${str}`);
+    }
+
+    /**
+     * Отрисовка контента
+     *
+     * @param {number} key - ключ:
+     * 1 - Только заказы
+     * 2 - Только вакансии
+     * 3 - Только пользователи
+     * @param {Object} data - результат
+     */
+    _renderContent({key, data}) {
+        const content = document.getElementById('content');
+        let allRef; let allTit;
+
+        const map = [];
+        for (const item of data.values()) {
+            map.push(item);
+        }
+
+        switch (key) {
+        case 1:
+            content.innerHTML = ordersTemplate({
+                orders: map,
+                isExecutor: this.isExecutor,
+            });
+            allRef = document.querySelectorAll('.orders__order_link');
+            allRef.forEach((ref) => {
+                ref.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    eventBus.emit(GO_TO_ORDER, ref.getAttribute('name'));
+                });
+            });
+
+            allTit = document.querySelectorAll('.orders__order_title');
+            allTit.forEach((tit) => {
+                tit.addEventListener('click', () => {
+                    eventBus.emit(GO_TO_ORDER, tit.getAttribute('name'));
+                });
+            });
+            break;
+        case 2:
+            content.innerHTML = vacanciesTemplate({
+                vacancies: map,
+                isExecutor: this.isExecutor,
+            });
+            allRef = document.querySelectorAll('.vacancies__order_link');
+            allRef.forEach((ref) => {
+                ref.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    eventBus.emit(GO_TO_VACANCY, ref.getAttribute('name'));
+                });
+            });
+
+            allTit = document.querySelectorAll('.vacancies__order_title');
+            allTit.forEach((tit) => {
+                tit.addEventListener('click', () => {
+                    eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));
+                });
+            });
+            break;
+        case 3:
+            content.innerHTML = usersTemplate({
+                users: map,
+            });
+            break;
+        }
     }
 }

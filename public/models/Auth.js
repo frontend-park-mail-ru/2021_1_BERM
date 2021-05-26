@@ -24,7 +24,7 @@ import {
     VACANCY_GET_EXECUTOR,
     VACANCY_GET_DELETE_EXECUTOR,
     ORDER_PAGE_GET_RES,
-    NOTIF_CHANGE_VALID,
+    NOTIF_CHANGE_VALID, ARCHIVE_GET_VACANCIES,
 } from '@/modules/constants/actions.js';
 
 
@@ -414,12 +414,24 @@ export default class Auth {
      *
      * @param {number} id профиля
      *
-     * @return {Promise} - ответ от сервера
      */
     static getArchiveOrders(id) {
-        return sendRequest('GET', `/order/profile/${id}/archive`)
+        sendRequest('GET', `/order/profile/${id}/archive`)
             .then((res) => {
                 eventBus.emit(SEND_RESULT_RENDER, res);
+            });
+    }
+
+    /**
+     * Получения архива вакансий
+     *
+     * @param {number} id профиля
+     *
+     */
+    static getArchiveVacancies(id) {
+        sendRequest('GET', `/vacancy/profile/${id}/archive`)
+            .then((res) => {
+                eventBus.emit(ARCHIVE_GET_VACANCIES, res);
             });
     }
 
@@ -500,5 +512,35 @@ export default class Auth {
      */
     static searchVacancies(data) {
         return sendRequest('PATCH', `/vacancy/search`, data);
+    }
+
+    /**
+     * Поиск по заказам
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchAllOrders(query) {
+        return sendRequest('GET', `/order${query}`);
+    }
+
+    /**
+     * Поиск по вакансий
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchAllVacancies(query) {
+        return sendRequest('GET', `/vacancy${query}`);
+    }
+
+    /**
+     * Поиск по пользователям
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchAllUsers(query) {
+        return sendRequest('GET', `/profile/users${query}`);
     }
 }

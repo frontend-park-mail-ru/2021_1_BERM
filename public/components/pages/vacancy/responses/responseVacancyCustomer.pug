@@ -1,4 +1,4 @@
-mixin responseVacancy(avatar, login, text, id, selectExecutor, isMy)
+mixin responseVacancy(avatar, login, text, id, selectExecutor, isMy, isArchived)
     div(class='orderPage__responses_scroll')
         div(class='vacancyPage__response vacancyPage__row')
             div(class='orderPage__response_img-bg')
@@ -10,12 +10,12 @@ mixin responseVacancy(avatar, login, text, id, selectExecutor, isMy)
                     textarea(class="vacancyPage__textArea" readonly)=text
                     //div(class='vacancyPage__comment-content')
                 div(class='vacancyPage__comment-buttons')
-                    if isMy && !selectExecutor
+                    if isMy && !selectExecutor && !isArchived
                         button(class='vacancyPage__comment-button_select' data-id=id) Выбрать
                         button(class='vacancyPage__comment-button_info' data-id-user=id) Информация об исполнителе
                         button(class='vacancyPage__comment-button_reviews') Отзывы об исполнителе
                         button(class='vacancyPage__comment-button_cancel') Отказать
-                    else if selectExecutor.creatorId === id
+                    else if selectExecutor.creatorId === id && !isArchived
                         button(class='vacancyPage__comment-button_select' data-id=id) Связаться
                         button(class='vacancyPage__comment-button_info' data-id-user=id) Информация об исполнителе
                         button(class='vacancyPage__comment-button_reviews') Отзывы об исполнителе

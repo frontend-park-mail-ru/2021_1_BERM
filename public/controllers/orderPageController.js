@@ -159,6 +159,7 @@ export class OrderPageController extends Controller {
             isMy: isMy,
             isAuthorized: user.isAuthorized,
             isExecutor: user.isExecutor,
+            isArchived: order.getOrderById(order.currentOrderId).isArchived,
             responses: creator.responses,
             creator: {
                 customerId: creator.customerId,

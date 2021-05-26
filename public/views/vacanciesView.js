@@ -5,7 +5,7 @@ import {
     VACANCIES_RENDER,
     GO_TO_VACANCY,
 } from '@/modules/constants/actions';
-import ordersTemplate from '@/components/pages/vacancies /vacancies.pug';
+import ordersTemplate from '@/components/pages/vacancies/vacancies.pug';
 
 /** View страницы всех вакансий */
 export class VacanciesView extends View {
@@ -57,7 +57,7 @@ export class VacanciesView extends View {
         //     });
         // }
 
-        const allRef = document.querySelectorAll('.orders__order_link');
+        const allRef = document.querySelectorAll('.vacancies__order_link');
         allRef.forEach((ref) => {
             ref.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -65,7 +65,7 @@ export class VacanciesView extends View {
             });
         });
 
-        const allTit = document.querySelectorAll('.orders__order_title');
+        const allTit = document.querySelectorAll('.vacancies__order_title');
         allTit.forEach((tit) => {
             tit.addEventListener('click', (e) => {
                 eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));

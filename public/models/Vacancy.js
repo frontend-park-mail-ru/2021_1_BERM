@@ -28,6 +28,7 @@ class Vacancy {
     setVacancys(data) {
         data.forEach((res) => {
             this.setAttributes({
+                isArchived: res.is_archived,
                 id: res.id,
                 avatar: res.user_img ? imgUrl + res.user_img : undefined,
                 login: res.login,

@@ -1,4 +1,4 @@
-mixin responseOrderCustomer(userAvatar, userLogin, userRate, responseDate, id, isMy, selectExecutor)
+mixin responseOrderCustomer(userAvatar, userLogin, userRate, responseDate, id, isMy, selectExecutor, isArchived)
     div(class='orderPage__response')
         div(class='orderPage__response_img-bg')
             img(class='orderPage__response_img' href=`/profile/${id}` src=userAvatar alt='')
@@ -10,5 +10,5 @@ mixin responseOrderCustomer(userAvatar, userLogin, userRate, responseDate, id, i
             div(class='orderPage__response_stat')
                 img(src=require('@/static/img/date.svg').default alt='' class='orderPage__response_stat-img')
                 div(class='orderPage__response_stat-text') Дата отклика #{responseDate}
-            if isMy && !selectExecutor
+            if isMy && !selectExecutor && !isArchived
                 button(class='orderPage__response_btn' data-id=id) Выбрать

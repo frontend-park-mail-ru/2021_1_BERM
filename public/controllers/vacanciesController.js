@@ -41,6 +41,7 @@ export class VacanciesController extends Controller {
 
         if (!user.isExecutor && !this.isI) {
             router.go(getNotFoundPath);
+            return;
         }
 
         super.run(

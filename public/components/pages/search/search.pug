@@ -1,5 +1,3 @@
-include ../orders/orderInOrdersPage
-
 .orders
     div(class='orders__title') Поиск
     div(class='orders__content')
@@ -8,14 +6,9 @@ include ../orders/orderInOrdersPage
                     form#search__form
                         input(class='search__form_input' placeholder='Введите запрос' name='search')
                         button(class='search__form_submit') Найти
-            if orders
-                each order in orders
-                    +orderInOrdersPage(order.avatar?order.avatar:require('@/static/img/profileAvatar.svg').default, order.login, order.name, order.category, order.definition, order.date, order.budget, order.id, order.customerId, isArchive, isExecutor)
+            #content
 
-                if orders.length === 0
-                    div(class="orderPage__no-comments") Ничего не найдено
-
-        form.filters
+        form.filters#filters
             div(class='filters__title') Фильтры
             div(class='filters__elem')
                 label() Искать
