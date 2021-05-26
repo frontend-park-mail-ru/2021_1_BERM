@@ -6,7 +6,7 @@ if users
     else
         each user in users
             +user(
-                user.img?user.img:require('@/static/img/profileAvatar.svg').default,
+                user.img.slice('/')[user.img.slice('/').length - 1]?user.img:require('@/static/img/profileAvatar.svg').default,
                 user.login,
                 user.name_surname,
                 user.specializes,
