@@ -1,5 +1,6 @@
 import {Controller} from '@/controllers/controller';
 import {SearchView} from '@/views/searchView';
+import {avatar} from '@/static/img/profileAvatar.svg';
 import {
     GO_TO_ORDER,
     GO_TO_VACANCY,
@@ -100,7 +101,7 @@ export class SearchController extends Controller {
                 case 3:
                     const map = new Map();
                     res.forEach((item, index) => {
-                        item.img = imgUrl + item.img;
+                        item.img = item.img ? imgUrl + item.img : avatar;
                         map.set(index, item);
                     });
                     data = map;
