@@ -1,6 +1,6 @@
 import {Controller} from '@/controllers/controller';
 import {SearchView} from '@/views/searchView';
-import {avatar} from '@/static/img/profileAvatar.svg';
+import avatar from '@/static/img/profileAvatar.svg';
 import {
     GO_TO_ORDER,
     GO_TO_VACANCY,
