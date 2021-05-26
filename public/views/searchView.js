@@ -2,6 +2,7 @@ import {View} from '@/views/view';
 import searchTemplate from '@/components/pages/search/search.pug';
 import ordersTemplate from '@/components/pages/search/orders.pug';
 import vacanciesTemplate from '@/components/pages/search/vacancies.pug';
+import suggestTemplate from '@/components/suggest/suggest.pug';
 import usersTemplate from '@/components/pages/search/users.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
@@ -10,7 +11,7 @@ import {
     GO_TO_ORDER,
     GO_TO_VACANCY,
     SEARCH_GO,
-    SEARCH_RENDER_CONTENT,
+    SEARCH_RENDER_CONTENT, SEARCH_SUGGEST, SEARCH_SUGGEST_RENDER,
     SERVER_ERROR,
 } from '@/modules/constants/actions';
 import {notification} from '@/components/notification/notification';
@@ -47,6 +48,7 @@ export class SearchView extends View {
             [
                 [SERVER_ERROR, this._error.bind(this)],
                 [SEARCH_RENDER_CONTENT, this._renderContent.bind(this)],
+                [SEARCH_SUGGEST_RENDER, this._renderSuggest.bind(this)],
             ],
         );
 
@@ -162,6 +164,16 @@ export class SearchView extends View {
             }
 
             eventBus.emit(SEARCH_GO, data);
+        });
+
+        const suggest = document.getElementById('search');
+        suggest.addEventListener('input', (event) => {
+            const filters = document.getElementById('filters');
+            const data = {
+                suggest_word: event.target.value,
+                what: filters.what.value,
+            };
+            eventBus.emit(SEARCH_SUGGEST, data);
         });
     }
 
@@ -297,5 +309,34 @@ export class SearchView extends View {
             });
             break;
         }
+    }
+
+
+    _renderSuggest(data) {
+        const box = document.getElementById('suggest__bg');
+
+        box.innerHTML = suggestTemplate({
+            suggests: data,
+        });
+
+        const suggests = document.querySelectorAll('.suggest');
+        debugger;
+
+        suggests.forEach((item) => {
+            item.addEventListener('click', (event) => {
+                const input = document.getElementById('search');
+                input.value = event.target.innerText;
+                box.innerHTML = '';
+            });
+        });
+
+        const body = document.querySelector('body');
+        body.addEventListener('click', (ev) => {
+            box.innerHTML = '';
+        });
+
+        box.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+        });
     }
 }

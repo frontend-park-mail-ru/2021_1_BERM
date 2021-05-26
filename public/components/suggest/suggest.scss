@@ -1,0 +1,23 @@
+#suggest {
+  &__bg {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.suggest:hover {
+  background: #eaeaea;
+}
+
+.suggest {
+  z-index: 23;
+}
+
+#content {
+  position: absolute;
+  top: 0;
+}
+
+.contentOther {
+  position: relative;
+}

@@ -543,4 +543,34 @@ export default class Auth {
     static searchAllUsers(query) {
         return sendRequest('GET', `/profile/users${query}`);
     }
+
+    /**
+     * Саджест по заказам
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchSuggestOrders(query) {
+        return sendRequest('GET', `/order/suggest${query}`);
+    }
+
+    /**
+     * Саджест по вакансиям
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchSuggestVacancies(query) {
+        return sendRequest('GET', `/vacancy/suggest${query}`);
+    }
+
+    /**
+     * Саджест по пользователям
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchSuggestUsers(query) {
+        return sendRequest('GET', `/profile/users/suggest${query}`);
+    }
 }

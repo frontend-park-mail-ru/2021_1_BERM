@@ -3,7 +3,7 @@ import {SearchView} from '@/views/searchView';
 import {
     GO_TO_ORDER,
     GO_TO_VACANCY,
-    SEARCH_GO, SEARCH_RENDER_CONTENT,
+    SEARCH_GO, SEARCH_RENDER_CONTENT, SEARCH_SUGGEST, SEARCH_SUGGEST_RENDER,
     SERVER_ERROR,
 } from '@/modules/constants/actions';
 import auth from '@/models/Auth';
@@ -42,6 +42,7 @@ export class SearchController extends Controller {
                 [SEARCH_GO, this._searchGo.bind(this)],
                 [GO_TO_ORDER, this._goToOrder.bind(this)],
                 [GO_TO_VACANCY, this._goToVacancy.bind(this)],
+                [SEARCH_SUGGEST, this._suggest.bind(this)],
             ], true, true);
     }
 
@@ -155,5 +156,40 @@ export class SearchController extends Controller {
      */
     _goToVacancy(id) {
         router.go(getVacancyPath(id));
+    }
+
+    /**
+     * Запро на саджесты
+     *
+     * @param {Object} data - id заказа
+     */
+    _suggest(data) {
+        let flag;
+        if (data.what === 'Только заказы') {
+            flag = 1;
+        } else if (data.what === 'Только вакансии') {
+            flag = 2;
+        } else {
+            flag = 3;
+        }
+
+        data.what = '';
+
+        const query = this.parseDataToQuery(data);
+
+        let res;
+        if (flag === 1) {
+            res = auth.searchSuggestOrders(query);
+        } else if (flag === 2) {
+            res = auth.searchSuggestVacancies(query);
+        } else {
+            res = auth.searchSuggestUsers(query);
+        }
+
+        res.then((res) => {
+            res.json().then((res) => {
+                eventBus.emit(SEARCH_SUGGEST_RENDER, res);
+            });
+        });
     }
 }
