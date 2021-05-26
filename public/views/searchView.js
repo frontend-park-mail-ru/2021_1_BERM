@@ -200,12 +200,17 @@ export class SearchView extends View {
     selectWhat() {
         new Select(
             '#select__what', {
-                placeholder: 'Только заказы',
-                data: [
-                    {id: '41', value: 'Только заказы', type: 'item'},
-                    {id: '42', value: 'Только вакансии', type: 'item'},
-                    {id: '43', value: 'Только пользователей', type: 'item'},
-                ],
+                placeholder: this.isExecutor ?
+                    'Только заказы':
+                    'Только пользователей',
+                data: this.isExecutor ?
+                    [
+                        {id: '41', value: 'Только заказы', type: 'item'},
+                        {id: '42', value: 'Только вакансии', type: 'item'},
+                        {id: '43', value: 'Только пользователей', type: 'item'},
+                    ] : [
+                        {id: '43', value: 'Только пользователей', type: 'item'},
+                    ],
             }, 'dynamic-style',
             'what');
     }
