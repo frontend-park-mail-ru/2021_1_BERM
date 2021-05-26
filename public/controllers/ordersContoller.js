@@ -78,6 +78,11 @@ export class OrdersController extends Controller {
         router.go(getOrderPath(id));
     }
 
+    /**
+     * Переход к конкретной вакансии
+     *
+     * @param {number} id - id вакансии
+     */
     _goToVacancy(id) {
         router.go(getVacancyPath(id));
     }
@@ -99,6 +104,11 @@ export class OrdersController extends Controller {
         auth.getOrders();
     }
 
+    /**
+     * Обработка результата на архивированные вакансии
+     *
+     * @param {Response} res
+     */
     _getArchiveVacancies(res) {
         if (!res.ok) {
             eventBus.emit(ORDERS_RENDER, {

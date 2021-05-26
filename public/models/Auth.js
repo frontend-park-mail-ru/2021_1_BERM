@@ -422,6 +422,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Получения архива вакансий
+     *
+     * @param {number} id профиля
+     *
+     */
     static getArchiveVacancies(id) {
         sendRequest('GET', `/vacancy/profile/${id}/archive`)
             .then((res) => {
@@ -508,14 +514,32 @@ export default class Auth {
         return sendRequest('PATCH', `/vacancy/search`, data);
     }
 
+    /**
+     * Поиск по заказам
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
     static searchAllOrders(query) {
         return sendRequest('GET', `/order${query}`);
     }
 
+    /**
+     * Поиск по вакансий
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
     static searchAllVacancies(query) {
         return sendRequest('GET', `/vacancy${query}`);
     }
 
+    /**
+     * Поиск по пользователям
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
     static searchAllUsers(query) {
         return sendRequest('GET', `/profile/users${query}`);
     }

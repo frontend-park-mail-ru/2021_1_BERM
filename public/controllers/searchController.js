@@ -44,6 +44,11 @@ export class SearchController extends Controller {
             ], true, true);
     }
 
+    /**
+     * Выполнение поиска
+     *
+     * @param {Object} data
+     */
     _searchGo(data) {
         let flag;
         if (data.what === 'Только заказы') {
@@ -105,6 +110,12 @@ export class SearchController extends Controller {
         });
     }
 
+    /**
+     * Перевод объекта в query параметры
+     *
+     * @param {Object} data
+     * @return {string}
+     */
     parseDataToQuery(data) {
         let res = '?';
         Object.entries(data).forEach(([key, value]) => {
@@ -135,6 +146,11 @@ export class SearchController extends Controller {
         router.go(getOrderPath(id));
     }
 
+    /**
+     * Переход к конкретной вакансии
+     *
+     * @param {number} id - id заказа
+     */
     _goToVacancy(id) {
         router.go(getVacancyPath(id));
     }

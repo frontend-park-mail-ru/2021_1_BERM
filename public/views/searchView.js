@@ -17,6 +17,15 @@ import {notification} from '@/components/notification/notification';
 
 /** View страницы поиска */
 export class SearchView extends View {
+    /**
+     * Установка начальных параметров
+     *
+     * @param {number} key - ключ:
+     * 1 - Только заказы
+     * 2 - Только вакансии
+     * 3 - Только пользователи
+     * @param {Object} data - результат
+     */
     constructor({key, data}) {
         super();
         this.key = key;
@@ -210,6 +219,15 @@ export class SearchView extends View {
         notification(`Ошибка сервера! ${str}`);
     }
 
+    /**
+     * Отрисовка контента
+     *
+     * @param {number} key - ключ:
+     * 1 - Только заказы
+     * 2 - Только вакансии
+     * 3 - Только пользователи
+     * @param {Object} data - результат
+     */
     _renderContent({key, data}) {
         const content = document.getElementById('content');
         let allRef; let allTit;

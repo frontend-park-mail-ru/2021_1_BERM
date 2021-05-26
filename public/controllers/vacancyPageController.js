@@ -143,7 +143,8 @@ export class VacancyPageController extends Controller {
         }
 
         eventBus.emit(VACANCY_PAGE_RENDER, {
-            isArchived: vacancy.getVacancyById(vacancy.currentVacancyId).isArchived,
+            isArchived: vacancy
+                .getVacancyById(vacancy.currentVacancyId).isArchived,
             isMy: isMy,
             isExecutor: user.isExecutor,
             responses: creator.responses,
