@@ -311,7 +311,11 @@ export class SearchView extends View {
         }
     }
 
-
+    /**
+     * Отрисовка саджестов
+     *
+     * @param {Object} data - результат
+     */
     _renderSuggest(data) {
         const box = document.getElementById('suggest__bg');
 
