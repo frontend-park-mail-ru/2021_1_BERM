@@ -1,10 +1,7 @@
 @import "public/static/scss/main";
 
 .login {
-  //margin-top: 19%;
   @include main-block(0);
-  margin: 19% 0 0 0;
-  //150px
 
   &__bg-form {
     width: auto;
