@@ -1,0 +1,30 @@
+@import "public/static/scss/main";
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 50px;
+
+  &__form {
+    &_input {
+      width: 550px;
+      height: 50px;
+
+      @include uniq_form($placeholder);
+      @include font(300, 18px, 26px, -0.3px, $black);
+
+      padding: 0 14px;
+    }
+
+    &_submit {
+      @include uniq_form($primary_color);
+      @include font(600, 18px, 22px, -0.4px, $white);
+
+      margin-left: 11px;
+
+      width: 100px;
+      height: 50px;
+    }
+  }
+}

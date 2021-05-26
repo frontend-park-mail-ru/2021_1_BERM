@@ -1,6 +1,10 @@
 import arrowDown from '@/static/img/Arrow_down.svg';
 
-export const getTemplate = (data = [], placeholder, selectedId, selectorId) => {
+export const getTemplate = (data = [],
+    placeholder,
+    selectedId,
+    selectorId,
+    name) => {
     const text = placeholder ?? 'Placeholder по умолчанию';
 
     const items = data.map((item) => {
@@ -17,11 +21,11 @@ export const getTemplate = (data = [], placeholder, selectedId, selectorId) => {
 
     return `
     <div class="select__backdrop" data-type="backdrop"></div>
-    <div class="select__input" data-type="input" id="${selectorId}">
-      <input 
-      data-type="value" 
+    <div class="select__input" data-type="input" id=${selectorId}>
+      <textarea 
+      data-type="value"  data-type="input"
       class="select__form form-control" 
-      name="category" disabled value="${text}" style="width: 100px"/>
+      name=${name} disabled>${text}</textarea>
       <img src=${arrowDown} class="settings__arrow" data-type="arrow" alt="">
     </div>
     <div class=" error">

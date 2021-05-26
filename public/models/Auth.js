@@ -24,7 +24,7 @@ import {
     VACANCY_GET_EXECUTOR,
     VACANCY_GET_DELETE_EXECUTOR,
     ORDER_PAGE_GET_RES,
-    NOTIF_CHANGE_VALID,
+    NOTIF_CHANGE_VALID, ARCHIVE_GET_VACANCIES,
 } from '@/modules/constants/actions.js';
 
 
@@ -157,6 +157,18 @@ export default class Auth {
     }
 
     /**
+     * Запрос на вакансии пользователя
+     *
+     * @param {number} id - уникальный номер пользователя
+     */
+    static getMyVacancies(id) {
+        sendRequest('GET', `/vacancy/profile/${id}`)
+            .then((res) => {
+                eventBus.emit(SEND_RESULT_RENDER_VACANCIES, res);
+            });
+    }
+
+    /**
      * Устанавливаем отклик
      *
      * @param {Object} data - данные на отправку
@@ -241,6 +253,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Устанавливаем новую ставку.
+     *
+     * @param {Object} data
+     * @param {number} id
+     */
     static vacancySetResponse(data, id) {
         sendRequest('POST', `/vacancy/${id}/response`, data)
             .then((res) => {
@@ -248,11 +266,24 @@ export default class Auth {
             });
     }
 
+    /**
+     * Запрос на удаление ставки
+     *
+     * @param {number} id вакансии
+     *
+     * @return {Promise}
+     */
     static vacancyDeleteRate(id) {
         return sendRequest('DELETE', `/vacancy/${id}/response`);
     }
 
-    static vacancyChangeResponse(data, id) {
+    /**
+     * Изменяем ставку.
+     *
+     * @param {number} id вакансии
+     * @param {Object} data - данные
+     */
+    static vacancyChangeResponse(id, data) {
         sendRequest('PATCH', `/vacancy/${id}/response`, data)
             .then((res) => {
                 eventBus.emit(VACANCY_GET_RATE, res);
@@ -260,6 +291,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Выбираем исполнителя.
+     *
+     * @param {number} id вакансии
+     * @param {Object} data - данные
+     */
     static vacancySetExecutor(id, data) {
         sendRequest('POST', `/vacancy/${id}/select`, data)
             .then((res) => {
@@ -267,6 +304,10 @@ export default class Auth {
             });
     }
 
+    /**
+     * Отменяем ислонителя
+     * @param {number} id вакансии
+     */
     static vacancyDeleteExecutor(id) {
         sendRequest('DELETE', `/vacancy/${id}/select`)
             .then((res) => {
@@ -325,6 +366,9 @@ export default class Auth {
             });
     }
 
+    /**
+     * Получаем информацию о вакансиях
+     */
     static getVacancies() {
         sendRequest('GET', '/vacancy')
             .then((res) => {
@@ -354,17 +398,50 @@ export default class Auth {
         return sendRequest('DELETE', `/order/${id}`);
     }
 
+    /**
+     * Отправка данных отзыва на сервер
+     *
+     * @param {Object} data - содержание отзыва
+     *
+     * @return {Promise} - ответ от сервера
+     */
     static sendFeedback(data) {
         return sendRequest('POST', '/profile/review', data);
     }
 
+    /**
+     * Получения архива заказов
+     *
+     * @param {number} id профиля
+     *
+     */
     static getArchiveOrders(id) {
-        return sendRequest('GET', `/order/profile/${id}/archive`)
+        sendRequest('GET', `/order/profile/${id}/archive`)
             .then((res) => {
                 eventBus.emit(SEND_RESULT_RENDER, res);
             });
     }
 
+    /**
+     * Получения архива вакансий
+     *
+     * @param {number} id профиля
+     *
+     */
+    static getArchiveVacancies(id) {
+        sendRequest('GET', `/vacancy/profile/${id}/archive`)
+            .then((res) => {
+                eventBus.emit(ARCHIVE_GET_VACANCIES, res);
+            });
+    }
+
+    /**
+     * Получение отзывов
+     *
+     * @param {number} id профиля
+     *
+     * @return {Promise} - ответ от сервера
+     */
     static getReviews(id) {
         return sendRequest('GET', `/profile/${id}/review`);
     }
@@ -391,6 +468,12 @@ export default class Auth {
         return sendRequest('DELETE', `/vacancy/${id}`);
     }
 
+    /**
+     * Изменение вакансии
+     *
+     * @param {number} id вакансии
+     * @param {Object} info - данные на отправку
+     */
     static changeVacancy(id, info) {
         sendRequest('PATCH', `/vacancy/${id}`, info)
             .then((res) => {
@@ -398,6 +481,12 @@ export default class Auth {
             });
     }
 
+    /**
+     * Изменение вакансии
+     *
+     * @param {number} id заказа
+     * @param {Object} info - данные на отправку
+     */
     static changeOrder(id, info) {
         sendRequest('PATCH', `/order/${id}`, info)
             .then((res) => {
@@ -405,11 +494,83 @@ export default class Auth {
             });
     }
 
+    /**
+     * Поиск по заказам
+     *
+     * @param {Object} data - данные на отправку
+     * @return {Promise} - ответ от сервера
+     */
     static searchOrders(data) {
         return sendRequest('PATCH', `/order/search`, data);
     }
 
+    /**
+     * Поиск по вакансиям
+     *
+     * @param {Object} data - данные на отправку
+     * @return {Promise} - ответ от сервера
+     */
     static searchVacancies(data) {
         return sendRequest('PATCH', `/vacancy/search`, data);
+    }
+
+    /**
+     * Поиск по заказам
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchAllOrders(query) {
+        return sendRequest('GET', `/order${query}`);
+    }
+
+    /**
+     * Поиск по вакансий
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchAllVacancies(query) {
+        return sendRequest('GET', `/vacancy${query}`);
+    }
+
+    /**
+     * Поиск по пользователям
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchAllUsers(query) {
+        return sendRequest('GET', `/profile/users${query}`);
+    }
+
+    /**
+     * Саджест по заказам
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchSuggestOrders(query) {
+        return sendRequest('GET', `/order/suggest${query}`);
+    }
+
+    /**
+     * Саджест по вакансиям
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchSuggestVacancies(query) {
+        return sendRequest('GET', `/vacancy/suggest${query}`);
+    }
+
+    /**
+     * Саджест по пользователям
+     *
+     * @param {string} query
+     * @return {Promise}
+     */
+    static searchSuggestUsers(query) {
+        return sendRequest('GET', `/profile/users/suggest${query}`);
     }
 }

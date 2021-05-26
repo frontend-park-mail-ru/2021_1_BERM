@@ -1,0 +1,17 @@
+include userRender
+
+if users
+    if users.length === 0
+        div(class="orderPage__no-comments") Ничего не найдено
+    else
+        each user in users
+            +user(
+                user.img?user.img:require('@/static/img/profileAvatar.svg').default,
+                user.login,
+                user.name_surname,
+                user.specializes,
+                user.about,
+                user.rating,
+                user.reviews_count,
+                user.id,
+                user.executor)

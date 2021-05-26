@@ -1,0 +1,8 @@
+include ../../vacancies/vacancyInVacanciesPage
+
+if vacancies
+    if vacancies.length === 0
+        div(class="orderPage__no-comments") Ничего не найдено
+    else
+        each vacancy in vacancies
+                +vacancyInVacanciesPage(vacancy.avatar ? vacancy.avatar : require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id, isArchive)

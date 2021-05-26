@@ -1,0 +1,13 @@
+@import "public/static/scss/main";
+
+.login {
+  @include main-block(0);
+
+  &__bg-form {
+    width: auto;
+    @include uniq_form($white);
+
+    filter: drop-shadow(0px 4px 64px rgba(34, 57, 70, 0.09));
+  }
+}
+

@@ -14,15 +14,17 @@ import {
     CHANGE_ORDER,
 } from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
-import orderPageTemplate from '@/components/pages/orderPage.pug';
+import orderPageTemplate from '@/components/pages/order/orderPage.pug';
 import feedback from '@/components/modelWindows/feedback.pug';
 import {Validator} from './validation/validator';
 import {notification} from '@/components/notification/notification.js';
-import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
+import createOrderOrVacancy
+    from '@/components/pages/createOrderVacancy/createOrderOrVacancy.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import PriceHandler from '@/modules/utils/priceHandler';
 import {confim} from '@/components/modelWindows/confim/confim';
+import DateHandler from '@/modules/utils/dateHandler';
 
 /** View страницы заказа */
 export class OrderPageView extends View {
@@ -48,12 +50,18 @@ export class OrderPageView extends View {
      * @param {Object} dataForRender
      */
     _orderPageRender(dataForRender) {
+        console.log(dataForRender);
+        this._conversionToCurrency(dataForRender);
         super.renderHtml(
             dataForRender.isAuthorized,
             dataForRender.isExecutor,
             'Страница заказа',
             orderPageTemplate(dataForRender),
         );
+
+        if (dataForRender.isArchived) {
+            return;
+        }
 
         if (dataForRender.isExecutor) {
             const val = new Validator(
@@ -151,6 +159,25 @@ export class OrderPageView extends View {
         }
     }
 
+    /**
+     * Преобразование числа в рубли
+     *
+     * @param {Object} dataForRender
+     */
+    _conversionToCurrency(dataForRender) {
+        debugger;
+        dataForRender.creator.budget += '₽';
+        dataForRender.responses.forEach((item) => {
+            item.rate += '₽';
+        });
+        if (dataForRender.userRate) {
+            dataForRender.userRate += '₽';
+        }
+        if (dataForRender.selectExecutor) {
+            dataForRender.selectExecutor.budget += '₽';
+        }
+    }
+
 
     /**
      * Обработка ошибки
@@ -203,9 +230,15 @@ export class OrderPageView extends View {
         });
     }
 
+    /**
+     * Отображение страницы
+     *
+     * @param {Object} info - исходная информация для отрисовски
+     */
     _changeOrderRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
+        info.creator.budget = info.creator.budget.slice(0, -1);
         const chInfo = {
             isOrder: true,
             isChange: isChange,
@@ -219,14 +252,22 @@ export class OrderPageView extends View {
                 data: listOfServices,
             }, 'dynamic-style');
         const category = document.querySelector('[data-type="value"]');
+        const selectInput = document.querySelector('.select__input');
         category.value = info.creator.category;
-        category.style.width = category.scrollWidth + 'px';
+        const scrollHeight = category.scrollHeight;
+        category.style.height = scrollHeight - 4 + 'px';
+        selectInput.style.height = scrollHeight + 2 + 'px';
+        // category.style.width = category.scrollWidth + 'px';
         const val = new Validator(
             'order-create_form',
             '.form-control',
             'send_mess',
         );
         val.validate();
+        const date = new DateHandler();
+        date.createDate();
+        const prHandler = new PriceHandler('budget');
+        prHandler.start();
 
         const cancelButton = document.
             querySelector('.change-form__cancel');
@@ -245,7 +286,10 @@ export class OrderPageView extends View {
                 description: e.target.description.value,
             };
             sendInfo.budget = Number(e.target.budget.value);
-            sendInfo.vacancy_name = e.target.order_name.value;
+            sendInfo.order_name = e.target.order_name.value;
+            const date = e.target.date.value.split('.');
+            sendInfo.deadline =
+                new Date(date[2], date[1] - 1, date[0]).getTime();
             eventBus.emit(CHANGE_ORDER, sendInfo);
         });
     }

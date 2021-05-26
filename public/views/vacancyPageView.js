@@ -1,7 +1,8 @@
 import {View} from './view.js';
 import eventBus from '@/modules/eventBus.js';
-import vacancyPageTemplate from '@/components/pages/vacancyPage.pug';
-import createOrderOrVacancy from '@/components/pages/createOrderOrVacancy.pug';
+import vacancyPageTemplate from '@/components/pages/vacancy/vacancyPage.pug';
+import createOrderOrVacancy
+    from '@/components/pages/createOrderVacancy/createOrderOrVacancy.pug';
 import {
     VACANCY_PAGE_RENDER,
 
@@ -24,9 +25,9 @@ import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import {Validator} from '@/views/validation/validator';
 import {confim} from '@/components/modelWindows/confim/confim';
+import PriceHandler from '@/modules/utils/priceHandler';
 
 /** View страницы вакансии */
-
 export class VacancyPageView extends View {
     /**
      * Установка обработчиков
@@ -56,12 +57,18 @@ export class VacancyPageView extends View {
      * @param {Object} info
      */
     _vacancyPageRender(info) {
+        console.log(info);
+        this._conversionToCurrency(info);
         super.renderHtml(
             this.isAuthorized,
             this.isExecutor,
             'Страница вакансии',
             vacancyPageTemplate(info),
         );
+
+        if (info.isArchived) {
+            return;
+        }
 
         const form = document.getElementById('Vacancy_form');
         if (info.isExecutor) {
@@ -72,7 +79,7 @@ export class VacancyPageView extends View {
             const element = document.querySelector('.form-control');
             const prevValue = element.value;
             val.validate();
-            if (info.userRate === 0) {
+            if (info.userText === '') {
                 form.addEventListener('submit', (event) => {
                     event.preventDefault();
                     const data = {
@@ -142,6 +149,9 @@ export class VacancyPageView extends View {
                     confim(
                         (event) => {
                             event.preventDefault();
+                            const elem = document
+                                .getElementById('confim_window');
+                            elem.parentNode.removeChild(elem);
                             eventBus.emit(VACANCY_PAGE_END);
                         });
                 }));
@@ -172,6 +182,28 @@ export class VacancyPageView extends View {
     }
 
     /**
+     * Преобразование числа в рубли
+     *
+     * @param {Object} dataForRender
+     */
+    _conversionToCurrency(dataForRender) {
+        debugger;
+        console.log(String(dataForRender.creator.salary).indexOf('₽'));
+        if (String(dataForRender.creator.salary).indexOf('₽') === -1) {
+            dataForRender.creator.salary += '₽';
+        }
+        dataForRender.responses.forEach((item) => {
+            item.rate += '₽';
+        });
+        if (dataForRender.userRate) {
+            dataForRender.userRate += '₽';
+        }
+        if (dataForRender.selectExecutor) {
+            dataForRender.selectExecutor.salary += '₽';
+        }
+    }
+
+    /**
      * Обработка ошибки
      *
      * @param {string} error - текст ошибки
@@ -180,58 +212,30 @@ export class VacancyPageView extends View {
         notification(`Ошибка сервера. ${error}`);
     }
 
+    /**
+     * Ошибка на изменение данных
+     */
     _errorChange() {
         notification(`Измените, пожалуйста, данные`);
     }
 
+    /**
+     *  Изменения приняты
+     */
     _notifChangeValid() {
         const validColor = true;
         notification(`Изменения приняты`, validColor);
     }
 
     /**
-     * Всплывающее окно отзыва
+     * Рендер изменения вакансии
+     *
+     * @param {Object} info
      */
-    _feedback() {
-        const body = document.getElementsByTagName('body')[0];
-        body.classList.add('scroll_hidden');
-
-        const root = document.getElementById('root');
-        root.insertAdjacentHTML('beforeend', feedback());
-
-        // ToDo Не знаю, нужно это или нет
-        // const bg = document.querySelector('.orderPage__feedback_bg');
-        // bg.addEventListener('click', (event) => {
-        //     bg.remove();
-        // });
-        //
-        // const window = document.querySelector('.orderPage__feedback_window');
-        // window.addEventListener('click', (event) => {
-        //     event.stopPropagation();
-        // });
-
-        const skip = document.querySelector('.orderPage__feedback_skip');
-        skip.addEventListener('click', () => {
-            body.classList.remove('scroll_hidden');
-            eventBus.emit(VACANCY_PAGE_SEND_FEEDBACK, {skip: true});
-        });
-
-        const form = document.getElementById('specForm');
-        form.addEventListener('submit', (event) => {
-            body.classList.remove('scroll_hidden');
-            event.preventDefault();
-            const data = {
-                score: 6 - Number(event.target.rating.value),
-                text: event.target.description.value,
-            };
-
-            eventBus.emit(VACANCY_PAGE_SEND_FEEDBACK, data);
-        });
-    }
-
     _changeVacancyRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
+        info.creator.salary = info.creator.salary.slice(0, -1);
         const chInfo = {
             isChange: isChange,
             creator: info.creator,
@@ -243,14 +247,19 @@ export class VacancyPageView extends View {
                 data: listOfServices,
             }, 'dynamic-style');
         const category = document.querySelector('[data-type="value"]');
+        const selectInput = document.querySelector('.select__input');
         category.value = info.creator.category;
-        category.style.width = category.scrollWidth + 'px';
+        const scrollHeight = category.scrollHeight;
+        category.style.height = scrollHeight - 4 + 'px';
+        selectInput.style.height = scrollHeight + 2 + 'px';
         const val = new Validator(
             'order-create_form',
             '.form-control',
             'send_mess',
         );
         val.validate();
+        const prHandler = new PriceHandler('budget');
+        prHandler.start();
 
         const cancelButton = document.
             querySelector('.change-form__cancel');

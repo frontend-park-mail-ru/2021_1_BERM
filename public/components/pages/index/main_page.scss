@@ -1,0 +1,49 @@
+@import "public/static/scss/main";
+.main {
+    flex: 1 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 80px 0 0 0;
+
+    &__title {
+        @include font(600, 56px, 62px, normal, $black);
+        margin: 0 0 107px 0;
+    }
+}
+
+.main-buttons {
+    display: flex;
+    flex-direction: row;
+
+    &__sector {
+        @include form_dis_3($col, $cntr);
+        width: 320px;
+        height: 304px;
+        box-shadow: 0 0 64px 24px rgba(34, 57, 70, 0.09);
+        border-radius: 32px;
+        margin-left: 12px;
+        margin-right: 12px;
+
+        &:hover {
+            transform: scale(1.05);
+            transition-duration: 0.1s;
+        }
+    }
+
+    &__img {
+        position: relative;
+        width: 350px;
+        height: 262px;
+        left: calc(50% - 350px/2);
+        top: -66px;
+        margin-bottom: -16px;
+    }
+
+    &__label {
+        @include font(600, 22px, 30px, -0.55px, $black);
+
+        text-align: center;
+    }
+}

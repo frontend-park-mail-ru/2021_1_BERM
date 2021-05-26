@@ -1,18 +1,29 @@
-@media screen and (max-width: 720px) {
-  .filters {
-    flex-wrap: wrap;
-    margin-top: 150px;
-    margin-left: 20px;
-  }
+@import 'templatesMedia';
 
+@media screen and (max-width: $width-adapt1) {
   .orders__order_text {
     flex-wrap: wrap;
     width: 1000px;
   }
 
   .orders {
+    padding: 2%;
+    width: 100%;
+
+
+    &__list {
+      width: 100%;
+    }
+
     &__order {
       flex-wrap: wrap;
+      height: auto;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    &__title {
+      margin-left: 15px;
     }
 
     &__list {
@@ -21,22 +32,130 @@
 
     &__content {
       flex-wrap: wrap;
+      flex-direction: column-reverse;
     }
   }
 
   #search__form {
+    display: flex;
     flex-wrap: wrap;
-    width: 310px;
-    margin-left: 10px;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 0;
   }
-  .search__form_input {
-      width: 310px;
-      margin-left: 10px;
+
+  .search {
+    &__form {
+      &_input {
+        width: 78%;
+      }
+
+      &_submit {
+        flex-wrap: wrap;
+        margin: 0;
+        width: 20%;
+      }
+    }
+  }
+
+  .search {
+    margin-top: 0;
+  }
+
+  .filters {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-top: 0;
+
+    &__form {
+      width: 100%;
+      margin-right: 17%;
+
+      &_input {
+        width: 100%;
+        margin-bottom: 11px;
+      }
     }
 
-  .search__form_submit {
+    &__budget {
+      width: calc(100% - 25px);
+
+      &_title {
+        width: 100%;
+      }
+    }
+  }
+
+
+}
+
+@media screen and (max-width: 1158px) and (min-width: calc(#{$width-adapt1} + 1px)) {
+  #search__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .search {
+    &__form {
+      &_input {
+        width: 78%;
+      }
+
+      &_submit {
+        flex-wrap: wrap;
+        margin: 0;
+        width: 20%;
+      }
+    }
+  }
+
+  .orders {
+    margin: 0;
+
+    &__order {
+      width: 99%;
+
+      &_text {
+        margin-left: 17px;
+      }
+
+      &_category {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+    }
+
+    &__list {
+      width: 66%;
+      margin-right: 30px;
+    }
+
+    &__title {
+      margin-left: 4%;
+    }
+
+    &__content {
+      padding: 2%;
       flex-wrap: wrap;
-      margin-top: 20px;
+      width: 100%;
     }
+  }
 
+  .filters {
+    width: 29%;
+    margin-left: 0;
+
+    &__form {
+      width: 100%;
+
+      &_input {
+        width: 90%;
+        margin-right: 0;
+      }
+    }
+  }
 }

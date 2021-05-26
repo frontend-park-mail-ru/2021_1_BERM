@@ -7,7 +7,7 @@ import {
     SERVER_ERROR,
 } from '@/modules/constants/actions.js';
 
-import regTemplate from '@/components/pages/registration.pug';
+import regTemplate from '@/components/pages/registration/registration.pug';
 import {notification} from '@/components/notification/notification.js';
 
 /** View регистрации клиента */

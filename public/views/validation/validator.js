@@ -85,7 +85,7 @@ export class Validator {
     }
 
     /**
-     * Валидации при "отпускании" поля страницы
+     * Валидации при отпускании клавиши
      *
      * @param {NodeListOf<any>} elements - элементы формы
      * @param {ValidHandler} handler - обработчик полей валидации
@@ -151,6 +151,13 @@ export class Validator {
         });
     }
 
+    /**
+     * Валидации при "отпускании" поля страницы
+     *
+     * @param {NodeListOf<any>} elements - элементы формы
+     * @param {ValidHandler} handler - обработчик полей валидации
+     * @param {ValidReflector} reflector - отображатель валидации на странице
+     */
     _validateForBlurField(elements, handler, reflector) {
         [].forEach.call(elements, (element) => {
             if (element !== 'submit') {

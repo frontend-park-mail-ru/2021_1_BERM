@@ -1,0 +1,43 @@
+mixin user(avatar, login, title, specializes, definition, rating, reviews, id, isExecutor)
+    if isExecutor
+        - title = title + '(исполнитель)'
+    else
+        - title = title + '(клиент)'
+
+    div(class='orders__order')
+        div(class='orders__order_img-bg')
+            img(class='orders__order_img' href=`/profile/${id}` src=avatar)
+            div(class='orders__order_nickname' href=`/profile/${id}`)= login
+        div(class='orders__order_text')
+            a(class='orders__order_title' href=`/profile/${id}`)= title
+            div(class='orders__order_category')
+                if isExecutor
+                    if specializes.length === 1
+                        div(class='orders__order_category-text') Категория:
+                        button(class='orders__order_category-button')= specializes[0]
+                    if specializes.length === 0
+                        div(class='orders__order_category-text') Категории не выбраны
+                    if specializes.length > 1
+                        div(class='orders__order_category-text') Категории:
+                            button(class='orders__order_category-button')= specializes[0]
+                            button(class='orders__order_category-button' href=`/profile/${id}`) ещё...
+            if definition
+                if definition.length > 40
+                    - definition = `${definition.substr(-1000, 40)}`;
+                    div(class='orders__order_definition')= definition
+                        span
+                            a(class="orders__order_link") ...показать еще
+                else
+                    div(class='orders__order_definition')= definition
+            else
+                div(class='orders__order_definition') Пользователь не заполнил информацию о себе
+            div(class='orders__order_stats')
+                div(class='orders__order_stat')
+                    img(class='orders__order_stat-img' src=require('@/static/img/stats.svg').default)
+                    div(class='orders__order_stat-data')= rating
+                div(class='orders__order_stat')
+                    img(class='orders__order_stat-img' src=require('@/static/img/star1.svg').default href=`/profile/${id}/reviews`)
+                    div(class='orders__order_stat-data' href=`/profile/${id}/reviews`)= reviews
+                if isArchive && isExecutor
+                    div(class='orders__order_stat')
+                        a(class='orders__order_stat-data orders__feedback') Оставить отзыв

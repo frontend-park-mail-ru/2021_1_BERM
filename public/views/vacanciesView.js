@@ -4,11 +4,17 @@ import {
     SEND_SERVICES_VACANCIES,
     VACANCIES_RENDER,
     GO_TO_VACANCY,
-    VACANCIES_PAGE_SEARCH,
 } from '@/modules/constants/actions';
-import ordersTemplate from '@/components/pages/vacancies.pug';
+import ordersTemplate from '@/components/pages/vacancies/vacancies.pug';
 
+/** View страницы всех вакансий */
 export class VacanciesView extends View {
+    /**
+     * Установка обработчиков
+     *
+     * @param {boolean} isAuthorized - авторизирован пользователь или нет
+     * @param {boolean} isExecutor - это исполнитель или нет
+     */
     render(isAuthorized, isExecutor) {
         super.setListeners([
             [VACANCIES_RENDER, this._renderDataVacancies],
@@ -16,11 +22,20 @@ export class VacanciesView extends View {
         eventBus.emit(SEND_SERVICES_VACANCIES);
     }
 
+    /**
+     * Отображение страницы
+     *
+     * @param {Object} dataMap
+     */
     _renderDataVacancies(dataMap) {
         const map = [];
         for (const item of dataMap.map.values()) {
             map.push(item);
         }
+
+        map.forEach((item) => {
+            item.salary += '₽';
+        });
 
         super.renderHtml(
             dataMap.isAuthorized,
@@ -33,20 +48,20 @@ export class VacanciesView extends View {
             }),
         );
 
-        if (!dataMap.isMyOrders && !dataMap.isArchive) {
-            const form = document.getElementById('search__form');
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
+        // if (!dataMap.isMyVacancies && !dataMap.isArchive) {
+        //     const form = document.getElementById('search__form');
+        //     form.addEventListener('submit', (event) => {
+        //         event.preventDefault();
+        //
+        //         const data = {
+        //             keyword: event.target.search.value,
+        //         };
+        //
+        //         eventBus.emit(VACANCIES_PAGE_SEARCH, data);
+        //     });
+        // }
 
-                const data = {
-                    keyword: event.target.search.value,
-                };
-
-                eventBus.emit(VACANCIES_PAGE_SEARCH, data);
-            });
-        }
-
-        const allRef = document.querySelectorAll('.orders__order_link');
+        const allRef = document.querySelectorAll('.vacancies__order_link');
         allRef.forEach((ref) => {
             ref.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -54,7 +69,7 @@ export class VacanciesView extends View {
             });
         });
 
-        const allTit = document.querySelectorAll('.orders__order_title');
+        const allTit = document.querySelectorAll('.vacancies__order_title');
         allTit.forEach((tit) => {
             tit.addEventListener('click', (e) => {
                 eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));

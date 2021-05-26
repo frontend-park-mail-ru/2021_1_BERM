@@ -36,6 +36,11 @@ export const VACANCIES_PAGE_SEARCH = 'vacancies_page_search';
 export const REVIEWS_GET_DATA = 'reviews_get_data';
 export const REVIEWS_GO_ORDER = 'reviews_go_order';
 
+export const ARCHIVE_GET_VACANCIES = 'archive_get_orders';
+
+export const SEARCH_GO = 'search_go';
+export const SEARCH_SUGGEST = 'search_suggest';
+
 export const ORDER_PAGE_GET_RES = 'order-page_get-res';
 export const ORDER_PAGE_RES = 'order-page_res';
 export const GO_TO_ORDER = 'go-to-order';
@@ -84,6 +89,9 @@ export const REVIEWS_ERROR = 'reviews_error';
 export const REVIEWS_RENDER = 'reviews_render';
 
 export const SETTING_INVALID_PASSWORD = 'setting_invalid_password';
+
+export const SEARCH_RENDER_CONTENT = 'search_render_content';
+export const SEARCH_SUGGEST_RENDER = 'search_suggest_render';
 
 export const NO_LOGIN = 'no-login';
 export const NO_ORDER = 'no-order';

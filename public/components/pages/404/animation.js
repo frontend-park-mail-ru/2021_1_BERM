@@ -1,6 +1,6 @@
 export const starAnimation = () => {
     const body = document.querySelector('.page404');
-    debugger;
+
     setInterval(createStar, 100);
 
     /** Создание звезды */

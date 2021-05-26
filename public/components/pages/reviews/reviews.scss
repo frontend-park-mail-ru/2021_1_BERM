@@ -1,0 +1,95 @@
+@import "public/static/scss/main";
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+
+  margin-left: 15%;
+  width: 70%;
+
+  &__title {
+    margin-top: 80px;
+    @include font(600, 24px, 22px, -0.4px, $black);
+
+    padding: 5px;
+  }
+
+  &__row {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    overflow-wrap: anywhere;
+
+    width: 100%;
+  }
+
+  &__element {
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+
+    @include bg-form(49%);
+
+    &_title {
+      @include font(600, 18px, 22px, -0.4px, $primary_color);
+
+      margin: 20px 15px 0 15px;
+    }
+
+    &_stats {
+      margin: 8px 15px 0 15px;
+
+      display: flex;
+      flex-direction: row;
+
+      justify-content: left;
+    }
+
+    &_sender {
+      @include font(600, 16px, 19px, -0.4px, $black);
+
+      margin-left: 20px;
+    }
+
+    &_comment {
+      margin: 20px 15px 20px 15px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    &_img {
+      width: 14px;
+      height: 14px;
+    }
+
+    &_text {
+      @include font(500, 16px, 22px, -0.4px, $black);
+
+      margin-left: 30px;
+    }
+
+    &_stars {
+      display: inline-block;
+      font-size: 0;
+    }
+
+    &_stars span {
+      padding: 0;
+      font-size: 20px;
+      line-height: 1;
+      color: lightgrey;
+    }
+
+    &_stars > span:before {
+      content: '★';
+    }
+
+    &_stars > span.active {
+      color: gold;
+    }
+  }
+}

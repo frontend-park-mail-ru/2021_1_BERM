@@ -1,0 +1,223 @@
+@import "public/static/scss/main";
+
+.orders {
+  display: flex;
+  flex-direction: column;
+  margin: auto auto 49px;
+
+  &__order {
+    @include form_dis_2($row, $left);
+    @include uniq_form($white);
+
+    box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+
+    flex: 0 0 auto;
+
+    margin-top: 49px;
+
+    width: 661px;
+    height: 239px;
+
+    &_img-bg {
+      @include form_dis_3($col, $cntr);
+      cursor: pointer;
+
+      margin: 37px 0 0 44px;
+    }
+
+    &_img {
+      width: 140px;
+      height: 140px;
+    }
+
+    &_nickname {
+      @include font(600, 18px, 22px, -0.4px, $black);
+
+      margin-top: 9px;
+    }
+
+    &_text {
+      @include form_dis_2($col, $s_b);
+
+      margin: 26px 18px 17px 37px;
+
+    }
+
+    &_title {
+      @include font(600, 24px, 22px, -0.4px, $black);
+    }
+
+    &_category {
+      margin: 15px 0 15px 0;
+      @include form_dis_2($row, $left);
+      @include font(600, 16px, 22px, -0.4px, $black);
+
+    }
+
+    &_category-text {
+      color: $dark;
+    }
+
+    &_category-button {
+      padding: 0 8px;
+      margin-left: 16px;
+
+      @include uniq_form($secondary_color);
+      @include font(normal, 14px, 20px, normal, $white);
+
+      text-align: center;
+    }
+
+    &_definition {
+      @include font(normal, 14px, 22px, -0.4px, $paragraph);
+    }
+
+    &_stats {
+      @include form_dis_2($row, $left);
+      margin-top: 12px;
+    }
+
+    &_stat {
+      margin-right: 24px;
+      @include form_dis_3($row, $cntr);
+
+      height: 26px;
+
+      &-img {
+        width: 24px;
+        height: 24px;
+      }
+
+      &-data {
+        @include font(500, 16px, 26px, -0.2px, $primary_color);
+
+        margin-left: 8px;
+      }
+    }
+
+  }
+
+  &__title {
+    @include font(600, 36px, 22px, -0.4px, $black);
+    align-self: flex-start;
+    margin-top: 55px;
+    margin-bottom: 10px;
+
+  }
+
+  &_title:hover {
+    color: #EE3465;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+  }
+
+  &__list {
+    width: 662px;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+}
+
+.show-more-button {
+  width: 430px;
+  height: 40px;
+  margin-top: 49px;
+  border: 2px solid #DFE4EA;
+  box-sizing: border-box;
+  //border-radius: 8px;
+  //font-style: normal;
+  //font-weight: 600;
+  //font-size: 16px;
+  //line-height: 19px;
+  text-align: center;
+  //letter-spacing: -0.4px;
+  //background-color: $white;
+  @include uniq_form($white);
+  @include font(600, 16px, 19px, 0.4px, $dark)
+
+  //color: #18214D;
+}
+
+.filters {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+
+  width: 408px;
+  flex: 0 0 auto;
+
+  background: #FFFFFF;
+  /* shadow/01 */
+
+  box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
+  border-radius: 8px;
+  margin-left: 88px;
+  margin-top: 50px;
+
+  &__title {
+    @include font(600, 24px, 22px, -0.4px, $black);
+
+    margin: 25px 0 0 25px;
+  }
+
+  &__budget {
+    display: flex;
+    flex-direction: row;
+
+    flex: 0 0 auto;
+
+    margin: 25px 0 0 25px;
+
+    &_title {
+      @include font(600, 18px, 22px, -0.4px, $black);
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 11px;
+
+    & input {
+      margin-bottom: 11px;
+    }
+
+    & input:last-child {
+      margin-bottom: 0px;
+    }
+
+    &_input {
+      width: 237px;
+      height: 46px;
+      @include uniq_form($placeholder);
+      @include font(normal, 20px, 28px, -0.4px, $dark);
+
+      font-family: Inter;
+      padding: 9px 18px 9px 18px;
+    }
+  }
+
+  &__submit {
+    margin: 20px 0 19px 44px;
+    width: 168px;
+    height: 50px;
+
+    @include uniq_form($primary_color);
+    @include font(600, 18px, 22px, -0.4px, $white);
+  }
+
+}
+
+.orders__order_title:hover {
+  color: #EE3465;
+}
+
+.orders__order_link:hover {
+  color: #EE3465;
+}
+

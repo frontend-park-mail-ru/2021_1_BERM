@@ -1,0 +1,40 @@
+@import 'rootMedia.scss';
+@media screen and (max-width: 575px) {
+  .orderPage {
+    &__feedback {
+      &_bg {
+        position: absolute;
+      }
+
+      &_window {
+        position: absolute;
+        padding: 5vw;
+        margin-top: 33px;
+        width: 90%;
+
+        & > form {
+          width: 100%;
+          margin: 0;
+
+          & > button {
+            width: 100%;
+          }
+        }
+      }
+
+      &_title {
+        font-size: 6vw;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .mini-button {
+    &__box {
+      & > button {
+        width: 140px;
+      }
+    }
+  }
+}

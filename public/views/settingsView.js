@@ -8,7 +8,7 @@ import {
     SETTING_SUBMIT,
 } from '@/modules/constants/actions.js';
 
-import settingsTemplate from '@/components/pages/settings.pug';
+import settingsTemplate from '@/components/pages/settings/settings.pug';
 import {notification} from '@/components/notification/notification.js';
 
 /** Контроллер регистрации клиента */
@@ -70,6 +70,9 @@ export class SettingsView extends View {
         notification('Ошибка сервера. Не удалось сохранить изменения');
     }
 
+    /**
+     * Обработка в случае провала
+     */
     _invalidPassword() {
         // Todo Рисовать ошибку по другому
         notification('Ошибка! Неверный текущий пароль');

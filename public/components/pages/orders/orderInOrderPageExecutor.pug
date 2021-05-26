@@ -1,0 +1,29 @@
+mixin orderInOrderPageExecutor(avatar, title, category, definition, date, budget, name, id, isExecutor, selectExecutor, isArchived)
+    div(class='orderPage__order')
+        div(class='orderPage__order_img-bg')
+            img(class='orderPage__order_img' href=`/profile/${id}` src=avatar)
+            div(class='orderPage__order_name' href=`/profile/${id}`)= name
+        div(class='orderPage__order_text')
+            .orderPage__order_up-box
+                div(class='orderPage__order_title')= title
+                if isArchived
+                    button.orderPage__order_end В архиве
+                else
+                    if !isExecutor
+                        if selectExecutor
+                            button.orderPage__order_end Завершить заказ
+                        else
+                            img.orderPage__order_delete(src=require('@/static/img/delete.svg').default)
+            div(class='orderPage__order_category')
+                div(class='orderPage__order_category-text') Категория:
+                button(class='orderPage__order_category-button')= category
+            div(class='orderPage__order_definition')= definition
+            div(class='orderPage__order_stats')
+                div(class='orderPage__order_stat')
+                    img(class='orderPage__order_stat-img' src=require('@/static/img/iconTime.svg').default)
+                    div(class='orderPage__order_stat-data')= date
+                div(class='orderPage__order_stat')
+                    img(class='orderPage__order_stat-img' src=require('@/static/img/cardBlue.svg').default)
+                    div(class='orderPage__order_stat-data')= budget
+                if !isExecutor && !isArchived
+                    button(class='vacancyPage__customer-button_change') Изменить

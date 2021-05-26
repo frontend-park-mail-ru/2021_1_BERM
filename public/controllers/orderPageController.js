@@ -159,6 +159,7 @@ export class OrderPageController extends Controller {
             isMy: isMy,
             isAuthorized: user.isAuthorized,
             isExecutor: user.isExecutor,
+            isArchived: order.getOrderById(order.currentOrderId).isArchived,
             responses: creator.responses,
             creator: {
                 customerId: creator.customerId,
@@ -220,7 +221,7 @@ export class OrderPageController extends Controller {
     /**
      * Получаем ответ на запрос о установке исполнителя
      *
-     * @param {number} res - результат запроса на выбор исполнителя
+     * @param {Response} res - результат запроса на выбор исполнителя
      */
     _getExecutor(res) {
         if (res.ok) {
@@ -243,7 +244,7 @@ export class OrderPageController extends Controller {
     /**
      * Получаем ответ на запрос о отмене исполнителя
      *
-     * @param {number} res - результат запроса на отмену исполнителя
+     * @param {Response} res - результат запроса на отмену исполнителя
      */
     _getDeleteExecutor(res) {
         if (res.ok) {
@@ -315,6 +316,11 @@ export class OrderPageController extends Controller {
             });
     }
 
+    /**
+     * Логика отзыва
+     *
+     * @param {Object} info - содержание изменений
+     */
     _changeOrder(info) {
         auth.changeOrder(order.currentOrderId, info);
     }

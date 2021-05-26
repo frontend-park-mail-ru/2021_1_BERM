@@ -1,0 +1,20 @@
+mixin rateCustomer(avatar, login, rate, date, isMy, selectMe, isArchived)
+    div(class='orderPage__set-rate')
+        if !selectMe
+            div(class='orderPage__set-rate_title-customer') Выбранный исполнитель
+        else
+            div(class='orderPage__set-rate_title-customer') Вас выбрали
+        div(class='orderPage__select-executor')
+            div(class='orderPage__select-executor-avatar')
+                img(src=avatar alt='' class='orderPage__select-executor-avatar_img')
+                div(class='orderPage__select-executor-avatar_text')= login
+            div(class='orderPage__select-executor_text')
+                div(class='orderPage__select-executor_text-column') Сделает за:
+                div(class='orderPage__select-executor_text-column') Срок:
+            div(class='orderPage__select-executor_data')
+                div(class='orderPage__select-executor_data-column')= rate
+                div(class='orderPage__select-executor_data-column')= date
+        div(class='orderPage__set-rate_buttons')
+            if (isMy || selectMe) && !isArchived
+                button(class='orderPage__set-rate_button') Связаться
+                button(class='orderPage__set-rate_button-exit') Отказаться

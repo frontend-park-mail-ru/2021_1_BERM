@@ -1,0 +1,61 @@
+@import 'templatesMedia';
+@media screen and (max-width: $width-adapt1) {
+  .create{
+    &__about-textarea {
+      width: 300px;
+    }
+
+    &__bg-form {
+      width: 96%;
+      height: 100%;
+    }
+  }
+
+  .settings-container.create {
+    padding: 49px;
+    width: 100%;
+  }
+
+  .create__about-textarea {
+    width: 300px;
+  }
+
+  .settings__column_right.create {
+    width: auto;
+  }
+
+  .about-form__input.create {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: $width-adapt-ipad) and (min-width: calc(#{$width-adapt1} + 1px)){
+  .settings__column_left.create {
+    width: 100%;
+  }
+
+  .settings__column_right.create {
+    width: 100%;
+  }
+
+  .create__bg-form {
+    width: 100%;
+  }
+
+  .settings__arrow {
+    transform: translateX(-290%);
+  }
+
+  .create__about-textarea {
+    width: 100%;
+  }
+
+  .settings-container.create {
+    padding: 49px;
+    width: 100%;
+  }
+
+  .create >.settings-form__input {
+    width: 100%;
+  }
+}

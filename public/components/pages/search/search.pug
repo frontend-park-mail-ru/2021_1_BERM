@@ -1,0 +1,19 @@
+.orders
+    div(class='orders__title') Поиск
+    div(class='orders__content')
+        div(class='orders__list')
+            div(class='search')
+                    form#search__form
+                        input(class='search__form_input' placeholder='Введите запрос' name='search' id='search' autocomplete="off")
+                        button(class='search__form_submit') Найти
+            div.contentOther
+                #suggest__bg
+                #content
+
+        form.filters#filters
+            div(class='filters__title') Фильтры
+            div(class='filters__elem')
+                label() Искать
+                div.settings-form__input-mini_bg
+                    div#select__what
+            div.filters__content

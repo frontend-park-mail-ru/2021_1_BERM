@@ -24,6 +24,9 @@ export class ValidReflector {
         this._setUp();
     }
 
+    /**
+     * устанавливаем начальные данные
+     */
     _setUp() {
         const pasArrow = document.getElementById('arrow__password');
 
@@ -49,6 +52,9 @@ export class ValidReflector {
      * @param {string} property - название поля
      * @param {string} error - текст ошибки,
      * в случае, когда форма валидна, передается пустая строка
+     * @param {string} event - событие, которое обрабатываем
+     * @param {string} options - дополнительные опуии
+     *
      *
      */
     show(type, property, error, event, options) {

@@ -1,9 +1,0 @@
-include ../inputes/customFormInput
-.login
-    div(class='login__bg-form')
-        form.custom-form(action='' id='login__window')
-            div(class='custom-form__label') Авторизация
-            +customFormInput(require("@/static/img/email.svg").default, 'Почта', 'email', 'text')
-            +customFormInput(require("@/static/img/block.svg").default, 'Пароль', 'password', 'password')
-            button(class='custom-form__submit') Войти
-            div(id="err_place")

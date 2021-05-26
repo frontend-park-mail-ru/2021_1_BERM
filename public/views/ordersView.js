@@ -6,9 +6,9 @@ import {
     GO_TO_ORDER,
     SERVER_ERROR,
     ORDERS_PAGE_SEARCH,
-    ORDERS_SEND_FEEDBACK,
+    ORDERS_SEND_FEEDBACK, GO_TO_VACANCY,
 } from '@/modules/constants/actions';
-import ordersTemplate from '@/components/pages/orders.pug';
+import ordersTemplate from '@/components/pages/orders/orders.pug';
 import {notification} from '@/components/notification/notification';
 import feedback from '@/components/modelWindows/feedback.pug';
 import {Validator} from '@/views/validation/validator';
@@ -40,12 +40,27 @@ export class OrdersView extends View {
             map.push(item);
         }
 
+        const archiveMap = [];
+        if (dataForRender.mapVacancies) {
+            for (const item of dataForRender.mapVacancies.values()) {
+                archiveMap.push(item);
+            }
+        }
+
+        map.forEach((item) => {
+            item.budget += '₽';
+        });
+        archiveMap.forEach((item) => {
+            item.budget += '₽';
+        });
+
         super.renderHtml(
             dataForRender.isAuthorized,
             dataForRender.isExecutor,
             'Все заказы',
             ordersTemplate({
                 orders: map,
+                archiveVacancies: archiveMap,
                 isI: dataForRender.isI,
                 isMyOrders: dataForRender.isMyOrders,
                 isArchive: dataForRender.isArchive,
@@ -68,6 +83,21 @@ export class OrdersView extends View {
                     this._feedback(to, order);
                 });
             });
+
+            const allRef = document.querySelectorAll('.vacancies__order_link');
+            allRef.forEach((ref) => {
+                ref.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    eventBus.emit(GO_TO_VACANCY, ref.getAttribute('name'));
+                });
+            });
+
+            const allTit = document.querySelectorAll('.vacancies__order_title');
+            allTit.forEach((tit) => {
+                tit.addEventListener('click', () => {
+                    eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));
+                });
+            });
         }
 
         if (!dataForRender.isMyOrders && !dataForRender.isArchive) {
@@ -83,7 +113,6 @@ export class OrdersView extends View {
             });
         }
 
-        // const allId = document.querySelectorAll('#id');
         const allRef = document.querySelectorAll('.orders__order_link');
         allRef.forEach((ref) => {
             ref.addEventListener('click', (e) => {
@@ -100,10 +129,21 @@ export class OrdersView extends View {
         });
     }
 
+    /**
+     * Вывод ошибка
+     *
+     * @param {String} str
+     */
     _error(str) {
         notification(`Ошибка сервера! ${str}`);
     }
 
+    /**
+     * Показ окна отзыва
+     *
+     * @param {number} to
+     * @param {number} order
+     */
     _feedback(to, order) {
         const body = document.getElementsByTagName('body')[0];
         body.classList.add('scroll_hidden');
