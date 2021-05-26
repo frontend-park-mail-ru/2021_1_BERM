@@ -1,5 +1,5 @@
-const staticCacheName = 's-app-v2.5';
-const dynamicCacheName = 'd-app-v2.5';
+const staticCacheName = 's-app-v4';
+const dynamicCacheName = 'd-app-v4';
 
 const assetUrls = [
     '/',
