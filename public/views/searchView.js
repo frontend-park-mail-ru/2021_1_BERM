@@ -89,10 +89,13 @@ export class SearchView extends View {
 
         const filters = document.querySelector('.filters__content');
 
-        filters.innerHTML = budget('Ставка') + sort + category;
-
+        filters.innerHTML = budget('Рейтинг') + sort + category;
+        this.selectSort([
+            {id: '51', value: 'Рейтингу', type: 'item'},
+            {id: '52', value: 'Имени', type: 'item'},
+            {id: '53', value: 'Отзывам', type: 'item'},
+        ]);
         this.selectCategory();
-        this.selectSort();
         this.selectWhat();
 
         let prev;
