@@ -91,14 +91,12 @@ export class SearchController extends Controller {
                     data = vacancy.vacancysMap;
                     break;
                 case 3:
-                    console.log(res);
-                    return;
-                    // const map = new Map();
-                    // res.forEach((item, index) => {
-                    //     map.set(index, item);
-                    // });
-                    // data = map;
-                    // break;
+                    const map = new Map();
+                    res.forEach((item, index) => {
+                        map.set(index, item);
+                    });
+                    data = map;
+                    break;
                 }
 
                 user.searchData = {key: flag, data: data};

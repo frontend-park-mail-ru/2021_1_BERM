@@ -25,7 +25,7 @@ export const getTemplate = (data = [],
       <textarea 
       data-type="value"  data-type="input"
       class="select__form form-control" 
-      name=${name}>${text}</textarea>
+      name=${name} disabled>${text}</textarea>
       <img src=${arrowDown} class="settings__arrow" data-type="arrow" alt="">
     </div>
     <div class=" error">

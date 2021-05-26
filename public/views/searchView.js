@@ -2,6 +2,7 @@ import {View} from '@/views/view';
 import searchTemplate from '@/components/pages/search/search.pug';
 import ordersTemplate from '@/components/pages/search/orders.pug';
 import vacanciesTemplate from '@/components/pages/search/vacancies.pug';
+import usersTemplate from '@/components/pages/search/users.pug';
 import Select from '@/modules/utils/customSelect';
 import {listOfServices} from '@/modules/utils/templatesForSelect';
 import eventBus from '@/modules/eventBus';
@@ -48,9 +49,9 @@ export class SearchView extends View {
             <div class="filters__budget_no-margin">
                 <div class="filters__budget_title">${title}</div>
                 <div class="filters__form">
-                <input class="filters__form_input" type="text" 
+                <input class="filters__form_input" type="number" 
                         placeholder="От" name="salaryFrom" />
-                <input class="filters__form_input" type="text" 
+                <input class="filters__form_input" type="number" 
                         placeholder="До" name="salaryTo" />
                 </div>
             </div>
@@ -120,7 +121,9 @@ export class SearchView extends View {
             };
 
             const filters = document.getElementById('filters');
-            data.category = filters.category.value;
+            data.category = filters.category.value === 'Категория' ?
+                '' :
+                filters.category.value;
             data.desc = filters.desc.value !== 'Возрастанию';
             const sort = filters.sort.value;
             if (sort === 'Заголовку') {
@@ -255,6 +258,11 @@ export class SearchView extends View {
                 tit.addEventListener('click', () => {
                     eventBus.emit(GO_TO_VACANCY, tit.getAttribute('name'));
                 });
+            });
+            break;
+        case 3:
+            content.innerHTML = usersTemplate({
+                users: map,
             });
             break;
         }
