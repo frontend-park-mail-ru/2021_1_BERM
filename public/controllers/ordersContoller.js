@@ -151,7 +151,7 @@ export class OrdersController extends Controller {
 
         res.json().then((result) => {
             order.clear();
-            order.setOrders(result);
+            order.setOrders(result.order ? result.order : result);
 
             eventBus.emit(ORDERS_RENDER, {
                 isArchive: this.isArchive,

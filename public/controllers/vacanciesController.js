@@ -85,7 +85,7 @@ export class VacanciesController extends Controller {
         if (result.ok) {
             result.json().then((result) => {
                 vacancy.clear();
-                vacancy.setVacancys(result);
+                vacancy.setVacancys(result.vacancy ? result.vacancy : result);
 
                 eventBus.emit(VACANCIES_RENDER, {
                     isI: this.isI,
