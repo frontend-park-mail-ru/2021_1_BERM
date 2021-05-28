@@ -90,12 +90,12 @@ export class SearchController extends Controller {
                 switch (flag) {
                 case 1:
                     order.clear();
-                    order.setOrders(res);
+                    order.setOrders(res.order);
                     data = order.ordersMap;
                     break;
                 case 2:
                     vacancy.clear();
-                    vacancy.setVacancys(res);
+                    vacancy.setVacancys(res.vacancy);
                     data = vacancy.vacancysMap;
                     break;
                 case 3:
