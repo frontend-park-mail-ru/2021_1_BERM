@@ -11,7 +11,8 @@ import eventBus from '@/modules/eventBus.js';
 import auth from '@/models/Auth.js';
 import vacancy from '@/models/Vacancy.js';
 import router from '@/modules/router.js';
-import {getVacancyPath} from '@/modules/constants/goPath.js';
+import {getNotFoundPath, getVacancyPath} from '@/modules/constants/goPath.js';
+import user from '@/models/User';
 
 /** Контроллер создания вакансии */
 export class VacancyCreateController extends Controller {
@@ -29,6 +30,10 @@ export class VacancyCreateController extends Controller {
      * @param {number} id - id из url, если он там был
      */
     run(id) {
+        if (user.isExecutor) {
+            router.go(getNotFoundPath);
+        }
+
         super.run(
             [
                 [VACANCY_CREATE, this._vacancyCreate],

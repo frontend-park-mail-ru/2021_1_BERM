@@ -45,7 +45,7 @@
     }
 
     &_title {
-      @include font(600, 24px, 22px, -0.4px, $black);
+      @include font(600, 24px, 1, -0.4px, $black);
     }
 
     &_category {

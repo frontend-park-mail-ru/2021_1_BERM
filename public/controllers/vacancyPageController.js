@@ -127,7 +127,7 @@ export class VacancyPageController extends Controller {
                 auth.getResponsesVacancy(vacancy.currentVacancyId);
             });
         } else {
-            // ToDo Обработка ошибки запроса
+            router.go(getNotFoundPath);
         }
     }
 

@@ -1,6 +1,6 @@
 import {Controller} from './controller.js';
 import {OrderOrVacancyCreateView} from '@/views/orderOrVacancyCreateView';
-import {getOrderPath} from '@/modules/constants/goPath.js';
+import {getNotFoundPath, getOrderPath} from '@/modules/constants/goPath.js';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
 import auth from '@/models/Auth.js';
@@ -30,6 +30,10 @@ export class OrderCreateController extends Controller {
      * @param {number} id - id из url, если он там был
      */
     run(id) {
+        if (user.isExecutor) {
+            router.go(getNotFoundPath);
+        }
+
         super.run(
             [
                 [ORDER_CREATE_GET, this._orderCreate],

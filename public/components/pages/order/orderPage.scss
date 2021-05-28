@@ -341,6 +341,7 @@
   }
 
   &__set-rate {
+    padding-bottom: 10px;
     margin-top: 20px;
     @include form_dis_2($col, $left);
     width: 508px;
