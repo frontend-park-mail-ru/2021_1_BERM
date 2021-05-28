@@ -13,8 +13,9 @@
 
     &__surfacing {
       display: flex;
-      height: 30px;
-      width: 30px;
+      flex-direction: row-reverse;
+      height: 70px;
+      width: 60px;
       align-items: center;
       margin-right: 25px;
 
@@ -25,12 +26,12 @@
       }
 
       &_content {
-        margin-left: -130px;
+        margin-right: -25px;
         margin-top: 215px;
         display: none;
         position: absolute;
         background-color: $placeholder;
-        min-width: 160px;
+        width: 270px;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         z-index: 1001;
 
@@ -49,7 +50,7 @@
       }
     }
 
-    &__surfacing:focus .navbar__surfacing_content {
+    &__surfacing:hover .navbar__surfacing_content {
       display: block;
     }
   }
@@ -67,8 +68,9 @@
 
     &__surfacing {
       display: flex;
-      height: 30px;
-      width: 30px;
+      flex-direction: row-reverse;
+      height: 70px;
+      width: 60px;
       align-items: center;
       margin-right: 25px;
 
@@ -79,12 +81,12 @@
       }
 
       &_content {
-        margin-left: -215px;
+        margin-right: -25px;
         margin-top: 247px;
         display: none;
         position: absolute;
         background-color: $placeholder;
-        min-width: 160px;
+        width: 270px;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         z-index: 1001;
 
@@ -104,7 +106,7 @@
       }
     }
 
-    &__surfacing:focus .navbar__surfacing_content {
+    &__surfacing:hover .navbar__surfacing_content {
       display: block;
     }
   }
