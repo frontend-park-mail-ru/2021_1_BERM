@@ -26,7 +26,7 @@
 
       &_content {
         margin-left: -130px;
-        margin-top: 177px;
+        margin-top: 215px;
         display: none;
         position: absolute;
         background-color: $placeholder;
@@ -49,7 +49,7 @@
       }
     }
 
-    &__surfacing:hover .navbar__surfacing_content {
+    &__surfacing:focus .navbar__surfacing_content {
       display: block;
     }
   }
@@ -80,7 +80,7 @@
 
       &_content {
         margin-left: -215px;
-        margin-top: 201px;
+        margin-top: 247px;
         display: none;
         position: absolute;
         background-color: $placeholder;
@@ -104,7 +104,7 @@
       }
     }
 
-    &__surfacing:hover .navbar__surfacing_content {
+    &__surfacing:focus .navbar__surfacing_content {
       display: block;
     }
   }

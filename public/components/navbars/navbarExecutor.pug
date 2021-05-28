@@ -11,9 +11,10 @@ div(class='navbar' id='myTopnav')
             div(class='row__item')
                 a(href='/search')
                     img(src=require("@/static/img/search.svg").default alt='' href='/search')
-    div.navbar__surfacing
+    div.navbar__surfacing(tabindex="1")
         img(class='navbar__surfacing_item' src=require("@/static/img/Arrow_down.svg").default)
         div(class='navbar__surfacing_content')
             a(href='/orders') Все заказы
             a(href='/vacancies') Все вакансии
+            a(href='/search') Поиск
             a(href='/profile') Профиль
