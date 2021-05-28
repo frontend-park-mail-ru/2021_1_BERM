@@ -51,8 +51,6 @@ export class OrderPageView extends View {
      * @param {Object} dataForRender
      */
     _orderPageRender(dataForRender) {
-        console.log(dataForRender);
-        this._conversionToCurrency(dataForRender);
         super.renderHtml(
             dataForRender.isAuthorized,
             dataForRender.isExecutor,
@@ -157,25 +155,6 @@ export class OrderPageView extends View {
                     eventBus.emit(ORDER_SET_EXECUTOR, Number(id));
                 });
             });
-        }
-    }
-
-    /**
-     * Преобразование числа в рубли
-     *
-     * @param {Object} dataForRender
-     */
-    _conversionToCurrency(dataForRender) {
-        debugger;
-        dataForRender.creator.budget += '₽';
-        dataForRender.responses.forEach((item) => {
-            item.rate += '₽';
-        });
-        if (dataForRender.userRate) {
-            dataForRender.userRate += '₽';
-        }
-        if (dataForRender.selectExecutor) {
-            dataForRender.selectExecutor.budget += '₽';
         }
     }
 

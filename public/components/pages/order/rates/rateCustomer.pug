@@ -12,7 +12,7 @@ mixin rateCustomer(avatar, login, rate, date, isMy, selectMe, isArchived)
                 div(class='orderPage__select-executor_text-column') Сделает за:
                 div(class='orderPage__select-executor_text-column') Срок:
             div(class='orderPage__select-executor_data')
-                div(class='orderPage__select-executor_data-column')= rate
+                div(class='orderPage__select-executor_data-column') #{rate} ₽
                 div(class='orderPage__select-executor_data-column')= date
         div(class='orderPage__set-rate_buttons')
             if (isMy || selectMe) && !isArchived
