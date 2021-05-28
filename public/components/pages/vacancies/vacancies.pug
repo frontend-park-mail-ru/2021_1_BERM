@@ -16,7 +16,7 @@ include ../../vacancies/vacancyInVacanciesPage
                         input(class='search__form_input' placeholder='Введите запрос' name='search')
                         button(class='search__form_submit') Найти
             each vacancy in vacancies
-                +vacancyInVacanciesPage(vacancy.avatar?vacancy.avatar:require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id)
+                +vacancyInVacanciesPage(vacancy.avatar?vacancy.avatar:require('@/static/img/profileAvatar.svg').default, vacancy.login, vacancy.name, vacancy.category, vacancy.definition, vacancy.salary, vacancy.id, false, vacancy.customerId)
             if vacancies.length !== 0
                 //button.show-more-button Показать еще
             else
