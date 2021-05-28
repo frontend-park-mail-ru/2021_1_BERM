@@ -20,10 +20,13 @@ export class SettingsView extends View {
      * @param {boolean} isExecutor - это исполнитель или нет
      */
     render(isAuthorized, isExecutor) {
+        this.isAuthorized = isAuthorized;
+        this.isExecutor = isExecutor;
+
         super.setListeners([
-            [GET_USER_DATA, this._renderData],
-            [NO_SET_UP, this._onNoSetUp],
-            [SETTING_INVALID_PASSWORD, this._invalidPassword],
+            [GET_USER_DATA, this._renderData.bind(this)],
+            [NO_SET_UP, this._onNoSetUp.bind(this)],
+            [SETTING_INVALID_PASSWORD, this._invalidPassword.bind(this)],
         ]);
         eventBus.emit(SETTING_SEND_DATA);
     }

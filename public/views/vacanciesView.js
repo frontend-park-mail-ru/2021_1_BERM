@@ -16,8 +16,10 @@ export class VacanciesView extends View {
      * @param {boolean} isExecutor - это исполнитель или нет
      */
     render(isAuthorized, isExecutor) {
+        this.isAuthorized = isAuthorized;
+        this.isExecutor = isExecutor;
         super.setListeners([
-            [VACANCIES_RENDER, this._renderDataVacancies],
+            [VACANCIES_RENDER, this._renderDataVacancies.bind(this)],
         ]);
         eventBus.emit(SEND_SERVICES_VACANCIES);
     }
@@ -38,8 +40,8 @@ export class VacanciesView extends View {
         });
 
         super.renderHtml(
-            dataMap.isAuthorized,
-            dataMap.isExecutor,
+            this.isAuthorized,
+            this.isExecutor,
             'Все заказы',
             ordersTemplate({
                 vacancies: map,

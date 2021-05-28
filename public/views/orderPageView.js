@@ -227,7 +227,6 @@ export class OrderPageView extends View {
     _changeOrderRender(info) {
         const form = document.querySelector(' .orderPage');
         const isChange = true;
-        info.creator.budget = info.creator.budget.slice(0, -1);
         const chInfo = {
             isOrder: true,
             isChange: isChange,

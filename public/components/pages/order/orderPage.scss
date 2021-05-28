@@ -126,7 +126,7 @@
 
 
   &__order {
-    @include form_dis($left, $cntr);
+    @include form_dis($left, normal);
     @include uniq_form($white);
     flex-direction: row;
     box-shadow: 0 0 64px rgba(13, 17, 38, 0.05);
@@ -169,6 +169,7 @@
     }
 
     &_img {
+      border-radius: 8px;
       width: 154px;
       height: 154px;
     }
@@ -267,6 +268,7 @@
     }
 
     &_img {
+      border-radius: 8px;
       width: 48px;
       height: 48px;
       margin-bottom: 10px;
@@ -442,6 +444,7 @@
     margin-left: 30px;
 
     &_img {
+      border-radius: 8px;
       width: 70px;
       height: 70px;
     }

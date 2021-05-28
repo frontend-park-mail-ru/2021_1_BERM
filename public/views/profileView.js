@@ -42,8 +42,8 @@ export class ProfileView extends View {
      */
     _renderProfile(info) {
         super.renderHtml(
-            info.isAuthorized,
-            info.isExecutor,
+            this.isAuthorized,
+            this.isExecutor,
             'Профиль',
             profileTemplate(info),
         );

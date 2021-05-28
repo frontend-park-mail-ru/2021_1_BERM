@@ -22,6 +22,9 @@ export class OrdersView extends View {
      * @param {boolean} isExecutor - это исполнитель или нет
      */
     render(isAuthorized, isExecutor) {
+        this.isAuthorized = isAuthorized;
+        this.isExecutor = isExecutor;
+
         super.setListeners([
             [ORDERS_RENDER, this._renderData.bind(this)],
             [SERVER_ERROR, this._error.bind(this)],
@@ -55,8 +58,8 @@ export class OrdersView extends View {
         });
 
         super.renderHtml(
-            dataForRender.isAuthorized,
-            dataForRender.isExecutor,
+            this.isAuthorized,
+            this.isExecutor,
             'Все заказы',
             ordersTemplate({
                 orders: map,
