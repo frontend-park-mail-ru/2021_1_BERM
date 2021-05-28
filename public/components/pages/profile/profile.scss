@@ -99,9 +99,15 @@
   margin-top: 19px;
 
   &__text {
+    padding: 3px;
+    border-radius: 8px;
     @include font(600, 16px, 19px, -0.4px, $black);
     text-align: center;
     margin-left: 7px;
+  }
+
+  &__text:hover {
+    background: #d8d8d8;
   }
 }
 

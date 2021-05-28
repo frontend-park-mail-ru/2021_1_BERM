@@ -33,29 +33,29 @@ mixin specialize(specName, isMyProfile)
                     .reviews-stat
                         div
                             img(src=require('@/static/img/star1.svg').default alt='')
-                        div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/reviews`) Отзывы: #{reviewsCount}
+                        button(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/reviews`) Отзывы: #{reviewsCount}
                     if !isExecutor
                         .reviews-stat
                             div
                                 img(src=require('@/static/img/carousel.svg').default style="cursor:pointer;" alt='')
                             if isMyProfile
 
-                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
+                                button(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Мои заказы
                             else
-                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
+                                button(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/orders`) Заказы
                         .reviews-stat
                             div
                                 img(src=require('@/static/img/vacancy.svg').default style="cursor:pointer;" alt='')
                             if isMyProfile
 
-                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) Мои вакансии
+                                button(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) Мои вакансии
                             else
-                                div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) Вакансии
+                                button(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/vacancies`) Вакансии
                     if isMyProfile
                         .reviews-stat
                             div
                                 img(src=require('@/static/img/document.svg').default style="cursor:pointer;" alt='')
-                            div(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/archive`) Архив
+                            button(class='reviews-stat__text' style="cursor:pointer;" href=`/profile/${id}/archive`) Архив
                 div(class='top__item')
                     if isMyProfile
                         .settings-buttons
