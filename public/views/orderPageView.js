@@ -11,7 +11,7 @@ import {
     ORDER_PAGE_ERROR,
     ORDER_PAGE_FEEDBACK,
     ORDER_PAGE_SEND_FEEDBACK,
-    CHANGE_ORDER,
+    CHANGE_ORDER, SERVER_ERROR,
 } from '@/modules/constants/actions.js';
 import eventBus from '@/modules/eventBus.js';
 import orderPageTemplate from '@/components/pages/order/orderPage.pug';
@@ -39,6 +39,7 @@ export class OrderPageView extends View {
             [ORDER_PAGE_RENDER, this._orderPageRender.bind(this)],
             [ORDER_PAGE_ERROR, this._error.bind(this)],
             [ORDER_PAGE_FEEDBACK, this._feedback.bind(this)],
+            [SERVER_ERROR, this._sErr.bind(this)],
         ]);
 
         eventBus.emit(ORDER_PAGE_GET_RES);
@@ -186,6 +187,15 @@ export class OrderPageView extends View {
      */
     _error(error) {
         notification(`Ошибка сервера. ${error}`);
+    }
+
+    /**
+     * Обработка ошибки
+     *
+     * @param {string} error - текст ошибки
+     */
+    _sErr(error) {
+        notification(`Ошибка. ${error}`);
     }
 
     /**

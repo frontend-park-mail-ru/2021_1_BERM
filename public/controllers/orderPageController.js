@@ -20,7 +20,7 @@ import {
     ORDER_PAGE_DELETE,
     ORDER_PAGE_ERROR,
     ORDER_PAGE_SEND_FEEDBACK,
-    CHANGE_ORDER,
+    CHANGE_ORDER, SERVER_ERROR,
 } from '@/modules/constants/actions';
 import eventBus from '@/modules/eventBus.js';
 import router from '@/modules/router.js';
@@ -135,8 +135,7 @@ export class OrderPageController extends Controller {
                 go();
             });
         } else {
-            console.log('Запрос не сработал');
-            // ToDo Обработка ошибки запроса
+            eventBus.emit(SERVER_ERROR, 'Ставка не изменена, вас уже выбрали');
         }
     }
 
