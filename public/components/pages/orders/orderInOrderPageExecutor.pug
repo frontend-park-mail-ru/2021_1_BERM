@@ -24,6 +24,6 @@ mixin orderInOrderPageExecutor(avatar, title, category, definition, date, budget
                     div(class='orderPage__order_stat-data')= date
                 div(class='orderPage__order_stat')
                     img(class='orderPage__order_stat-img' src=require('@/static/img/cardBlue.svg').default)
-                    div(class='orderPage__order_stat-data')= budget
+                    div(class='orderPage__order_stat-data') #{budget} ₽
                 if !isExecutor && !isArchived
                     button(class='vacancyPage__customer-button_change') Изменить

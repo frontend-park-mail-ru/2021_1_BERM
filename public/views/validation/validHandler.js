@@ -154,9 +154,6 @@ export class ValidHandler {
                 }
             },
             passwordRepeat: () => {
-                if (formVal.passwordRepeat.length < 8) {
-                    return this.errors[13];
-                }
                 if (this.password !== formVal.passwordRepeat) {
                     return this.errors[13];
                 }
