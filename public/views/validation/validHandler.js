@@ -50,7 +50,7 @@ export class ValidHandler {
                 }
             },
             about: () => {
-                if (formVal.about.length > 500 ||
+                if (formVal.about.length > 1500 ||
                     formVal.about.length === 0) {
                     return this.errors[18];
                 }
@@ -62,7 +62,7 @@ export class ValidHandler {
                 }
             },
             description: () => {
-                if (formVal.description.length > 500 ||
+                if (formVal.description.length > 2500 ||
                     formVal.description.length === 0) {
                     return this.errors[18];
                 }
@@ -74,7 +74,7 @@ export class ValidHandler {
             },
             rateExecutor: () => {
                 if (formVal.rateExecutor.length > 500 ||
-                    formVal.rateExecutor.length < 40) {
+                    formVal.rateExecutor.length < 20) {
                     return this.errors[18];
                 }
                 if (this.patterns

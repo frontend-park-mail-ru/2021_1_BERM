@@ -164,6 +164,9 @@
 }
 
 .about-text {
+  padding-right: 20px;
+  width: 100%;
+  max-width: 500px;
   @include font(normal, 14px, 22px, -0.4px, $black);
   margin-top: 25px;
 }
