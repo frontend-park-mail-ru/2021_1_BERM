@@ -152,6 +152,7 @@
   }
 
   &__comment-text {
+    white-space: pre-line;
     @include font(normal, 15px, 22px, -0.4px, $black);
 
     margin: 0 26px 8px 14px;

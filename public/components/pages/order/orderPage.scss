@@ -206,6 +206,7 @@
     }
 
     &_definition {
+      white-space: pre-line;
       width: 720px;
       margin-top: 12px;
       @include font(normal, 18px, 26px, -0.3px, $paragraph);
